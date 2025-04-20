@@ -1,6 +1,0 @@
-@use "../../theme-chalk/src/mixins/config" as *;
-
-:export {
-  // 命名空间，具体看 hooks/useNamespace.ts 的使用
-  namespace: #{$namespace};
-}

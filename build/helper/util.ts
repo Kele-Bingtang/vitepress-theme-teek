@@ -18,7 +18,6 @@ export const cssResolver: any = {
     code = code.replaceAll(sourceThemeChalk, bundleThemeChalk);
     code = code.replaceAll(sourceBaseCssChalk, `${bundleThemeChalk}/base.css`);
     code = code.replaceAll(sourceBaseIndexChalk, `${bundleThemeChalk}/src/base.scss`);
-    // code = code.replaceAll(`@element-plus`, `element-plus/es/components`); // deprecated
     // 移除 `"use strict";` 和换行符
     code = code.replace(/"use strict";\s*/g, "");
 

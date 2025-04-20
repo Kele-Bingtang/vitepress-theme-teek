@@ -1,5 +1,0 @@
-@use "./function" as *;
-
-@mixin set-css-var($name, $value) {
-  #{joinVarName($name)}: #{$value};
-}

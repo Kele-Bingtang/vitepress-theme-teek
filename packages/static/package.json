@@ -1,6 +1,0 @@
-{
-  "private": true,
-  "name": "@teek/static",
-  "license": "MIT",
-  "main": "index.ts"
-}

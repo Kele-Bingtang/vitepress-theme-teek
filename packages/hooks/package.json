@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "name": "@teek/hooks",
-  "license": "MIT",
-  "main": "index.ts",
-  "devDependencies": {
-    "vitepress": "^1.6.3"
-  }
-}
