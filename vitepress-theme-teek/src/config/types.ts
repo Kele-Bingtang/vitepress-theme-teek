@@ -1,4 +1,4 @@
-import type { TkPaginationProps } from "../components/Pagination";
+import type { TkPaginationProps } from "../components/common/Pagination";
 import type {
   Appreciation,
   Article,
@@ -25,9 +25,22 @@ import type {
   TopArticle,
   Wallpaper,
   Markdown,
-} from "./types/index";
+} from "./interface";
 
-export type * from "./types/index";
+export type * from "./interface";
+
+export type {
+  DocAnalysis as DocAnalysisData,
+  DocAnalysisOption,
+  FileInfo as DocDocAnalysisFileInfo,
+  FilePathInfo,
+} from "vitepress-plugin-doc-analysis";
+export type { AutoFrontmatterOption, FileInfo as AutoFrontmatterFileInfo } from "vitepress-plugin-auto-frontmatter";
+export type { Catalogue, CatalogueInfo, CatalogueItem, CatalogueOption } from "vitepress-plugin-catalogue";
+export type { FileContentLoaderData, FileContentLoaderOptions } from "vitepress-plugin-file-content-loader";
+export type { MdH1Option } from "vitepress-plugin-md-h1";
+export type { NotFoundOption, Permalink, PermalinkOption } from "vitepress-plugin-permalink";
+export type { SidebarOption } from "vitepress-plugin-sidebar-resolve";
 
 export interface TeekConfig {
   /**

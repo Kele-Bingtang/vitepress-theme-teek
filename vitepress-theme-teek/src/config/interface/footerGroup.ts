@@ -1,4 +1,4 @@
-import type { IconProps } from "../../components/Icon/src/icon";
+import type { IconProps } from "../../components/common/Icon/src/icon";
 
 export interface FooterGroup {
   /**

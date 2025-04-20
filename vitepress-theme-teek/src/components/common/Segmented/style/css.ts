@@ -1,3 +1,3 @@
 import "@teek/components/base/style/css";
-import "@teek/theme-chalk/tk-segmented.css";
-import "@teek/theme-chalk/tk-segmented-item.css";
+import "@vitepress-theme-teek/theme-chalk/tk-segmented.css";
+import "@vitepress-theme-teek/theme-chalk/tk-segmented-item.css";

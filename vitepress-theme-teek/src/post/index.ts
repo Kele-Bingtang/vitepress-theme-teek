@@ -1,5 +1,5 @@
 import type { FileContentLoaderData } from "vitepress-plugin-file-content-loader";
-import type { TkContentData, Post } from "./types";
+import type { TkContentData, PostData } from "./types";
 import { SiteConfig } from "vitepress";
 import { getTitleFromMd } from "vitepress-plugin-sidebar-resolve";
 import { basename, join } from "node:path";
@@ -44,7 +44,7 @@ export const transformData = (data: FileContentLoaderData): TkContentData => {
 /**
  * 转换为各个文章不同类型的数据
  */
-export const transformRaw = (posts: TkContentData[]): Post => {
+export const transformRaw = (posts: TkContentData[]): PostData => {
   const siteConfig: SiteConfig = (globalThis as any).VITEPRESS_CONFIG;
   const { locales = {} } = siteConfig.userConfig;
 
@@ -55,7 +55,7 @@ export const transformRaw = (posts: TkContentData[]): Post => {
   if (!localesKeys.length) return postsData;
 
   // 国际化处理，计算每个语言目录下的 posts 数据
-  const postsLocale: Record<string, Post> = {};
+  const postsLocale: Record<string, PostData> = {};
   localesKeys
     .filter(localesKey => localesKey !== "root")
     .forEach(localesKey => {
@@ -70,7 +70,7 @@ export const transformRaw = (posts: TkContentData[]): Post => {
   return { ...postsData, locales: postsLocale };
 };
 
-const resolvePosts = (posts: TkContentData[]): Post => {
+const resolvePosts = (posts: TkContentData[]): PostData => {
   const originPosts = filterPosts(posts);
   const sortPostsByDateAndSticky = getSortPostsByDateAndSticky(originPosts);
   const sortPostsByDate = getSortPostsByDate(originPosts);

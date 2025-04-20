@@ -1,4 +1,4 @@
-import type { Message } from "../../components/Message/src/message";
+import type { Message } from "../../components/common/Message/src/message";
 
 export interface ThemeSetting {
   /**

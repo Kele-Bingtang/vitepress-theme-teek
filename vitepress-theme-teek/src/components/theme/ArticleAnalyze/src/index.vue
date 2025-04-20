@@ -1,6 +1,6 @@
 <script setup lang="ts" name="ArticleAnalyze">
 import type { Article, DocAnalysis, DocDocAnalysisFileInfo } from "@teek/config";
-import type { TkContentData } from "@teek/config/post/types";
+import type { TkContentData } from "@teek/config";
 import type { UseBuSuanZiReturn } from "@teek/hooks";
 import { computed, nextTick, onMounted, ref, unref, watch } from "vue";
 import { useRoute, useData } from "vitepress";

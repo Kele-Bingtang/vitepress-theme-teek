@@ -1,9 +1,9 @@
-import type { GroupCardItem, TkContentData, Post } from "./types";
+import type { GroupCardItem, TkContentData, PostData } from "./types";
 
 /**
  * Post 空数据，方便定义空对象
  */
-export const emptyPost: Post = {
+export const emptyPost: PostData = {
   originPosts: [],
   sortPostsByDateAndSticky: [],
   sortPostsByDate: [],
@@ -56,7 +56,7 @@ export const getSortPostsByDate = (posts: TkContentData[]): TkContentData[] => {
  * 按分类和标签分组
  * @param  posts 按时间排序之后的文章数据
  */
-export const getGroupPosts = (posts: TkContentData[]): Post["groupPosts"] => {
+export const getGroupPosts = (posts: TkContentData[]): PostData["groupPosts"] => {
   const categoriesObj: Record<string, TkContentData[]> = {};
   const tagsObj: Record<string, TkContentData[]> = {};
 
@@ -88,7 +88,7 @@ export const getGroupPosts = (posts: TkContentData[]): Post["groupPosts"] => {
  * 获取所有分类和标签
  * @param  groupPosts 按分类和标签分组之后的文章数据
  */
-export const getGroupCards = (groupPosts: Post["groupPosts"]): Post["groupCards"] => {
+export const getGroupCards = (groupPosts: PostData["groupPosts"]): PostData["groupCards"] => {
   const categoriesArr: GroupCardItem[] = [];
   const tagsArr: GroupCardItem[] = [];
 
@@ -138,7 +138,7 @@ export const groupByYear = (posts: TkContentData[]) => {
       pre[year].push(cur);
       return pre;
     },
-    {} as Post["groupPostsByYear"]
+    {} as PostData["groupPostsByYear"]
   );
 };
 /**
@@ -158,6 +158,6 @@ export const groupByYearMonth = (posts: TkContentData[]) => {
       pre[year][month].push(cur);
       return pre;
     },
-    {} as Post["groupPostsByYearMonth"]
+    {} as PostData["groupPostsByYearMonth"]
   );
 };

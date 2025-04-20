@@ -21,7 +21,7 @@ export type TkContentData = FileContentLoaderData & {
   capture?: string;
 };
 
-export interface Post {
+export interface PostData {
   /**
    * 文章列表
    */
@@ -71,7 +71,7 @@ export interface Post {
   /**
    * 国际化启用后，key 为语言，value 为该语言目录下的 Posts。如果没有开启国际化，则没有 locales
    */
-  locales?: Record<string, Post>;
+  locales?: Record<string, PostData>;
 }
 
 export interface GroupCardItem {

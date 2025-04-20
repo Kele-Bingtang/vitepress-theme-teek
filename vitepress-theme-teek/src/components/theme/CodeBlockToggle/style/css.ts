@@ -1,2 +1,2 @@
 import "@teek/components/base/style/css";
-import "@teek/theme-chalk/tk-code-block-toggle.css";
+import "@vitepress-theme-teek/theme-chalk/tk-code-block-toggle.css";

@@ -1,4 +1,4 @@
-import { LayoutThemeColor, LayoutMode, SpotlightStyle } from "../../components/LayoutEnhance/src/layoutEnhance";
+import { LayoutThemeColor, LayoutMode, SpotlightStyle } from "../../components/theme/LayoutEnhance/src/layoutEnhance";
 
 export interface LayoutEnhance {
   /**

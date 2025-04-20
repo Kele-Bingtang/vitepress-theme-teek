@@ -1,2 +1,2 @@
 import "@teek/components/base/style/index";
-import "@teek/theme-chalk/src/components/common/vp-container.scss";
+import "@vitepress-theme-teek/theme-chalk/src/components/common/vp-container.scss";

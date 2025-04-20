@@ -1,6 +1,6 @@
 import type { DefaultTheme, HeadConfig, UserConfig } from "vitepress";
 import type { TeekConfig } from "./types";
-import type { Post, TkContentData } from "../post/types";
+import type { PostData, TkContentData } from "../post/types";
 import { fileURLToPath } from "node:url";
 import Sidebar from "vitepress-plugin-sidebar-resolve";
 import Permalink from "vitepress-plugin-permalink";
@@ -24,6 +24,7 @@ import { createCategory, createPermalink } from "./addFrontmatter";
 
 export { LayoutThemeColor, LayoutMode, SpotlightStyle } from "../components/theme/LayoutEnhance/src/layoutEnhance";
 export * from "./types";
+export * from "../post/types";
 
 export const defineTeekConfig = (config: TeekConfig & UserConfig<DefaultTheme.Config> = {}): UserConfig => {
   const { vitePlugins, markdown = {}, ...teekConfig } = config;
@@ -121,7 +122,7 @@ export const defineTeekConfig = (config: TeekConfig & UserConfig<DefaultTheme.Co
     // 目录页插件
     plugins.push(Catalogue(catalogueOption));
 
-    const fileContentLoaderOptions: FileContentLoaderOptions<TkContentData, Post> = {
+    const fileContentLoaderOptions: FileContentLoaderOptions<TkContentData, PostData> = {
       pattern: ["**/*.md"],
       // 指定摘录格式
       excerpt: "<!-- more -->",
@@ -135,7 +136,7 @@ export const defineTeekConfig = (config: TeekConfig & UserConfig<DefaultTheme.Co
     };
 
     // Post 数据处理插件
-    plugins.push(FileContentLoader<TkContentData, Post>(fileContentLoaderOptions));
+    plugins.push(FileContentLoader<TkContentData, PostData>(fileContentLoaderOptions));
   }
 
   const head: HeadConfig[] = [];

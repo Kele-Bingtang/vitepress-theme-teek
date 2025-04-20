@@ -8,9 +8,9 @@ import { TkLayout, TkCataloguePage, TkArchivesPage, TkDemoCode } from "./compone
 
 import "./styles/index.scss";
 
-export type { TkContentData, Post, GroupCardItem, FrontMatter } from "./post/types";
-export type * from "./config/types";
 export type DefaultThemeType = typeof DefaultTheme;
+export type * from "./post/types";
+export type * from "./config/types";
 
 export * from "./assets";
 export * from "./configProvider";

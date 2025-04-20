@@ -1,4 +1,4 @@
-import type { TkAvatarProps } from "../../components/Avatar";
+import type { TkAvatarProps } from "../../components/common/Avatar";
 
 export interface Blogger {
   /**

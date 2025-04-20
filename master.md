@@ -8,3 +8,4 @@
 2. 将 `components/theme` 目录下的 `ConfigProvider` 文件夹删除
 3. 全局搜索 `@teek/static`，替换为 `@teek/assets`，或者将 `vitepress-theme-teek` 下的 `assets` 改名为 `static`
 4. 全局搜索 `@teek/components/theme/ConfigProvider`，替换为 `@teek/ConfigProvider`
+5. 全局搜索 `@teek/theme-chalk`，替换为 `@vitepress-theme-teek/theme-chalk`

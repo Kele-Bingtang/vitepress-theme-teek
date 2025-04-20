@@ -1,4 +1,4 @@
-import type { Post } from "./post/types";
+import type { PostData } from "./post/types";
 import type { TeekConfig } from "./config/types";
 import { computed, defineComponent, h, inject, InjectionKey, provide, Ref, unref, type Component } from "vue";
 import { useData } from "vitepress";
@@ -7,7 +7,7 @@ import { emptyPost } from "./post/helper";
 import { isFunction, isObject } from "./helper";
 import usePermalink from "vitepress-plugin-permalink/usePermalink";
 
-export const postsSymbol: InjectionKey<Post> = Symbol("posts");
+export const postsSymbol: InjectionKey<PostData> = Symbol("posts");
 export const teekConfigSymbol: InjectionKey<TeekConfig | Ref<TeekConfig>> = Symbol("teekConfig");
 
 /**
@@ -55,7 +55,7 @@ export const usePage = () => {
 /**
  * 返回全部 Posts 数据
  */
-export const useAllPosts = (): Post => {
+export const useAllPosts = (): PostData => {
   const { theme } = useData();
   const posts = unref(theme).posts;
 
@@ -65,7 +65,7 @@ export const useAllPosts = (): Post => {
 /**
  * 返回 Posts 数据，当处于国际化环境时，返回对应语言的 Posts 数据，否则返回全部 Posts 数据
  */
-export const usePosts = (): Ref<Post> => {
+export const usePosts = (): Ref<PostData> => {
   const { localeIndex } = useData();
   const posts = useAllPosts();
 
