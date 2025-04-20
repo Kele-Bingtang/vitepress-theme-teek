@@ -1,0 +1,28 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+@use "../../mixins/mixins" as *;
+
+:root {
+  @include set-css-var("popover-bg-color", var(--vp-c-bg-elv));
+}
+
+@include b(popover) {
+  position: relative;
+  cursor: pointer;
+
+  @include e(content) {
+    min-width: 260px;
+    max-width: 100vw;
+    position: absolute;
+    z-index: 99;
+    background-color: getCssVar("popover-bg-color");
+    box-shadow: var(--vp-shadow-3);
+    border: 1px solid var(--vp-c-divider);
+    padding: 20px;
+    overflow: auto;
+    border-radius: 12px;
+    cursor: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

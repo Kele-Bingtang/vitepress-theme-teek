@@ -1,0 +1,55 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+
+@include b(my) {
+  @include e(avatar) {
+    width: 100%;
+    margin-bottom: 10px;
+
+    &.circle-rotate img {
+      &:hover {
+        transform: rotate(666turn);
+        transition-duration: 59s;
+        transition-timing-function: cubic-bezier(0.34, 0, 0.84, 1);
+      }
+    }
+
+    &.square {
+      width: getCssVar("home-card-width");
+      margin: calc(-1 * getCssVar("home-card-padding")) calc(-1 * getCssVar("home-card-padding")) 10px;
+    }
+
+    @media (max-width: 768px) {
+      &.square > span {
+        img {
+          width: 240px;
+        }
+      }
+    }
+  }
+
+  @include e(icons) {
+    margin-bottom: 5px;
+  }
+
+  @include e(blogger) {
+    padding: 5px 5px 0;
+    .name {
+      font-size: 21px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .slogan {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}

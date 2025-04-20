@@ -1,0 +1,34 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/config" as *;
+
+@include b(icon) {
+  width: var(--icon-size, 1em);
+  height: var(--icon-size, 1em);
+  line-height: 1em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: var(--icon-color, currentColor);
+  color: var(--icon-color, inherit);
+  font-size: var(--icon-size, inherit);
+
+  svg {
+    width: var(--icon-size, 1em);
+    height: var(--icon-size, 1em);
+  }
+
+  .iconfont {
+    color: var(--icon-color, inherit);
+    font-size: var(--icon-size, 1em);
+  }
+
+  @include when(hover) {
+    &:hover {
+      svg,
+      i {
+        color: var(--icon-color-hover, inherit);
+      }
+    }
+  }
+}

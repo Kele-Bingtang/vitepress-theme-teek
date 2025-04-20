@@ -1,0 +1,44 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+
+@include b(footer-info) {
+  width: 100%;
+  padding: 0 20px 12px;
+  text-align: center;
+
+  @include e(icons) {
+    gap: getCssVar("footer-gap");
+    margin-bottom: 10px;
+  }
+
+  p {
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--vp-c-text-2);
+  }
+
+  @include e(list) {
+    gap: 15px;
+    font-size: 14px;
+    color: var(--vp-c-text-2);
+
+    @include e(list__item) {
+      gap: 5px;
+      a:hover {
+        color: getCssVar("theme-color");
+        text-decoration: underline;
+        text-decoration-color: getCssVar("theme-color");
+        text-decoration-style: dashed;
+      }
+    }
+  }
+
+  @media (max-width: 719px) {
+    @include e(list) {
+      gap: 0;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

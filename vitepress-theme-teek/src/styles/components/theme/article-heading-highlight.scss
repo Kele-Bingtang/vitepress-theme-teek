@@ -1,0 +1,37 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/mixins" as *;
+@use "../../mixins/function" as *;
+
+:root {
+  @include set-css-var("heading-highlight-color", var(--vp-c-text-1));
+  @include set-css-var("heading-highlight-bg-color", var(--vp-c-brand-soft));
+}
+
+@include b(article-heading-highlight) {
+  animation: heading-highlight-animation 1.5s ease-in-out;
+}
+
+@keyframes heading-highlight-animation {
+  0% {
+    background-color: transparent;
+    box-shadow: 0px 0px 0px 8px transparent;
+  }
+  10%,
+  35% {
+    color: getCssVar("heading-highlight-color");
+    border-color: transparent;
+    border-radius: 4px;
+    background-color: getCssVar("heading-highlight-bg-color");
+    box-shadow: 0px 0px 0px 8px getCssVar("heading-highlight-bg-color");
+  }
+  99% {
+    background-color: transparent;
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 8px transparent;
+  }
+  100% {
+    border-radius: 0px;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,11 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+
+@include b(doc-analysis) {
+  @include e(item) {
+    display: flex;
+    justify-content: space-between;
+    font-size: getCssVar("home-font-size-middle");
+    padding: 1px 2px;
+  }
+}

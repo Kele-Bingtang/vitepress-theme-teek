@@ -4,8 +4,7 @@ import DefaultTheme from "vitepress/theme";
 import { defineClientComponent } from "vitepress";
 import { TeekConfigProvider } from "./configProvider";
 import { isClient, baiduAnalytics, trackPageview, googleAnalytics, umamiAnalytics } from "./helper";
-import { TkCataloguePage, TkArchivesPage, TkDemoCode } from "./components";
-import Layout from "./layout/index.vue";
+import { TkLayout, TkCataloguePage, TkArchivesPage, TkDemoCode } from "./components";
 
 import "./styles/index.scss";
 
@@ -24,7 +23,7 @@ export * from "./version";
 
 export default {
   extends: DefaultTheme,
-  Layout: TeekConfigProvider(Layout),
+  Layout: TeekConfigProvider(TkLayout),
   enhanceApp({ app, siteData }) {
     app.component("TkCataloguePage", TkCataloguePage);
     app.component("TkArchivesPage", TkArchivesPage);

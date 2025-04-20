@@ -1,0 +1,13 @@
+@use "../../mixins/bem" as *;
+
+@include b(layout) {
+  @include m(hide-vp-home) {
+    .VPHomeHero,
+    .VPHomeFeatures {
+      display: none;
+    }
+  }
+  @include e(comment) {
+    margin-top: 1.25rem;
+  }
+}

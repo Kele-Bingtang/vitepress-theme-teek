@@ -1,0 +1,160 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+
+/* 官方默认样式 */
+@include b(default) {
+  .VPContent:not(.is-home) {
+    background-color: getCssVar("bg-color-1");
+  }
+}
+
+/* 单卡片风格样式 */
+@include multiple-b((card, card-nav)) {
+  .VPContent:not(.is-home) {
+    .VPDoc.has-sidebar {
+      background-color: getCssVar("bg-color-1");
+      padding-top: 0;
+      padding-left: 10px;
+    }
+
+    .VPDoc:not(.has-sidebar) {
+      padding-top: 0;
+      .container {
+        background-color: getCssVar("bg-color-1");
+        & > .content {
+          padding-left: 0;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+/* 片段卡片风格样式 */
+@include multiple-b((segment, segment-nav)) {
+  .VPContent:not(.is-home) {
+    .VPDoc:not(.has-sidebar) .container > .content {
+      max-width: 845px;
+    }
+    .VPDoc {
+      padding: 0;
+      .container > .content {
+        background-color: getCssVar("bg-color-1");
+        .content-container {
+          padding-left: 10px;
+        }
+      }
+      /* 右侧目录栏 */
+      .aside {
+        .aside-container {
+          .aside-content {
+            padding-bottom: 20px;
+            .content {
+              padding-right: 15px;
+              padding-bottom: 10px;
+              background-color: getCssVar("bg-color-1");
+            }
+          }
+        }
+        .aside-curtain {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+/* 导航栏样式 */
+@include multiple-b((card-nav, segment-nav)) {
+  @media (min-width: 1440px) {
+    /* 导航栏 */
+    .VPNav {
+      /* 带侧边栏的导航栏 */
+      .VPNavBar.has-sidebar:not(.home) {
+        background-color: getCssVar("bg-color-1");
+        .title {
+          padding-left: 20px;
+        }
+        .content {
+          padding-right: 32px;
+          padding-left: var(--vp-sidebar-width);
+          .content-body {
+            background: transparent;
+            .VPNavBarSearch {
+              padding-left: 0;
+            }
+          }
+        }
+      }
+      /* 不带侧边栏的导航栏 */
+      .VPNavBar:not(.has-sidebar) {
+        /* logo 左移到最边，导航菜单右移到最边 */
+        .container {
+          margin: 0;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* card & segment 公共样式 */
+@include multiple-b(((card, card-nav, segment, segment-nav))) {
+  &.Layout .VPNav .VPNavBar:not(.home) {
+    background-color: getCssVar("bg-color-1");
+  }
+
+  .VPContent:not(.is-home) {
+    background-color: getCssVar("bg-color-3");
+    .VPDoc {
+      /* 文档内容 */
+      .container > .content {
+        padding-top: 20px;
+      }
+    }
+  }
+
+  .VPNav .VPNavBar.has-sidebar {
+    .divider {
+      padding: 0;
+    }
+
+    .VPNavBarTitle.has-sidebar .title {
+      border: none;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    /* 侧边栏 */
+    .VPSidebar {
+      background-color: getCssVar("bg-color-2");
+      padding: 0;
+      width: var(--vp-sidebar-width);
+      top: var(--vp-nav-height);
+      .nav {
+        margin-top: 10px;
+
+        .group {
+          width: 245px;
+        }
+        .VPSidebarItem.level-0 {
+          padding-left: 18px;
+          .items {
+            padding-left: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .VPContent:not(.is-home) {
+      .VPDoc {
+        margin-top: 20px;
+        .container > .content .content-container {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}

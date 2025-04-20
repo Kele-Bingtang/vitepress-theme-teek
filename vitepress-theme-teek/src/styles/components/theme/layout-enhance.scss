@@ -1,0 +1,142 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+@use "../../mixins/mixins" as *;
+@use "../../mixins/config" as *;
+
+:root {
+  @include set-css-var("reading-enhance-bg-color", var(--vp-c-bg-elv));
+  @include set-css-var("reading-enhance-text-color", var(--vp-c-text-1));
+  @include set-css-var("reading-enhance-inner-bg-color", #ebedf2);
+}
+
+:root.dark {
+  @include set-css-var("reading-enhance-inner-bg-color", #2c2f35);
+}
+
+@include b(segmented) {
+  color: getCssVar("reading-enhance-text-color");
+  background-color: getCssVar("reading-enhance-inner-bg-color");
+}
+
+@include b(reading-enhance) {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  height: 100%;
+
+  &::before {
+    margin-right: 8px;
+    margin-left: 8px;
+    width: 1px;
+    height: 24px;
+    background-color: var(--vp-c-divider);
+    content: "";
+  }
+
+  > :first-child {
+    margin-left: 8px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  @include e(content) {
+    & > * {
+      margin-bottom: 10px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @include e(layout-color) {
+    .#{$namespace}-segmented {
+      border-radius: 0;
+
+      &-item.is-active {
+        color: var(--vp-c-brand-1);
+        background-color: var(--vp-c-brand-soft);
+
+        &:hover {
+          color: var(--vp-c-brand-3);
+          background-color: var(--vp-c-brand-soft);
+        }
+      }
+    }
+  }
+
+  @include e(title) {
+    display: inline-flex;
+    align-items: center;
+    flex: 1 1 0%;
+    font-size: 14px;
+    font-weight: 500;
+    color: getCssVar("reading-enhance-text-color");
+    padding-right: 16px;
+    user-select: none;
+    gap: 4px;
+
+    @include when(disabled) {
+      opacity: 0.5;
+    }
+  }
+
+  @include e(helper) {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.5;
+    color: getCssVar("reading-enhance-text-color");
+    cursor: help;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @include m(desc) {
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 8px;
+    }
+  }
+
+  @include e(helper__popup) {
+    color: getCssVar("reading-enhance-text-color");
+  }
+
+  @include e(helper__body) {
+    max-width: 400px;
+  }
+
+  @include e(helper__body__tip) {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: getCssVar("reading-enhance-inner-bg-color");
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @include e(slide) {
+    color: getCssVar("reading-enhance-text-color");
+    background-color: getCssVar("reading-enhance-inner-bg-color");
+  }
+
+  /* 滑动消失出现效果 */
+  .#{$namespace}-reading-enhance-slide-move,
+  .#{$namespace}-reading-enhance-slide-enter-active,
+  .#{$namespace}-reading-enhance-slide-leave-active {
+    transition: all 0.2s ease-in-out;
+  }
+  .#{$namespace}-reading-enhance-slide-enter-from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  .#{$namespace}-reading-enhance-slide-leave-to {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+}

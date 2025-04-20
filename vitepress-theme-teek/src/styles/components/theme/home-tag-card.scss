@@ -1,0 +1,48 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+
+@include b(tag) {
+  @include e(list) {
+    position: relative;
+    margin-top: 5px;
+    a {
+      color: getCssVar("bg-color-1");
+      display: inline-block;
+      padding: 0 7px;
+      transition: transform 0.4s;
+      border-radius: 3px;
+      margin: 0 5px 6px;
+      height: 24px;
+      line-height: 24px;
+      font-size: getCssVar("home-font-size-small");
+      text-align: center;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &.active {
+        box-shadow: 0 5px 10px -5px var(--home-tag-color);
+        transform: scale(1.15);
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .more {
+      font-size: getCssVar("home-font-size-middle");
+      line-height: getCssVar("home-font-size-middle");
+      color: var(--vp-c-text-1);
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+  @include m(empty) {
+    font-size: getCssVar("home-font-size-middle");
+    padding: 6px;
+    text-align: center;
+  }
+}

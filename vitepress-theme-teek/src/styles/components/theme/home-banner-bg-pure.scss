@@ -1,0 +1,6 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+
+@include b(banner-bg-pure) {
+  min-height: getCssVar(home-banner-part-min-height);
+}

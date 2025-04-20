@@ -1,0 +1,54 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+
+@include b(top-article) {
+  @include e(list) {
+    position: relative;
+    gap: getCssVar("home-top-article-gap");
+    padding-right: 5px;
+
+    @include e(list__item) {
+      display: flex;
+      gap: 10px;
+
+      .num {
+        color: getCssVar("lower-color-1");
+        font-size: getCssVar("home-font-size-middle");
+        margin-top: 4px;
+        padding: 0 6px;
+        height: 18px;
+        line-height: 18px;
+        border-radius: 8px 0;
+        font-weight: 600;
+        font-style: italic;
+
+        &.sticky {
+          font-size: getCssVar("home-font-size-small");
+          background-color: getCssVar("num-bg-color");
+          color: #ffffff;
+          border-radius: 8px 0;
+        }
+      }
+
+      @include e(list__item__info) {
+        // 让文字溢出后显示 ...
+        min-width: 0;
+
+        .title {
+          font-size: getCssVar("home-font-size-middle");
+          font-weight: 450;
+        }
+        .date {
+          font-size: getCssVar("home-font-size-small");
+          color: var(--vp-c-text-2);
+        }
+      }
+    }
+  }
+
+  @include m(empty) {
+    font-size: getCssVar("home-font-size-middle");
+    padding: 6px;
+    text-align: center;
+  }
+}

@@ -1,1 +1,1 @@
-import "@vitepress-theme-teek/theme-chalk/base.css";
+import "@teek/theme-chalk/base.css";

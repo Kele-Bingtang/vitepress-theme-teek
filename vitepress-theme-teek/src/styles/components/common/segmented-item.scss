@@ -1,0 +1,65 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+@use "../../mixins/mixins" as *;
+
+:root {
+  @include set-css-var("segmented-item-text", var(--vp-c-text-1));
+  @include set-css-var("segmented-item-active-text", var(--vp-c-text-1));
+  @include set-css-var("segmented-item-active-bg", var(--vp-c-bg-elv));
+  @include set-css-var("segmented-item-shadow-color", #bababa8c);
+}
+
+:root.dark {
+  @include set-css-var("segmented-item-active-text", var(--vp-c-bg-elv));
+  @include set-css-var("segmented-item-active-bg", var(--vp-c-text-1));
+  @include set-css-var("segmented-item-shadow-color", #535353db);
+}
+
+@include b(segmented-item) {
+  width: 100%;
+  color: getCssVar("segmented-item-text");
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 14px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 0.375rem;
+  justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+
+  @include when(active) {
+    font-weight: bold;
+    color: getCssVar("segmented-item-active-text");
+    background-color: getCssVar("segmented-item-active-bg");
+    box-shadow: 0 2px 4px 0px getCssVar("segmented-item-shadow-color");
+  }
+
+  @include when(disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: getCssVar("segmented-item-active-text");
+  }
+
+  &:not(.is-disabled):hover {
+    color: getCssVar("segmented-item-active-text");
+    background-color: getCssVar("segmented-item-active-bg");
+    box-shadow: 0 2px 4px 0px getCssVar("segmented-item-shadow-color");
+  }
+
+  &__content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    gap: 4px;
+  }
+}

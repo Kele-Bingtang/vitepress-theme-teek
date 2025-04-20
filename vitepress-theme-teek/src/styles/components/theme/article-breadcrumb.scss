@@ -1,0 +1,9 @@
+@use "../../mixins/bem" as *;
+@use "../../mixins/function" as *;
+@use "../../mixins/config" as *;
+
+@use "../common/breadcrumb";
+@use "../common/breadcrumb-item";
+
+@include b(article-breadcrumb) {
+}

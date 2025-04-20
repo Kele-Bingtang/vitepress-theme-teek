@@ -1,0 +1,14 @@
+@use "../../mixins/bem" as *;
+
+@include b(border-highlight) {
+  outline-width: 2px;
+  outline-color: transparent;
+  outline-offset: 4px;
+  outline-style: dashed;
+  transition: outline 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 6px;
+
+  @include when(active) {
+    outline-color: var(--vp-c-brand-1);
+  }
+}

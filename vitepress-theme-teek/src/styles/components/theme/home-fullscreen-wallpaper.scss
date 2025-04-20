@@ -1,0 +1,19 @@
+@use "../../mixins/config" as *;
+
+$prefix-class: #{$namespace}-fullscreen-wallpaper;
+$prefix-class-outside: #{$namespace}-wallpaper-outside;
+
+html {
+  &.#{$prefix-class} {
+    overflow: hidden;
+
+    .VPNav,
+    .#{$prefix-class-outside} {
+      display: none;
+    }
+
+    .display-none {
+      display: none;
+    }
+  }
+}
