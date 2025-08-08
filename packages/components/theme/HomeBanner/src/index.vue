@@ -170,6 +170,14 @@ const styleComponent = computed(() => {
 
   return styleComponentMap[currentStyle];
 });
+
+const getAfterContainerStype = () => {
+  let style = "";
+  if (currentBgStyle.value.isBannerPartImgBgStyle) {
+    style = "margin-top: var(--tk-home-banner-part-min-height)";
+  }
+  return style;
+};
 </script>
 
 <template>
@@ -196,7 +204,7 @@ const styleComponent = computed(() => {
     />
   </div>
 
-  <div :class="ns.e('after-container')">
+  <div :class="ns.e('after-container')" :style="getAfterContainerStype()">
     <slot name="teek-home-banner-after" />
   </div>
 </template>

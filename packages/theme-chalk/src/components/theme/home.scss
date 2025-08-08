@@ -8,8 +8,13 @@
 #VPContent .VPHome .vp-doc {
   position: relative;
   max-width: 100vw;
-  padding: 2rem 15vw;
+  overflow: hidden;
   background-color: getCssVar(home-bg-color);
+}
+
+#VPContent .VPHome .vp-doc div {
+  max-width: 1160px;
+  margin: 0 auto;
 }
 
 @include b(home) {
@@ -17,6 +22,11 @@
     background-color: getCssVar(home-bg-color);
     padding: 5vh 0;
     position: relative;
+  }
+
+  /* 小图模式上边距 */
+  @include e(container__margin-top) {
+    margin-top: var(--tk-home-banner-part-min-height);
   }
 
   @include e(content) {

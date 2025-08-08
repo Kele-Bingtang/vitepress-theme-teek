@@ -2,41 +2,39 @@
 @use "../../mixins/function" as *;
 
 @include b(banner-bg-image) {
-	@keyframes enlarge {
-		50% {
-			transform: scale(1.1);
-		}
-		100% {
-			transform: scale(1);
-		}
-	}
+  @keyframes enlarge {
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
   &.part {
     min-height: getCssVar(home-banner-part-min-height);
   }
 
   &.full {
-/*    position: absolute;
+    /*    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;*/
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100vh;
-		z-index: -9;
-		overflow: hidden;
-		background: getCssVar("banner-img-bg");
-		transition: background 1s;
-		animation: enlarge getCssVar("banner-img-switch-interval-s") linear infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    animation: enlarge getCssVar("banner-img-switch-interval-s") linear infinite;
   }
 
   &.part,
   &.full {
-		background: getCssVar("banner-img-bg");
-		transition: background 1s;
+    background: getCssVar("banner-img-bg");
+    transition: background 1s;
 
     .mask {
       position: absolute;

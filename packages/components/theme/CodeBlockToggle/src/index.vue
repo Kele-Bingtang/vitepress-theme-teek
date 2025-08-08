@@ -1,8 +1,8 @@
 <script setup lang="ts" name="CodeBlockToggle">
 import type { CodeBlock } from "@teek/config";
 import { nextTick, watch } from "vue";
-import { useEventListener, useNamespace } from "@teek/composables";
-import { isBoolean, isClient } from "@teek/helper";
+import { useNamespace } from "@teek/composables";
+import { isClient } from "@teek/helper";
 import { arrowDownIcon } from "@teek/static";
 import { TkMessage } from "@teek/components/common/Message";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
@@ -100,20 +100,20 @@ const initCodeBlock = () => {
       const overlay = createOverlay(() => {
         overlay.remove();
         item.style.maxHeight = modeHeight + "px";
-        if (arronewArrowElementwElement) {
+        if (newArrowElement) {
           newArrowElement.classList.remove(foldClass);
         }
       });
 
       item.appendChild(overlay);
-      
+
       // 如果有箭头元素，初始状态设为折叠
       if (newArrowElement) {
-        newArrowElement.classList.add(foldClass); 
+        newArrowElement.classList.add(foldClass);
       }
     }
 
-      // 给箭头图标添加点击事件
+    // 给箭头图标添加点击事件
     if (newArrowElement) {
       addClickEvent(newArrowElement, item, modeHeight);
     }
@@ -132,7 +132,7 @@ const addClickEvent = (arrowDom: HTMLElement, codeDom: HTMLElement, modeHeight: 
     if (isFold) {
       codeDom.style.maxHeight = modeHeight + "px";
       arrowDom.classList.remove(foldClass);
-      const overlay = codeDom.querySelector('.code-block-overlay');
+      const overlay = codeDom.querySelector(".code-block-overlay");
       if (overlay) overlay.remove();
     } else {
       if (modeHeight < 400) {
@@ -146,7 +146,7 @@ const addClickEvent = (arrowDom: HTMLElement, codeDom: HTMLElement, modeHeight: 
       arrowDom.classList.add(foldClass);
 
       if (modeHeight > 400) {
-        let overlay = codeDom.querySelector('.code-block-overlay') as HTMLElement | null;
+        let overlay = codeDom.querySelector(".code-block-overlay") as HTMLElement | null;
         if (!overlay) {
           overlay = createOverlay(() => {
             overlay?.remove();
@@ -161,7 +161,6 @@ const addClickEvent = (arrowDom: HTMLElement, codeDom: HTMLElement, modeHeight: 
 
   arrowDom.addEventListener("click", clickEvent);
 };
-
 </script>
 
 <template></template>
