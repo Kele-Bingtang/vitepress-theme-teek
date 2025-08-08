@@ -50,7 +50,7 @@ const { Layout } = DefaultTheme;
 
 const ns = useNamespace("layout");
 const { getTeekConfigRef } = useTeekConfig();
-const { isHomePage, isArchivesPage, isCataloguePage, isArticleOverviewPage, topTip, bottomTip } = usePageState();
+const { isArchivesPage, isCataloguePage, isArticleOverviewPage, topTip, bottomTip } = usePageState();
 const { frontmatter, localeIndex, page } = useData();
 
 // 支持 provide、frontmatter.tk、frontmatter、theme 配置
