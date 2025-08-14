@@ -10,8 +10,6 @@ import { useTeekConfig, usePageState } from "@teek/components/theme/ConfigProvid
 import { TkHome } from "@teek/components/theme/Home";
 import { TkHomeMyCardScreen } from "@teek/components/theme/HomeMyCard";
 import { TkBodyBgImage } from "@teek/components/theme/BodyBgImage";
-import { TkFooterGroup } from "@teek/components/theme/FooterGroup";
-import { TkFooterInfo } from "@teek/components/theme/FooterInfo";
 import { TkArticleImagePreview } from "@teek/components/theme/ArticleImagePreview";
 import { TkArticleAnalyze } from "@teek/components/theme/ArticleAnalyze";
 import { TkArticleShare } from "@teek/components/theme/ArticleShare";
@@ -38,6 +36,7 @@ import { TkArticleOverviewPage } from "@teek/components/theme/ArticleOverviewPag
 import { TkLoginPage, useWatchLogin } from "@teek/components/theme/LoginPage";
 import { TkRiskLinkPage, useRiskLink } from "@teek/components/theme/RiskLinkPage";
 import { TkSidebarTrigger } from "@teek/components/theme/SidebarTrigger";
+import { FooterContainer } from "@teek/components/theme/FooterContainer";
 
 defineOptions({ name: "TeekLayout" });
 
@@ -52,7 +51,7 @@ const { Layout } = DefaultTheme;
 
 const ns = useNamespace("layout");
 const { getTeekConfigRef } = useTeekConfig();
-const { isHomePage, isArchivesPage, isCataloguePage, isArticleOverviewPage } = usePageState();
+const { isArchivesPage, isCataloguePage, isArticleOverviewPage } = usePageState();
 const { frontmatter, localeIndex, page } = useData();
 
 // 支持 provide、frontmatter.tk、frontmatter、theme 配置
@@ -198,13 +197,7 @@ const usedSlots = [
       </template>
 
       <template #layout-bottom>
-        <TkFooterGroup v-if="isHomePage" />
-        <slot name="teek-footer-info-before" />
-
-        <TkFooterInfo v-if="isHomePage" />
-
-        <slot name="teek-footer-info-after" />
-        <slot name="layout-bottom" />
+        <FooterContainer />
       </template>
 
       <template #sidebar-nav-before>

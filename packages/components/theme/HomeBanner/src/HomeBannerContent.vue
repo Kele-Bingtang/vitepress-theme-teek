@@ -72,30 +72,34 @@ onMounted(() => {
 
 <template>
   <div :class="ns.b()" :aria-label="t('tk.homeBanner.contentLabel')">
-    <!-- 首页 banner 图文字插槽 -->
-    <template v-if="$slots['teek-home-banner-name']">
-      <slot name="teek-home-banner-name" v-bind="{ name: bannerConfig.name }" />
-    </template>
+    <div :class="ns.e('content__fixed')">
+      <!-- 首页 banner 图文字插槽 -->
+      <template v-if="$slots['teek-home-banner-name']">
+        <div :aria-label="t('tk.homeBanner.titleLabel')">
+          <slot name="teek-home-banner-name" v-bind="{ name: bannerConfig.name }" />
+        </div>
+      </template>
 
-    <!-- 如果没有传入插槽，则渲染默认的 h1 标签及内容 -->
-    <h1 v-else :class="ns.e('title')" :aria-label="t('tk.homeBanner.titleLabel')">
-      {{ bannerConfig.name }}
-    </h1>
+      <!-- 如果没有传入插槽，则渲染默认的 h1 标签及内容 -->
+      <h1 v-else :class="ns.e('title')" :aria-label="t('tk.homeBanner.titleLabel')">
+        {{ bannerConfig.name }}
+      </h1>
 
-    <p :class="ns.e('desc')" :aria-label="t('tk.homeBanner.descLabel')">
-      <template v-if="isDefaultDescStyle">
-        <span>{{ descArray[0] }}</span>
-      </template>
-      <template v-else-if="isSwitchDescStyle">
-        <span v-show="text" @click="startAutoSwitch" class="switch" :aria-label="t('tk.homeBanner.descSwitchLabel')">
-          {{ text }}
-        </span>
-        <span v-show="!text">&nbsp;</span>
-      </template>
-      <template v-else-if="isTypesDescStyle && descArray.length">
-        <span :aria-label="t('tk.homeBanner.descTypedLabel')">{{ typesText }}</span>
-        <span :class="['typed', { 'is-animation': isFinished }]">|</span>
-      </template>
-    </p>
+      <p :class="ns.e('desc')" :aria-label="t('tk.homeBanner.descLabel')">
+        <template v-if="isDefaultDescStyle">
+          <span>{{ descArray[0] }}</span>
+        </template>
+        <template v-else-if="isSwitchDescStyle">
+          <span v-show="text" @click="startAutoSwitch" class="switch" :aria-label="t('tk.homeBanner.descSwitchLabel')">
+            {{ text }}
+          </span>
+          <span v-show="!text">&nbsp;</span>
+        </template>
+        <template v-else-if="isTypesDescStyle && descArray.length">
+          <span :aria-label="t('tk.homeBanner.descTypedLabel')">{{ typesText }}</span>
+          <span :class="['typed', { 'is-animation': isFinished }]">|</span>
+        </template>
+      </p>
+    </div>
   </div>
 </template>
