@@ -1,5 +1,36 @@
 # vitepress-plugin-permalink
 
+## 1.2.1
+
+### Patch Changes
+
+- 修复 unbuild 构建 Vue 组件失效问题
+
+## 1.2.0
+
+### Minor Changes
+
+- 新增 Rewrites 方式生成永久链接，优化 Proxy 方式 404 问题
+
+## 1.1.6
+
+### Patch Changes
+
+- 修复浏览器前进后退仍然出现 404 页面问题
+
+## 1.1.5
+
+### Patch Changes
+
+- 修复浏览器前进后退 404 问题
+
+## 1.1.4
+
+### Patch Changes
+
+- f38f6b7: 优化 404 页面处理逻辑
+- 3ff375a: 移出 notFoundOption 配置项，优化 notFound 组件，改为在路由变化前预先处理
+
 ## 1.1.3
 
 ### Patch Changes

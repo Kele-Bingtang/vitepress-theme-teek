@@ -66,7 +66,7 @@
 
       // 折叠侧边栏的左侧距离
       @include b(sidebar-trigger) {
-        left: getCssVar("sidebar-trigger-left-offset");
+        left: getCssVar("sidebar-trigger-left-offset") !important;
       }
     }
 

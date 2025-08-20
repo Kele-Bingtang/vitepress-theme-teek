@@ -17,7 +17,11 @@ const previewImage = (e: Event) => {
   const target = e.target as HTMLElement;
 
   // 当点击的是图片，且图片的 class 不为 no-preview 时，才触发预览
-  if (target.tagName.toLowerCase() === "img" && !target.className.includes("no-preview")) {
+  if (
+    target.tagName.toLowerCase() === "img" &&
+    !target.className.includes("image-viewer__img") && // 处于预览状态，点击/拖拽图片时，不重新触发预览
+    !target.className.includes("no-preview")
+  ) {
     const imgDoms = target.querySelectorAll<HTMLImageElement>(".content-container .main img");
     const imgs = Array.from(imgDoms);
 

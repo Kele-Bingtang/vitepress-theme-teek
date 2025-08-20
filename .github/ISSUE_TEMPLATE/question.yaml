@@ -1,0 +1,53 @@
+---
+name: ❗ 疑问提交
+description: 提交你的疑问
+labels: question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您抽出宝贵时间填写这份疑问表单！
+  - type: textarea
+    id: question-description
+    attributes:
+      label: 描述您的疑问
+      description: 请清晰简洁地描述您的疑问是什么。
+      placeholder: 疑问描述
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 步骤重现（可选）
+      description: 如果有重现步骤，请提供。
+      placeholder: 重现步骤
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果（可选）
+      description: 请描述您期望的结果是什么。
+      placeholder: 预期结果
+  - type: textarea
+    id: system-info
+    attributes:
+      label: 系统信息（可选）
+      description: 提供您的系统信息和依赖版本号。
+      render: Text
+      placeholder: 系统、二进制文件、浏览器信息、依赖版本号
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 附加信息
+      description: 在此处添加有关疑问的任何其他信息或截图。
+  - type: checkboxes
+    id: checkboxes
+    attributes:
+      label: 验证项
+      description: 提交问题之前，请确保您已完成以下操作
+      options:
+        - label: 阅读 [文档](https://vp.teek.top/)。
+          required: true
+        - label: 检查是否已存在相同的疑问问题，以避免创建重复问题。
+          required: true
+---
+

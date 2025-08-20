@@ -1,7 +1,12 @@
-import { useRouter, useData, inBrowser } from "vitepress";
+import { useRouter, useData } from "vitepress";
 import { nextTick, onBeforeMount } from "vue";
 
-export default function usePermalink() {
+/**
+ * 监听永久链接跳转
+ *
+ * @param executeBeforeMountFn 是否执行 beforeMount 阶段，当只要获取 teyGetFilePathByPermalink 函数时，可以设置为 false，避免重复执行 beforeMount 阶段
+ */
+export default function usePermalink(executeBeforeMountFn = true) {
   const fakeHost = "http://a.com";
   const router = useRouter();
   const { site, theme, localeIndex } = useData();
@@ -16,7 +21,7 @@ export default function usePermalink() {
    *
    * @param href 访问的文档地址或 permalink
    */
-  const replaceUrlWhenPermalinkExist = (href: string) => {
+  const replaceUrlWhenPermalinkExist = async (href: string) => {
     if (!permalinkKeys.length) return;
 
     const { pathname, search, hash } = new URL(href, fakeHost);
@@ -29,29 +34,31 @@ export default function usePermalink() {
 
     if (permalink) {
       // 存在 permalink 则在 URL 替换
-      return nextTick(() => {
+      return nextTick(async () => {
         const to = base.replace(/\/$/, "") + permalink + search + hash;
         history.replaceState(history.state || null, "", to);
 
-        router.onAfterUrlLoad?.(to);
+        await router.onAfterUrlLoad?.(to);
       });
     }
 
-    // 不存在 permalink 则获取文档地址来跳转（router.onBeforeRouteChange 在跳转前已经执行了该逻辑，因此这里触发率 0%，只是用于兜底，因为 router.onBeforeRouteChange 可能因为用户使用不当被覆盖）
+    // 不存在 permalink 则获取文档地址来跳转（router.onBeforeRouteChange 在跳转前已经执行了该逻辑，因此只要在 onBeforeMount 触发，用于兜底
     const filePath = teyGetFilePathByPermalink(pathname);
     if (filePath) {
-      if (inBrowser) document.title = "";
       const targetUrl = base + filePath + search + hash;
+
       // router.go 前清除当前历史记录，防止 router.go 后浏览器返回时回到当前历史记录时，又重定向过去，如此反复循环
       history.replaceState(history.state || null, "", targetUrl);
-      router.go(targetUrl);
-    } else router.onAfterUrlLoad?.(href);
+      await router.go(targetUrl);
+    } else await router.onAfterUrlLoad?.(href);
   };
 
-  onBeforeMount(() => {
-    if (!router.state.permalinkPlugin) router.state = { ...router.state, permalinkPlugin: true };
-    replaceUrlWhenPermalinkExist(window.location.href);
-  });
+  if (executeBeforeMountFn) {
+    onBeforeMount(async () => {
+      if (!router.state.permalinkPlugin) router.state = { ...router.state, permalinkPlugin: true };
+      await replaceUrlWhenPermalinkExist(window.location.href);
+    });
+  }
 
   /**
    * 尝试通过路由地址获取文件地址（当路由地址为 permalink 时才有值返回，否则返回空）
@@ -92,20 +99,19 @@ export default function usePermalink() {
     if (state.permalinkPlugin) return;
 
     const selfOnBeforeRouteChange = router.onBeforeRouteChange;
-    router.onBeforeRouteChange = (href: string) => {
+    router.onBeforeRouteChange = async (href: string) => {
       // 调用已有的 onBeforeRouteChange
-      const selfResult = selfOnBeforeRouteChange?.(href);
+      const selfResult = await selfOnBeforeRouteChange?.(href);
       if (selfResult === false) return false;
       if (href === base) return;
 
       const { pathname, search, hash } = new URL(href, fakeHost);
-
       // 尝试获取文件路径（当 pathname 为 permalink 时才获取成功）
       const filePath = teyGetFilePathByPermalink(pathname);
 
       if (filePath) {
         const targetUrl = base + filePath + search + hash;
-        router.go(targetUrl);
+        await router.go(targetUrl);
 
         // 阻止本次路由跳转
         return false;
@@ -113,15 +119,15 @@ export default function usePermalink() {
     };
 
     const selfOnAfterRouteChange = router.onAfterRouteChange;
-    router.onAfterRouteChange = (href: string) => {
+    router.onAfterRouteChange = async (href: string) => {
       // 如果 permalink 存在，则替换掉 URL
-      replaceUrlWhenPermalinkExist(href);
+      await replaceUrlWhenPermalinkExist(href);
       // 调用已有的 onAfterRouteChange
-      selfOnAfterRouteChange?.(href);
+      await selfOnAfterRouteChange?.(href);
     };
 
     router.state = { ...router.state, permalinkPlugin: true };
   };
 
-  return { startWatch };
+  return { startWatch, teyGetFilePathByPermalink };
 }

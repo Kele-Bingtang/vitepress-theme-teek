@@ -1,0 +1,177 @@
+{
+  "id": "4999519",
+  "name": "social",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "386277",
+      "name": "douban",
+      "font_class": "douban",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "413607",
+      "name": "xiangce",
+      "font_class": "xiangce",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "704799",
+      "name": "telegram",
+      "font_class": "telegram",
+      "unicode": "eaf9",
+      "unicode_decimal": 60153
+    },
+    {
+      "icon_id": "929736",
+      "name": "rss",
+      "font_class": "rss",
+      "unicode": "e7ea",
+      "unicode_decimal": 59370
+    },
+    {
+      "icon_id": "973192",
+      "name": "weixin",
+      "font_class": "weixin",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "4936976",
+      "name": "Youtube",
+      "font_class": "Youtube",
+      "unicode": "e880",
+      "unicode_decimal": 59520
+    },
+    {
+      "icon_id": "4936984",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "e882",
+      "unicode_decimal": 59522
+    },
+    {
+      "icon_id": "4936987",
+      "name": "weibo",
+      "font_class": "weibo",
+      "unicode": "e883",
+      "unicode_decimal": 59523
+    },
+    {
+      "icon_id": "7239590",
+      "name": "yuque",
+      "font_class": "yuque",
+      "unicode": "e712",
+      "unicode_decimal": 59154
+    },
+    {
+      "icon_id": "7785031",
+      "name": "v2ex",
+      "font_class": "vex",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "9383916",
+      "name": "csdn",
+      "font_class": "csdn",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "9785636",
+      "name": "facebook",
+      "font_class": "facebook",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "14830371",
+      "name": "youjian",
+      "font_class": "youjian",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "15283832",
+      "name": "sf-line",
+      "font_class": "sf",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "16012990",
+      "name": "juejin",
+      "font_class": "juejin",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "18166694",
+      "name": "抖音",
+      "font_class": "douyin",
+      "unicode": "e8db",
+      "unicode_decimal": 59611
+    },
+    {
+      "icon_id": "20511522",
+      "name": "博客园",
+      "font_class": "cnblogs-grey",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "22894714",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "27383274",
+      "name": "jianshu",
+      "font_class": "jianshu",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "33569021",
+      "name": "npm",
+      "font_class": "npm",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "35334752",
+      "name": "bilibili",
+      "font_class": "bilibili",
+      "unicode": "e849",
+      "unicode_decimal": 59465
+    },
+    {
+      "icon_id": "41502940",
+      "name": "zhihu",
+      "font_class": "zhihu",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "42973536",
+      "name": "tuite-copy",
+      "font_class": "tuite",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "43217855",
+      "name": "gitee",
+      "font_class": "gitee",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+name: 🚀 新功能建议
+description: 为这个项目提出一个想法
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您对这个项目的关注并抽出时间填写这份功能建议报告！
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 您的功能请求是否与某个问题相关？请描述一下。
+      description: "请清晰简洁地描述这个问题是什么。例如：当我 [...] 时，我总是感到困扰"
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-solution
+    attributes:
+      label: 描述您希望的解决方案
+      description: 请清晰简洁地描述您希望发生什么。
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: 描述您考虑过的替代方案
+      description: 请清晰简洁地描述您考虑过的任何替代解决方案或功能。
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 附加信息
+      description: 在此处添加有关功能请求的任何其他信息或截图。
+  - type: checkboxes
+    id: checkboxes
+    attributes:
+      label: 验证项
+      description: 提交问题之前，请确保您已完成以下操作
+      options:
+        - label: 阅读 [文档](https://vp.teek.top/)。
+          required: true
+        - label: 阅读 [贡献指南](https://vp.teek.top/guide/contribution.html)。
+          required: true
+        - label: 检查是否已存在请求相同功能的问题，以避免创建重复问题。
+          required: true

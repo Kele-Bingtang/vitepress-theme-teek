@@ -16,6 +16,7 @@ const svg = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
     <TkIcon icon="if-icon-github" />
 
     <TkIcon icon="img-https://vp.teek.top/blog/bg2.webp" imgAlt="Teek Img" />
+    <TkIcon icon="https://vp.teek.top/blog/bg2.webp" imgAlt="Teek Img" />
   </div>
 </template>
 

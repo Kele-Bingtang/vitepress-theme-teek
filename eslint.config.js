@@ -11,7 +11,7 @@ import * as parserTypeScript from "@typescript-eslint/parser";
 
 export default defineConfig([
   eslint.configs.recommended,
-  { ignores: ["**/.*", "**/dist/*", "*.d.ts"] }, // 忽略文件配置单独放在一个对象，否则不生效
+  { ignores: ["**/.*", "**/dist/*", "*.d.ts", "**/static/*"] }, // 忽略文件配置单独放在一个对象，否则不生效
   {
     languageOptions: {
       globals: {

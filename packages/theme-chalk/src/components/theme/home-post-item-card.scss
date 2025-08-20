@@ -7,11 +7,15 @@
   overflow: hidden;
   box-shadow: getCssVar("card-shadow");
   background-color: getCssVar("bg-color-elm");
-  transition: box-shadow getCssVar("transition-duration-slow");
+  transition:
+    box-shadow getCssVar("transition-duration-slow") cubic-bezier(0.4, 0, 0.2, 1),
+    transform getCssVar("transition-duration-slow") cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   height: 100%;
+
   &:hover {
-    box-shadow: var(--tk-hover-shadow);
+    box-shadow: getCssVar("hover-shadow");
+    transform: scale(1.01);
   }
 
   .top {

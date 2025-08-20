@@ -1,5 +1,17 @@
 # vitepress-plugin-sidebar-resolve
 
+## 1.1.2
+
+### Patch Changes
+
+- 修复侧边栏数据生成错误问题
+
+## 1.1.1
+
+### Patch Changes
+
+- 新增 frontmatter.sidebarPrefix 和 frontmatter.sidebarSuffix 配置，以及转换函数 prefixTransform 和 suffixTransform
+
 ## 1.1.0
 
 ### Minor Changes

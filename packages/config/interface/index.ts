@@ -12,6 +12,7 @@ export type * from "./category";
 export type * from "./codeBlock";
 export type * from "./comment";
 export type * from "./docAnalysis";
+export type * from "./feature";
 export type * from "./footerGroup";
 export type * from "./footerInfo";
 export type * from "./friendLink";

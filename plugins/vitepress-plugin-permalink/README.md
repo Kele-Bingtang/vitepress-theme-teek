@@ -6,7 +6,6 @@
 
 - 🚀🚀 支持给 Markdown 文档设置唯一的访问 **永久链接**，不再因为 Markdown 文档路径移动而导致访问地址发生变化
 - 🚀 读取 Markdown 文档 `frontmatter` 的 `permalink`，挂载到 `themeConfig.permalinks`
-- 🚀 提供 `usePermalink` composables 函数拓展 `router` 方法，支持 `router.push(href)` 跳转到永久链接或实际的文件路径
 - 🚀 支持 locales 国际化，自动给 **永久链接** 添加语言前缀，不同语言的永久链接不会重复
 - 🚀 支持 rewrite 路由重写，最终得到的文档路径是 rewrite 路由重写后的路径
 - 🚀 **永久链接** 支持导航栏激活高亮
@@ -23,6 +22,17 @@ yarn add vitepress-plugin-permalink
 # or npm
 npm install vitepress-plugin-permalink
 ```
+
+插件提供两种方式实现永久链接：
+
+1. `Proxy` 方式
+2. `Rewrites` 方式
+
+两者只能二选一，如果都配置，则以 `Rewrites` 方式为主。
+
+### Proxy
+
+Proxy 方式不会影响文件路径，而是在访问文件路径时，通过代理（拦截）转换 `Permalink`，因此既可以通过文件路径访问，也可以通过 `Permalink` 访问。
 
 添加 `vitepress-plugin-permalink` 插件到 `.vitepress/config.ts`
 
@@ -41,13 +51,31 @@ export default defineConfig({
 
 插件默认忽略 `["node_modules", "dist", ".vitepress", "public"]` 目录下的文件，且只扫描 Markdown 文档。
 
+### Rewrites
+
+插件于 `v1.2.0` 提供 `createRewrites` 方法，用于创建 [rewrites](https://vitepress.dev/zh/guide/routing#route-rewrites)，通过该方式可以实现永久链接功能。
+
+如果使用该方式，则 `Proxy` 相关功能都失效，如 `usePermalink` 函数。
+
+`Rewrites` 方式在项目运行或者构建时，通过改变文件路径达到永久链接功能，你可以在构建的 `dist` 文件夹查看修改后的文件路径。
+
+```typescript
+import { defineConfig } from "vitepress";
+import { createRewrites } from "vitepress-plugin-permalink";
+
+export default defineConfig({
+  rewrites: createRewrites(),
+});
+```
+
+注意：该方式会打乱原来的文件结构，因此侧边栏不再是基于文件路径配置，而是需要基于 `frontmatter.permalink` 属性配置。
+
 ## 🛠️ Options
 
-| name              | description                                                                  | type       | default                        |
-| ----------------- | ---------------------------------------------------------------------------- | ---------- | ------------------------------ |
-| ignoreList        | 忽略的文件/文件夹列表，支持正则表达式                                        | `string[]` | `[]`                           |
-| path              | 指定扫描的根目录                                                             | `string`   | `vitepress` 的 `srcDir` 配置项 |
-| notFoundDelayLoad | 404 页面延迟加载时间，单位为毫秒，仅限第一次进入页面或刷新/回退/前进页面生效 | `number`   | 500                            |
+| name       | description                           | type       | default                        |
+| ---------- | ------------------------------------- | ---------- | ------------------------------ |
+| ignoreList | 忽略的文件/文件夹列表，支持正则表达式 | `string[]` | `[]`                           |
+| path       | 指定扫描的根目录                      | `string`   | `vitepress` 的 `srcDir` 配置项 |
 
 ## ❗ Warning
 
@@ -67,9 +95,9 @@ router.onAfterRouteChange = (href: string) => {
 // 获取可能已有的 onAfterRouteChange
 const selfOnAfterRouteChange = router.onAfterRouteChange;
 
-router.onAfterRouteChange = (href: string) => {
+router.onAfterRouteChange = async (href: string) => {
   // 调用可能已有的 onAfterRouteChange
-  selfOnAfterRouteChange?.(href);
+  await selfOnAfterRouteChange?.(href);
 
   // 调用自己的函数
   myFunction();
@@ -86,9 +114,9 @@ const myFunction = () => {
 // 获取可能已有的 onBeforeRouteChange
 const selfOnBeforeRouteChange = router.onBeforeRouteChange;
 
-router.onBeforeRouteChange = (href: string) => {
+router.onBeforeRouteChange = async (href: string) => {
   // 调用已有的 onBeforeRouteChange
-  const selfResult = selfOnBeforeRouteChange?.(href);
+  const selfResult = await selfOnBeforeRouteChange?.(href);
   if (selfResult === false) return false;
 
   // 调用自己的函数
@@ -154,18 +182,6 @@ permalink: /guide-api
 永久链接是唯一的，如果出现两个一样的永久链接，则后面的永久链接覆盖前面的，但不影响 vitepress 自带访问路径。
 
 如果永久链接不生效，代表 `usePermalink().startWatch()` 并没有被执行，请在注册 vitepress 或者任意主题前加载该函数，如何注册请看 ([扩展默认主题 | VitePress](https://vitepress.dev/zh/guide/extending-default-theme#layout-slots))
-
-### notFoundDelayLoad 配置项
-
-使用了 `usePermalink` 函数来提供 `permalink` 功能，但是在第一次进入页面或刷新、回退、前进时，会有 404 页面短暂出现，因此需要引用 `NotFoundDelay.vue` 组件来延迟 404 页面的加载时间。
-
-`NotFoundDelay.vue` 组件已经集成了 VitePress，您可以无需手动引入 `NotFoundDelay.vue` 组件。
-
-您需要了解的是搭配 `NotFoundDelay.vue` 组件的一个核心配置项：`notFoundDelayLoad`。
-
-`vitepress-plugin-permalink` 插件在 `onBeforeMounted` 里根据自定义 URL 寻找对应的文档进行加载，但是 VitePress 初始化页面在 ``onBeforeMounted` 之前执行，因此需要延迟时间来等待 `vitepress-plugin-permalink` 插件执行完成，于是需要使用 `notFoundDelayLoad` 配置项来决定 404 页面延迟加载时间，单位为毫秒。
-
-如果发现第一次进入页面或刷新、回退、前进时有 404 页面短暂出现，则将 `notFoundDelayLoad` 配置项的时间调大。
 
 ### router.state.permalinkPlugin
 

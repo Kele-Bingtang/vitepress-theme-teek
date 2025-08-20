@@ -1,0 +1,61 @@
+---
+name: 🐞 Bug 报告
+description: 创建一个报告来帮助我们改进
+labels: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢您抽出宝贵时间填写这份错误报告！
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 描述错误
+      description: 请清晰简洁地描述这个错误是什么。如果您打算为此问题提交 PR，请在描述中告诉我们。谢谢！
+      placeholder: 错误描述
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 步骤重现
+      description: 重现该行为的步骤。如果有重现链接，请提供。
+      placeholder: 重现步骤
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 请清晰简洁地描述您期望发生什么。
+      placeholder: 预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: system-info
+    attributes:
+      label: 系统信息
+      description: 提供您的系统信息和依赖版本号。可以执行 `npx envinfo --system --npmPackages vitepress --binaries --browsers` 查看系统信息
+      render: Text
+      placeholder: 系统、二进制文件、浏览器信息、依赖版本号
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 附加信息
+      description: 在此处添加有关错误报告的任何其他信息或截图。
+  - type: checkboxes
+    id: checkboxes
+    attributes:
+      label: Validations
+      description: 提交问题之前，请确保您已完成以下操作
+      options:
+        - label: 检查您是否使用的是 [最新的 Teek 版本](https://github.com/Kele-Bingtang/vitepress-theme-teek/releases/latest)。
+          required: true
+        - label: 阅读 [文档](https://vp.teek.top/)。
+          required: true
+        - label: 检查是否已存在报告相同错误的问题，以避免创建重复问题。
+          required: true
+---
+

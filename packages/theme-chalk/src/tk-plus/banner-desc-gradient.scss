@@ -3,7 +3,7 @@
 @include b(banner-content) {
   @include e(desc) {
     display: inline-block;
-    background-color: #ffffff66;
+    background-color: hsla(0, 0%, 100%, 0.4);
     backdrop-filter: blur(4px);
     border-radius: 8px;
     padding: 8px;

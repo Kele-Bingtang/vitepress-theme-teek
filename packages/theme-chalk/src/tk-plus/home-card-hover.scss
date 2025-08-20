@@ -1,0 +1,26 @@
+@use "../mixins/bem" as *;
+
+/* 首页卡片悬停效果 */
+@mixin card-hover-effect {
+  border-radius: 10px;
+
+  &:hover {
+    box-shadow: 0 8px 32px var(--vp-c-brand-1);
+    transform: scale(1.02);
+  }
+}
+
+// 列表卡片悬停效果
+@include b(post-item) {
+  @include card-hover-effect;
+}
+
+// 卡片栏悬停效果
+@include b(page-card) {
+  @include card-hover-effect;
+}
+
+// card卡片悬停效果
+@include b(post-item-card) {
+  @include card-hover-effect;
+}

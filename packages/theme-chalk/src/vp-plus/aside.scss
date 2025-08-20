@@ -1,7 +1,7 @@
 @use "../mixins/function" as *;
 
+/* 右侧目栏录文字悬停和激活样式 */
 .VPDoc {
-  /* 右侧目栏录文字悬停和激活样式 */
   .aside .aside-container .outline-link {
     transition:
       color 0.3s,

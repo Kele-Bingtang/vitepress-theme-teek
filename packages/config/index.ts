@@ -12,6 +12,7 @@ import {
 } from "../markdown";
 import { registerPluginAndGet } from "./vitePlugins";
 
+export { createRewrites } from "vitepress-plugin-permalink";
 export { ThemeColorName, LayoutMode, SpotlightStyle } from "../components/theme/ThemeEnhance/src/themeEnhance";
 export type * from "./types";
 

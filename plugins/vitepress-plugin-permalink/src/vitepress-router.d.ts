@@ -2,7 +2,7 @@
 
 declare module "vitepress" {
   interface Router {
-    onAfterUrlLoad: (href: string) => void;
+    onAfterUrlLoad: (href: string) => Promise<void> | void;
     state: Record<string, any>;
   }
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts" name="HomeDocAnalysisCard">
 import type { DocAnalysis, DocAnalysisInfo } from "@teek/config";
-import { computed, watch } from "vue";
+import { computed, nextTick, watch } from "vue";
 import { useData } from "vitepress";
 import { useNamespace, useLocale, useUvPv, useVpRouter } from "@teek/composables";
 import { formatDiffDateToDay, getNowDate, isFunction, formatDiffDate } from "@teek/helper";
@@ -14,6 +14,7 @@ const ns = useNamespace("doc-analysis");
 const { t } = useLocale();
 const { getTeekConfigRef } = useTeekConfig();
 const { theme } = useData();
+const vpRouter = useVpRouter();
 
 // 站点信息配置项
 const docAnalysisConfig = getTeekConfigRef<Required<DocAnalysis>>("docAnalysis", {
@@ -80,38 +81,34 @@ const statisticsConfig = computed<NonNullable<DocAnalysis["statistics"]>>(() => 
 // 是否使用访问量功能
 const useSiteView = computed(() => !!statisticsConfig.value.provider && statisticsConfig.value.siteView);
 
-// 通过 busuanzi、vercount 等网站流量统计提供商获取访问量和访客数
-const { sitePv, siteUv, isGet, request } = useUvPv(useSiteView.value, statisticsConfig.value);
+const { router } = vpRouter;
 
-const statisticsInfo = computed(() => ({ siteUv: siteUv.value, sitePv: sitePv.value, isGet: isGet.value }));
+// 通过 busuanzi、vercount 等网站流量统计提供商获取访问量和访客数
+const { sitePv, siteUv, isGet, request } = useUvPv(false, statisticsConfig.value);
 
 // 支持开关
 watch(useSiteView, newVal => {
   if (newVal) request();
 });
 
-const vpRouter = useVpRouter();
-const { router } = vpRouter;
-
-// 如果使用了 permalink 插件，则可以使用该插件提供的 onAfterUrlLoad 回调监听 URL 变化事件
-if (statisticsConfig.value.permalink && router.state?.permalinkPlugin) {
-  vpRouter.bindRouterFn("urlChange", () => {
-    router.onAfterUrlLoad = () => {
-      if (useSiteView.value) request();
-    };
-  });
-} else {
-  watch(router.route, () => {
-    if (useSiteView.value) request();
-  });
-}
+watch(
+  router.route,
+  () => {
+    if (useSiteView.value) {
+      // 如果使用了 permalink 插件且 permalink 为 true，则代表使用 permalink 作为统计链接
+      if (statisticsConfig.value.permalink && router.state?.permalinkPlugin) {
+        nextTick(request);
+      } else request();
+    }
+  },
+  { immediate: true }
+);
 
 type DocAnalysisResolve = DocAnalysisInfo & { originValue?: string | number };
 
 const docAnalysisList = computed<DocAnalysisResolve[]>(() => {
   const { createTime, appendInfo, overrideInfo } = docAnalysisConfig.value;
   const { fileList = [], totalFileWords, lastCommitTime } = docAnalysisInfo.value;
-  const { siteUv, sitePv, isGet } = statisticsInfo.value;
 
   const list: DocAnalysisResolve[] = [
     {
@@ -153,15 +150,15 @@ const docAnalysisList = computed<DocAnalysisResolve[]>(() => {
     {
       key: "viewCount",
       label: t("tk.docAnalysisCard.viewCount"),
-      originValue: sitePv,
-      value: isGet ? `${sitePv} ${t("tk.docAnalysisCard.viewCountUnit")}` : "Get...",
+      originValue: sitePv.value,
+      value: isGet.value ? `${sitePv.value} ${t("tk.docAnalysisCard.viewCountUnit")}` : "Get...",
       show: useSiteView.value,
     },
     {
       key: "visitCount",
       label: t("tk.docAnalysisCard.visitCount"),
-      originValue: siteUv,
-      value: isGet ? `${siteUv} ${t("tk.docAnalysisCard.visitCountUnit")}` : "Get...",
+      originValue: siteUv.value,
+      value: isGet.value ? `${siteUv.value} ${t("tk.docAnalysisCard.visitCountUnit")}` : "Get...",
       show: useSiteView.value,
     },
     ...(appendInfo as any[]),

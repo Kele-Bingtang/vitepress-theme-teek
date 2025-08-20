@@ -5,12 +5,12 @@
 
 :root {
   @include set-css-var("body-bg-img-nav-color", rgb(255, 255, 255, 0.9));
-  @include set-css-var("body-bg-img-sidebar-color", rgb(255, 255, 255, 0.8));
+  @include set-css-var("body-bg-img-sidebar-color", rgb(255, 255, 255, 0.85));
 }
 
 :root.dark {
   @include set-css-var("body-bg-img-nav-color", rgb(27, 27, 31, 0.9));
-  @include set-css-var("body-bg-img-sidebar-color", rgb(27, 27, 31, 0.8));
+  @include set-css-var("body-bg-img-sidebar-color", rgb(27, 27, 31, 0.85));
 }
 
 @include b(body-bg-image) {

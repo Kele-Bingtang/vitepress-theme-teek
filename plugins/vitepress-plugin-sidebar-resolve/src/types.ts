@@ -20,7 +20,7 @@ export interface SidebarOption {
    */
   ignoreIndexMd?: boolean;
   /**
-   * 是否扫描根目录下的 md 文件作为 sideBar，如果为 true，则扫描根目录下的 md 文件作为 sideBar，且忽略根目录下的 index.md
+   * 是否扫描根目录下的 md 文件作为 sidebar，如果为 true，则扫描根目录下的 md 文件作为 sidebar，且忽略根目录下的 index.md
    *
    * @default true
    */
@@ -78,27 +78,27 @@ export interface SidebarOption {
    */
   localeRootDir?: string;
   /**
-   * 解析完每个 sideBar 后的回调。每个 sideBar 指的是 SidebarOption.path 目录下的每个子目录
+   * 解析完每个 sidebar 后的回调。每个 sidebar 指的是 SidebarOption.path 目录下的每个子目录
    *
-   * @param data 当前 sideBar 列表
+   * @param data 当前 sidebar 列表
    * @default undefined
    */
-  sideBarResolved?: (data: DefaultTheme.SidebarMulti) => DefaultTheme.SidebarMulti;
+  sidebarResolved?: (data: DefaultTheme.SidebarMulti) => DefaultTheme.SidebarMulti;
   /**
-   * 解析完每个 sideBarItem 后的回调。每个 sideBarItem 指的是每个目录下的文件数组
+   * 解析完每个 sidebarItem 后的回调。每个 sidebarItem 指的是每个目录下的文件数组
    *
-   * @param data 当前 sideBarItem 列表
+   * @param data 当前 sidebarItem 列表
    * @default undefined
    */
-  sideBarItemsResolved?: (data: DefaultTheme.SidebarItem[]) => DefaultTheme.SidebarItem[];
+  sidebarItemsResolved?: (data: DefaultTheme.SidebarItem[]) => DefaultTheme.SidebarItem[];
   /**
-   * 创建 sideBarItem 之前的回调。每个 sideBarItem 指的是每个目录下的文件数组
+   * 创建 sidebarItem 之前的回调。每个 sidebarItem 指的是每个目录下的文件数组
    *
    * @param data 将要解析的所有文件名
    * @default undefined
-   * @remark 可以过滤掉不需要解析为 sideBarItem 的文件
+   * @remark 可以过滤掉不需要解析为 sidebarItem 的文件
    */
-  beforeCreateSideBarItems?: (data: string[]) => string[];
+  beforeCreateSidebarItems?: (data: string[]) => string[];
   /**
    * Markdown 文件创建或者删除时，是否重启 VitePress 服务
    *
@@ -120,7 +120,7 @@ export interface SidebarOption {
    */
   sort?: boolean;
   /**
-   * 没有指定 frontmatter.sideBarSort 时的默认值，用于侧边栏排序
+   * 没有指定 frontmatter.sidebarSort 时的默认值，用于侧边栏排序
    *
    * @default 9999
    */
@@ -135,4 +135,12 @@ export interface SidebarOption {
    * 自定义序号后的分隔符（默认仍然支持 . 作为分隔符，该配置是支持额外分隔符，如自定义分隔符为 _，则文件名 01.a.md 和 01_a.md 都生效）
    */
   indexSeparator?: string;
+  /**
+   * 自定义标题前缀内容，参数 prefix 为 frontmatter.sidebarPrefix 传入
+   */
+  prefixTransform?: (prefix: string) => string;
+  /**
+   * 自定义标题后缀内容，参数 suffix 为 frontmatter.sidebarSuffix 传入
+   */
+  suffixTransform?: (suffix: string) => string;
 }

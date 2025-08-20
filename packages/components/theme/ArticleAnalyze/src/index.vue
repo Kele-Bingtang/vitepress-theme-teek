@@ -96,27 +96,25 @@ const statisticsConfig = computed<NonNullable<DocAnalysis["statistics"]>>(() => 
 const usePageView = computed(() => !!statisticsConfig.value.provider && statisticsConfig.value.pageView);
 
 // 通过 busuanzi、vercount 等网站流量统计提供商获取访问量
-const { pagePv, isGet, request } = useUvPv(usePageView.value, statisticsConfig.value);
-
-const statisticsInfo = computed(() => ({ pagePv: pagePv.value, isGet: isGet.value }));
+const { pagePv, isGet, request } = useUvPv(false, statisticsConfig.value);
 
 // 支持开关
 watch(usePageView, newVal => {
   if (newVal) request();
 });
 
-// 如果使用了 permalink 插件，则可以使用该插件提供的 onAfterUrlLoad 回调监听 URL 变化事件
-if (statisticsConfig.value.permalink && router.state?.permalinkPlugin) {
-  vpRouter.bindRouterFn("urlChange", () => {
-    router.onAfterUrlLoad = () => {
-      if (usePageView.value) request();
-    };
-  });
-} else {
-  watch(router.route, () => {
-    if (usePageView.value) request();
-  });
-}
+watch(
+  router.route,
+  () => {
+    if (usePageView.value) {
+      // 如果使用了 permalink 插件且 permalink 为 true，则代表使用 permalink 作为统计链接
+      if (statisticsConfig.value.permalink && router.state?.permalinkPlugin) {
+        nextTick(request);
+      } else request();
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
@@ -147,7 +145,7 @@ if (statisticsConfig.value.permalink && router.state?.permalinkPlugin) {
       <div v-if="usePageView" class="flx-center">
         <TkIcon v-if="articleConfig.showIcon" :icon="viewIcon" />
         <a :title="t('tk.articleAnalyze.pageView')" class="hover-color" :aria-label="t('tk.articleAnalyze.pageView')">
-          {{ statisticsInfo.isGet ? statisticsInfo.pagePv : "Get..." }}
+          {{ isGet ? pagePv : "Get..." }}
         </a>
       </div>
     </div>

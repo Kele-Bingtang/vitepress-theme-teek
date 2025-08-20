@@ -18,6 +18,14 @@ tags:
 message/basic
 :::
 
+## antd 风格
+
+通过传入 `customClass: "antd"` 来启用 antd 风格。
+
+::: demo
+message/antd
+:::
+
 ## API
 
 ### 配置项

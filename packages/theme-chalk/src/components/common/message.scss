@@ -100,6 +100,40 @@
       color: getCssVar("message-close-hover-color");
     }
   }
+
+  // 克隆并自定义 ElMessage 样式，不会影响 ElMessage 原本样式，在 src/utils/message.ts 中调用自定义样式 ElMessage 方法即可，暗黑模式在 src/style/dark.scss 文件进行了适配
+  &.antd {
+    padding: 10px 13px !important;
+    background: #ffffff !important;
+    border-width: 0 !important;
+    box-shadow:
+      0 3px 6px -4px #0000001f,
+      0 6px 16px #00000014,
+      0 9px 28px 8px #0000000d !important;
+
+    &.#{$namespace}-message.is-closable .#{$namespace}-message__content {
+      padding-right: 17px !important;
+    }
+
+    .#{$namespace}-message__content {
+      color: #000000d9 !important;
+      pointer-events: all !important;
+      background-image: initial !important;
+    }
+
+    .#{$namespace}-message__closeBtn {
+      right: 9px !important;
+      outline: none;
+      border-radius: 4px;
+      transition:
+        background-color 0.2s,
+        color 0.2s;
+
+      &:hover {
+        background-color: rgb(0 0 0 / 6%);
+      }
+    }
+  }
 }
 
 .#{$namespace}-message-fade-enter-from,

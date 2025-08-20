@@ -1,6 +1,7 @@
 @use "../mixins/mixins" as *;
 @use "../mixins/function" as *;
 
+/* 文章内容标记样式（mark 标签） */
 :root {
   @include set-css-var("mark-color", #d63200);
 }
@@ -9,12 +10,14 @@
   @include set-css-var("mark-color", #b160ea);
 }
 
-mark {
-  color: getCssVar("mark-color");
-  border: 1px solid getCssVar("mark-color");
-  background-color: transparent;
-  padding: 1px 8px;
-  border-radius: 32px;
-  margin: 0 3px;
-  font-size: 15px;
+.vp-doc {
+  mark {
+    color: getCssVar("mark-color");
+    border: 1px solid getCssVar("mark-color");
+    background-color: transparent;
+    padding: 1px 8px;
+    border-radius: 32px;
+    margin: 0 3px;
+    font-size: 15px;
+  }
 }

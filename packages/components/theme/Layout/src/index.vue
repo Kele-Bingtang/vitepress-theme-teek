@@ -37,6 +37,8 @@ import { TkLoginPage, useWatchLogin } from "@teek/components/theme/LoginPage";
 import { TkRiskLinkPage, useRiskLink } from "@teek/components/theme/RiskLinkPage";
 import { TkSidebarTrigger } from "@teek/components/theme/SidebarTrigger";
 import { FooterContainer } from "@teek/components/theme/FooterContainer";
+import { TkHomeFeature } from "@teek/components/theme/HomeFeature";
+import { TkRouteLoading } from "@teek/components/theme/RouteLoading";
 
 defineOptions({ name: "TeekLayout" });
 
@@ -60,6 +62,7 @@ const teekConfig = getTeekConfigRef<Required<TeekConfig>>(null, {
   teekHome: true,
   vpHome: true,
   sidebarTrigger: false,
+  loading: false,
   codeBlock: { disabled: false },
   themeSize: "",
   bodyBgImg: {},
@@ -128,6 +131,7 @@ onContentUpdated(() => {
 // 维护已使用的插槽，防止外界传来的插槽覆盖已使用的插槽
 const usedSlots = [
   "home-hero-before",
+  "home-features-after",
   "nav-bar-content-after",
   "layout-bottom",
   "doc-footer-before",
@@ -163,6 +167,12 @@ const usedSlots = [
           <slot :name="name" v-bind="scope" />
         </template>
       </TkRightBottomButton>
+
+      <TkRouteLoading v-if="teekConfig.loading ?? false">
+        <template #default="scope">
+          <slot name="teek-loading" v-bind="scope" />
+        </template>
+      </TkRouteLoading>
     </template>
 
     <Layout
@@ -184,6 +194,16 @@ const usedSlots = [
         </TkHome>
 
         <slot name="teek-home-after" />
+      </template>
+
+      <template #home-features-after>
+        <template v-if="!teekConfig.teekHome">
+          <slot name="teek-home-features-before" />
+          <TkHomeFeature />
+          <slot name="teek-home-features-after" />
+        </template>
+
+        <slot name="home-features-after" />
       </template>
 
       <template #nav-bar-content-after>

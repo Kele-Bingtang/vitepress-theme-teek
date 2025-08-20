@@ -33,7 +33,7 @@ icon/basic
 
 Icon 支持特定的格式来自动识别图标类型，无需传入 `iconType`。
 
-1. icon 为 `img-` 或 `IMG-` 开头，`iconType` 默认为 `img`
+1. icon 为 `img-` 或 `IMG-` 开头，或者以 `.png`、`.jpg` 等图片后缀结尾，`iconType` 默认为 `img`
 2. icon 为 `<svg` 开头，`iconType` 默认为 `svg`
 3. icon 为 `if-` 或 `IF-` 开头，`iconType` 默认为 `iconfont`
 4. icon 为 `uni-` 或 `UNI-` 开头，`iconType` 默认为 `unicode`

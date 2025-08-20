@@ -27,10 +27,10 @@ export const useVpRouter = () => {
     const beforeFn = bindPosition === "before" ? bindFn : onBeforeRouteChange;
     const afterFn = bindPosition === "after" ? bindFn : onBeforeRouteChange;
 
-    router.onBeforeRouteChange = href => {
-      const res = beforeFn?.(href);
+    router.onBeforeRouteChange = async href => {
+      const res = await beforeFn?.(href);
       if (res === false) return false;
-      return afterFn?.(href);
+      return await afterFn?.(href);
     };
 
     router.state = { ...state, [stateFlag]: true };
@@ -47,10 +47,10 @@ export const useVpRouter = () => {
     const beforeFn = bindPosition === "before" ? bindFn : onBeforePageLoad;
     const afterFn = bindPosition === "after" ? bindFn : onBeforePageLoad;
 
-    router.onBeforePageLoad = href => {
-      const res = beforeFn?.(href);
+    router.onBeforePageLoad = async href => {
+      const res = await beforeFn?.(href);
       if (res === false) return false;
-      return afterFn?.(href);
+      return await afterFn?.(href);
     };
 
     router.state = { ...state, [stateFlag]: true };
@@ -67,9 +67,9 @@ export const useVpRouter = () => {
     const beforeFn = bindPosition === "before" ? bindFn : onAfterPageLoad;
     const afterFn = bindPosition === "after" ? bindFn : onAfterPageLoad;
 
-    router.onAfterPageLoad = href => {
-      beforeFn?.(href);
-      afterFn?.(href);
+    router.onAfterPageLoad = async href => {
+      await beforeFn?.(href);
+      await afterFn?.(href);
     };
 
     router.state = { ...state, [stateFlag]: true };
@@ -85,9 +85,9 @@ export const useVpRouter = () => {
 
     const beforeFn = bindPosition === "before" ? bindFn : onAfterRouteChange;
     const afterFn = bindPosition === "after" ? bindFn : onAfterRouteChange;
-    router.onAfterRouteChange = href => {
-      beforeFn?.(href);
-      afterFn?.(href);
+    router.onAfterRouteChange = async href => {
+      await beforeFn?.(href);
+      await afterFn?.(href);
     };
 
     router.state = { ...state, [stateFlag]: true };

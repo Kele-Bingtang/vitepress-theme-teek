@@ -1,4 +1,4 @@
-import type { PermalinkOption, NotFoundOption } from "vitepress-plugin-permalink";
+import type { PermalinkOption } from "vitepress-plugin-permalink";
 import type { SidebarOption } from "vitepress-plugin-sidebar-resolve";
 import type { CatalogueOption } from "vitepress-plugin-catalogue";
 import type { MdH1Option } from "vitepress-plugin-md-h1";
@@ -25,7 +25,7 @@ export interface Plugins {
   /**
    * permalinks 插件配置项
    */
-  permalinkOption?: PermalinkOption & NotFoundOption;
+  permalinkOption?: PermalinkOption;
   /**
    * 是否启用 mdH1 插件
    *

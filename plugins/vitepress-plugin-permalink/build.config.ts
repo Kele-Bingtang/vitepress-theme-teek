@@ -2,7 +2,12 @@ import { defineBuildConfig } from "unbuild";
 import { copy } from "fs-extra";
 
 export default defineBuildConfig({
-  entries: ["src/index", "src/usePermalink", { builder: "mkdist", input: "src/components", outDir: "dist/components" }],
+  entries: [
+    "src/index",
+    "src/usePermalink",
+    "src/rewrites",
+    { builder: "mkdist", input: "src/components", outDir: "dist/components", pattern: ["**/*.vue"], loaders: ["vue"] },
+  ],
   clean: true,
   declaration: true,
   rollup: {

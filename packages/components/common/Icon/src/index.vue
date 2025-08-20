@@ -49,7 +49,9 @@ const fontIconType = computed(() => {
 
   const caseIconName = icon.toLowerCase();
 
-  if (caseIconName.startsWith("if-") || caseIconName.startsWith("iconfont")) return "iconfont";
+  if (caseIconName.startsWith("if-") || caseIconName.startsWith("iconfont") || finalIcon.value.startsWith("icon-")) {
+    return "iconfont";
+  }
   if (
     caseIconName.startsWith("uni-") ||
     /^&#x[\da-f]+/i.test(icon) ||
@@ -86,7 +88,7 @@ const isImage = computed(
     isString(icon) &&
     (iconType === "img" ||
       icon.toLowerCase().startsWith("img-") ||
-      [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp"].some(ext => icon.endsWith(ext)))
+      [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".svg"].some(ext => icon.endsWith(ext)))
 );
 </script>
 

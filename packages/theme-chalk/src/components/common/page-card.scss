@@ -7,11 +7,14 @@
   border-radius: getCssVar("home-card-border-radius");
   box-shadow: getCssVar("card-shadow");
   background-color: getCssVar("bg-color-elm");
-  transition: box-shadow getCssVar("transition-duration-slow");
+  transition:
+    box-shadow getCssVar("transition-duration-slow"),
+    transform getCssVar("transition-duration-slow");
   overflow: hidden;
 
   &:hover {
     box-shadow: getCssVar("hover-shadow");
+    transform: scale(1.01);
   }
 
   @include e(header) {

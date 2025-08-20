@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress";
+import llmstxt from "vitepress-plugin-llms";
 // 本地 Teek 主题包引用（与 Teek 在线主题包引用 二选一）
 import { defineTeekConfig } from "../../packages/config";
 import { version } from "../../packages/teek/version";
@@ -162,7 +163,7 @@ export default defineConfig({
         items: [
           { text: "案例", link: "/case" },
           { text: "常见问题", link: "/theme/qa" },
-          { text: "拓展", link: "/expand/intro" },
+          { text: "功能拓展", link: "/expand/intro" },
         ],
       },
       {
@@ -171,7 +172,7 @@ export default defineConfig({
           { text: "Components 组件", link: "/ecosystem/components" },
           { text: "运行时 API", link: "/reference/runtime-api" },
           { text: "Helper 工具", link: "/ecosystem/helper" },
-          { text: "Hooks 函数", link: "/ecosystem/composables" },
+          { text: "Composables 函数", link: "/ecosystem/composables" },
           { text: "Markdown 插件工具", link: "/ecosystem/md-plugin-utils" },
         ],
       },
@@ -196,13 +197,24 @@ export default defineConfig({
       },
     ],
     socialLinks: [{ icon: "github", link: "https://github.com/Kele-Bingtang/vitepress-theme-teek" }],
-
     search: {
-      provider: "local",
+      provider: "algolia",
+      options: {
+        appId: "2LFTZ9LKO9",
+        apiKey: "017332fa7dc0bbe5e1637b215f92a5d1",
+        indexName: "vitepress_theme_teek",
+      },
     },
     editLink: {
       text: "在 GitHub 上编辑此页",
       pattern: "https://github.com/Kele-Bingtang/vitepress-theme-teek/edit/master/docs/:path",
     },
   },
+  vite: {
+    plugins: [llmstxt() as any],
+  },
+  // transformHtml: (code, id, context) => {
+  //   if (context.page !== "404.md") return code;
+  //   return code.replace("404 | ", "");
+  // },
 });

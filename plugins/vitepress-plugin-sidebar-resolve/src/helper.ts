@@ -23,9 +23,11 @@ export default (option: SidebarOption = {}, prefix = "/"): DefaultTheme.SidebarM
     titleFormMd = false,
     initItems = true,
     initItemsText = false,
-    sideBarResolved,
+    sidebarResolved,
     ignoreWarn = false,
     indexSeparator,
+    prefixTransform,
+    suffixTransform,
   } = option;
   if (!path) return {};
 
@@ -38,23 +40,27 @@ export default (option: SidebarOption = {}, prefix = "/"): DefaultTheme.SidebarM
 
   // 只扫描根目录的 md 文件，且不扫描 index.md（首页文档）
   const key = prefix === "/" ? prefix : `/${prefix}`;
-  if (scannerRootMd) sidebar[key] = createSideBarItems(path, { ...option, ignoreIndexMd: true }, key, scannerRootMd);
+  if (scannerRootMd) sidebar[key] = createSidebarItems(path, { ...option, ignoreIndexMd: true }, key, scannerRootMd);
 
   // 遍历根目录下的每个子目录，生成对应的侧边栏数据
   dirPaths.forEach(dirPath => {
     // dirPath 是每个目录的绝对路径
     const fileName = basename(dirPath);
 
-    // 创建 SideBarItems
-    const sidebarItems = createSideBarItems(dirPath, option, `${key}${fileName}/`);
+    // 创建 SidebarItems
+    const sidebarItems = createSidebarItems(dirPath, option, `${key}${fileName}/`);
 
     if (!ignoreWarn && !sidebarItems.length) {
       return logger.warn(`该目录 '${dirPath}' 内部没有任何文件或文件序号出错，将忽略生成对应侧边栏`);
     }
 
     const { name, title } = resolveFileName(fileName, dirPath, indexSeparator);
-    const mdTitle = titleFormMd ? getInfoFromMarkdown(dirPath, fileName).title : "";
-    const text = initItemsText ? mdTitle || title : undefined;
+    const info = getInfoFromMarkdown(dirPath, fileName);
+    const mdTitle = titleFormMd ? info.title : "";
+    // 标题添加前缀和后缀
+    const sidebarPrefix = (info.prefix && (prefixTransform?.(info.prefix) ?? info.prefix)) ?? "";
+    const sidebarSuffix = (info.suffix && (suffixTransform?.(info.suffix) ?? info.suffix)) ?? "";
+    const text = sidebarPrefix + (initItemsText ? mdTitle || title : "") + sidebarSuffix;
 
     sidebar[`${key}${fileName}/`] = initItems
       ? [
@@ -67,7 +73,7 @@ export default (option: SidebarOption = {}, prefix = "/"): DefaultTheme.SidebarM
       : sidebarItems;
   });
 
-  return sideBarResolved?.(sidebar) ?? sidebar;
+  return sidebarResolved?.(sidebar) ?? sidebar;
 };
 
 /**
@@ -100,7 +106,7 @@ const readDirPaths = (sourceDir: string, ignoreList: SidebarOption["ignoreList"]
  * @param prefix 记录的文件/文件夹路径（包含刚进入方法时的 root 目录），确保 prefix 始终都有 / 结尾
  * @param onlyScannerRootMd 是否只扫描根目录下的 md 文件，如果为 false，则只递归扫描根目录下的所有子目录文件（不包含根目录文件），如果为 true，则只扫描根目录的文件
  */
-const createSideBarItems = (
+const createSidebarItems = (
   root: string,
   option: SidebarOption,
   prefix = "/",
@@ -111,14 +117,16 @@ const createSideBarItems = (
     ignoreList = [],
     ignoreIndexMd = false,
     fileIndexPrefix = false,
-    sideBarItemsResolved,
-    beforeCreateSideBarItems,
+    sidebarItemsResolved,
+    beforeCreateSidebarItems,
     titleFormMd = false,
     ignoreWarn = false,
     sort = true,
     defaultSortNum = 9999,
     sortNumFromFileName = false,
     indexSeparator,
+    prefixTransform,
+    suffixTransform,
   } = option;
   const ignoreListAll = [...DEFAULT_IGNORE_DIR, ...ignoreList];
 
@@ -129,7 +137,7 @@ const createSideBarItems = (
   // 读取目录名（文件和文件夹）
   let dirOrFilenames = readdirSync(root);
 
-  dirOrFilenames = beforeCreateSideBarItems?.(dirOrFilenames) ?? dirOrFilenames;
+  dirOrFilenames = beforeCreateSidebarItems?.(dirOrFilenames) ?? dirOrFilenames;
 
   dirOrFilenames.forEach(dirOrFilename => {
     if (isSome(ignoreListAll, dirOrFilename)) return [];
@@ -153,20 +161,23 @@ const createSideBarItems = (
       // 是文件夹目录
       const info = getInfoFromMarkdown(root, dirOrFilename);
       const mdTitle = titleFormMd ? info.title : "";
-      const text = mdTitle || title;
-      const childSideBarItems = createSideBarItems(filePath, option, `${prefix}${dirOrFilename}/`);
+      // 标题添加前缀和后缀
+      const sidebarPrefix = (info.prefix && (prefixTransform?.(info.prefix) ?? info.prefix)) ?? "";
+      const sidebarSuffix = (info.suffix && (suffixTransform?.(info.suffix) ?? info.suffix)) ?? "";
+      const text = sidebarPrefix + (mdTitle || title) + sidebarSuffix;
+      const childSidebarItems = createSidebarItems(filePath, option, `${prefix}${dirOrFilename}/`);
 
       let sidebarItem: Record<string, any> = {
         text,
         collapsed: typeof collapsed === "function" ? collapsed(prefix + name, text) : collapsed,
-        items: childSideBarItems,
+        items: childSidebarItems,
       };
 
       if (sort) {
         sidebarItem = {
           ...sidebarItem,
           // 对子侧边栏进行排序
-          items: childSideBarItems
+          items: childSidebarItems
             .sort((a: any, b: any) => (a.sort || defaultSortNum) - (b.sort || defaultSortNum))
             .map(item => {
               // 排完序后删除排序属性
@@ -193,15 +204,18 @@ const createSideBarItems = (
 
       const content = readFileSync(filePath, "utf-8");
       // 解析出 frontmatter 数据
-      const { data: { title: frontmatterTitle, sidebar = true, sidebarSort } = {}, content: mdContent } = matter(
-        content,
-        {}
-      );
+      const {
+        data: { title: frontmatterTitle, sidebar = true, sidebarSort, sidebarPrefix, sidebarSuffix } = {},
+        content: mdContent,
+      } = matter(content, {});
 
       if (!sidebar) return [];
       // title 获取顺序：md 文件 frontmatter.title > md 文件一级标题 > md 文件名
       const mdTitle = titleFormMd ? getTitleFromMarkdown(mdContent) : "";
-      const text = frontmatterTitle || mdTitle || title;
+      // 标题添加前缀和后缀
+      const finalSidebarPrefix = (sidebarPrefix && (prefixTransform?.(sidebarPrefix) ?? sidebarPrefix)) ?? "";
+      const finalSidebarSuffix = (sidebarSuffix && (suffixTransform?.(sidebarSuffix) ?? sidebarSuffix)) ?? "";
+      const text = finalSidebarPrefix + (frontmatterTitle || mdTitle || title) + finalSidebarSuffix;
 
       let sidebarItem: Record<string, any> = {
         text,
@@ -230,7 +244,7 @@ const createSideBarItems = (
       });
   }
 
-  return sideBarItemsResolved?.(sidebarItems) ?? sidebarItems;
+  return sidebarItemsResolved?.(sidebarItems) ?? sidebarItems;
 };
 
 /**
@@ -242,6 +256,8 @@ const getInfoFromMarkdown = (root: string, dirOrFilename: string) => {
   const state = {
     title: undefined as string | undefined,
     sort: undefined as number | undefined,
+    prefix: "",
+    suffix: "",
   };
 
   const filePaths = [
@@ -254,11 +270,13 @@ const getInfoFromMarkdown = (root: string, dirOrFilename: string) => {
     if (!existsSync(filePath)) continue;
 
     const content = readFileSync(filePath, "utf-8");
-    const { data: { title, sidebarSort } = {}, content: mdContent } = matter(content, {});
+    const { data: { title, sidebarSort, sidebarPrefix, sidebarSuffix } = {}, content: mdContent } = matter(content, {});
     const t = title || getTitleFromMarkdown(mdContent);
 
     if (!state.title) state.title = t;
     if (!state.sort) state.sort = sidebarSort;
+    if (!state.prefix) state.prefix = sidebarPrefix;
+    if (!state.suffix) state.suffix = sidebarSuffix;
   }
 
   return state;

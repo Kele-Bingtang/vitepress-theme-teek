@@ -65,6 +65,17 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <ContributeChart />
     </template>
 
+    <template #teek-loading="{ loading }">
+      <div class="tk-route-loading">
+        <div v-show="loading" class="tk-route-loading__mask">
+          <div class="tk-route-loading__loader">
+            <div class="tk-route-loading__spinner" />
+            <p>拼命加载中 ...</p>
+          </div>
+        </div>
+      </div>
+    </template>
+
     <template #not-found>
       <NotFound />
     </template>

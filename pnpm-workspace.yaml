@@ -19,12 +19,12 @@ catalog:
   "@types/markdown-it": ^14.1.2
   "@types/markdown-it-container": ^2.0.10
   vitepress-plugin-auto-frontmatter: ^1.0.10
-  vitepress-plugin-catalogue: ^1.0.15
+  vitepress-plugin-catalogue: ^1.1.0
   vitepress-plugin-doc-analysis: ^1.0.12
   vitepress-plugin-file-content-loader: ^1.0.12
   vitepress-plugin-md-h1: ^1.0.11
-  vitepress-plugin-permalink: ^1.1.2
-  vitepress-plugin-sidebar-resolve: ^1.0.10
+  vitepress-plugin-permalink: ^1.2.1
+  vitepress-plugin-sidebar-resolve: ^1.1.2
 
 catalogs:
   vue:

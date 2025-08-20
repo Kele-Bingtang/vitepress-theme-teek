@@ -1,5 +1,5 @@
 <script setup lang="ts" name="ConfigSwitch">
-import { TkSegmented, TkMessage, magicIcon, isClient, useMediaQuery, useCommon } from "vitepress-theme-teek";
+import { TkSegmented, TkMessage, magicIcon, isClient, useCommon } from "vitepress-theme-teek";
 import BaseTemplate from "@teek/components/theme/ThemeEnhance/src/components/BaseTemplate.vue";
 import { nextTick, ref, watch } from "vue";
 import { useClipboard } from "@teek/composables";

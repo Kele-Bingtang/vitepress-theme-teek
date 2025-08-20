@@ -1,0 +1,52 @@
+/* 滚动条样式 */
+:root {
+  --scrollbar-bg: var(--vp-c-brand-1);
+  --scrollbar-bg-hover: var(--vp-c-brand-3);
+}
+
+html.dark {
+  --scrollbar-bg: var(--vp-c-brand-3);
+  --scrollbar-bg-hover: var(--vp-c-brand-2);
+}
+
+/* 全局滚动条样式 */
+::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0.4rem;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 2em;
+}
+
+/* 滚动条滑块样式 */
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-bg);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    hsla(0, 0%, 100%, 0.4) 25%,
+    transparent 0,
+    transparent 50%,
+    hsla(0, 0%, 100%, 0.4) 0,
+    hsla(0, 0%, 100%, 0.4) 75%,
+    transparent 0,
+    transparent
+  );
+  border-radius: 2em;
+}
+
+/* 滚动条滑块悬停效果 */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-bg-hover);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    hsla(0, 0%, 100%, 0.4) 25%,
+    transparent 0,
+    transparent 50%,
+    hsla(0, 0%, 100%, 0.4) 0,
+    hsla(0, 0%, 100%, 0.4) 75%,
+    transparent 0,
+    transparent
+  );
+  border-radius: 2em;
+}

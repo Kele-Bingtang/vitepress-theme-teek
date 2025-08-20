@@ -7,13 +7,16 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: getCssVar("card-shadow");
-  transition: box-shadow getCssVar("transition-duration-slow");
+  transition:
+    box-shadow getCssVar("transition-duration-slow") cubic-bezier(0.4, 0, 0.2, 1),
+    transform getCssVar("transition-duration-slow") cubic-bezier(0.4, 0, 0.2, 1);
   background-color: getCssVar("bg-color-elm");
 
   &:hover {
     box-shadow: getCssVar("hover-shadow");
+    transform: scale(1.01);
   }
 
   .pin {

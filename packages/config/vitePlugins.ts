@@ -92,7 +92,7 @@ const registerLoosePlugins = (vitePlugins: Plugins, ignoreDir: Record<string, an
   }
   // 自动生成永久链接插件
   if (permalink) {
-    plugins.push(...Permalink({ permalinkOption: permalinkOption, notFoundOption: permalinkOption }));
+    plugins.push(...Permalink(permalinkOption));
   }
   // 自动给 MD 添加一级标题插件
   if (mdH1) {

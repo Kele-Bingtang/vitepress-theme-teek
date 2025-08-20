@@ -6,5 +6,5 @@ const num = ref(0);
 </script>
 
 <template>
-  <TkInputSlide v-model="num" :min="0" :max="100" />
+  <TkInputSlide v-model="num" :min="0" :max="100" style="margin: 20px 0" />
 </template>

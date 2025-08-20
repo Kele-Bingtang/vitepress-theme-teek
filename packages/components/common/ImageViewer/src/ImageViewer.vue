@@ -379,6 +379,7 @@ defineExpose({
               :src="url"
               :style="imgStyle"
               :class="ns.e('img')"
+              class="image-viewer__img"
               :crossorigin="crossorigin"
               @load="handleImgLoad"
               @error="handleImgError"

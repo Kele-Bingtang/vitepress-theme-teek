@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { nextTick, readonly, ref } from "vue";
 import { isClient } from "@teek/helper";
 import { useScopeDispose } from "./useScopeDispose";
 
@@ -49,6 +49,10 @@ export interface UseUvPvOptions {
   requestFn?: (url: string | undefined, createScriptFn: typeof createScript) => UvPvData | Promise<UvPvData>;
 }
 
+const DEFAULT_SITE_PV = 9999;
+const DEFAULT_SITE_UV = 9999;
+const DEFAULT_PAGE_PV = 9999;
+
 /**
  * 统计网站访问量（busuanzi、vercount）
  *
@@ -60,7 +64,7 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
   const sitePv = ref(0);
   const siteUv = ref(0);
   const pagePv = ref(0);
-  const isGet = ref<boolean | null>(null);
+  const isGet = ref(true);
 
   const request = () => {
     if (!isClient) return;
@@ -72,6 +76,7 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
       // 如果存在自定义请求函数，则使用自定义请求函数
       if (requestFn) return Promise.resolve(await requestFn(url, createScript));
 
+      // 可以在这里拓展更多的网站浏览统计提供商
       switch (provider) {
         case "busuanzi":
           return callBusuanzi(url);
@@ -84,15 +89,15 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
 
     // 调用网站流量统计器接口
     call(url || undefined).then(data => {
-      sitePv.value = data.site_pv || 9999;
-      siteUv.value = data.site_uv || 9999;
-      pagePv.value = data.page_pv || 9999;
+      sitePv.value = data.site_pv || DEFAULT_SITE_PV;
+      siteUv.value = data.site_uv || DEFAULT_SITE_UV;
+      pagePv.value = data.page_pv || DEFAULT_PAGE_PV;
       isGet.value = true;
     });
   };
 
   // 第一次调用
-  if (immediate) request();
+  immediate && nextTick(request);
 
   if (tryRequest) {
     let i = 0;
@@ -117,7 +122,13 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
     useScopeDispose(() => clearTimer(timer));
   }
 
-  return { sitePv, siteUv, pagePv, isGet, request };
+  return {
+    sitePv: readonly(sitePv),
+    siteUv: readonly(siteUv),
+    pagePv: readonly(pagePv),
+    isGet: readonly(isGet),
+    request,
+  };
 };
 
 /**
@@ -149,7 +160,7 @@ export const callBusuanzi = (
 
   let response: UvPvData;
 
-  // busuanzi 请求成功后，自动触发该函数进行数据赋值
+  // busuanzi 请求成功后，自动触发该函数进行数据赋值（busuanzi 返回值是一个 jsonpCallback 函数，因此浏览器自动触发该函数）
   (window as any)[jsonpCallback] = (data: UvPvData) => (response = data);
 
   return new Promise((resolve, reject) => {

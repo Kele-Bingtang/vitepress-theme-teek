@@ -5,12 +5,12 @@
 
 :root {
   @include set-css-var("nav-color-dilute", rgb(255, 255, 255, 0.9));
-  @include set-css-var("sidebar-color-dilute", rgb(255, 255, 255, 0.8));
+  @include set-css-var("sidebar-color-dilute", rgb(255, 255, 255, 0.85));
 }
 
 :root.dark {
   @include set-css-var("nav-color-dilute", rgb(27, 27, 31, 0.9));
-  @include set-css-var("sidebar-color-dilute", rgb(27, 27, 31, 0.8));
+  @include set-css-var("sidebar-color-dilute", rgb(27, 27, 31, 0.85));
 }
 
 html[layout-mode="original"] {
@@ -56,9 +56,6 @@ html[layout-mode="original"] {
         }
         .container > .content {
           background-color: getCssVar("bg-color");
-          .content-container {
-            padding-left: 10px;
-          }
         }
         /* 右侧目录栏 */
         .aside {
@@ -177,7 +174,7 @@ html[layout-mode="original"] {
     @media (min-width: 1280px) {
       .VPContent:not(.is-home) {
         .VPDoc {
-          margin-top: 20px;
+          margin: 20px 0;
           .container > .content .content-container {
             max-width: 100%;
           }

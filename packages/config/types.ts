@@ -33,6 +33,7 @@ import type {
   Private,
   RiskLink,
   WindowTransition,
+  Feature,
 } from "./interface";
 
 export type * from "./interface";
@@ -111,6 +112,12 @@ export interface TeekConfig {
    */
   themeSize?: "small" | "default" | "large" | "wide";
   /**
+   * 页面加载 Loading 动画，如果为 boolean，则控制是否启用，如果为字符串，则指定加载 Loading 动画的文案
+   *
+   * @default false
+   */
+  loading?: boolean | string;
+  /**
    * 回到顶部按钮配置
    */
   backTop?: BackTop;
@@ -147,11 +154,15 @@ export interface TeekConfig {
    */
   sidebarTrigger?: boolean;
   /**
-   * 是否全局启用 fade 过渡动画
+   * 是否全局启用视图渐入过渡效果
    *
    * @default true
    */
   windowTransition?: boolean | WindowTransition;
+  /**
+   * 站点特性列表，在文档风格的首页展渲染
+   */
+  features?: Feature[];
   /**
    *  body 背景图片配置
    */

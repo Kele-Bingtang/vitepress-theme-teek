@@ -1,24 +1,21 @@
 import type { Plugin, ViteDevServer } from "vite";
 import type { DefaultTheme } from "vitepress";
+import type { Permalink, PermalinkOption } from "./types";
 import createPermalinks, { standardLink } from "./helper";
-import type { NotFoundOption, Permalink, PermalinkOption } from "./types";
 import { dirname, join } from "node:path";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { getLocalePermalink } from "./rewrites";
 import logger from "./log";
 
 export * from "./types";
+export { createRewrites } from "./rewrites";
 
 /**
  * 默认暴露 2 个插件集
  */
-export default function VitePluginVitePressPermalink(
-  option: { permalinkOption?: PermalinkOption; notFoundOption?: NotFoundOption } = {}
-) {
-  return [
-    VitePluginVitePressAutoPermalink(option.permalinkOption),
-    VitePluginVitePressUsePermalink(option.notFoundOption),
-  ];
+export default function VitePluginVitePressPermalink(option: PermalinkOption = {}) {
+  return [VitePluginVitePressAutoPermalink(option), VitePluginVitePressUsePermalink(option)];
 }
 
 /**
@@ -39,7 +36,12 @@ export function VitePluginVitePressAutoPermalink(option: PermalinkOption = {}): 
         site: { themeConfig, cleanUrls, locales },
         srcDir,
         rewrites,
+        userConfig,
       } = config.vitepress;
+      vitepressConfig = config.vitepress;
+
+      // 如果使用 ./rewrites.ts 的 createRewrites 创建的 rewrites，则不走当前逻辑
+      if (userConfig?.rewrites?.__create__ === "vitepress-plugin-permalink") return;
 
       const baseDir = option.path ? join(srcDir, option.path) : srcDir;
       const permalinks = createPermalinks({ ...option, path: baseDir }, cleanUrls);
@@ -69,8 +71,6 @@ export function VitePluginVitePressAutoPermalink(option: PermalinkOption = {}): 
 
       logger.info("Injected Permalinks Data Successfully. 注入永久链接数据成功!");
 
-      vitepressConfig = config.vitepress;
-
       // 导航栏高亮适配 permalink
       if (!localesKeys.length) {
         return setActiveMatchWhenUsePermalink({
@@ -99,6 +99,8 @@ export function VitePluginVitePressAutoPermalink(option: PermalinkOption = {}): 
         },
         rewrites,
       } = vitepressConfig;
+      if (!permalinks) return;
+
       // 将 permalink 重写实际文件路径
       server.middlewares.use((req, _res, next) => {
         if (req.url && req.url.includes(".md")) {
@@ -122,21 +124,6 @@ export function VitePluginVitePressAutoPermalink(option: PermalinkOption = {}): 
     },
   };
 }
-
-/**
- * 给 permalink 添加多语言前缀
- *
- * @param localesKeys 多语言 key 数组，排除 root 根目录
- * @param path 文件路径
- * @param permalink 永久链接
- */
-const getLocalePermalink = (localesKeys: string[] = [], path = "", permalink = "") => {
-  // 过滤掉 root 根目录
-  const localesKey = localesKeys.filter(key => key !== "root").find(key => path.startsWith(key));
-  if (localesKey) return `/${localesKey}${permalink.startsWith("/") ? permalink : `/${permalink}`}`;
-
-  return permalink;
-};
 
 interface SetActiveMatchWhenUsePermalinkOption {
   /**
@@ -205,7 +192,7 @@ const getDirname = () => {
  * 1、将 UsePermalink 组件传入 VitePress 的 layout-bottom 插槽
  * 2、将 NotFoundDelay 组件传入 VitePress 的 not-found 插槽
  */
-export function VitePluginVitePressUsePermalink(option: NotFoundOption = {}): Plugin & { name: string } {
+export function VitePluginVitePressUsePermalink(option: PermalinkOption = {}): Plugin & { name: string } {
   const usePermalinkFile = `usePermalink`;
   const aliasUsePermalinkFile = `${getDirname()}/${usePermalinkFile}`;
 
@@ -215,22 +202,34 @@ export function VitePluginVitePressUsePermalink(option: NotFoundOption = {}): Pl
   const virtualModuleId = "virtual:not-found-option";
   const resolvedVirtualModuleId = `\0${virtualModuleId}`;
 
+  let disabledPlugin = false;
+
   return {
     name: "vite-plugin-vitepress-use-permalink",
-    config() {
-      return {
-        resolve: {
-          alias: {
-            [`./${usePermalinkFile}`]: aliasUsePermalinkFile,
-            [`./${NotFoundDelayComponentFile}`]: aliasNotFoundDelayComponentFile,
+    config(config: any) {
+      const { userConfig } = config.vitepress;
+
+      // 如果使用 ./rewrites.ts 的 createRewrites 创建的 rewrites，则不走当前逻辑
+      if (userConfig?.rewrites?.__create__ === "vitepress-plugin-permalink") disabledPlugin = true;
+      else {
+        return {
+          resolve: {
+            alias: {
+              [`./${usePermalinkFile}`]: aliasUsePermalinkFile,
+              [`./${NotFoundDelayComponentFile}`]: aliasNotFoundDelayComponentFile,
+            },
           },
-        },
-      };
+        };
+      }
     },
     resolveId(id: string) {
+      if (disabledPlugin) return;
+
       if (id === virtualModuleId) return resolvedVirtualModuleId;
     },
     load(id: string) {
+      if (disabledPlugin) return;
+
       // 使用虚拟模块将 option 传入组件里
       if (id === resolvedVirtualModuleId) return `export default ${JSON.stringify(option)}`;
 
