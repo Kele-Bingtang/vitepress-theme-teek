@@ -154,7 +154,7 @@ defineExpose({ updateData });
           :aria-label="t('tk.homePost.label')"
         >
           <li v-for="post in currentPosts" :key="post.url" :class="{ 'full-img': coverImgMode === 'full' }">
-            <div v-if="windowTransition" ref="postItemListInstance">
+            <div v-if="windowTransition" ref="postItemListInstance" style="width: 100%; height: 100%">
               <HomePostItemCard v-if="postConfig.postStyle === 'card'" :post />
               <HomePostItem v-else :post :coverImgMode />
             </div>

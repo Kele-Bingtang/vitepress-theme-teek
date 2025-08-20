@@ -35,34 +35,34 @@ const componentMap = computed(() => {
     my: {
       el: TkHomeMyCard,
       show: homePage,
-      slot: ["teek-home-my-before", "teek-home-my-after"],
+      slot: ["teek-home-card-my-before", "teek-home-card-my-after"],
     },
     topArticle: {
       el: TkHomeTopArticleCard,
       show: homePage && topArticle?.enabled !== false,
-      slot: ["teek-home-top-article-before", "teek-home-top-article-after"],
+      slot: ["teek-home-card-top-article-before", "teek-home-card-top-article-after"],
     },
     category: {
       el: TkHomeCategoryCard,
       props: { categoriesPage: categoriesPage },
       show: (homePage || categoriesPage) && category?.enabled !== false,
-      slot: ["teek-home-category-before", "teek-home-category-after"],
+      slot: ["teek-home-card-category-before", "teek-home-card-category-after"],
     },
     tag: {
       el: TkHomeTagCard,
       props: { tagsPage: tagsPage },
       show: (homePage || tagsPage) && tag?.enabled !== false,
-      slot: ["teek-home-tag-before", "teek-home-tag-after"],
+      slot: ["teek-home-card-tag-before", "teek-home-card-tag-after"],
     },
     docAnalysis: {
       el: TkHomeDocAnalysisCard,
       show: homePage && docAnalysis?.enabled !== false,
-      slot: ["teek-home-doc-analysis-before", "teek-home-doc-analysis-after"],
+      slot: ["teek-home-card-doc-analysis-before", "teek-home-card-doc-analysis-after"],
     },
     friendLink: {
       el: TkHomeFriendLinkCard,
       show: homePage && friendLink?.enabled !== false,
-      slot: ["teek-home-friend-link-before", "teek-home-friend-link-after"],
+      slot: ["teek-home-card-friend-link-before", "teek-home-card-friend-link-after"],
     },
   };
 });
