@@ -1,7 +1,7 @@
 {
   "name": "vitepress-plugin-auto-frontmatter",
   "type": "module",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "自动给 Markdown 文档添加 frontmatter",
   "author": {
     "name": "teeker",

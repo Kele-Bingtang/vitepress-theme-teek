@@ -52,6 +52,7 @@ export const useWindowSize = (
 
   const width = shallowRef(initialWidth);
   const height = shallowRef(initialHeight);
+  let stop: () => void = () => {};
 
   const update = useDebounce(() => {
     if (!isClient) return;
@@ -77,13 +78,13 @@ export const useWindowSize = (
   update();
   useMounted(update);
 
-  useEventListener(() => window, "resize", update, { passive: true });
+  stop = useEventListener(() => window, "resize", update, { passive: true });
 
   if (isClient && type === "visual" && window.visualViewport) {
-    useEventListener(window.visualViewport, "resize", update, { passive: true });
+    stop = useEventListener(window.visualViewport, "resize", update, { passive: true });
   }
 
-  return { width, height, update };
+  return { width, height, update, stop };
 };
 
 export type UseWindowSizeReturn = ReturnType<typeof useWindowSize>;

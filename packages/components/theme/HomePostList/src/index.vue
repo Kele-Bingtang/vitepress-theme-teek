@@ -1,7 +1,7 @@
 <script setup lang="ts" name="HomePostList">
 import type { TkPaginationProps } from "@teek/components/common/Pagination";
 import type { Post, TkContentData } from "@teek/config";
-import { reactive, ref, watch, nextTick, computed, useTemplateRef, onMounted } from "vue";
+import { reactive, ref, watch, nextTick, computed, onMounted } from "vue";
 import { useRoute, useData } from "vitepress";
 import { isClient, removeUnit } from "@teek/helper";
 import { useNamespace, useLocale, useWindowSize, useWindowTransition } from "@teek/composables";
@@ -134,7 +134,7 @@ useWindowSize(width => {
 
 // 屏幕加载元素时，开启过渡动画
 const windowTransition = useWindowTransitionConfig(config => config.post);
-const postItemListInstance = useTemplateRef("postItemListInstance");
+const postItemListInstance = ref<HTMLLIElement[] | null>(null);
 const { start } = useWindowTransition(postItemListInstance as any, false);
 
 onMounted(() => {

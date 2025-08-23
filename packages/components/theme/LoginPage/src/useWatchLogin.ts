@@ -114,7 +114,7 @@ export const useWatchLogin = () => {
 
         // 单页面级别认证，如果登录信息失败，则继续往下校验 realm，如果还是失败，则跳转登录页面
         if (page.length) {
-          const path = "/" + newVal.data.relativePath.replace(".md", "");
+          const path = "/" + newVal.data.filePath.replace(".md", "");
           if (isLogin(pageLoginKey + path, page, "page")) return;
         }
 

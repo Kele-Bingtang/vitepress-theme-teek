@@ -1,5 +1,12 @@
 # vitepress-plugin-file-content-loader
 
+## 1.0.13
+
+### Patch Changes
+
+- 文档内容更新
+- 30da8bb: 支持 rewrites 的访问路径
+
 ## 1.0.12
 
 ### Patch Changes

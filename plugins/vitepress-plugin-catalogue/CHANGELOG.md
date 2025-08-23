@@ -1,5 +1,12 @@
 # vitepress-plugin-catalogue
 
+## 1.1.1
+
+### Patch Changes
+
+- 文档内容更新
+- 30da8bb: 支持 rewrites 的访问路径
+
 ## 1.1.0
 
 ### Minor Changes

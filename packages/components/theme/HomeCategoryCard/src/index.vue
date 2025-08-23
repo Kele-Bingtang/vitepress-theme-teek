@@ -110,58 +110,52 @@ const itemRefs = ref<HTMLLIElement[]>([]);
 </script>
 
 <template>
-  <slot name="teek-home-card-category-before" />
-
-  <slot name="teek-home-card-category">
-    <TkPageCard
-      :page="!categoriesPage"
-      v-model="pageNum"
-      :pageSize="categoryConfig.limit"
-      :total="categories.length"
-      :title="finalTitle[categoriesPage ? 'pt' : 'ht']"
-      :titleClick="handleSwitchCategory"
-      :autoPage="categoryConfig.autoPage"
-      :pageSpeed="categoryConfig.pageSpeed"
-      :class="[ns.b(), ns.is('page', categoriesPage)]"
-      :aria-label="t('tk.categoryCard.label')"
-    >
-      <template #default="{ transitionName }">
-        <TransitionGroup
-          v-if="categories.length"
-          :name="transitionName"
-          tag="div"
-          mode="out-in"
-          :class="`${ns.e('list')} flx-column`"
-          :aria-label="t('tk.categoryCard.listLabel')"
+  <TkPageCard
+    :page="!categoriesPage"
+    v-model="pageNum"
+    :pageSize="categoryConfig.limit"
+    :total="categories.length"
+    :title="finalTitle[categoriesPage ? 'pt' : 'ht']"
+    :titleClick="handleSwitchCategory"
+    :autoPage="categoryConfig.autoPage"
+    :pageSpeed="categoryConfig.pageSpeed"
+    :class="[ns.b(), ns.is('page', categoriesPage)]"
+    :aria-label="t('tk.categoryCard.label')"
+  >
+    <template #default="{ transitionName }">
+      <TransitionGroup
+        v-if="categories.length"
+        :name="transitionName"
+        tag="div"
+        mode="out-in"
+        :class="`${ns.e('list')} flx-column`"
+        :aria-label="t('tk.categoryCard.listLabel')"
+      >
+        <a
+          ref="itemRefs"
+          v-for="(item, index) in currentCategories"
+          :key="item.name"
+          @click="handleSwitchCategory(item.name)"
+          :class="[{ active: item.name === selectedCategory }, 'hover-color']"
+          :style="`top: ${index * itemRefs?.[index]?.getBoundingClientRect().height || 0}px`"
+          :aria-label="item.name"
         >
-          <a
-            ref="itemRefs"
-            v-for="(item, index) in currentCategories"
-            :key="item.name"
-            @click="handleSwitchCategory(item.name)"
-            :class="[{ active: item.name === selectedCategory }, 'hover-color']"
-            :style="`top: ${index * itemRefs?.[index]?.getBoundingClientRect().height || 0}px`"
-            :aria-label="item.name"
-          >
-            <span class="sle">{{ item.name }}</span>
-            <span>{{ item.length }}</span>
-          </a>
+          <span class="sle">{{ item.name }}</span>
+          <span>{{ item.length }}</span>
+        </a>
 
-          <a
-            v-if="!categoriesPage && categoryConfig.limit < categories.length"
-            :href="withBase(categoryPath)"
-            :aria-label="categoryConfig.moreLabel"
-          >
-            {{ categoryConfig.moreLabel }}
-          </a>
-        </TransitionGroup>
+        <a
+          v-if="!categoriesPage && categoryConfig.limit < categories.length"
+          :href="withBase(categoryPath)"
+          :aria-label="categoryConfig.moreLabel"
+        >
+          {{ categoryConfig.moreLabel }}
+        </a>
+      </TransitionGroup>
 
-        <div v-else :class="ns.m('empty')" :aria-label="categoryConfig.emptyLabel">
-          {{ categoryConfig.emptyLabel }}
-        </div>
-      </template>
-    </TkPageCard>
-  </slot>
-
-  <slot name="teek-home-card-category-after" />
+      <div v-else :class="ns.m('empty')" :aria-label="categoryConfig.emptyLabel">
+        {{ categoryConfig.emptyLabel }}
+      </div>
+    </template>
+  </TkPageCard>
 </template>

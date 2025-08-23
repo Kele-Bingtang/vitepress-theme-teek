@@ -36,26 +36,6 @@ export default defineConfig({
 
 插件默认忽略 `[**/node_modules/**", "**/dist/**]` 目录下的文件，且只扫描 Markdown 文档。
 
-## 🛠️ Options
-
-### Parameters
-
-| name           | description                                                  | type      | default         |
-| -------------- | ------------------------------------------------------------ | --------- | --------------- |
-| pattern        | 扫描的文件路径表达式，为 global 表达式                       | `string`  | `string[]`      |
-| includeSrc     | 是否获取文件的源内容，并放到在数据中                         | `boolean` | `false`         |
-| render         | 是否将 src 转换为 HTML 并放到在数据中                        | `boolean` | `false`         |
-| excerpt        | 1 分钟内阅读的中文字数，阅读时间计算需要                     | `number`  | 300             |
-| globOptions    | tinyglobby 的配置项                                          | `number`  | 160             |
-| themeConfigKey | 指定 themeConfig 的一个不存在的 key，将处理/转换的数据挂在到该 key 下 | `string`  | `contentLoader` |
-
-### Hooks
-
-| name          | description                              | type                                                         | default |
-| ------------- | ---------------------------------------- | ------------------------------------------------------------ | ------- |
-| transformData | 转换处理好的单条数据，并返回转换后的数据 | `(data: FileContentLoaderData) => T | Promise<T> `           |         |
-| includeSrc    | 转换处理好的所有数据，并返回转换后的数据 | `(raw: (FileContentLoaderData Awaited<T>)[]) => R | Promise<R>` |         |
-
 ## 📖 Usage
 
 获取插件分析后的数据：
@@ -68,6 +48,26 @@ const { theme } = useData();
 // themeConfigKey 默认为 contentLoader，如果需要修改请查看 Options 配置项
 const fileContent = theme.value.[themeConfigKey];
 ```
+
+## 🛠️ Options
+
+### Parameters
+
+| name           | description                                                           | type      | default         |
+| -------------- | --------------------------------------------------------------------- | --------- | --------------- |
+| pattern        | 扫描的文件路径表达式，为 global 表达式                                | `string`  | `string[]`      |
+| includeSrc     | 是否获取文件的源内容，并放到在数据中                                  | `boolean` | `false`         |
+| render         | 是否将 src 转换为 HTML 并放到在数据中                                 | `boolean` | `false`         |
+| excerpt        | 1 分钟内阅读的中文字数，阅读时间计算需要                              | `number`  | 300             |
+| globOptions    | tinyglobby 的配置项                                                   | `number`  | 160             |
+| themeConfigKey | 指定 themeConfig 的一个不存在的 key，将处理/转换的数据挂在到该 key 下 | `string`  | `contentLoader` |
+
+### Hooks
+
+| name          | description                              | type                                              | default      |
+| ------------- | ---------------------------------------- | ------------------------------------------------- | ------------ | --- |
+| transformData | 转换处理好的单条数据，并返回转换后的数据 | `(data: FileContentLoaderData) => T               | Promise<T> ` |     |
+| includeSrc    | 转换处理好的所有数据，并返回转换后的数据 | `(raw: (FileContentLoaderData Awaited<T>)[]) => R | Promise<R>`  |     |
 
 ## 📘 TypeScript
 

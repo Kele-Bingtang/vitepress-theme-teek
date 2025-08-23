@@ -1,7 +1,7 @@
 {
   "name": "vitepress-plugin-file-content-loader",
   "type": "module",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "扫描项目里的指定文件，处理文件内容",
   "author": {
     "name": "teeker",

@@ -1,6 +1,6 @@
 <script setup lang="ts" name="HomeCardList">
 import type { TeekConfig } from "@teek/config";
-import { computed, onMounted, useTemplateRef } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useWindowTransition, useNamespace } from "@teek/composables";
 import { useTeekConfig, usePageState, useWindowTransitionConfig } from "@teek/components/theme/ConfigProvider";
 import { TkHomeMyCard } from "@teek/components/theme/HomeMyCard";
@@ -35,41 +35,41 @@ const componentMap = computed(() => {
     my: {
       el: TkHomeMyCard,
       show: homePage,
-      slot: ["teek-home-card-my-before", "teek-home-card-my-after"],
+      slot: "teek-home-card-my",
     },
     topArticle: {
       el: TkHomeTopArticleCard,
       show: homePage && topArticle?.enabled !== false,
-      slot: ["teek-home-card-top-article-before", "teek-home-card-top-article-after"],
+      slot: "teek-home-card-top-article",
     },
     category: {
       el: TkHomeCategoryCard,
       props: { categoriesPage: categoriesPage },
       show: (homePage || categoriesPage) && category?.enabled !== false,
-      slot: ["teek-home-card-category-before", "teek-home-card-category-after"],
+      slot: "teek-home-card-category",
     },
     tag: {
       el: TkHomeTagCard,
       props: { tagsPage: tagsPage },
       show: (homePage || tagsPage) && tag?.enabled !== false,
-      slot: ["teek-home-card-tag-before", "teek-home-card-tag-after"],
+      slot: "teek-home-card-tag",
     },
     docAnalysis: {
       el: TkHomeDocAnalysisCard,
       show: homePage && docAnalysis?.enabled !== false,
-      slot: ["teek-home-card-doc-analysis-before", "teek-home-card-doc-analysis-after"],
+      slot: "teek-home-card-doc-analysis",
     },
     friendLink: {
       el: TkHomeFriendLinkCard,
       show: homePage && friendLink?.enabled !== false,
-      slot: ["teek-home-card-friend-link-before", "teek-home-card-friend-link-after"],
+      slot: "teek-home-card-friend-link",
     },
   };
 });
 
 // 屏幕加载元素时，开启过渡动画
 const windowTransition = useWindowTransitionConfig(config => config.card);
-const cardListInstance = useTemplateRef("cardListInstance");
+const cardListInstance = ref<HTMLLIElement[] | null>(null);
 const { start } = useWindowTransition(cardListInstance as any, false);
 
 onMounted(() => {
@@ -81,24 +81,42 @@ onMounted(() => {
   <div :class="[ns.b(), 'flx-column']">
     <slot name="teek-home-card-before" />
 
-    <slot name="teek-home-card">
+    <slot name="teek-home-card" :homeCard="finalHomeCardSort">
       <template v-for="item in finalHomeCardSort" :key="item">
         <!-- 使用淡入动画 -->
-        <div v-if="windowTransition" ref="cardListInstance">
-          <component v-if="componentMap[item]?.show" :is="componentMap[item]?.el" v-bind="componentMap[item]?.props">
-            <template v-for="name in componentMap[item]?.slot" :key="name" #[name]>
-              <slot :name="name" />
-            </template>
-          </component>
-        </div>
+        <template v-if="windowTransition">
+          <div v-if="$slots[`${componentMap[item]?.slot}-before`]" ref="cardListInstance">
+            <slot :name="`${componentMap[item]?.slot}-before`" />
+          </div>
+
+          <div ref="cardListInstance">
+            <slot :name="componentMap[item]?.slot">
+              <component
+                v-if="componentMap[item]?.show"
+                :is="componentMap[item]?.el"
+                v-bind="componentMap[item]?.props"
+              />
+            </slot>
+          </div>
+
+          <div v-if="$slots[`${componentMap[item]?.slot}-after`]" ref="cardListInstance">
+            <slot :name="`${componentMap[item]?.slot}-after`" />
+          </div>
+        </template>
 
         <!-- 不使用淡入动画 -->
         <template v-else>
-          <component v-if="componentMap[item]?.show" :is="componentMap[item]?.el" v-bind="componentMap[item]?.props">
-            <template v-for="name in componentMap[item]?.slot" :key="name" #[name]>
-              <slot :name="name" />
-            </template>
-          </component>
+          <slot v-if="componentMap[item]?.slot" :name="`${componentMap[item]?.slot}-before`" />
+
+          <slot v-if="componentMap[item]?.slot" :name="componentMap[item]?.slot">
+            <component
+              v-if="componentMap[item]?.show"
+              :is="componentMap[item]?.el"
+              v-bind="componentMap[item]?.props"
+            />
+          </slot>
+
+          <slot v-if="componentMap[item]?.slot" :name="`${componentMap[item]?.slot}-after`" />
         </template>
       </template>
     </slot>

@@ -4,7 +4,7 @@
 
 ## ✨ Feature
 
-- 🚀🚀 支持给 Markdown 文档设置唯一的访问 **永久链接**，不再因为 Markdown 文档路径移动而导致访问地址发生变化
+- 🚀 支持给 Markdown 文档设置唯一的访问 **永久链接**，不再因为 Markdown 文档路径移动而导致访问地址发生变化
 - 🚀 读取 Markdown 文档 `frontmatter` 的 `permalink`，挂载到 `themeConfig.permalinks`
 - 🚀 支持 locales 国际化，自动给 **永久链接** 添加语言前缀，不同语言的永久链接不会重复
 - 🚀 支持 rewrite 路由重写，最终得到的文档路径是 rewrite 路由重写后的路径
@@ -32,7 +32,7 @@ npm install vitepress-plugin-permalink
 
 ### Proxy
 
-Proxy 方式不会影响文件路径，而是在访问文件路径时，通过代理（拦截）转换 `Permalink`，因此既可以通过文件路径访问，也可以通过 `Permalink` 访问。
+`Proxy` 方式不会影响文件路径，而是在访问文件路径时，通过代理（拦截）将其转换 `Permalink`，因此既可以通过文件路径访问，也可以通过 `Permalink` 访问。
 
 添加 `vitepress-plugin-permalink` 插件到 `.vitepress/config.ts`
 
@@ -68,67 +68,31 @@ export default defineConfig({
 });
 ```
 
+`createRewrites` 函数支持除了传入 `vitepress-plugin-permalink` 的 [配置项](https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/plugins/vitepress-plugin-permalink/src/types.ts)，也支持额外传入两个配置项：
+
+- `srcDir`：VitePress 的 [srcDir](https://vitepress.dev/zh/reference/site-config#srcdir)，默认为 `.`，即当前项目的绝对目录
+- `locales`：VitePress 的 [locales](https://vitepress.dev/zh/guide/i18n#internationalization)
+
+如果没有传入配置项，则默认为从文档的根目录进行扫描。
+
 注意：该方式会打乱原来的文件结构，因此侧边栏不再是基于文件路径配置，而是需要基于 `frontmatter.permalink` 属性配置。
 
-## 🛠️ Options
-
-| name       | description                           | type       | default                        |
-| ---------- | ------------------------------------- | ---------- | ------------------------------ |
-| ignoreList | 忽略的文件/文件夹列表，支持正则表达式 | `string[]` | `[]`                           |
-| path       | 指定扫描的根目录                      | `string`   | `vitepress` 的 `srcDir` 配置项 |
-
-## ❗ Warning
-
-插件的 `usePermalink` 函数使用了 `router.onBeforeRouteChange` 和 `router.onAfterRouteChange` 回调方法。
-
-如果您也需要使用这些回调函数，请不要直接这样使用：
-
-```typescript
-router.onAfterRouteChange = (href: string) => {
-  // 你的逻辑
-};
-```
-
-`onAfterRouteChange` 是一个函数，您这样使用将会 **覆盖** Teek 在该回调函数的逻辑，因此您需要这样使用：
-
-```typescript
-// 获取可能已有的 onAfterRouteChange
-const selfOnAfterRouteChange = router.onAfterRouteChange;
-
-router.onAfterRouteChange = async (href: string) => {
-  // 调用可能已有的 onAfterRouteChange
-  await selfOnAfterRouteChange?.(href);
-
-  // 调用自己的函数
-  myFunction();
-};
-
-const myFunction = () => {
-  /* */
-};
-```
-
-`onBeforeRouteChange` 支持返回 false 来阻止路由跳转，因此请这样使用：
-
-```typescript
-// 获取可能已有的 onBeforeRouteChange
-const selfOnBeforeRouteChange = router.onBeforeRouteChange;
-
-router.onBeforeRouteChange = async (href: string) => {
-  // 调用已有的 onBeforeRouteChange
-  const selfResult = await selfOnBeforeRouteChange?.(href);
-  if (selfResult === false) return false;
-
-  // 调用自己的函数
-  myFunction();
-};
-
-const myFunction = () => {
-  /* */
-};
-```
+Rewrites 方式推荐和 [vitepress-plugin-sidebar-resolve](https://github.com/Kele-Bingtang/vitepress-theme-teek/tree/master/plugins/vitepress-plugin-sidebar-resolve) 插件一起使用，`vitepress-plugin-sidebar-resolve` 支持基于 rewrites 生成侧边栏，无需手动配置侧边栏。
 
 ## 📖 Usage
+
+### 基础使用
+
+在 Markdown 文件的 `frontmatter` 中添加如下内容：
+
+```yaml
+---
+permalink: /guide/quickstart
+---
+```
+
+- 当为 `Proxy` 方式时，该文件除了通过 `文件路径` 访问，也可以通过 `permalink` 访问。
+- 当为 `Rewrites` 方式时，该文件需要通过 `permalink` 访问，而 `文件路径` 访问将会失效。
 
 ### usePermalink 函数
 
@@ -214,6 +178,64 @@ router.onAfterUrlLoad = (href: string) => {
 **使用场景**
 
 在使用访问量插件如不蒜子时，您需要提供当前的链接来统计其访问量，那么您可以在该钩子拿到地址栏最终的链接，然后提供给访问量插件。
+
+## 🛠️ Options
+
+| name       | description                           | type       | default                        |
+| ---------- | ------------------------------------- | ---------- | ------------------------------ |
+| ignoreList | 忽略的文件/文件夹列表，支持正则表达式 | `string[]` | `[]`                           |
+| path       | 指定扫描的根目录                      | `string`   | `vitepress` 的 `srcDir` 配置项 |
+
+## ❗ Warning
+
+插件的 `usePermalink` 函数使用了 `router.onBeforeRouteChange` 和 `router.onAfterRouteChange` 回调方法。
+
+如果您也需要使用这些回调函数，请不要直接这样使用：
+
+```typescript
+router.onAfterRouteChange = (href: string) => {
+  // 你的逻辑
+};
+```
+
+`onAfterRouteChange` 是一个函数，您这样使用将会 **覆盖** 其他代码在该回调函数的逻辑，因此您需要这样使用：
+
+```typescript
+// 获取可能已有的 onAfterRouteChange
+const selfOnAfterRouteChange = router.onAfterRouteChange;
+
+router.onAfterRouteChange = async (href: string) => {
+  // 调用可能已有的 onAfterRouteChange
+  await selfOnAfterRouteChange?.(href);
+
+  // 调用自己的函数
+  myFunction();
+};
+
+const myFunction = () => {
+  /* */
+};
+```
+
+`onBeforeRouteChange` 支持返回 false 来阻止路由跳转，因此请这样使用：
+
+```typescript
+// 获取可能已有的 onBeforeRouteChange
+const selfOnBeforeRouteChange = router.onBeforeRouteChange;
+
+router.onBeforeRouteChange = async (href: string) => {
+  // 调用已有的 onBeforeRouteChange
+  const selfResult = await selfOnBeforeRouteChange?.(href);
+  if (selfResult === false) return false;
+
+  // 调用自己的函数
+  myFunction();
+};
+
+const myFunction = () => {
+  /* */
+};
+```
 
 ## 📘 TypeScript
 

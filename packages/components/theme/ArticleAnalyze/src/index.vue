@@ -26,6 +26,7 @@ const post = computed<TkContentData>(() => ({
   date: frontmatter.value.date,
   frontmatter: frontmatter.value,
   url: "",
+  relativePath: "",
 }));
 
 // 站点信息数据
@@ -35,7 +36,7 @@ const docAnalysisInfo = computed(() => theme.value.docAnalysisInfo || {});
 const pageViewInfo = computed(() => {
   let pageViewInfo: Partial<DocDocAnalysisFileInfo> = {};
   docAnalysisInfo.value.eachFileWords?.forEach(item => {
-    if (item.fileInfo.relativePath === router.route.data.relativePath) pageViewInfo = item;
+    if (item.fileInfo.relativePath === router.route.data.filePath) pageViewInfo = item;
   });
 
   return pageViewInfo;

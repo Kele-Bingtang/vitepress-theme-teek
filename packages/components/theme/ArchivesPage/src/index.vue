@@ -1,6 +1,6 @@
 <script setup lang="ts" name="ArchivesPage">
 import { withBase, useData } from "vitepress";
-import { computed, onMounted, useTemplateRef } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useNamespace, useLocale, useWindowTransition } from "@teek/composables";
 import { useWindowTransitionConfig, usePosts } from "@teek/components/theme/ConfigProvider";
 import { TkArticlePage } from "@teek/components/common/ArticlePage";
@@ -29,7 +29,7 @@ const defaultLabel = computed(() => {
 
 // 屏幕加载元素时，开启过渡动画
 const windowTransition = useWindowTransitionConfig(config => config.archives);
-const timelineItemListInstance = useTemplateRef("timelineItemListInstance");
+const timelineItemListInstance = ref<HTMLLIElement[] | null>(null);
 const { start } = useWindowTransition(timelineItemListInstance, false);
 
 onMounted(() => {

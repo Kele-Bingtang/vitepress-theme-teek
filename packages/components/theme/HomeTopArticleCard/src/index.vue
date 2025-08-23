@@ -71,54 +71,48 @@ const handleTitleClick = () => {
 </script>
 
 <template>
-  <slot name="teek-home-card-top-article-before" />
-
-  <slot name="teek-home-card-top-article">
-    <TkPageCard
-      page
-      v-model="pageNum"
-      :pageSize="topArticleConfig.limit"
-      :total="topArticleList.length"
-      :title="finalTitle"
-      :titleClick="topArticleConfig.titleClick ? handleTitleClick : undefined"
-      :autoPage="topArticleConfig.autoPage"
-      :pageSpeed="topArticleConfig.pageSpeed"
-      :class="ns.b()"
-      :aria-label="t('tk.topArticleCard.label')"
-    >
-      <template #default="{ transitionName }">
-        <TransitionGroup
-          v-if="topArticleList.length"
-          :name="transitionName"
-          tag="ul"
-          mode="out-in"
-          :class="`${ns.e('list')} flx-column`"
-          :aria-label="t('tk.topArticleCard.listLabel')"
+  <TkPageCard
+    page
+    v-model="pageNum"
+    :pageSize="topArticleConfig.limit"
+    :total="topArticleList.length"
+    :title="finalTitle"
+    :titleClick="topArticleConfig.titleClick ? handleTitleClick : undefined"
+    :autoPage="topArticleConfig.autoPage"
+    :pageSpeed="topArticleConfig.pageSpeed"
+    :class="ns.b()"
+    :aria-label="t('tk.topArticleCard.label')"
+  >
+    <template #default="{ transitionName }">
+      <TransitionGroup
+        v-if="topArticleList.length"
+        :name="transitionName"
+        tag="ul"
+        mode="out-in"
+        :class="`${ns.e('list')} flx-column`"
+        :aria-label="t('tk.topArticleCard.listLabel')"
+      >
+        <li
+          ref="itemRefs"
+          v-for="(item, index) in currentTopArticleList"
+          :key="item.num"
+          :class="ns.e('list__item')"
+          :style="getStyle(item.num - 1, index)"
+          :aria-label="item.title"
         >
-          <li
-            ref="itemRefs"
-            v-for="(item, index) in currentTopArticleList"
-            :key="item.num"
-            :class="ns.e('list__item')"
-            :style="getStyle(item.num - 1, index)"
-            :aria-label="item.title"
-          >
-            <span :class="['num', { sticky: item.frontmatter.sticky }]">{{ item.num }}</span>
-            <div :class="ns.e('list__item__info')">
-              <a :href="item.url && withBase(item.url)" class="hover-color flx-align-center">
-                <TkArticleTitle :post="item" :title-tag-props="{ position: 'right', size: 'mini' }" />
-              </a>
-              <div class="date">{{ formatPostDate(item.date) }}</div>
-            </div>
-          </li>
-        </TransitionGroup>
+          <span :class="['num', { sticky: item.frontmatter.sticky }]">{{ item.num }}</span>
+          <div :class="ns.e('list__item__info')">
+            <a :href="item.url && withBase(item.url)" class="hover-color flx-align-center">
+              <TkArticleTitle :post="item" :title-tag-props="{ position: 'right', size: 'mini' }" />
+            </a>
+            <div class="date">{{ formatPostDate(item.date) }}</div>
+          </div>
+        </li>
+      </TransitionGroup>
 
-        <div v-else :class="ns.m('empty')" :aria-label="topArticleConfig.emptyLabel">
-          {{ topArticleConfig.emptyLabel }}
-        </div>
-      </template>
-    </TkPageCard>
-  </slot>
-
-  <slot name="teek-home-card-top-article-after" />
+      <div v-else :class="ns.m('empty')" :aria-label="topArticleConfig.emptyLabel">
+        {{ topArticleConfig.emptyLabel }}
+      </div>
+    </template>
+  </TkPageCard>
 </template>

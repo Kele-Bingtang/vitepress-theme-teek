@@ -180,18 +180,12 @@ const docAnalysisList = computed<DocAnalysisResolve[]>(() => {
 </script>
 
 <template>
-  <slot name="teek-home-card-doc-analysis-before" />
-
-  <slot name="teek-home-card-doc-analysis">
-    <TkPageCard :title="finalTitle" :class="ns.b()" :aria-label="t('tk.docAnalysisCard.label')">
-      <template v-for="item in docAnalysisList" :key="item.key">
-        <div v-if="item.show !== false" :class="ns.e('item')">
-          <span v-html="item.label" />
-          <span v-html="item.value" />
-        </div>
-      </template>
-    </TkPageCard>
-  </slot>
-
-  <slot name="teek-home-card-doc-analysis-after" />
+  <TkPageCard :title="finalTitle" :class="ns.b()" :aria-label="t('tk.docAnalysisCard.label')">
+    <template v-for="item in docAnalysisList" :key="item.key">
+      <div v-if="item.show !== false" :class="ns.e('item')">
+        <span v-html="item.label" />
+        <span v-html="item.value" />
+      </div>
+    </template>
+  </TkPageCard>
 </template>

@@ -77,61 +77,55 @@ const handleTitleClick = () => {
 </script>
 
 <template>
-  <slot name="teek-home-card-friend-link-before" />
+  <TkPageCard
+    :page="!friendLinkConfig.autoScroll"
+    v-model="pageNum"
+    :pageSize="friendLinkConfig.limit"
+    :total="friendLinkConfig.list.length"
+    :title="finalTitle"
+    :titleClick="friendLinkConfig.titleClick ? handleTitleClick : undefined"
+    :autoPage="friendLinkConfig.autoPage"
+    :pageSpeed="friendLinkConfig.pageSpeed"
+    :class="ns.b()"
+    :aria-label="t('tk.friendLinkCard.label')"
+  >
+    <template #default="{ transitionName, startAutoPage, closeAutoPage }">
+      <TransitionGroup
+        v-if="friendLinkConfig.list.length"
+        :name="transitionName"
+        tag="ul"
+        mode="out-in"
+        :class="`${ns.e('list')} flx-column`"
+        @mouseenter="friendLinkConfig.autoScroll ? stop() : friendLinkConfig.autoPage ? closeAutoPage() : () => {}"
+        @mouseleave="friendLinkConfig.autoScroll ? start() : friendLinkConfig.autoPage ? startAutoPage() : () => {}"
+        :aria-label="t('tk.friendLinkCard.listLabel')"
+      >
+        <template v-if="friendLinkConfig.autoScroll">
+          <li
+            v-for="(item, index) in currentFriendLinkList"
+            :key="item.name"
+            :class="ns.e('list__item')"
+            :style="getLiStyle(index)"
+          >
+            <ItemInfo :item :ns />
+          </li>
+        </template>
+        <template v-else>
+          <li
+            ref="itemRefs"
+            v-for="(item, index) in currentFriendLinkList"
+            :key="item.name"
+            :class="ns.e('list__item')"
+            :style="getLiStyle(index)"
+          >
+            <ItemInfo :item :ns />
+          </li>
+        </template>
+      </TransitionGroup>
 
-  <slot name="teek-home-card-friend-link">
-    <TkPageCard
-      :page="!friendLinkConfig.autoScroll"
-      v-model="pageNum"
-      :pageSize="friendLinkConfig.limit"
-      :total="friendLinkConfig.list.length"
-      :title="finalTitle"
-      :titleClick="friendLinkConfig.titleClick ? handleTitleClick : undefined"
-      :autoPage="friendLinkConfig.autoPage"
-      :pageSpeed="friendLinkConfig.pageSpeed"
-      :class="ns.b()"
-      :aria-label="t('tk.friendLinkCard.label')"
-    >
-      <template #default="{ transitionName, startAutoPage, closeAutoPage }">
-        <TransitionGroup
-          v-if="friendLinkConfig.list.length"
-          :name="transitionName"
-          tag="ul"
-          mode="out-in"
-          :class="`${ns.e('list')} flx-column`"
-          @mouseenter="friendLinkConfig.autoScroll ? stop() : friendLinkConfig.autoPage ? closeAutoPage() : () => {}"
-          @mouseleave="friendLinkConfig.autoScroll ? start() : friendLinkConfig.autoPage ? startAutoPage() : () => {}"
-          :aria-label="t('tk.friendLinkCard.listLabel')"
-        >
-          <template v-if="friendLinkConfig.autoScroll">
-            <li
-              v-for="(item, index) in currentFriendLinkList"
-              :key="item.name"
-              :class="ns.e('list__item')"
-              :style="getLiStyle(index)"
-            >
-              <ItemInfo :item :ns />
-            </li>
-          </template>
-          <template v-else>
-            <li
-              ref="itemRefs"
-              v-for="(item, index) in currentFriendLinkList"
-              :key="item.name"
-              :class="ns.e('list__item')"
-              :style="getLiStyle(index)"
-            >
-              <ItemInfo :item :ns />
-            </li>
-          </template>
-        </TransitionGroup>
-
-        <div v-else :class="ns.m('empty')" :aria-label="friendLinkConfig.emptyLabel">
-          {{ friendLinkConfig.emptyLabel }}
-        </div>
-      </template>
-    </TkPageCard>
-  </slot>
-
-  <slot name="teek-home-card-friend-link-after" />
+      <div v-else :class="ns.m('empty')" :aria-label="friendLinkConfig.emptyLabel">
+        {{ friendLinkConfig.emptyLabel }}
+      </div>
+    </template>
+  </TkPageCard>
 </template>

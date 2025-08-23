@@ -14,7 +14,6 @@ const isFullscreen = ref(false);
 
 const wallpaperConfig = getTeekConfigRef<Wallpaper>("wallpaper", {
   hideBanner: false,
-  hideWaves: false,
   hideMask: false,
 });
 
@@ -56,24 +55,25 @@ const handleFullscreenChange = () => {
   // 如果滚动条不为 0，则不执行任何操作
   if (htmlDom.scrollTop !== 0) return;
 
-  const bannerCenterDom = document.querySelector(`.${ns.join("banner__content")}`);
-  const bannerContentDom = document.querySelector(`.${ns.join("bannerContent")}`);
-  const wavesDom = document.querySelector(`.${ns.join("waves")}`);
-  const bodyBgImageMaskDom = document.querySelector(`.${ns.join("bodyBgImage")} .mask`);
-  const bannerMaskDom = document.querySelector(`.${ns.join("bannerBgImage")} .mask`);
+  const vpDocDom = document.querySelector(".vp-doc");
+  const bannerContentDom = document.querySelector(`.${ns.join("banner__content")}`);
+  const wavesDom = document.querySelector(`.${ns.join("banner-waves")}`);
+  const bodyBgImageMaskDom = document.querySelector(`.${ns.join("body-bg-image")} .mask`);
+  const bannerMaskDom = document.querySelector(`.${ns.join("banner-bg-image")} .mask`);
 
   isFullscreen.value = !!document.fullscreenElement;
 
-  const { hideBanner, hideWaves, hideMask } = wallpaperConfig.value;
+  const { hideBanner, hideMask } = wallpaperConfig.value;
   const options = [
     { el: htmlDom, executeClass: ns.b() },
-    { el: bannerCenterDom, executeClass: "no-feature" },
+    { el: vpDocDom, executeClass: "display-none" },
+    { el: bannerContentDom, executeClass: "no-feature" },
     {
       el: bannerContentDom,
       executeClass: "display-none",
       execute: hideBanner,
     },
-    { el: wavesDom, executeClass: "display-none", execute: hideWaves },
+    { el: wavesDom, executeClass: "display-none", execute: hideBanner },
     { el: bodyBgImageMaskDom, executeClass: "display-none", execute: hideMask },
     { el: bannerMaskDom, executeClass: "display-none", execute: hideMask },
   ];

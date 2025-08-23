@@ -122,56 +122,50 @@ watch(
 </script>
 
 <template>
-  <slot name="teek-home-card-tag-before" />
-
-  <slot name="teek-home-card-tag">
-    <TkPageCard
-      :page="!tagsPage"
-      v-model="pageNum"
-      :pageSize="tagConfig.limit"
-      :total="tags.length"
-      :title="finalTitle[tagsPage ? 'pt' : 'ht']"
-      :titleClick="handleSwitchTag"
-      :autoPage="tagConfig.autoPage"
-      :pageSpeed="tagConfig.pageSpeed"
-      :class="[ns.b(), ns.is('page', tagsPage)]"
-      :aria-label="t('tk.tagCard.label')"
-    >
-      <template #default="{ transitionName }">
-        <TransitionGroup
-          v-if="tags.length"
-          :name="transitionName"
-          tag="div"
-          mode="out-in"
-          :class="ns.e('list')"
-          :aria-label="t('tk.tagCard.listLabel')"
+  <TkPageCard
+    :page="!tagsPage"
+    v-model="pageNum"
+    :pageSize="tagConfig.limit"
+    :total="tags.length"
+    :title="finalTitle[tagsPage ? 'pt' : 'ht']"
+    :titleClick="handleSwitchTag"
+    :autoPage="tagConfig.autoPage"
+    :pageSpeed="tagConfig.pageSpeed"
+    :class="[ns.b(), ns.is('page', tagsPage)]"
+    :aria-label="t('tk.tagCard.label')"
+  >
+    <template #default="{ transitionName }">
+      <TransitionGroup
+        v-if="tags.length"
+        :name="transitionName"
+        tag="div"
+        mode="out-in"
+        :class="ns.e('list')"
+        :aria-label="t('tk.tagCard.listLabel')"
+      >
+        <a
+          v-for="(item, index) in currentTags"
+          :key="item.name"
+          :style="getTagStyle(index)"
+          @click="handleSwitchTag(item.name)"
+          :class="[{ active: item.name === selectedTag }, ns.join('pointer')]"
+          :aria-label="item.name"
         >
-          <a
-            v-for="(item, index) in currentTags"
-            :key="item.name"
-            :style="getTagStyle(index)"
-            @click="handleSwitchTag(item.name)"
-            :class="[{ active: item.name === selectedTag }, ns.join('pointer')]"
-            :aria-label="item.name"
-          >
-            <span>{{ item.name }}</span>
-            <span class="num">{{ item.length }}</span>
-          </a>
+          <span>{{ item.name }}</span>
+          <span class="num">{{ item.length }}</span>
+        </a>
 
-          <a
-            v-if="!tagsPage && tagConfig.limit < tags.length"
-            :href="withBase(tagPath)"
-            class="more"
-            :aria-label="tagConfig.moreLabel"
-          >
-            {{ tagConfig.moreLabel }}
-          </a>
-        </TransitionGroup>
+        <a
+          v-if="!tagsPage && tagConfig.limit < tags.length"
+          :href="withBase(tagPath)"
+          class="more"
+          :aria-label="tagConfig.moreLabel"
+        >
+          {{ tagConfig.moreLabel }}
+        </a>
+      </TransitionGroup>
 
-        <div v-else :class="ns.m('empty')" :aria-label="tagConfig.emptyLabel">{{ tagConfig.emptyLabel }}</div>
-      </template>
-    </TkPageCard>
-  </slot>
-
-  <slot name="teek-home-card-tag-after" />
+      <div v-else :class="ns.m('empty')" :aria-label="tagConfig.emptyLabel">{{ tagConfig.emptyLabel }}</div>
+    </template>
+  </TkPageCard>
 </template>

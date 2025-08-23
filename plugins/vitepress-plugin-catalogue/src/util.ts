@@ -38,3 +38,12 @@ export const isMarkdownFile = (filePath: string) => {
 export const isSome = (arr: Array<string | RegExp>, name: string) => {
   return arr.some(item => item === name || (item instanceof RegExp && item.test(name)));
 };
+
+/**
+ * 删除 .md 后缀
+ */
+export const removeMarkdownExt = (filePath: string) => {
+  if (!filePath) return "";
+
+  return filePath.replace(/\.md$/, "");
+};

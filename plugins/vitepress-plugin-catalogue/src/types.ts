@@ -44,16 +44,16 @@ export interface Catalogue {
    */
   arr: CatalogueInfo[];
   /**
-   * key 为文件相对路径，value 为 { path：扫描的目录页路径, catalogues：目录页数据 }
+   * key 为文件相对路径，value 为 { path：扫描的目录页路径, url: "访问路径", catalogues：目录页数据 }
    */
   map: {
-    [key: string]: { path: string; catalogues: CatalogueItem[] };
+    [key: string]: { path: string; url: string; catalogues: CatalogueItem[] };
   };
   /**
-   * key 为 path：扫描的目录页路径文，value 为 { path：件相对路径, catalogues：目录页数据 }
+   * key 为 path：扫描的目录页路径文，value 为 { path：件相对路径, url: "访问路径", catalogues：目录页数据 }
    */
   inv: {
-    [key: string]: { filePath: string; catalogues: CatalogueItem[] };
+    [key: string]: { filePath: string; url: string; catalogues: CatalogueItem[] };
   };
 }
 
@@ -82,9 +82,9 @@ export interface CatalogueItem {
    */
   frontmatter: Record<string, any>;
   /**
-   * 文件路径
+   * 文件访问路径
    */
-  link?: string;
+  url?: string;
   /**
    * 子目录
    */

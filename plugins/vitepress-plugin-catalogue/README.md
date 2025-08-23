@@ -36,17 +36,6 @@ export default defineConfig({
 
 插件默认忽略 `["node_modules", "dist", ".vitepress", "public"]` 目录下的文件，且只扫描 Markdown 文档。
 
-## 🛠️ Options
-
-| name                  | description                                                                                                                               | type                                         | default                        |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
-| ignoreList            | 忽略的文件/文件夹列表，支持正则表达式                                                                                                     | `string[]`                                   | `[]`                           |
-| path                  | 指定扫描的根目录                                                                                                                          | `string`                                     | `vitepress` 的 `srcDir` 配置项 |
-| ignoreIndexMd         | 是否忽略每个目录下的 index.md 文件                                                                                                        | `boolean`                                    | `false`                        |
-| titleFormMd           | 是否从 md 文件获取第一个一级标题作为侧边栏 text                                                                                           | `boolean`                                    | `false`                        |
-| indexSeparator        | 自定义序号后的分隔符（默认仍然支持 `.` 作为分隔符，该配置是支持额外分隔符，如自定义分隔符为 `_`，则文件名 `01.a.md` 和 `01_a.md` 都生效） | `string`                                     |                                |
-| catalogueItemResolved | 解析完每个 catalogueItem 后的回调。每个 catalogueItem 指的是每个目录下的文件数组                                                          | `(data: CatalogueItem[]) => CatalogueItem[]` |                                |
-
 ## 📖 Usage
 
 假设项目的目录结构如下：
@@ -137,6 +126,17 @@ inCatalogue: false
 ---
 ```
 
+## 🛠️ Options
+
+| name                  | description                                                                                                                               | type                                         | default                        |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------ |
+| ignoreList            | 忽略的文件/文件夹列表，支持正则表达式                                                                                                     | `string[]`                                   | `[]`                           |
+| path                  | 指定扫描的根目录                                                                                                                          | `string`                                     | `vitepress` 的 `srcDir` 配置项 |
+| ignoreIndexMd         | 是否忽略每个目录下的 index.md 文件                                                                                                        | `boolean`                                    | `false`                        |
+| titleFormMd           | 是否从 md 文件获取第一个一级标题作为侧边栏 text                                                                                           | `boolean`                                    | `false`                        |
+| indexSeparator        | 自定义序号后的分隔符（默认仍然支持 `.` 作为分隔符，该配置是支持额外分隔符，如自定义分隔符为 `_`，则文件名 `01.a.md` 和 `01_a.md` 都生效） | `string`                                     |                                |
+| catalogueItemResolved | 解析完每个 catalogueItem 后的回调。每个 catalogueItem 指的是每个目录下的文件数组                                                          | `(data: CatalogueItem[]) => CatalogueItem[]` |                                |
+
 根据 `themeConfig.catalogues` 的数据，你可以编写 vue 组件制作一个目录页。
 
 ## 📘 TypeScript
@@ -185,7 +185,9 @@ export interface CatalogueOption {
 }
 ```
 
-### 📖 Usage
+### Data
+
+如下是目录数据结构类型
 
 ```typescript
 export interface Catalogue {
@@ -194,16 +196,16 @@ export interface Catalogue {
    */
   arr: CatalogueInfo[];
   /**
-   * key 为文件相对路径，value 为 { path：扫描的目录页路径, catalogues：目录页数据 }
+   * key 为文件相对路径，value 为 { path：扫描的目录页路径, url: "访问路径", catalogues：目录页数据 }
    */
   map: {
-    [key: string]: { path: string; catalogues: CatalogueItem[] };
+    [key: string]: { path: string; url: string; catalogues: CatalogueItem[] };
   };
   /**
-   * key 为 path：扫描的目录页路径文，value 为 { path：件相对路径, catalogues：目录页数据 }
+   * key 为 path：扫描的目录页路径文，value 为 { path：件相对路径, url: "访问路径", catalogues：目录页数据 }
    */
   inv: {
-    [key: string]: { filePath: string; catalogues: CatalogueItem[] };
+    [key: string]: { filePath: string; url: string; catalogues: CatalogueItem[] };
   };
 }
 
@@ -228,9 +230,13 @@ export interface CatalogueItem {
    */
   title: string;
   /**
-   * 文件路径
+   * 文件 frontmatter
    */
-  link?: string;
+  frontmatter: Record<string, any>;
+  /**
+   * 文件访问路径
+   */
+  url?: string;
   /**
    * 子目录
    */

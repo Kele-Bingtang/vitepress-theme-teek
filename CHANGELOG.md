@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.4](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.3...v1.4.4) (2025-08-23)
+
+### Features
+
+- **config:** 🚀 添加重写前缀一致性校验功能，修复壁纸模式 banner 失效问题 ([cb39a81](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/cb39a81f1a5830b46a7e98f960034136cd5b9238))
+- **sidebar:** 🚀 支持 rewrites 侧边栏 ([af3d7a7](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/af3d7a7583a83e7d8ba6d4eba30e07d196ed9955))
+- **sidebar:** 🚀 侧边栏插件支持 rewrites 规则 ([2315d67](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2315d6730b348f78df10e5b27a81f9f06d9a1d0f))
+- **theme:** 🚀 添加自定义主题尺寸和代码块语言显示样式 ([dd71d77](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/dd71d77e3d19205e72de669c919103db0cbaca86))
+
+### Bug Fixes
+
+- **theme:** 🐞 优化首页组件和列表项样式 ([3882b4f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3882b4f86c510f00727958d3765b3c5f20e04090))
+
+### Docs
+
+- 📚 更新 TODO 文档内容 ([2bbe1b2](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2bbe1b2911da3bc72044dbd4856bd1368f5cb355))
+- **changelog:** 📚 优化 CHANGELOG.md 文件格式和内容 ([32a6aa0](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/32a6aa039b9f9d34e8d80a8c50fe431ca6d4091e))
+
+### Styling
+
+- **theme:** 🎨 调整主题增强面板样式 ([3f9dac0](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3f9dac02bf4fc17c8b6f4f6c14a24efa0ae6eae2))
+
+### Code Refactoring
+
+- **config:** ♻️ 重构配置文件并优化主题设置，新增永久链接文档 ([5e0442d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/5e0442d7f418040bcc686a252c8f1ee1b55e1ad4))
+- **docs:** ♻️ 重构文档路径并优化主题功能 ([30da8bb](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/30da8bb8ab04fdac3010fa839a053e91bbad936a))
+- **theme:** ♻️ 优化主题页面元素的过渡动画和新增卡片栏插槽 gap ([ef839bc](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/ef839bce62e8379f45e6ccb061981350eb493e49))
+
+### Build System
+
+- 📦️ v1.4.4 版本发布 ([6131696](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/6131696bb9acfbea4896277f1aed5b2ca70a6509))
+- 📦️ 更新版本号至 1.4.3 ([e8f1a6f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/e8f1a6fa5d538f81348e0e9b3747b62924517848))
+
 ## [1.4.3](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.2...v1.4.3) (2025-08-18)
 
 ### Features

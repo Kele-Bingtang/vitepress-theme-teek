@@ -17,10 +17,4 @@ export interface Wallpaper {
    * @default false
    */
   hideMask?: boolean;
-  /**
-   * 开启壁纸模式后，是否隐藏 Banner 波浪组件，仅 banner.bgStyle = 'fullImg' 生效
-   *
-   * @default false
-   */
-  hideWaves?: boolean;
 }

@@ -1,20 +1,21 @@
 import type { DefaultTheme } from "vitepress";
 import type { SidebarOption } from "./types";
 import { readdirSync, statSync, readFileSync, existsSync } from "node:fs";
-import { join, basename, resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import matter from "gray-matter";
-import { getTitleFromMarkdown, isIllegalIndex, isSome } from "./util";
+import { getTitleFromMarkdown, isIllegalIndex, isSome } from "./utils";
 import logger from "./log";
+import { getInfoFromMarkdownDir, resolveFileName } from "./nodeHelper";
 
 // 默认忽略的文件夹列表
 export const DEFAULT_IGNORE_DIR = ["node_modules", "dist", ".vitepress", "public"];
 
 /**
- * 生成侧边栏数据
- * @param  option 配置项
+ * 基于文件路径生成侧边栏数据
+ * @param  option Sidebar 配置选项
  * @param prefix 指定前缀，在生成侧边栏的 link 时，会自动加上前缀
  */
-export default (option: SidebarOption = {}, prefix = "/"): DefaultTheme.SidebarMulti => {
+export default (option: SidebarOption = {}, prefix = "/") => {
   const {
     path,
     ignoreList = [],
@@ -28,19 +29,30 @@ export default (option: SidebarOption = {}, prefix = "/"): DefaultTheme.SidebarM
     indexSeparator,
     prefixTransform,
     suffixTransform,
+    type = "object",
+    rootTitle = "Root",
   } = option;
-  if (!path) return {};
+  const isSidebarObject = type === "object";
+  if (!path) return isSidebarObject ? {} : [];
 
   // 确保 prefix 始终都有 / 结尾
   prefix = prefix.replace(/\/$/, "") + "/";
 
-  const sidebar: DefaultTheme.SidebarMulti = {};
-  // 获取指定根目录下的所有目录绝对路径
-  const dirPaths = readDirPaths(path, ignoreList);
+  const sidebarObj: DefaultTheme.SidebarMulti = {};
+  const sidebarArray: DefaultTheme.SidebarItem[] = [];
 
   // 只扫描根目录的 md 文件，且不扫描 index.md（首页文档）
   const key = prefix === "/" ? prefix : `/${prefix}`;
-  if (scannerRootMd) sidebar[key] = createSidebarItems(path, { ...option, ignoreIndexMd: true }, key, scannerRootMd);
+  if (scannerRootMd) {
+    const rootSidebarItems = createSidebarItems(path, { ...option, ignoreIndexMd: true }, key, scannerRootMd);
+    if (rootSidebarItems?.length) {
+      if (isSidebarObject) sidebarObj[key] = rootSidebarItems;
+      else sidebarArray.push({ text: rootTitle, items: rootSidebarItems });
+    }
+  }
+
+  // 获取指定根目录下的所有目录绝对路径
+  const dirPaths = readDirPaths(path, ignoreList);
 
   // 遍历根目录下的每个子目录，生成对应的侧边栏数据
   dirPaths.forEach(dirPath => {
@@ -55,25 +67,31 @@ export default (option: SidebarOption = {}, prefix = "/"): DefaultTheme.SidebarM
     }
 
     const { name, title } = resolveFileName(fileName, dirPath, indexSeparator);
-    const info = getInfoFromMarkdown(dirPath, fileName);
+    const info = getInfoFromMarkdownDir(dirPath, fileName);
     const mdTitle = titleFormMd ? info.title : "";
     // 标题添加前缀和后缀
     const sidebarPrefix = (info.prefix && (prefixTransform?.(info.prefix) ?? info.prefix)) ?? "";
     const sidebarSuffix = (info.suffix && (suffixTransform?.(info.suffix) ?? info.suffix)) ?? "";
-    const text = sidebarPrefix + (initItemsText ? mdTitle || title : "") + sidebarSuffix;
+    const text = sidebarPrefix + (mdTitle || title) + sidebarSuffix;
 
-    sidebar[`${key}${fileName}/`] = initItems
-      ? [
-          {
-            text,
-            collapsed: typeof collapsed === "function" ? collapsed(prefix + name, text) : collapsed,
-            items: sidebarItems,
-          },
-        ]
-      : sidebarItems;
+    const sidebarItem = {
+      text,
+      collapsed: typeof collapsed === "function" ? collapsed(prefix + name, text) : collapsed,
+      items: sidebarItems,
+    };
+
+    // 数组类型侧边栏
+    if (isSidebarObject) {
+      // 对象类型侧边栏
+      sidebarObj[`${key}${fileName}/`] = initItems
+        ? [{ ...sidebarItem, text: initItemsText ? text : "" }]
+        : sidebarItems;
+    } else sidebarArray.push(sidebarItem);
   });
 
-  return sidebarResolved?.(sidebar) ?? sidebar;
+  const finalSidebar = isSidebarObject ? sidebarObj : sidebarArray;
+
+  return sidebarResolved?.(finalSidebar) ?? finalSidebar;
 };
 
 /**
@@ -82,6 +100,9 @@ export default (option: SidebarOption = {}, prefix = "/"): DefaultTheme.SidebarM
  */
 const readDirPaths = (sourceDir: string, ignoreList: SidebarOption["ignoreList"] = []) => {
   const dirPaths: string[] = [];
+  // 检查目录是否存在
+  if (!existsSync(sourceDir)) return dirPaths;
+
   const ignoreListAll = [...DEFAULT_IGNORE_DIR, ...ignoreList];
   // 读取目录，返回数组，成员是 root 下所有的目录名（包含文件夹和文件，不递归）
   const dirOrFilenames = readdirSync(sourceDir);
@@ -89,6 +110,8 @@ const readDirPaths = (sourceDir: string, ignoreList: SidebarOption["ignoreList"]
   dirOrFilenames.forEach(dirOrFilename => {
     // 将路径或路径片段的序列解析为绝对路径，等于使用 cd 命令
     const secondDirPath = resolve(sourceDir, dirOrFilename);
+    if (!existsSync(secondDirPath)) return;
+
     // 是否为文件夹目录，并排除指定文件夹
     if (!isSome(ignoreListAll, dirOrFilename) && statSync(secondDirPath).isDirectory()) {
       dirPaths.push(secondDirPath);
@@ -143,6 +166,8 @@ const createSidebarItems = (
     if (isSome(ignoreListAll, dirOrFilename)) return [];
 
     const filePath = resolve(root, dirOrFilename);
+    if (!existsSync(filePath)) return;
+
     // 解析文件名
     const { index: indexStr, title, type, name } = resolveFileName(dirOrFilename, filePath, indexSeparator);
     // 十进制转换
@@ -159,7 +184,7 @@ const createSidebarItems = (
 
     if (!onlyScannerRootMd && statSync(filePath).isDirectory()) {
       // 是文件夹目录
-      const info = getInfoFromMarkdown(root, dirOrFilename);
+      const info = getInfoFromMarkdownDir(root, dirOrFilename);
       const mdTitle = titleFormMd ? info.title : "";
       // 标题添加前缀和后缀
       const sidebarPrefix = (info.prefix && (prefixTransform?.(info.prefix) ?? info.prefix)) ?? "";
@@ -245,136 +270,4 @@ const createSidebarItems = (
   }
 
   return sidebarItemsResolved?.(sidebarItems) ?? sidebarItems;
-};
-
-/**
- * 按顺序从该目录下的 [index.md, index.MD, 目录名.md] 文件获取数据
- * @param root 目录绝对路径
- * @param dirOrFilename 文件夹名
- */
-const getInfoFromMarkdown = (root: string, dirOrFilename: string) => {
-  const state = {
-    title: undefined as string | undefined,
-    sort: undefined as number | undefined,
-    prefix: "",
-    suffix: "",
-  };
-
-  const filePaths = [
-    join(root, dirOrFilename, "index.md"),
-    join(root, dirOrFilename, "index.MD"),
-    join(root, dirOrFilename, dirOrFilename + ".md"),
-  ];
-
-  for (const filePath of filePaths) {
-    if (!existsSync(filePath)) continue;
-
-    const content = readFileSync(filePath, "utf-8");
-    const { data: { title, sidebarSort, sidebarPrefix, sidebarSuffix } = {}, content: mdContent } = matter(content, {});
-    const t = title || getTitleFromMarkdown(mdContent);
-
-    if (!state.title) state.title = t;
-    if (!state.sort) state.sort = sidebarSort;
-    if (!state.prefix) state.prefix = sidebarPrefix;
-    if (!state.suffix) state.suffix = sidebarSuffix;
-  }
-
-  return state;
-};
-
-/**
- * 解析文件名，返回文件序号、文件标题、文件类型
- * @param filename 文件名
- * @param filePath 文件绝对路径
- */
-const resolveFileName = (filename: string, filePath: string, separator: string = ".") => {
-  const stat = statSync(filePath);
-
-  /**
-   * 文件名解析逻辑：
-   * 1. 点(.)分隔符逻辑始终存在：
-   *    - 01.ke.md -> { index: "01", title: "ke", type: "md", name: "01.ke" }
-   *    - ke.md -> { index: "ke", title: "ke", type: "md", name: "ke" }
-   *    - index.md -> { index: "0", title: "index", type: "md", name: "index" }
-   *
-   * 2. 自定义分隔符(_)额外支持：
-   *    - 01_ke.md -> { index: "01", title: "ke", type: "md", name: "01_ke" }
-   *    - a_b.md -> { index: "", title: "a_b", type: "md", name: "a_b" } (不含数字前缀，不处理)
-   *    - 01.a_b.md -> { index: "01", title: "a_b", type: "md", name: "01.a_b" } (仍使用点分隔符)
-   *    - 01_a_b.md -> { index: "01", title: "a_b", type: "md", name: "01_a_b" } (自定义分隔符)
-   */
-
-  // 处理自定义分隔符
-  if (separator !== "." && isExtraSeparator(filename, separator)) {
-    return parseExtraSeparator(filename, stat.isDirectory(), separator);
-  }
-
-  // 处理点(.)分隔符
-  if (filename.includes(".")) {
-    return parseDotSeparator(filename, stat.isDirectory());
-  }
-
-  // 无分隔符情况
-  return { index: "", title: filename, type: "", name: filename };
-};
-
-/**
- * 使用点分隔符解析文件名
- */
-const parseDotSeparator = (filename: string, isDirectory: boolean) => {
-  const parts = filename.split(".");
-
-  if (parts.length === 2) {
-    // 简单情况：name.ext 或 index.md
-    const index = parts[0] === "index" ? "0" : parts[0];
-    const title = isDirectory ? parts[1] : parts[0];
-    const type = isDirectory ? "" : parts[1];
-    const name = parts[0];
-
-    return { index, title, type, name };
-  } else {
-    // 复杂情况：01.name.ext
-    const firstDotIndex = filename.indexOf(".");
-    const lastDotIndex = filename.lastIndexOf(".");
-    const index = filename.substring(0, firstDotIndex);
-
-    // 对于文件，需要处理扩展名，对于目录，则不处理
-    const title = filename.substring(firstDotIndex + 1, lastDotIndex);
-    const type = isDirectory ? "" : filename.substring(lastDotIndex + 1);
-    const name = isDirectory ? filename : filename.substring(0, lastDotIndex);
-
-    return { index, title, type, name };
-  }
-};
-
-/**
- * 检查是否符合自定义分隔符模式：数字开头 + 自定义分隔符 + 内容（对于目录）或内容 + . + 扩展名（对于文件）
- */
-const isExtraSeparator = (filename: string, separator: string) => {
-  // 必须包含自定义分隔符
-  if (!filename.includes(separator)) return false;
-
-  const parts = filename.split(separator, 2);
-  // 第一部分必须是数字
-  if (!/^\d+$/.test(parts[0])) return false;
-
-  return true;
-};
-
-/**
- * 解析符合自定义分隔符模式的文件名或目录名
- */
-const parseExtraSeparator = (filename: string, isDirectory: boolean, separator: string) => {
-  const firstSeparatorIndex = filename.indexOf(separator);
-  const lastDotIndex = filename.lastIndexOf(".");
-  const index = filename.substring(0, firstSeparatorIndex);
-
-  // 对于文件，需要处理扩展名，对于目录，则不处理
-  const title = isDirectory
-    ? filename.substring(firstSeparatorIndex + 1)
-    : filename.substring(firstSeparatorIndex + 1, lastDotIndex);
-  const type = isDirectory ? "" : filename.substring(lastDotIndex + 1);
-  const name = isDirectory ? filename : filename.substring(0, lastDotIndex);
-
-  return { index, title, type, name };
 };

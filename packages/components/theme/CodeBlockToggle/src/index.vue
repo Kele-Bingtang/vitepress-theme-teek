@@ -18,6 +18,7 @@ const codeBlockConfig = getTeekConfigRef<CodeBlock>("codeBlock", {
   copiedDone: undefined,
   overlay: false,
   overlayHeight: 400,
+  langTextTransform: "",
 });
 
 const documentAttribute = "code-block";
@@ -29,10 +30,13 @@ watch(
   newVal => {
     if (!isClient) return;
 
-    const { disabled } = newVal || {};
+    const { disabled, langTextTransform } = newVal || {};
     if (disabled) return document.documentElement.removeAttribute(documentAttribute);
 
     document.documentElement.setAttribute(documentAttribute, ns.namespace);
+    if (langTextTransform) {
+      document.documentElement.style.setProperty(ns.cssVarName("code-block-lang-transform"), langTextTransform);
+    }
     nextTick(() => initCodeBlock());
   },
   { immediate: true }

@@ -25,12 +25,13 @@ import matter from "gray-matter";
 export const transformData = (data: FileContentLoaderData): TkContentData => {
   const siteConfig: SiteConfig = (globalThis as any).VITEPRESS_CONFIG;
   const { themeConfig } = siteConfig.userConfig;
-  const { frontmatter, url, excerpt } = data;
+  const { frontmatter, url, relativePath, excerpt } = data;
 
   if (frontmatter.date) frontmatter.date = formatDate(frontmatter.date);
 
   return {
     url,
+    relativePath,
     frontmatter,
     author: themeConfig.author,
     title: getTitle(data),
@@ -58,12 +59,14 @@ export const transformRaw = (posts: TkContentData[]): PostData => {
   localesKeys
     .filter(localesKey => localesKey !== "root")
     .forEach(localesKey => {
-      const localePosts = posts.filter(post => post.url.startsWith(`/${localesKey}`));
+      const localePosts = posts.filter(post => post.relativePath.startsWith(`/${localesKey}`));
       postsLocale[localesKey] = resolvePosts(localePosts);
     });
 
   // root 处理
-  const rootPosts = posts.filter(post => !localesKeys.some(localesKey => post.url.startsWith(`/${localesKey}`)));
+  const rootPosts = posts.filter(
+    post => !localesKeys.some(localesKey => post.relativePath.startsWith(`/${localesKey}`))
+  );
   postsLocale["root"] = resolvePosts(rootPosts);
 
   return { ...postsData, locales: postsLocale };
@@ -95,11 +98,11 @@ const resolvePosts = (posts: TkContentData[]): PostData => {
  *
  * @param post 文章数据
  */
-export function getTitle(post: RequiredKeyPartialOther<TkContentData, "frontmatter" | "url">) {
+export function getTitle(post: RequiredKeyPartialOther<TkContentData, "frontmatter" | "relativePath">) {
   if (post.frontmatter.title) return post.frontmatter.title;
 
   const { content = "" } = matter(post.src || "", {});
-  const splitName = basename(post.url).split(".");
+  const splitName = basename(post.relativePath).split(".");
   // 如果目录下有 index.md 且没有一级标题，则使用目录名作为文章标题
   const name = splitName.length > 1 ? splitName[1] : splitName[0];
   return getTitleFromMarkdown(content) || name || "";
@@ -111,13 +114,16 @@ export function getTitle(post: RequiredKeyPartialOther<TkContentData, "frontmatt
  * @param post 文章数据
  * @param srcDir 项目绝对路径
  */
-export function getDate(post: RequiredKeyPartialOther<TkContentData, "frontmatter" | "url">, srcDir: string) {
-  const { frontmatter, url } = post;
+export function getDate(post: RequiredKeyPartialOther<TkContentData, "frontmatter" | "relativePath">, srcDir: string) {
+  const { frontmatter, relativePath } = post;
 
   if (frontmatter.date) return frontmatter.date;
 
-  // 如果目录下面有 index.md，则 url 不是目录名/index，而是目录名/，因此通过后面的 / 来补 index.md
-  const filePath = join(srcDir, `${url.endsWith("/") ? `${url}/index` : url.replace(/\.html$/, "")}.md`);
+  // 如果目录下面有 index.md，则 filePath 不是目录名/index，而是目录名/，因此通过后面的 / 来补 index.md
+  const filePath = join(
+    srcDir,
+    `${relativePath.endsWith("/") ? `${relativePath}/index` : relativePath.replace(/\.html$/, "")}.md`
+  );
   const stat = statSync(filePath);
   return formatDate(stat.birthtime || stat.atime);
 }

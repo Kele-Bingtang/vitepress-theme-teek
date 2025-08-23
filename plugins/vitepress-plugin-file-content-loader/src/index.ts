@@ -42,6 +42,7 @@ export default function VitePluginVitePressFileContentLoader<T = FileContentLoad
         srcDir,
         cleanUrls,
         markdown,
+        rewrites,
       } = config.vitepress;
 
       if (typeof pattern === "string") pattern = [pattern];
@@ -69,11 +70,10 @@ export default function VitePluginVitePressFileContentLoader<T = FileContentLoad
           typeof renderExcerpt === "string" ? { excerpt_separator: renderExcerpt } : { excerpt: renderExcerpt }
         );
 
-        const url =
-          "/" +
-          normalizePath(relative(srcDir, file))
-            .replace(/(^|\/)index\.md$/, "$1")
-            .replace(/\.md$/, cleanUrls ? "" : ".html");
+        const path = normalizePath(relative(srcDir, file)).replace(/(^|\/)index\.md$/, "$1");
+        const relativePath = "/" + path.replace(/\.md$/, cleanUrls ? "" : ".html");
+        const url = "/" + (rewrites.map[path] || path).replace(/\.md$/, cleanUrls ? "" : ".html");
+
         const html = render ? md.render(src) : undefined;
         const renderedExcerpt = renderExcerpt && excerpt?.endsWith("\n") ? md.render(excerpt) : undefined;
 
@@ -82,6 +82,7 @@ export default function VitePluginVitePressFileContentLoader<T = FileContentLoad
           html,
           frontmatter,
           excerpt: renderedExcerpt,
+          relativePath,
           url,
         };
 

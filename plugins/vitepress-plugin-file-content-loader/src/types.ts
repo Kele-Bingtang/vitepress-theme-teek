@@ -77,6 +77,10 @@ export interface FileContentLoaderData {
    */
   url: string;
   /**
+   * 文件相对路径
+   */
+  relativePath: string;
+  /**
    * 文件的源内容
    */
   src?: string;

@@ -23,7 +23,7 @@ const articleConfig = getTeekConfigRef<ArticleUpdate>("articleUpdate", {
 });
 
 const updatePosts = computed(() => {
-  const path = "/" + route.data.relativePath.replace(".md", "");
+  const path = "/" + route.data.filePath.replace(".md", "");
   return [
     ...posts.value.sortPostsByDate
       .filter(item => ![route.path, path, `${path}.html`].includes(item.url))

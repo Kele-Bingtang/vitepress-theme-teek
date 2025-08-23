@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Feature } from "@teek/config";
-import { onMounted, useTemplateRef } from "vue";
+import { onMounted, ref } from "vue";
 import { withBase } from "vitepress";
 import { useNamespace, useWindowTransition } from "@teek/composables";
 import { useTeekConfig, useWindowTransitionConfig } from "@teek/components/theme/ConfigProvider";
@@ -14,7 +14,7 @@ const featuresConfig = getTeekConfigRef<Required<Feature[]>>("features", []);
 
 // 屏幕加载元素时，开启过渡动画
 const windowTransition = useWindowTransitionConfig(config => config.feature);
-const textInstance = useTemplateRef<HTMLElement[]>("textInstance");
+const textInstance = ref<HTMLLIElement[] | null>(null);
 const { start } = useWindowTransition(textInstance as any, false);
 
 onMounted(() => {

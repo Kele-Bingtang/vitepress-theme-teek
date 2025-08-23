@@ -31,4 +31,15 @@ export interface CodeBlock {
    * @version 1.4.0
    */
   overlayHeight?: number;
+  /**
+   * 语言文本显示样式，为 text-transform 的值
+   *
+   * none：文本中的单词保持默认风格
+   * capitalize：文本中的每个单词以大写字母开头
+   * lowercase：文本中的每个单词全部转为小写
+   * uppercase：定文本中的单次全部转为大写
+   *
+   * @default 'uppercase'
+   */
+  langTextTransform?: "none" | "capitalize" | "lowercase" | "uppercase";
 }

@@ -14,6 +14,12 @@ export interface SidebarOption {
    */
   path?: string;
   /**
+   * 生成的侧边栏数据类型，object 为对象，支持多侧边栏，array 为数组，所有文件都生成一个侧边栏
+   *
+   * @default 'object'
+   */
+  type?: "object" | "array";
+  /**
    * 是否忽略每个目录下的 index.md 文件
    *
    * @default false
@@ -25,6 +31,12 @@ export interface SidebarOption {
    * @default true
    */
   scannerRootMd?: boolean;
+  /**
+   * 当 type 为 array 且 scannerRootMd 为 true 时，指定侧边栏根目录标题名称
+   *
+   * @default 'Root'
+   */
+  rootTitle?: string;
   /**
    * 是否初始化第一层 items
    *
@@ -83,14 +95,16 @@ export interface SidebarOption {
    * @param data 当前 sidebar 列表
    * @default undefined
    */
-  sidebarResolved?: (data: DefaultTheme.SidebarMulti) => DefaultTheme.SidebarMulti;
+  sidebarResolved?: (
+    data: DefaultTheme.SidebarMulti | DefaultTheme.SidebarItem[]
+  ) => DefaultTheme.SidebarMulti | DefaultTheme.SidebarItem[];
   /**
    * 解析完每个 sidebarItem 后的回调。每个 sidebarItem 指的是每个目录下的文件数组
    *
    * @param data 当前 sidebarItem 列表
    * @default undefined
    */
-  sidebarItemsResolved?: (data: DefaultTheme.SidebarItem[]) => DefaultTheme.SidebarItem[];
+  sidebarItemsResolved?: (data: DefaultTheme.SidebarMulti | DefaultTheme.SidebarItem[]) => DefaultTheme.SidebarItem[];
   /**
    * 创建 sidebarItem 之前的回调。每个 sidebarItem 指的是每个目录下的文件数组
    *
@@ -98,7 +112,7 @@ export interface SidebarOption {
    * @default undefined
    * @remark 可以过滤掉不需要解析为 sidebarItem 的文件
    */
-  beforeCreateSidebarItems?: (data: string[]) => string[];
+  beforeCreateSidebarItems?: (data: string[] | DirectoryStructure) => string[];
   /**
    * Markdown 文件创建或者删除时，是否重启 VitePress 服务
    *
@@ -143,4 +157,20 @@ export interface SidebarOption {
    * 自定义标题后缀内容，参数 suffix 为 frontmatter.sidebarSuffix 传入
    */
   suffixTransform?: (suffix: string) => string;
+  /**
+   * 解析过则，filePath 则基于文件路径解析，rewrites 则基于 VitePress 的 rewrites 配置解析，如果 resolveRule 为 rewrites 但是 rewrites 为空，则走 filePath 规则
+   *
+   * @default 'filePath'
+   */
+  resolveRule?: "filePath" | "rewrites";
+  /**
+   * 是否校验每个目录下的 rewrites 前缀是否一致，仅当 ignoreWarn 为 true 生效
+   *
+   * @default false
+   */
+  checkRewritesPrefix?: boolean;
+}
+
+export interface DirectoryStructure {
+  [key: string]: DirectoryStructure | string;
 }

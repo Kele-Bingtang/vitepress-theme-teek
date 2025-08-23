@@ -24,10 +24,10 @@ const breadcrumb = getTeekConfigRef<BreadcrumbType>("breadcrumb", {
   homeLabel: t("tk.articleBreadcrumb.home"),
 });
 
-const relativePathArr = computed(() => page.value.relativePath.split("/") || []);
+const relativePathArr = computed(() => page.value.filePath.split("/") || []);
 
 const breadcrumbList = computed(() => {
-  const classifyList: { fileName: string; filePath: string }[] = [];
+  const classifyList: { fileName: string; url: string }[] = [];
   const relativePathArrConst: string[] = relativePathArr.value;
 
   relativePathArrConst.forEach((item, index) => {
@@ -41,7 +41,7 @@ const breadcrumbList = computed(() => {
     ) {
       classifyList.push({
         fileName,
-        filePath: theme.value.catalogues?.inv[item]?.filePath || "",
+        url: theme.value.catalogues?.inv[item]?.url || "",
       });
     }
   });
@@ -64,10 +64,10 @@ const breadcrumbList = computed(() => {
       </TkBreadcrumbItem>
       <TkBreadcrumbItem v-for="(item, index) in breadcrumbList" :key="index">
         <component
-          :is="item.filePath ? 'a' : 'span'"
-          :href="item.filePath && withBase(`/${item.filePath}`)"
+          :is="item.url ? 'a' : 'span'"
+          :href="item.url && withBase(`/${item.url}`)"
           :title="item.fileName"
-          :class="[item.filePath ? 'hover-color' : '']"
+          :class="[item.url ? 'hover-color' : '']"
           :aria-label="item.fileName"
         >
           {{ item.fileName }}

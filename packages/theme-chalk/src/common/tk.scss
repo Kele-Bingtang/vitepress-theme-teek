@@ -24,7 +24,7 @@
   transition: color getCssVar("transition-duration-fast");
 
   &:hover {
-    color: getCssVar("theme-color") !important;
+    color: getCssVar("theme-color");
   }
 }
 

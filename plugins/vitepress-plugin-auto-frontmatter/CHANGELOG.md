@@ -1,5 +1,11 @@
 # vitepress-plugin-auto-frontmatter
 
+## 1.0.11
+
+### Patch Changes
+
+- 文档内容更新
+
 ## 1.0.10
 
 ### Patch Changes

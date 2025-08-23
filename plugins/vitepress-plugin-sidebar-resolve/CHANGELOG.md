@@ -1,5 +1,16 @@
 # vitepress-plugin-sidebar-resolve
 
+## 1.2.0
+
+### Minor Changes
+
+- 文档内容更新
+
+### Patch Changes
+
+- 2315d67: 支持 rewrites 格式生成侧边栏
+- 30da8bb: 支持 rewrites 的访问路径
+
 ## 1.1.2
 
 ### Patch Changes
