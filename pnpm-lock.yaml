@@ -61,8 +61,8 @@ catalogs:
       specifier: ^1.2.1
       version: 1.2.1
     vitepress-plugin-sidebar-resolve:
-      specifier: ^1.2.0
-      version: 1.2.0
+      specifier: ^1.2.1
+      version: 1.2.1
     vue:
       specifier: ^3.5.13
       version: 3.5.13
@@ -334,7 +334,7 @@ importers:
         version: 1.2.1(vitepress@1.6.3(@algolia/client-search@5.19.0)(@types/node@22.14.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.83.1)(search-insights@2.17.3)(typescript@5.8.3))
       vitepress-plugin-sidebar-resolve:
         specifier: 'catalog:'
-        version: 1.2.0(vitepress@1.6.3(@algolia/client-search@5.19.0)(@types/node@22.14.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.83.1)(search-insights@2.17.3)(typescript@5.8.3))
+        version: 1.2.1(vitepress@1.6.3(@algolia/client-search@5.19.0)(@types/node@22.14.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.83.1)(search-insights@2.17.3)(typescript@5.8.3))
     devDependencies:
       '@types/markdown-it':
         specifier: 'catalog:'
@@ -5046,8 +5046,8 @@ packages:
     peerDependencies:
       vitepress: ^1.6.3
 
-  vitepress-plugin-sidebar-resolve@1.2.0:
-    resolution: {integrity: sha512-Xe7XzZEyNvQQbd0gNJG4pUJLELFa9Sac7kFqc6ecY76YQ0X1hFA/q4EKJcBBcJ1aW5dqRz4MdjV2Uk35DcfMVA==}
+  vitepress-plugin-sidebar-resolve@1.2.1:
+    resolution: {integrity: sha512-lh3h8nj8kjPq0Qx2seteP2zPHYkmA8XwJ+2p1B4psy3sl9QmZBdDjtSdqwBCZQUL9p3PwHJoF+RHAhumbaj9Ew==}
     peerDependencies:
       vitepress: ^1.6.3
 
@@ -10022,7 +10022,7 @@ snapshots:
       picocolors: 1.1.1
       vitepress: 1.6.3(@algolia/client-search@5.19.0)(@types/node@22.14.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.83.1)(search-insights@2.17.3)(typescript@5.8.3)
 
-  vitepress-plugin-sidebar-resolve@1.2.0(vitepress@1.6.3(@algolia/client-search@5.19.0)(@types/node@22.14.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.83.1)(search-insights@2.17.3)(typescript@5.8.3)):
+  vitepress-plugin-sidebar-resolve@1.2.1(vitepress@1.6.3(@algolia/client-search@5.19.0)(@types/node@22.14.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.83.1)(search-insights@2.17.3)(typescript@5.8.3)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1

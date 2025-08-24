@@ -9,11 +9,11 @@
 @use "./var/theme-color";
 @use "./var/theme-size";
 
-@use "./md-plugin/todo";
-@use "./md-plugin/container";
-@use "./md-plugin/share-card";
-@use "./md-plugin/img-card";
-@use "./md-plugin/nav-card";
-@use "./md-plugin/video";
+@use "./markdown-plugin/todo";
+@use "./markdown-plugin/container";
+@use "./markdown-plugin/share-card";
+@use "./markdown-plugin/img-card";
+@use "./markdown-plugin/nav-card";
+@use "./markdown-plugin/video";
 
 @use "./components/common/article-page";

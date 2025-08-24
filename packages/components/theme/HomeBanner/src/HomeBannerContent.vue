@@ -90,10 +90,16 @@ onMounted(() => {
           <span>{{ descArray[0] }}</span>
         </template>
         <template v-else-if="isSwitchDescStyle">
-          <span v-show="text" @click="startAutoSwitch" class="switch" :aria-label="t('tk.homeBanner.descSwitchLabel')">
-            {{ text }}
-          </span>
-          <span v-show="!text">&nbsp;</span>
+          <Transition :name="ns.join('fade')" mode="out-in">
+            <span
+              :key="text || descArray[0]"
+              @click="startAutoSwitch"
+              class="switch"
+              :aria-label="t('tk.homeBanner.descSwitchLabel')"
+            >
+              {{ text || descArray[0] }}
+            </span>
+          </Transition>
         </template>
         <template v-else-if="isTypesDescStyle && descArray.length">
           <span :aria-label="t('tk.homeBanner.descTypedLabel')">{{ typesText }}</span>

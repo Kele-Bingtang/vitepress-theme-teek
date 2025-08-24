@@ -230,7 +230,7 @@ const createSidebarItems = (
       let sidebarItem: Record<string, any> = {
         text,
         collapsed: typeof collapsed === "function" ? collapsed(prefix + name, text) : collapsed,
-        link: dirOrFileInfo as string, // 此时是 rewrites 的文件路径
+        link: `/${dirOrFileInfo}`, // 此时是 rewrites 的文件路径
       };
 
       if (sort) sidebarItem = { ...sidebarItem, sort: sortNumFromFileName ? index : sidebarSort };

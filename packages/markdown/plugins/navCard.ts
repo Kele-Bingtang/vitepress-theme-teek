@@ -66,7 +66,13 @@ const getNavCardHtml = (navCard: { data: NavCard.Item[]; config: NavCard.Config 
               style="--desc-line-clamp: ${lineClamp}"
             >
               <div class="${rootClass}__item__info">
-                ${card.img ? `<img src="${withBase(base, card.img)}" class="no-preview">` : ""}
+                  ${
+                    card.img
+                      ? `<div class="${rootClass}__item__img skeleton-image">
+                          <img src="${withBase(base, card.img)}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
+                         </div>`
+                      : ""
+                  }
                 <span class="name">${card.name}</span>
               </div>
 

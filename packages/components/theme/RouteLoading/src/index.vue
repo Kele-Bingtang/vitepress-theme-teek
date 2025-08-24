@@ -1,51 +1,80 @@
 <script setup>
-import { onBeforeMount, onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, watch } from "vue";
 import { useVpRouter, useNamespace } from "@teek/composables";
 import { isString } from "@teek/helper";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
 
-const loading = ref(false);
+const loading = defineModel({ default: true });
 const ns = useNamespace("route-loading");
 const vpRouter = useVpRouter();
 const { getTeekConfigRef } = useTeekConfig();
 
-const loadingConfig = getTeekConfigRef("loading", true);
+const loadingConfig = getTeekConfigRef("loading", false);
 
 /**
  * 路由开始时加载 Loading 动画
  */
-vpRouter.bindBeforeRouteChange("routeLoadingBefore", () => {
-  handleRouteStart();
-});
+const handleRouteStart = () => {
+  if (!loading.value) loading.value = true;
+};
+/**
+ * 路由完成时关闭 Loading 动画
+ */
+const handleRouteComplete = () => {
+  setTimeout(
+    () => {
+      if (loading.value) loading.value = false;
+    },
+    Math.floor(Math.random() * (800 - 260 + 1)) + 260
+  );
+};
+
+/**
+ * 路由开始时加载 Loading 动画
+ */
+vpRouter.bindBeforeRouteChange(
+  "routeLoadingBefore",
+  () => {
+    handleRouteStart();
+  },
+  "before"
+);
 
 /**
  * 路由结束时取消 Loading 动画
  */
-vpRouter.bindAfterRouteChange("routeLoadingAfter", () => {
-  handleRouteComplete();
-});
+vpRouter.bindAfterRouteChange(
+  "routeLoadingAfter",
+  () => {
+    handleRouteComplete();
+  },
+  "before"
+);
 
-const handleRouteStart = () => (loading.value = true);
-const handleRouteComplete = () => (loading.value = false);
-onBeforeMount(() => {
-  // 首次加载 Loading 动画
-  handleRouteStart();
-});
+watch(
+  () => vpRouter.route.path,
+  () => {
+    handleRouteStart();
+    handleRouteComplete();
+  }
+);
 
-onMounted(() => {
-  setTimeout(handleRouteComplete, 100);
-});
+onBeforeMount(handleRouteStart);
+
+onMounted(handleRouteComplete);
 </script>
 
 <template>
   <slot :loading>
     <div :class="ns.b()">
-      <div v-show="loading" :class="ns.e('mask')">
-        <div :class="ns.e('loader')">
-          <div :class="ns.e('spinner')" />
-          <p>{{ isString(loadingConfig) ? loadingConfig : "Teek 拼命加载中 ..." }}</p>
+      <Transition :name="ns.join('fade')" mode="out-in">
+        <div v-show="loading" :class="ns.e('mask')">
+          <div :class="ns.e('loader')">
+            <div :class="ns.e('spinner')" />
+            <p>{{ isString(loadingConfig) ? loadingConfig : "Teek 拼命加载中 ..." }}</p>
+          </div>
         </div>
-      </div>
+      </Transition>
     </div>
   </slot>
 </template>

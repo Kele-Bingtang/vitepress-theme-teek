@@ -13,13 +13,15 @@
   @include has(sidebar-trigger) {
     .VPSidebar {
       transition:
-        width getCssVar("transition-duration") ease-in-out,
-        padding-left getCssVar("transition-duration") ease-in-out,
-        padding-right getCssVar("transition-duration") ease-in-out;
+        width getCssVar("transition-duration-slow") ease-in-out,
+        padding-left getCssVar("transition-duration-slow") ease-in-out,
+        padding-right getCssVar("transition-duration-slow") ease-in-out,
+        opacity getCssVar("transition-duration-slow"),
+        transform getCssVar("transition-duration");
     }
 
     .VPContent.has-sidebar.sidebar-trigger-transition {
-      transition: padding-left getCssVar("transition-duration") ease-in-out;
+      transition: padding-left getCssVar("transition-duration-slow") ease-in-out;
     }
 
     // 没有侧边栏时，隐藏侧边栏触发器
@@ -78,14 +80,14 @@
         (100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) - 32px +
           getCssVar("sidebar-trigger-left-offset")
       );
-      transition: left getCssVar("transition-duration") ease-in-out;
+      transition: left getCssVar("transition-duration-slow") ease-in-out;
 
       > div {
         box-shadow: none;
       }
 
       @include is(active) {
-        transition-duration: getCssVar("transition-duration");
+        transition-duration: getCssVar("transition-duration-slow");
       }
 
       @media (max-width: 1440px) {

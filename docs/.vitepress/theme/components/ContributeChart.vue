@@ -1,8 +1,8 @@
 <script setup lang="ts" name="ContributeChart">
 import * as echarts from "echarts";
-import { ref, watch, nextTick, computed, useTemplateRef } from "vue";
+import { ref, watch, nextTick, computed, useTemplateRef, onMounted } from "vue";
 import { useData } from "vitepress";
-import { formatDate, usePosts } from "vitepress-theme-teek";
+import { formatDate, usePosts, useIntersectionObserver } from "vitepress-theme-teek";
 
 const { isDark } = useData();
 const posts = usePosts();
@@ -10,7 +10,7 @@ const posts = usePosts();
 // 今天
 const today = formatDate(new Date(), "yyyy-MM-dd");
 // 获取一年前的时间
-const beforeOnYear = formatDate(new Date(new Date().getTime() - 365 * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
+const beforeOnYear = formatDate(new Date(new Date().getTime() - 364 * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
 
 // 贡献图数据
 const contributeList = computed(() => {
@@ -31,6 +31,25 @@ const contributeList = computed(() => {
 
 const chartRef = useTemplateRef("chartRef");
 const contributeChart = ref();
+
+const { create } = useIntersectionObserver(
+  chartRef,
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 使用 requestAnimationFrame 确保在下一帧执行
+        requestAnimationFrame(() => {
+          try {
+            renderChart(contributeList.value);
+          } catch (error) {
+            console.error("初始化动画失败:", error);
+          }
+        });
+      }
+    });
+  },
+  0.1
+);
 
 // Echarts 配置项
 const option = {
@@ -99,11 +118,16 @@ watch(
     await nextTick();
     renderChart(newValue);
   },
-  { immediate: true }
+  { flush: "post" }
 );
 
-watch(isDark, () => {
+watch(isDark, async () => {
+  await nextTick();
   renderChart(contributeList.value);
+});
+
+onMounted(() => {
+  if (chartRef.value) create();
 });
 </script>
 

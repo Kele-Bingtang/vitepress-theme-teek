@@ -50,8 +50,6 @@ Teek 可以通过配置搭配出各种风格，而当前文档站默认仅演示
 
 如果图片链接失效，可以在微信右上角 -> 添加朋友，然后搜索 `teekers` 来添加我的微信。
 
-如果
-
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useData } from "vitepress";

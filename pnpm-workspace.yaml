@@ -24,7 +24,7 @@ catalog:
   vitepress-plugin-file-content-loader: ^1.0.13
   vitepress-plugin-md-h1: ^1.0.11
   vitepress-plugin-permalink: ^1.2.1
-  vitepress-plugin-sidebar-resolve: ^1.2.0
+  vitepress-plugin-sidebar-resolve: ^1.2.1
 
 catalogs:
   vue:

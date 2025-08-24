@@ -29,13 +29,14 @@
       &__img {
         overflow: hidden;
         position: relative;
-        background: #eeeeee;
+        background-color: #eeeeee;
         height: var(--img-height);
+        transition: all 0.3s;
+
         img {
           display: block;
           width: 100%;
           height: 100%;
-          transition: all 0.3s;
           object-fit: var(--img-object-fit);
         }
 

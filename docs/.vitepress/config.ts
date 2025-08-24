@@ -88,7 +88,7 @@ export default defineConfig({
     ["meta", { property: "og:url", content: "" }],
     ["meta", { property: "og:description", description }],
     ["meta", { name: "description", description }],
-    ["meta", { name: "author", content: "Teek" }],
+    ["meta", { name: "author", content: "Teeker" }],
     // 禁止浏览器缩放
     // [
     //   "meta",

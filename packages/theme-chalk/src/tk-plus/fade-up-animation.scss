@@ -1,0 +1,94 @@
+@use "../mixins/bem" as *;
+@use "../mixins/function" as *;
+
+/* 首次进入页面添加渐显动画  */
+
+$fade-up-animation: fade-up 0.6s 0.1s backwards;
+$fade-up-slide-animation: fade-up-slide 0.7s cubic-bezier(0, 0, 0.58, 1) forwards;
+
+@include b(banner) {
+  @include e(content) {
+    animation: $fade-up-animation;
+  }
+}
+
+@include b(home-feature) {
+  animation: $fade-up-animation;
+}
+
+@include b(home-card-list) {
+  animation: $fade-up-animation;
+}
+
+@include b(post-list) {
+  animation: $fade-up-animation;
+}
+
+@include b(footer-group) {
+  animation: $fade-up-animation;
+}
+
+@include b(archives) {
+  animation: $fade-up-animation;
+}
+
+@include b(article-page) {
+  @include b(aside-outline) {
+    animation: $fade-up-animation;
+  }
+  @include b(doc) {
+    > div {
+      animation: $fade-up-animation;
+    }
+  }
+}
+
+@include b(login) {
+  animation: $fade-up-animation;
+}
+
+@include b(risk-link) {
+  > * {
+    animation: $fade-up-animation;
+  }
+}
+
+/* 文章页淡入效果 */
+.VPDoc {
+  .vp-doc > div {
+    animation: $fade-up-slide-animation;
+  }
+
+  .VPDocAsideOutline {
+    animation: $fade-up-slide-animation;
+  }
+}
+
+.VPSidebar .group {
+  animation: $fade-up-slide-animation;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  30% {
+    animation-timing-function: ease-out;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

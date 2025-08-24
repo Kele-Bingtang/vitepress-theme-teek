@@ -20,7 +20,7 @@
   transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
 .#{$namespace}-fade-enter-from,
-.#{$namespace}-fade-leave-active {
+.#{$namespace}-fade-leave-to {
   opacity: 0;
 }
 

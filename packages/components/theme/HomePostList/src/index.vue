@@ -1,7 +1,7 @@
 <script setup lang="ts" name="HomePostList">
 import type { TkPaginationProps } from "@teek/components/common/Pagination";
 import type { Post, TkContentData } from "@teek/config";
-import { reactive, ref, watch, nextTick, computed, onMounted } from "vue";
+import { reactive, ref, watch, nextTick, computed, onMounted, watchEffect } from "vue";
 import { useRoute, useData } from "vitepress";
 import { isClient, removeUnit } from "@teek/helper";
 import { useNamespace, useLocale, useWindowSize, useWindowTransition } from "@teek/composables";
@@ -32,11 +32,10 @@ const postConfig = getTeekConfigRef<Required<Post>>("post", {
 // 自定义一页数量 & 分页组件的 Props
 const pageConfig = getTeekConfigRef<Partial<TkPaginationProps & { pageSize?: number }>>("page", {});
 
-const coverImgMode = ref(postConfig.value.coverImgMode);
-
 // 分页信息
 const pageNum = ref(1);
 const total = ref(0);
+const coverImgMode = ref(postConfig.value.coverImgMode);
 
 const isPaging = defineModel({ default: false });
 
@@ -46,6 +45,10 @@ const pageSize = computed(() => pageConfig.value.pageSize || defaultPageSize.val
 const route = useRoute();
 const currentPosts = ref<TkContentData[]>([]);
 const totalPostsCount = ref(0);
+
+watchEffect(() => {
+  coverImgMode.value = postConfig.value.coverImgMode;
+});
 
 const updateData = () => {
   if (!isClient) return;
@@ -80,13 +83,7 @@ const updateData = () => {
   currentPosts.value = inHomePosts.slice((pageNum.value - 1) * pageSize.value, pageNum.value * pageSize.value);
 };
 
-watch(
-  route,
-  () => {
-    updateData();
-  },
-  { immediate: true }
-);
+watch(() => route.path, updateData, { immediate: true });
 
 /**
  * 切换分页时，记录到 URL 上

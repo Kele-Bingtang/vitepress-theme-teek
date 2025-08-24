@@ -1,6 +1,6 @@
 <script setup lang="ts" name="TeekLayoutProvider">
 import type { TeekConfig } from "vitepress-theme-teek";
-import Teek, { teekConfigContext, clockIcon, TkPageCard } from "vitepress-theme-teek";
+import Teek, { teekConfigContext, clockIcon } from "vitepress-theme-teek";
 import { useData } from "vitepress";
 import { watch, nextTick, ref, provide } from "vue";
 import { teekDocConfig } from "../config/teekConfig";
@@ -65,17 +65,6 @@ const list = ["name1", "name2", "name3", "name4"];
 
     <template #teek-archives-top-before>
       <ContributeChart />
-    </template>
-
-    <template #teek-loading="{ loading }">
-      <div class="tk-route-loading">
-        <div v-show="loading" class="tk-route-loading__mask">
-          <div class="tk-route-loading__loader">
-            <div class="tk-route-loading__spinner" />
-            <p>拼命加载中 ...</p>
-          </div>
-        </div>
-      </div>
     </template>
 
     <template #not-found>

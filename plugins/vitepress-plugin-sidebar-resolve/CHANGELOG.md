@@ -1,5 +1,11 @@
 # vitepress-plugin-sidebar-resolve
 
+## 1.2.1
+
+### Patch Changes
+
+- rewrites 方式的侧边栏无法高亮修复
+
 ## 1.2.0
 
 ### Minor Changes

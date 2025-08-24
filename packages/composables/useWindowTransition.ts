@@ -6,7 +6,7 @@ import { MaybeRef, nextTick, unref, watch } from "vue";
 /**
  * 元素出现在屏幕内时，开启过渡效果
  */
-export const useWindowTransition = (element: MaybeRef<HTMLLIElement | HTMLElement[] | null>, immediate = true) => {
+export const useWindowTransition = (element: MaybeRef<HTMLElement | HTMLElement[] | null>, immediate = true) => {
   let startInMounted = false;
   const cleanup: (() => void)[] = [];
 
@@ -28,7 +28,7 @@ export const useWindowTransition = (element: MaybeRef<HTMLLIElement | HTMLElemen
     // 初始化动画 class
     el.classList.add("scroll__animate");
 
-    const { createIntersectionObserver, cleanIntersectionObserver } = useIntersectionObserver(
+    const { create, clean } = useIntersectionObserver(
       el,
       entries => {
         entries.forEach(entry => {
@@ -38,7 +38,7 @@ export const useWindowTransition = (element: MaybeRef<HTMLLIElement | HTMLElemen
               try {
                 // 添加 visible class，触发动画
                 el.classList.add("visible");
-                cleanIntersectionObserver();
+                clean();
               } catch (error) {
                 console.error("初始化动画失败:", error);
               }
@@ -49,8 +49,8 @@ export const useWindowTransition = (element: MaybeRef<HTMLLIElement | HTMLElemen
       0.1
     );
 
-    createIntersectionObserver();
-    cleanup.push(cleanIntersectionObserver);
+    create();
+    cleanup.push(clean);
   };
 
   /**
@@ -91,7 +91,7 @@ export const useWindowTransition = (element: MaybeRef<HTMLLIElement | HTMLElemen
  * 使用 IntersectionObserver 监听元素是否可见
  */
 export const useIntersectionObserver = (
-  observerDom: HTMLElement,
+  observerDom: MaybeRef<HTMLElement | null>,
   callback: (entries: IntersectionObserverEntry[]) => void,
   threshold: number
 ) => {
@@ -99,7 +99,7 @@ export const useIntersectionObserver = (
 
   // 创建 IntersectionObserver
   const createIntersectionObserver = () => {
-    const observerDomValue = observerDom;
+    const observerDomValue = unref(observerDom);
     if (intersectionObserver || !observerDomValue) return;
 
     intersectionObserver = new IntersectionObserver(callback, { threshold });
@@ -114,5 +114,7 @@ export const useIntersectionObserver = (
     }
   };
 
-  return { createIntersectionObserver, cleanIntersectionObserver };
+  useScopeDispose(cleanIntersectionObserver);
+
+  return { create: createIntersectionObserver, clean: cleanIntersectionObserver };
 };

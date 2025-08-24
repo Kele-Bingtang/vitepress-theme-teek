@@ -19,7 +19,9 @@ const ns = useNamespace("article-page");
     </div>
 
     <div :class="[ns.join('doc'), { 'vp-doc': doc }]">
-      <slot></slot>
+      <div>
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>

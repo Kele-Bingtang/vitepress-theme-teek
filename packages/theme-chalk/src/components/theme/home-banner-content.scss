@@ -29,28 +29,22 @@
     margin: 24px auto;
     min-height: 32px;
 
+    @media (max-width: 640px) {
+      margin: 24px 10px;
+    }
+
     .switch {
-      animation: fadeIn 1s ease-in-out;
       cursor: pointer;
     }
 
     .typed {
       opacity: 1;
       &.is-animation {
-        animation: fadeOut 1s infinite;
+        animation: fade-out 1s infinite;
       }
     }
 
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeOut {
+    @keyframes fade-out {
       0% {
         opacity: 1;
       }

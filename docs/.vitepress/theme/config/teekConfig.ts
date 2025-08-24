@@ -13,6 +13,7 @@ export const teekDocConfig: TeekConfig = {
 const teekBlogCommonConfig: TeekConfig = {
   teekHome: true,
   vpHome: false,
+  loading: true,
   wallpaper: {
     enabled: true,
   },
@@ -42,7 +43,7 @@ const teekBlogCommonConfig: TeekConfig = {
       {
         name: "One",
         desc: "明心静性，爱自己",
-        avatar: "https://onedayxyy.cn/img/xyy-touxiang.png",
+        avatar: "https://onedayxyy.cn/img/xyy.webp",
         link: "https://onedayxyy.cn/",
       },
       {

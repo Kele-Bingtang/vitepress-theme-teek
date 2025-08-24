@@ -74,8 +74,8 @@ const renderImgCard = (imgCard: { data: ImgCard.Item[]; config: ImgCard.Config }
               class="${rootClass}__item ${num ? `row-${num}` : ""}"
               style="--img-height: ${imgHeight}; --img-object-fit: ${objectFit}; --desc-line-clamp: ${lineClamp}"
             >
-              <div class="${rootClass}__item__img">
-                <img src="${withBase(base, card.img)}" class="no-preview">
+              <div class="${rootClass}__item__img skeleton-image">
+                <img src="${withBase(base, card.img)}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
               </div>
               <div class="${rootClass}__item__info">
                   <p class="name">${card.name}</p>

@@ -18,7 +18,7 @@ export interface WindowTransition {
    */
   archives?: boolean;
   /**
-   * 是否开启 Feature 过渡效果
+   * 是否开启首页 Feature 过渡效果
    *
    * @default false
    */
