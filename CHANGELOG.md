@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.5](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.4...v1.4.5) (2025-08-24)
+
+### Features
+
+- **theme:** 🚀 优化页面加载动画和视图过渡效果 ([3fbb162](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3fbb162aea4ab01fdb296f025713bd4415d2437e))
+- **theme:** 🚀 优化页面加载体验和布局 ([c3bbdbf](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c3bbdbfb7f95c038d0b1ef61567fd5a3f5a09787))
+
+### Code Refactoring
+
+- **docs:** ♻️ 优化文档网站配置和样式 ([48c38f4](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/48c38f48abf18af106f223a8775b08912fb0fd03))
+
+### Styling
+
+- **theme:** 🎨 调整底部提示框位置 ([44ec22e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/44ec22ef475b64cf8d6cc606bd004838e6deb13a))
+
+### Docs
+
+- 📚 更新 TODO 文档 ([d3e1615](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/d3e161519e87788c78f91f7b5c8d5c9db6fbc554))
+- **docs:** 📚 v1.4.5 版本发布 ([3618a10](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3618a10c2feab9e685fe5ecd9551890fe074ada2))
+- **theme:** 📚 样式增强文档内容更新 ([6ea03a8](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/6ea03a8215b0b5df7962f2b42fe03e6b713fc6e9))
+
 ## [1.4.4](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.3...v1.4.4) (2025-08-23)
 
 ### Features

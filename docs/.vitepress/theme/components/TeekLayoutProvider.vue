@@ -77,6 +77,10 @@ const list = ["name1", "name2", "name3", "name4"];
 .tk-my.is-circle-bg {
   .tk-my__avatar.circle-rotate {
     margin-top: 200px;
+
+    .tk-avatar:not(.avatar-sticker) {
+      border: 5px solid var(--vp-c-bg-elv);
+    }
   }
 }
 </style>

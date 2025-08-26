@@ -27,9 +27,9 @@ import "@teek/theme-chalk/tk-plus/fade-up-animation.scss"; // 首次加载的动
 // import "vitepress-theme-teek/theme-chalk/vp-plus/mark.scss";
 // import "vitepress-theme-teek/theme-chalk/vp-plus/blockquote.scss";
 // import "vitepress-theme-teek/theme-chalk/vp-plus/index-rainbow.scss";
-// import "vitepress-theme-teek/theme-chalk/vp-plus/doc-fade-in.scss";
 // import "vitepress-theme-teek/theme-chalk/tk-plus/banner-desc-gradient.scss";
 // import "vitepress-theme-teek/theme-chalk/tk-plus/home-card-hover.scss";
+// import "vitepress-theme-teek/theme-chalk/tk-plus/fade-up-animation.scss";
 
 import "./styles/code-bg.scss";
 import "./styles/iframe.scss";

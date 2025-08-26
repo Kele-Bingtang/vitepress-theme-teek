@@ -38,6 +38,23 @@
         }
       }
     }
+
+    > div {
+      position: relative;
+
+      .avatar-sticker {
+        position: absolute;
+        bottom: 3px;
+        right: 3px;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s ease-out 0.2s;
+        transform: scale(1);
+        border-radius: 50%;
+      }
+    }
   }
 
   @include e(avatar__circle--bg) {

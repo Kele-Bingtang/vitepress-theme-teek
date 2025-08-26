@@ -33,9 +33,37 @@ export interface Blogger {
    */
   circleBgMask?: boolean;
   /**
+   * 圆形头像大小，仅当 shape 为 circle 相关值时有效
+   *
+   * @default 100
+   * @since v1.4.6
+   */
+  circleSize?: TkAvatarProps["size"];
+  /**
    * 字体颜色
    *
    * @since v1.3.1
    */
   color?: string;
+  /**
+   * 状态，仅当 shape 为 circle 相关值时有效
+   *
+   * @since v1.4.6
+   */
+  status?: {
+    /**
+     * 图标
+     */
+    icon: string;
+    /**
+     * 图标大小
+     *
+     * @default 24
+     */
+    size?: TkAvatarProps["size"];
+    /**
+     * 鼠标悬停图标的提示语
+     */
+    title?: string;
+  };
 }

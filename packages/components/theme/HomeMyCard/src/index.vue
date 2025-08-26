@@ -16,54 +16,73 @@ const { t } = useLocale();
 
 const { getTeekConfigRef } = useTeekConfig();
 
-const blogger = getTeekConfigRef<Required<Blogger>>("blogger", { shape: "square", circleBgMask: true });
-const social = getTeekConfigRef<Social[]>("social", []);
+const bloggerConfig = getTeekConfigRef<Required<Blogger>>("blogger", { shape: "square", circleBgMask: true });
+const socialConfig = getTeekConfigRef<Social[]>("social", []);
 
-const shape = computed(() => blogger.value.shape.replace(/-.*$/, "") as TkAvatarProps["shape"]);
+const shape = computed(() => bloggerConfig.value.shape.replace(/-.*$/, "") as TkAvatarProps["shape"]);
 
-const isCircleBgImg = computed(() => shape.value === "circle" && !!blogger.value.circleBgImg);
-const avatarBgStyle = computed(() => ({ backgroundImage: `url(${withBase(blogger.value.circleBgImg)})` }));
-const myCardColorStyle = computed(() => ({ color: blogger.value.color }));
+const isCircleBgImg = computed(() => shape.value === "circle" && !!bloggerConfig.value.circleBgImg);
+const avatarBgStyle = computed(() => ({ backgroundImage: `url(${withBase(bloggerConfig.value.circleBgImg)})` }));
+const myCardColorStyle = computed(() => ({ color: bloggerConfig.value.color }));
 </script>
 
 <template>
   <TkPageCard
-    v-if="blogger.name"
+    v-if="bloggerConfig.name"
     :class="[ns.b(), ns.is('circle-bg', isCircleBgImg)]"
     :style="myCardColorStyle"
     :aria-label="t('tk.myCard.label')"
   >
     <div
       v-if="isCircleBgImg"
-      :class="[ns.em('avatar__circle', 'bg'), ns.is('mask', blogger.circleBgMask)]"
+      :class="[ns.em('avatar__circle', 'bg'), ns.is('mask', bloggerConfig.circleBgMask)]"
       :style="avatarBgStyle"
     />
 
-    <div :class="`${ns.e('avatar')} ${blogger.shape} flx-center`">
-      <TkAvatar
-        v-if="blogger.avatar"
-        :src="withBase(blogger.avatar)"
-        :size="blogger.shape === 'square' ? '100%' : 100"
-        :shape
-        bg-color="transparent"
-        :alt="t('tk.myCard.avatarAlt')"
-        :title="t('tk.myCard.avatarTitle')"
-        aria-hidden="true"
-      />
-      <TkAvatar
-        v-else
-        :size="100"
-        :shape
-        :text="blogger.name"
-        :text-size="50"
-        :bg-color="ns.cssVar('theme-color')"
-        aria-hidden="true"
-      />
+    <div :class="`${ns.e('avatar')} ${bloggerConfig.shape} flx-center`">
+      <div>
+        <TkAvatar
+          v-if="bloggerConfig.avatar"
+          :src="withBase(bloggerConfig.avatar)"
+          :size="bloggerConfig.shape === 'square' ? '100%' : (bloggerConfig.circleSize ?? 100)"
+          :shape
+          bg-color="transparent"
+          :alt="t('tk.myCard.avatarAlt')"
+          :title="t('tk.myCard.avatarTitle')"
+          aria-hidden="true"
+        />
+        <TkAvatar
+          v-else
+          :size="bloggerConfig.circleSize ?? 100"
+          :shape
+          :text="bloggerConfig.name"
+          :text-size="50"
+          :bg-color="ns.cssVar('theme-color')"
+          aria-hidden="true"
+        />
+        <TkAvatar
+          v-if="bloggerConfig.status?.icon && shape.startsWith('circle')"
+          :src="bloggerConfig.status.icon"
+          :text="bloggerConfig.status.icon"
+          :size="bloggerConfig.status.size ?? 26"
+          :icon-size="bloggerConfig.status.size ?? 26"
+          :text-size="bloggerConfig.status.size ?? 26"
+          :title="bloggerConfig.status.title"
+          circle
+          bg-color="transparent"
+          class="avatar-sticker"
+          aria-hidden="true"
+        />
+      </div>
     </div>
 
-    <div v-if="social.length" :class="`${ns.e('icons')} flx-justify-around`" :aria-label="t('tk.myCard.socialLabel')">
+    <div
+      v-if="socialConfig.length"
+      :class="`${ns.e('icons')} flx-justify-around`"
+      :aria-label="t('tk.myCard.socialLabel')"
+    >
       <a
-        v-for="(item, index) in social"
+        v-for="(item, index) in socialConfig"
         :key="index"
         :href="item.link && withBase(item.link)"
         :title="item.name"
@@ -84,8 +103,8 @@ const myCardColorStyle = computed(() => ({ color: blogger.value.color }));
     </div>
 
     <div :class="ns.e('blogger')" :aria-label="t('tk.myCard.bloggerLabel')">
-      <h3 class="name">{{ blogger.name }}</h3>
-      <span class="slogan">{{ blogger.slogan }}</span>
+      <h3 class="name">{{ bloggerConfig.name }}</h3>
+      <span class="slogan">{{ bloggerConfig.slogan }}</span>
     </div>
   </TkPageCard>
 </template>

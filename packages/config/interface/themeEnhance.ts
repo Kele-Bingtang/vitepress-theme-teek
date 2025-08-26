@@ -11,7 +11,7 @@ export interface ThemeEnhance {
    * 启用主题增强功能
    *
    * @default true
-   * @version 1.4.0
+   * @since 1.4.0
    */
   enabled?: boolean;
   /**
@@ -89,7 +89,7 @@ export interface ThemeEnhance {
      * 从 0 完全自定义布局主题色，不使用内置主题色
      *
      * @default false
-     * @version 1.4.1
+     * @since 1.4.1
      */
     customize?:
       | boolean

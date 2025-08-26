@@ -19,12 +19,18 @@ const teekConfig = defineTeekConfig({
   sidebarTrigger: true,
   author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
   blogger: {
-    avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar1.png",
-    shape: "circle-rotate",
     name: "天客",
     slogan: "朝圣的使徒，正在走向编程的至高殿堂！",
+    avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar1.png",
+    shape: "circle-rotate",
     circleBgImg: "/blog/bg4.webp",
     color: "#ffffff",
+    circleSize: 120,
+    status: {
+      icon: "😪",
+      size: 28,
+      title: "困",
+    },
   },
   footerInfo: {
     theme: {
