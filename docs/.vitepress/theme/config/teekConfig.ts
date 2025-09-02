@@ -16,6 +16,7 @@ const teekBlogCommonConfig: TeekConfig = {
   loading: true,
   wallpaper: {
     enabled: true,
+    hideBanner: true,
   },
   footerInfo: {
     customHtml: `<span id="runtime"></span>`, // 需要搭配 .vitepress/theme/helper/useRuntime.ts 使用

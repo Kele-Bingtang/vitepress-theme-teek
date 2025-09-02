@@ -8,6 +8,7 @@ import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
 import { TkPageCard } from "@teek/components/common/PageCard";
 import { TkAvatar } from "@teek/components/common/Avatar";
 import { TkIcon } from "@teek/components/common/Icon";
+import { isValidURL } from "@teek/helper";
 
 defineOptions({ name: "HomeMyCard" });
 
@@ -24,6 +25,11 @@ const shape = computed(() => bloggerConfig.value.shape.replace(/-.*$/, "") as Tk
 const isCircleBgImg = computed(() => shape.value === "circle" && !!bloggerConfig.value.circleBgImg);
 const avatarBgStyle = computed(() => ({ backgroundImage: `url(${withBase(bloggerConfig.value.circleBgImg)})` }));
 const myCardColorStyle = computed(() => ({ color: bloggerConfig.value.color }));
+const isSrc = computed(() => {
+  const icon = bloggerConfig.value.status?.icon;
+  if (!icon) return false;
+  return isValidURL(icon) || icon.startsWith("/");
+});
 </script>
 
 <template>
@@ -61,8 +67,8 @@ const myCardColorStyle = computed(() => ({ color: bloggerConfig.value.color }));
           aria-hidden="true"
         />
         <TkAvatar
-          v-if="bloggerConfig.status?.icon && shape.startsWith('circle')"
-          :src="bloggerConfig.status.icon"
+          v-if="bloggerConfig.status?.icon && shape?.startsWith('circle')"
+          :src="isSrc ? bloggerConfig.status.icon : ''"
           :text="bloggerConfig.status.icon"
           :size="bloggerConfig.status.size ?? 26"
           :icon-size="bloggerConfig.status.size ?? 26"

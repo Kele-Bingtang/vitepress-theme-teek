@@ -18,7 +18,7 @@ export interface Category {
    */
   pageTitle?: string | ((icon: string) => string);
   /**
-   * 首页卡片标题
+   * 卡片标题
    *
    * @default '${svg}文章分类'
    */

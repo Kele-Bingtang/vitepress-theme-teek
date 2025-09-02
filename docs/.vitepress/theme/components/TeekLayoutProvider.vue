@@ -40,15 +40,16 @@ const watchRuntimeAndRibbon = async (layout: string, style: string) => {
   else stopRibbon();
 };
 
-watch(frontmatter, async newVal => watchRuntimeAndRibbon(newVal.layout, currentStyle.value), { immediate: true });
+watch(frontmatter, newVal => setTimeout(() => watchRuntimeAndRibbon(newVal.layout, currentStyle.value), 700), {
+  immediate: true,
+  flush: "post",
+});
 
 const handleConfigSwitch = (config: TeekConfig, style: string) => {
   teekConfig.value = config;
 
-  watchRuntimeAndRibbon(frontmatter.value.layout, style);
+  setTimeout(() => watchRuntimeAndRibbon(frontmatter.value.layout, style), 700);
 };
-
-const list = ["name1", "name2", "name3", "name4"];
 </script>
 
 <template>

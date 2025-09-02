@@ -2,7 +2,7 @@
 import { TkSegmented, TkMessage, magicIcon, isClient, useCommon } from "vitepress-theme-teek";
 import BaseTemplate from "@teek/components/theme/ThemeEnhance/src/components/BaseTemplate.vue";
 import { nextTick, ref, watch } from "vue";
-import { useClipboard } from "@teek/composables";
+import { useClipboard, useStorage } from "@teek/composables";
 import {
   teekDocConfig,
   teekBlogConfig,
@@ -44,6 +44,7 @@ const emit = defineEmits<{
 
 // 默认文档风格
 const themeStyle = defineModel({ default: "doc" });
+const currentStyle = useStorage("tk:configStyle", "doc");
 const teekConfig = ref(teekDocConfig);
 
 const { copy, copied } = useClipboard();
@@ -69,7 +70,14 @@ const update = async (style: string) => {
   else navDom?.classList.remove("full-img-nav-bar");
 };
 
-watch(themeStyle, update);
+watch(themeStyle, update, { immediate: true });
+watch(
+  currentStyle,
+  newVal => {
+    newVal && (themeStyle.value = newVal);
+  },
+  { immediate: true }
+);
 
 const handleCopy = async () => {
   await copy(JSON.stringify(teekConfig.value, null, 2));
@@ -94,7 +102,7 @@ const handleCopy = async () => {
         <button @click="handleCopy">Copy</button>
       </div>
     </template>
-    <TkSegmented v-model="themeStyle" :options="segmentedOptions" />
+    <TkSegmented v-model="currentStyle" :options="segmentedOptions" />
   </BaseTemplate>
 </template>
 

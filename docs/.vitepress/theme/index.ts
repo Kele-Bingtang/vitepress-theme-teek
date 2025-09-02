@@ -33,6 +33,7 @@ import "@teek/theme-chalk/tk-plus/fade-up-animation.scss"; // 首次加载的动
 
 import "./styles/code-bg.scss";
 import "./styles/iframe.scss";
+// import "./styles/sidebar-icon.scss";
 
 export default {
   extends: Teek,

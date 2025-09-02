@@ -54,13 +54,13 @@ export type { SidebarOption } from "vitepress-plugin-sidebar-resolve";
 
 export interface TeekConfig {
   /**
-   * 是否启用主题，如果为 false，则不会主题的 99% 功能，只保留永久链接、锚点滚动、深色、浅色模式过渡动画这三个功能
+   * 是否启用 Teek 主题，如果为 false，则不会主题的 99% 功能，只保留永久链接、锚点滚动、深色、浅色模式过渡动画这三个功能
    *
    * @default true
    */
   teekTheme?: boolean;
   /**
-   * 是否启用主题的首页风格，如果 teekHome 为 false 且 vpHome 为 true，则首页还原到 vitepress 的默认首页，其他功能不变
+   * 是否启用主题的首页风格（博客风格），如果 teekHome 为 false 且 vpHome 为 true，则首页还原到 vitepress 的默认首页，其他功能不变
    *
    * @default true
    */

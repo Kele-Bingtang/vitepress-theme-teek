@@ -14,6 +14,7 @@ const ns = useNamespace();
 const { getTeekConfigRef } = useTeekConfig();
 
 const codeBlockConfig = getTeekConfigRef<CodeBlock>("codeBlock", {
+  enabled: true,
   collapseHeight: 700,
   copiedDone: undefined,
   overlay: false,
@@ -30,8 +31,8 @@ watch(
   newVal => {
     if (!isClient) return;
 
-    const { disabled, langTextTransform } = newVal || {};
-    if (disabled) return document.documentElement.removeAttribute(documentAttribute);
+    const { enabled = true, langTextTransform } = newVal || {};
+    if (!enabled) return document.documentElement.removeAttribute(documentAttribute);
 
     document.documentElement.setAttribute(documentAttribute, ns.namespace);
     if (langTextTransform) {
