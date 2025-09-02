@@ -1,3 +1,5 @@
+@use "../mixins/function" as *;
+
 .VPSidebar {
   .nav {
     .item {
@@ -5,10 +7,17 @@
         /* 一级菜单字体加大 */
         font-size: 18px;
       }
+
       p.text {
         font-size: 15px;
+        transition: transform getCssVar("transition-duration") ease-in-out;
+
+        &:hover {
+          transform: translate(4px);
+        }
       }
     }
+
     .VPSidebarItem.level-0 {
       & > .items {
         /* 二级菜单添加间距 */

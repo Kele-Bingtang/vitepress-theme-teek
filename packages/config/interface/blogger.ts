@@ -6,13 +6,13 @@ export interface Blogger {
    */
   name: string;
   /**
-   * 博主头像
-   */
-  avatar?: string;
-  /**
    * 博主签名
    */
   slogan?: string;
+  /**
+   * 博主头像
+   */
+  avatar?: string;
   /**
    * 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转，circle-rotate-last 将会持续旋转 59s
    *

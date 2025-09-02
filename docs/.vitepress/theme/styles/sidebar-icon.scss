@@ -1,0 +1,15 @@
+#VPSidebarNav .VPSidebarItem {
+  & > .item::before {
+    content: "";
+    width: 18px;
+    height: 100%;
+    margin-right: 6px;
+  }
+
+  &:not(.is-link) > .item {
+    align-items: center;
+    &::before {
+      content: "🗂️";
+    }
+  }
+}

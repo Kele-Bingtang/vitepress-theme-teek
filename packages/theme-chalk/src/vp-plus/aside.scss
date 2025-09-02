@@ -4,19 +4,14 @@
 .VPDoc {
   .aside .aside-container .outline-link {
     transition:
-      color 0.3s,
-      font-weight 0.3s;
+      color getCssVar("transition-duration"),
+      transform getCssVar("transition-duration");
 
     &:hover {
-      transition:
-        color 0.3s,
-        font-weight 0.3s;
-      font-weight: 700;
+      transform: translate(4px);
     }
+
     &.active {
-      transition:
-        color 0.3s,
-        font-weight 0.3s;
       color: getCssVar("theme-color");
     }
   }

@@ -26,6 +26,8 @@ export interface ThemeEnhance {
   layoutSwitch?: {
     /**
      * 禁用布局切换
+     *
+     * @default false
      */
     disabled?: boolean;
     /**
@@ -48,6 +50,8 @@ export interface ThemeEnhance {
     disableHelp?: boolean;
     /**
      * 禁用布局切换动画
+     *
+     * @default false
      */
     disableAnimation?: boolean;
     /**

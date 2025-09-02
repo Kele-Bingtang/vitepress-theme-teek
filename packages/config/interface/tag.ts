@@ -18,7 +18,7 @@ export interface Tag {
    */
   pageTitle?: string | ((icon: string) => string);
   /**
-   * 首页卡片标题
+   * 卡片标题
    *
    * @default '${svg}热门标签'
    */

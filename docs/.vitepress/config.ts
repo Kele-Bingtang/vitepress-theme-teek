@@ -1,12 +1,10 @@
 import { defineConfig } from "vitepress";
 import llmstxt from "vitepress-plugin-llms";
-// import { createRewrites } from "../../packages/config";
+import { teekConfig } from "./teekConfig";
 // 本地 Teek 主题包引用（与 Teek 在线主题包引用 二选一）
-import { defineTeekConfig } from "../../packages/config";
 import { version } from "../../packages/teek/version";
 
 // Teek 在线主题包引用（需安装 Teek 在线版本）
-// import { defineTeekConfig } from "vitepress-theme-teek/config";
 // import { version } from "vitepress-theme-teek/es/version";
 
 const description = [
@@ -14,66 +12,6 @@ const description = [
   "Teek 是一个基于 VitePress 构建的主题，是在默认主题的基础上进行拓展，支持 VitePress 的所有功能、配置",
   "Teek 拥有三种典型的知识管理形态：结构化、碎片化、体系化，可以轻松构建一个结构化知识库，适用个人博客、文档站、知识库等场景",
 ].toString();
-
-const teekConfig = defineTeekConfig({
-  sidebarTrigger: true,
-  author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
-  blogger: {
-    name: "天客",
-    slogan: "朝圣的使徒，正在走向编程的至高殿堂！",
-    avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar1.png",
-    shape: "circle-rotate",
-    circleBgImg: "/blog/bg4.webp",
-    color: "#ffffff",
-    circleSize: 120,
-    status: {
-      icon: "😪",
-      size: 28,
-      title: "困",
-    },
-  },
-  footerInfo: {
-    theme: {
-      name: `Theme By Teek@${version}`,
-    },
-    copyright: {
-      createYear: 2025,
-      suffix: "Teek",
-    },
-  },
-  codeBlock: {
-    copiedDone: TkMessage => TkMessage.success("复制成功！"),
-  },
-  post: {
-    showCapture: true,
-  },
-  articleShare: { enabled: true },
-  vitePlugins: {
-    sidebarOption: {
-      initItems: false,
-      // resolveRule: "rewrites",
-    },
-  },
-  markdown: {
-    demo: {
-      githubUrl: "https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/docs",
-    },
-  },
-  siteAnalytics: [
-    {
-      provider: "baidu",
-      options: {
-        id: "d5ee872d9aa1ef8021f4a3921b2e9c2a",
-      },
-    },
-    {
-      provider: "google",
-      options: {
-        id: "G-K5GNDW3L7K",
-      },
-    },
-  ],
-});
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -142,7 +80,6 @@ export default defineConfig({
       return [...items, ...permalinkItemBak];
     },
   },
-  // rewrites: createRewrites(),
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/teek-logo-mini.svg",

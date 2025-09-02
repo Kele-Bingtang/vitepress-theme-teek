@@ -33,7 +33,7 @@ export const transformData = (data: FileContentLoaderData): TkContentData => {
     url,
     relativePath,
     frontmatter,
-    author: themeConfig.author,
+    author: frontmatter.author || themeConfig.author,
     title: getTitle(data),
     date: getDate(data, siteConfig.srcDir),
     excerpt,

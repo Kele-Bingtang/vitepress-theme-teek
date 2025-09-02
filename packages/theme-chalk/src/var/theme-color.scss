@@ -31,7 +31,7 @@ html[theme-color="ep-blue"] {
   --vp-c-brand-1: #{getCssVar("el-color-primary")};
   --vp-c-brand-2: #{getCssVar("el-color-primary-light-3")};
   --vp-c-brand-3: #{getCssVar("el-color-primary-light-5")};
-  --vp-c-brand-soft: #{getCssVar("el-color-primary-light-9")};
+  --vp-c-brand-soft: #{getCssVar("el-color-primary-light-8")};
 }
 
 /* element plus 绿色 */
@@ -39,7 +39,7 @@ html[theme-color="ep-green"] {
   --vp-c-brand-1: #{getCssVar("el-color-success")};
   --vp-c-brand-2: #{getCssVar("el-color-success-light-3")};
   --vp-c-brand-3: #{getCssVar("el-color-success-light-5")};
-  --vp-c-brand-soft: #{getCssVar("el-color-success-light-9")};
+  --vp-c-brand-soft: #{getCssVar("el-color-success-light-8")};
 }
 
 /* element plus 黄色 */
@@ -47,7 +47,7 @@ html[theme-color="ep-yellow"] {
   --vp-c-brand-1: #{getCssVar("el-color-warning")};
   --vp-c-brand-2: #{getCssVar("el-color-warning-light-3")};
   --vp-c-brand-3: #{getCssVar("el-color-warning-light-5")};
-  --vp-c-brand-soft: #{getCssVar("el-color-warning-light-9")};
+  --vp-c-brand-soft: #{getCssVar("el-color-warning-light-8")};
 }
 
 /* element plus 红色 */
@@ -55,5 +55,5 @@ html[theme-color="ep-red"] {
   --vp-c-brand-1: #{getCssVar("el-color-danger")};
   --vp-c-brand-2: #{getCssVar("el-color-danger-light-3")};
   --vp-c-brand-3: #{getCssVar("el-color-danger-light-5")};
-  --vp-c-brand-soft: #{getCssVar("el-color-danger-light-9")};
+  --vp-c-brand-soft: #{getCssVar("el-color-danger-light-8")};
 }

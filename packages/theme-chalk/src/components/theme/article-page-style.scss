@@ -21,6 +21,10 @@ html[layout-mode="original"] {
       .#{$namespace}-segment-nav
     ) {
     background-color: getCssVar("bg-color-mute");
+
+    .#{$namespace}-spotlight-hover__under {
+      z-index: 0;
+    }
   }
 
   /* 单卡片风格样式 */
@@ -134,6 +138,10 @@ html[layout-mode="original"] {
         .container > .content {
           padding-top: 20px;
           border-radius: 4px;
+
+          main > div {
+            z-index: 1;
+          }
         }
       }
     }

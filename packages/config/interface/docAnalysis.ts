@@ -9,7 +9,7 @@ export interface DocAnalysis {
    */
   enabled?: boolean;
   /**
-   * 首页卡片标题
+   * 卡片标题
    *
    * @default '${icon}站点信息'
    */

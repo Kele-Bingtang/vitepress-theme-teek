@@ -12,7 +12,7 @@ export interface FriendLink {
    */
   list?: FriendLinkItem[];
   /**
-   * 首页卡片标题
+   * 卡片标题
    *
    * @default '${icon}友情链接'
    */

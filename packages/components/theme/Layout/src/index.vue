@@ -51,7 +51,6 @@ provide(
 
 const { Layout } = DefaultTheme;
 
-const loading = ref(false);
 const ns = useNamespace("layout");
 const { getTeekConfigRef } = useTeekConfig();
 const { isArchivesPage, isCataloguePage, isArticleOverviewPage } = usePageState();
@@ -64,7 +63,7 @@ const teekConfig = getTeekConfigRef<Required<TeekConfig>>(null, {
   vpHome: true,
   sidebarTrigger: false,
   loading: false,
-  codeBlock: { disabled: false },
+  codeBlock: { enabled: true },
   themeSize: "",
   bodyBgImg: {},
   notice: {},
@@ -77,6 +76,8 @@ const teekConfig = getTeekConfigRef<Required<TeekConfig>>(null, {
   riskLink: { enabled: false },
   themeEnhance: { enabled: true },
 });
+
+const loading = ref(teekConfig.value.loading);
 
 const commentConfig = computed(() => {
   const comment = frontmatter.value.comment ?? teekConfig.value.comment;
@@ -234,7 +235,7 @@ const usedSlots = [
 
         <TkArticleImagePreview />
         <TkArticlePageStyle />
-        <TkCodeBlockToggle v-if="!teekConfig.codeBlock.disabled" />
+        <TkCodeBlockToggle v-if="teekConfig.codeBlock.enabled ?? true" />
         <TkVpContainer v-if="topTipConfig" v-bind="isBoolean(topTipConfig) ? {} : topTipConfig" />
         <TkSidebarTrigger v-if="teekConfig.sidebarTrigger">
           <template #default="scope">
@@ -244,7 +245,10 @@ const usedSlots = [
       </template>
 
       <template #doc-footer-before>
+        <slot name="doc-footer-before" />
+        <slot name="teek-article-bottom-tip-before" />
         <TkVpContainer v-if="bottomTipConfig" v-bind="isBoolean(bottomTipConfig) ? {} : bottomTipConfig" />
+        <slot name="teek-article-bottom-tip-after" />
       </template>
 
       <template #doc-after>

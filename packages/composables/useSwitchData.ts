@@ -47,7 +47,6 @@ export const useSwitchData = (dataList: MaybeRefOrGetter<any[]>, options: UseSwi
   } = options;
   const dataListComputed = computed(() => toValue(dataList) || []);
 
-  const data = ref(dataListComputed.value[0]);
   const index = ref(-1);
   let timer: ReturnType<typeof setTimeout> | null;
 
@@ -63,6 +62,8 @@ export const useSwitchData = (dataList: MaybeRefOrGetter<any[]>, options: UseSwi
     index.value = newIndex;
     return dataList[newIndex];
   };
+
+  const data = ref(shuffle ? splitOutRandom(dataListComputed.value) : dataListComputed.value[0]);
 
   /**
    * 按顺序吐出下一个值

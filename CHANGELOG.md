@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.6](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.5...v1.4.6) (2025-08-30)
+
+### Features
+
+- **blogger:** 添加博主状态图标并优化头像功能 ([be17ba7](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/be17ba7be748164a4d23c693ca2e04bda4daffae))
+- **docs:** 🚀 优化侧边栏交互并添加新功能 ([d9ea72f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/d9ea72f620b7504711f04b0ea2c8e3964e5658e6))
+- **docs:** 🚀 优化文章底部提示信息并新增侧边栏和目录栏悬停样式 ([0bfd80d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0bfd80d2ecd11de8def776c917885fda6868158d))
+- **docs:** 🚀 v1.4.6 版本发布 ([0d0517e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0d0517e06fbab0b16d89863fa0f5b240d02fc341))
+
+### Bug Fixes
+
+- **config:** 🐞 修复 frontmatter.author 在首页文章列表配置无效问题 ([d9bb0d2](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/d9bb0d2d66c17e5121bd7fe873f8d477705fd603))
+- **docs:** 🐞 修复 doc-footer-before 插槽失效问题和持久化配置切换并支持文章底部自定义 ([73b818d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/73b818d8036ab4163bde36375c43c9f4396fd6dd))
+- **theme:** 🐞 部分主题色的聚光灯覆盖字体问题修复 ([c847d4d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c847d4d1d7fecd27c8faa71066ac94e62461358f))
+
+### Performance Improvements
+
+- **docs:** ⚡️ 优化代码以增强页面加载性能 ([cb0efd2](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/cb0efd22a38a6b8bd8f5468af07486058343dc08))
+
+### Code Refactoring
+
+- **composables:** ♻️ useSwitchData 函数初始化支持 shuffle 随机获取 ([8e51e3e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/8e51e3ebdcf6a3f66a916e1faea26a22492a9b4d))
+- **config:** ♻️ 重构配置项并优化文档 ([83e9f2f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/83e9f2f6a0907fdef8606f4a9d5ab7309e7b7391))
+
+### Docs
+
+- 📚 更新 CHANGELOG.md 中版本号格式 ([a6c2c0e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/a6c2c0efa346bdb6964512e0f1fdce39adde7f4a))
+- 📚 移除不需要的图标 ([279c934](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/279c934d9eeb6c4a96da8181fb5d2300b27283c2))
+- **vitepress:** 📚 更新 Teek 配置文件模板的注释说明 ([0c68177](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0c681773707acd6c4bcf2bbb114aa30c5b9580cb))
+- **vitepress:** 📚 更新 Teek 配置文件模板注释 ([290440d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/290440d3c166564d5d3c76cf7bf0ebf082569d49))
+
 ## [1.4.5](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.4...v1.4.5) (2025-08-24)
 
 ### Features

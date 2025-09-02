@@ -24,5 +24,6 @@
 }
 
 .#{$namespace}-spotlight-hover__under {
+  z-index: -1;
   background-color: getCssVar("spotlight-under-bg-color");
 }
