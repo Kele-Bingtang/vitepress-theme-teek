@@ -30,7 +30,10 @@ export default function VitePluginVitePressCatalogue(option: CatalogueOption = {
       const finalCatalogues: Catalogue = { arr: catalogues, map: {}, inv: {} };
       catalogues.forEach(item => {
         const { filePath, path, catalogues = [] } = item;
-        const url = (removeMarkdownExt(rewrites.map[`${filePath}.md`]) || filePath) + (cleanUrls ? "" : ".html");
+        const url =
+          "/" +
+          (removeMarkdownExt(rewrites.map[`${filePath}.md`]) || filePath).replace(/^\//, "") +
+          (cleanUrls ? "" : ".html");
 
         finalCatalogues.map[filePath] = { url, path, catalogues };
         finalCatalogues.inv[path] = { url, filePath, catalogues };

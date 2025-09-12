@@ -453,9 +453,16 @@ export const teekConfig = defineTeekConfig({
     autoFrontmatter: true, // 是否启用 autoFrontmatter 插件
     // autoFrontmatter 插件配置项
     autoFrontmatterOption: {
-      permalinkPrefix: "pages", // 自动生成 permalink 的固定前缀，如 pages、pages/demo，默认为 pages
-      categories: true, // 是否自动生成 categories
-      // ...
+      permalink: true, // 是否开启生成永久链接
+      recoverTransform: false, // 是否开启同名 key 覆盖
+      categories: true, // 是否开启自动生成 categories
+      coverImg: false, // 是否开启添加文档封面图
+      forceCoverImg: false, // 是否开启强制覆盖封面图
+      coverImgList: [], // 封面图列表
+      // 处理永久链接的规则
+      permalinkRules: [
+        //{ folderName: "01.指南/01.简介/", prefix: "/$path/$uuid", removeLevel: 99 }, // 添加前缀
+      ],
     },
   },
 });

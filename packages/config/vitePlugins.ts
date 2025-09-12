@@ -7,7 +7,7 @@ import Catalogue from "vitepress-plugin-catalogue";
 import DocAnalysis from "vitepress-plugin-doc-analysis";
 import FileContentLoader, { FileContentLoaderOptions } from "vitepress-plugin-file-content-loader";
 import AutoFrontmatter from "vitepress-plugin-auto-frontmatter";
-import { createCategory, createPermalink } from "./addFrontmatter";
+import { createCategory, createCoverImg, createComplexPermalink } from "./util/addFrontmatter";
 import { transformData, transformRaw } from "./post";
 
 export const registerPluginAndGet = (vitePlugins: Plugins = {}, teekTheme = true) => {
@@ -55,8 +55,18 @@ const registerLoosePlugins = (vitePlugins: Plugins, ignoreDir: Record<string, an
       pattern,
       globOptions = {},
       transform,
-      permalinkPrefix = "pages",
+      // 是否开启自动生成 categories
       categories = true,
+      // 是否开启生成永久链接
+      permalink = false,
+      // 是否开启添加文档封面图
+      coverImg = false,
+      // 是否开启强制覆盖封面图
+      forceCoverImg = false,
+      // 封面图列表
+      coverImgList = [],
+      // 处理永久链接的规则
+      permalinkRules = [],
     } = autoFrontmatterOption;
 
     // 默认扫描全部 MD 文件
@@ -70,13 +80,34 @@ const registerLoosePlugins = (vitePlugins: Plugins, ignoreDir: Record<string, an
     // 自定义 frontmatter 内容，添加永久链接和分类
     autoFrontmatterOption.transform = (frontmatter, fileInfo) => {
       let transformResult = {};
+
+      // 启用生成永久连接，并根据规则进行处理(跳过目录页)
       if (permalink && !frontmatter.permalink) {
-        transformResult = { ...transformResult, ...createPermalink(permalinkPrefix) };
+        let finalPermalinkRules = permalinkRules;
+        // 开启 permalink 功能但未提供规则时，添加默认规则
+        if (!permalinkRules.length) finalPermalinkRules = [{ folderName: "*", prefix: "/$path/$uuid5" }];
+
+        transformResult = {
+          ...transformResult,
+          ...createComplexPermalink(frontmatter.permalink, fileInfo, finalPermalinkRules),
+        };
       }
+
+      // 开启分类功能
       if (categories && !frontmatter.categories) {
         transformResult = { ...transformResult, ...createCategory(fileInfo, ["@fragment"]) };
       }
 
+      // 开启封面图并且封面图列表不为空
+      if (coverImg && coverImgList.length) {
+        if (!frontmatter.coverImg) {
+          transformResult = { ...transformResult, ...createCoverImg(coverImgList) };
+        } else if (frontmatter.coverImg && forceCoverImg) {
+          transformResult = { ...transformResult, ...createCoverImg(coverImgList) };
+        }
+      }
+
+      // 调用可能已存在 transform 方法
       transformResult = transform?.({ ...frontmatter, ...transformResult }, fileInfo) || transformResult;
 
       return Object.keys(transformResult).length ? { ...frontmatter, ...transformResult } : undefined;

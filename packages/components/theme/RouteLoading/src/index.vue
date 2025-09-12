@@ -1,5 +1,6 @@
 <script setup>
 import { onBeforeMount, onMounted, watch } from "vue";
+import { onContentUpdated } from "vitepress";
 import { useVpRouter, useNamespace } from "@teek/composables";
 import { isString } from "@teek/helper";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
@@ -25,7 +26,7 @@ const handleRouteComplete = () => {
     () => {
       if (loading.value) loading.value = false;
     },
-    Math.floor(Math.random() * (800 - 260 + 1)) + 260
+    Math.floor(Math.random() * (700 - 260 + 1)) + 260
   );
 };
 
@@ -62,6 +63,8 @@ watch(
 onBeforeMount(handleRouteStart);
 
 onMounted(handleRouteComplete);
+
+onContentUpdated(handleRouteComplete);
 </script>
 
 <template>

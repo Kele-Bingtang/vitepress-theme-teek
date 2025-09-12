@@ -155,7 +155,9 @@ const createCatalogueList = (
       const catalogueItem = {
         title: finalTitle,
         url:
-          (removeMarkdownExt(rewrites[`${filePath.replace(/^\//, "")}.md`]) || filePath) + (cleanUrls ? "" : ".html"),
+          "/" +
+          (removeMarkdownExt(rewrites[`${filePath.replace(/^\//, "")}.md`]) || filePath).replace(/^\//, "") +
+          (cleanUrls ? "" : ".html"),
         frontmatter,
       };
 
