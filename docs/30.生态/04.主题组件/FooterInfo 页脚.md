@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用页脚组件可以在页脚自定义内容，如版权信息、备案信息等。
@@ -15,10 +17,10 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkFooterInfo, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-footer-info.css";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   footerInfo: {

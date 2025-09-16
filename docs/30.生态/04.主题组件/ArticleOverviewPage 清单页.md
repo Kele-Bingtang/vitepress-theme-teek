@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 公共组件
+codeBlock:
+  collapseHeight: false
 ---
 
 ::: warning 🚧 施工中

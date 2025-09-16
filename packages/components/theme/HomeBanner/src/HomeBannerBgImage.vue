@@ -3,7 +3,7 @@ import type { Banner } from "@teek/config";
 import { withBase } from "vitepress";
 import { computed, onMounted } from "vue";
 import { useNamespace, useLocale, useSwitchData } from "@teek/composables";
-import { isString } from "@teek/helper";
+import { isFunction, isString } from "@teek/helper";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
 
 defineOptions({ name: "HomeBannerBgImage" });
@@ -27,7 +27,11 @@ const isPartImgBgStyle = computed(() => bannerConfig.value.bgStyle === "partImg"
 // 全屏图片背景风格
 const isFullImgBgStyle = computed(() => bannerConfig.value.bgStyle === "fullImg");
 
-const dataArray = computed(() => [bannerConfig.value.imgSrc || []].flat().map(item => item && withBase(item)));
+const dataArray = computed(() => {
+  const imgSrc = bannerConfig.value.imgSrc;
+  return [isFunction(imgSrc) ? imgSrc() : imgSrc || []].flat().map(item => item && withBase(item));
+});
+
 // banner 背景图片定时轮播
 const {
   data: imageSrc,

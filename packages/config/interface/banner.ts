@@ -28,7 +28,7 @@ export interface Banner {
    *
    * @default []
    */
-  imgSrc?: string | string[];
+  imgSrc?: string | string[] | (() => string | string[]);
   /**
    * 当多张图片时（imgSrc 为数组），设置切换时间，单位：毫秒，bgStyle 为 partImg 或 fullImg 时生效
    *

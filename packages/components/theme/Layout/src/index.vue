@@ -6,7 +6,7 @@ import { useData, onContentUpdated } from "vitepress";
 import { computed, provide, ref, watch } from "vue";
 import { useNamespace, localeContextKey } from "@teek/composables";
 import { isBoolean, isClient } from "@teek/helper";
-import { useTeekConfig, usePageState } from "@teek/components/theme/ConfigProvider";
+import { useTeekConfig, usePageState, useSidebar } from "@teek/components/theme/ConfigProvider";
 import { TkHome } from "@teek/components/theme/Home";
 import { TkHomeMyCardScreen } from "@teek/components/theme/HomeMyCard";
 import { TkBodyBgImage } from "@teek/components/theme/BodyBgImage";
@@ -39,6 +39,7 @@ import { TkSidebarTrigger } from "@teek/components/theme/SidebarTrigger";
 import { FooterContainer } from "@teek/components/theme/FooterContainer";
 import { TkHomeFeature } from "@teek/components/theme/HomeFeature";
 import { TkRouteLoading } from "@teek/components/theme/RouteLoading";
+import { TkArticleBanner } from "@teek/components/theme/ArticleBanner";
 
 defineOptions({ name: "TeekLayout" });
 
@@ -55,6 +56,7 @@ const ns = useNamespace("layout");
 const { getTeekConfigRef } = useTeekConfig();
 const { isArchivesPage, isCataloguePage, isArticleOverviewPage } = usePageState();
 const { frontmatter, localeIndex, page } = useData();
+const { hasSidebar } = useSidebar();
 
 // 支持 provide、frontmatter.tk、frontmatter、theme 配置
 const teekConfig = getTeekConfigRef<Required<TeekConfig>>(null, {
@@ -75,6 +77,8 @@ const teekConfig = getTeekConfigRef<Required<TeekConfig>>(null, {
   appreciation: {},
   riskLink: { enabled: false },
   themeEnhance: { enabled: true },
+  articleBanner: { enabled: true },
+  pageStyle: "default",
 });
 
 const loading = ref(teekConfig.value.loading);
@@ -104,6 +108,17 @@ const bottomTipConfig = computed(() => {
   if (isBoolean(teekConfig.value.articleBottomTip)) return teekConfig.value.articleBottomTip;
   return teekConfig.value.articleBottomTip?.(frontmatter.value, localeIndex.value, page.value);
 });
+
+// 是否显示 Article Banner（使用条件：开启该功能、没有侧边栏的文章页）
+const showArticleBanner = computed(
+  () =>
+    frontmatter.value.articleBanner !== false &&
+    teekConfig.value.articleBanner.enabled &&
+    !hasSidebar.value &&
+    frontmatter.value.article !== false &&
+    (!frontmatter.value.layout || frontmatter.value.layout === "doc") &&
+    teekConfig.value.pageStyle === "default"
+);
 
 const themeSizeAttribute = ns.join("theme-size");
 watch(
@@ -135,6 +150,7 @@ const usedSlots = [
   "home-hero-before",
   "home-features-after",
   "nav-bar-content-after",
+  "layout-top",
   "layout-bottom",
   "doc-footer-before",
   "doc-before",
@@ -219,6 +235,20 @@ const usedSlots = [
         </TkThemeEnhance>
       </template>
 
+      <template #layout-top>
+        <slot name="layout-top" />
+
+        <template v-if="showArticleBanner">
+          <slot name="teek-article-banner-before" />
+          <TkArticleBanner>
+            <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
+              <slot :name="name" v-bind="scope" />
+            </template>
+          </TkArticleBanner>
+          <slot name="teek-article-banner-after" />
+        </template>
+      </template>
+
       <template #layout-bottom>
         <FooterContainer />
       </template>
@@ -229,9 +259,12 @@ const usedSlots = [
 
       <template #doc-before>
         <slot name="doc-before" />
-        <slot name="teek-article-analyze-before" />
-        <TkArticleAnalyze v-if="frontmatter.article !== false" />
-        <slot name="teek-article-analyze-after" />
+
+        <template v-if="frontmatter.article !== false && !showArticleBanner">
+          <slot name="teek-article-analyze-before" />
+          <TkArticleAnalyze />
+          <slot name="teek-article-analyze-after" />
+        </template>
 
         <TkArticleImagePreview />
         <TkArticlePageStyle />
@@ -246,27 +279,33 @@ const usedSlots = [
 
       <template #doc-footer-before>
         <slot name="doc-footer-before" />
-        <slot name="teek-article-bottom-tip-before" />
-        <TkVpContainer v-if="bottomTipConfig" v-bind="isBoolean(bottomTipConfig) ? {} : bottomTipConfig" />
-        <slot name="teek-article-bottom-tip-after" />
+
+        <template v-if="bottomTipConfig">
+          <slot name="teek-article-bottom-tip-before" />
+          <TkVpContainer v-bind="isBoolean(bottomTipConfig) ? {} : bottomTipConfig" />
+          <slot name="teek-article-bottom-tip-after" />
+        </template>
       </template>
 
       <template #doc-after>
         <slot name="doc-after" />
 
-        <slot name="teek-doc-update-before" />
-        <TkArticleUpdate v-if="(teekConfig.articleUpdate.enabled ?? true) && frontmatter.articleUpdate !== false" />
-        <slot name="teek-doc-update-after" />
+        <template v-if="(teekConfig.articleUpdate.enabled ?? true) && frontmatter.articleUpdate !== false">
+          <slot name="teek-doc-update-before" />
+          <TkArticleUpdate />
+          <slot name="teek-doc-update-after" />
+        </template>
 
-        <slot name="teek-doc-after-appreciation-before" />
-        <TkDocAfterAppreciation v-if="teekConfig.appreciation.position === 'doc-after'" />
-        <TkDocAfterAppreciationPopper v-else-if="teekConfig.appreciation.position === 'doc-after-popper'" />
-        <slot name="teek-doc-after-appreciation-after" />
-
-        <slot name="teek-comment-before" />
+        <template v-if="['doc-after', 'doc-after-popper'].includes(teekConfig.appreciation.position)">
+          <slot name="teek-doc-after-appreciation-before" />
+          <TkDocAfterAppreciation v-if="teekConfig.appreciation.position === 'doc-after'" />
+          <TkDocAfterAppreciationPopper v-else-if="teekConfig.appreciation.position === 'doc-after-popper'" />
+          <slot name="teek-doc-after-appreciation-after" />
+        </template>
 
         <!-- 评论区 -->
         <template v-if="commentConfig.enabled && commentConfig.provider">
+          <slot name="teek-comment-before" />
           <template v-if="commentConfig.provider === 'render'"><slot name="teek-comment" /></template>
           <component
             v-else
@@ -274,44 +313,47 @@ const usedSlots = [
             :id="`${ns.namespace}-comment`"
             :class="ns.e('comment')"
           />
+          <slot name="teek-comment-after" />
         </template>
-
-        <slot name="teek-comment-after" />
       </template>
 
       <template #aside-bottom>
         <slot name="aside-bottom" />
 
-        <slot name="teek-aside-bottom-appreciation-before" />
-        <TkAsideBottomAppreciation v-if="teekConfig.appreciation.position === 'aside-bottom'" />
-        <slot name="teek-aside-bottom-appreciation-after" />
+        <template v-if="teekConfig.appreciation.position === 'aside-bottom'">
+          <slot name="teek-aside-bottom-appreciation-before" />
+          <TkAsideBottomAppreciation />
+          <slot name="teek-aside-bottom-appreciation-after" />
+        </template>
       </template>
 
       <template #page-top>
         <slot name="page-top" />
-        <slot name="teek-page-top-before" />
 
-        <TkArchivesPage v-if="isArchivesPage">
-          <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
-            <slot :name="name" v-bind="scope" />
-          </template>
-        </TkArchivesPage>
-        <TkCataloguePage v-if="isCataloguePage">
-          <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
-            <slot :name="name" v-bind="scope" />
-          </template>
-        </TkCataloguePage>
-        <TkArticleOverviewPage v-if="isArticleOverviewPage" />
-
-        <slot name="teek-page-top-after" />
+        <template v-if="isArchivesPage || isCataloguePage || isArticleOverviewPage">
+          <slot name="teek-page-top-before" />
+          <TkArchivesPage v-if="isArchivesPage">
+            <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
+              <slot :name="name" v-bind="scope" />
+            </template>
+          </TkArchivesPage>
+          <TkCataloguePage v-else-if="isCataloguePage">
+            <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
+              <slot :name="name" v-bind="scope" />
+            </template>
+          </TkCataloguePage>
+          <TkArticleOverviewPage v-else-if="isArticleOverviewPage" />
+          <slot name="teek-page-top-after" />
+        </template>
       </template>
 
       <template #aside-outline-before>
-        <slot name="teek-article-share-before" />
+        <template v-if="teekConfig.articleShare.enabled">
+          <slot name="teek-article-share-before" />
+          <TkArticleShare />
+          <slot name="teek-article-share-after" />
+        </template>
 
-        <TkArticleShare v-if="teekConfig.articleShare.enabled" />
-
-        <slot name="teek-article-share-after" />
         <slot name="aside-outline-before" />
       </template>
 

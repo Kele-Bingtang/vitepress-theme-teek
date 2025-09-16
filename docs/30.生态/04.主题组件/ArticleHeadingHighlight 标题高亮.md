@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用标题高亮组件，可以在点击标题时，高亮标题，方便快速定位在哪个位置。
@@ -15,9 +17,9 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkArticleHeadingHighlight } from "vitepress-theme-teek";
-import { h } from "vue";
 
 export default {
   extends: DefaultTheme,

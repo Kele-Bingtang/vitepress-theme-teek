@@ -7,7 +7,12 @@ import Catalogue from "vitepress-plugin-catalogue";
 import DocAnalysis from "vitepress-plugin-doc-analysis";
 import FileContentLoader, { FileContentLoaderOptions } from "vitepress-plugin-file-content-loader";
 import AutoFrontmatter from "vitepress-plugin-auto-frontmatter";
-import { createCategory, createCoverImg, createComplexPermalink } from "./util/addFrontmatter";
+import {
+  createCategory,
+  createCoverImg,
+  createComplexPermalink,
+  createSimplePermalink,
+} from "./autoFrontmatter/addFrontmatter";
 import { transformData, transformRaw } from "./post";
 
 export const registerPluginAndGet = (vitePlugins: Plugins = {}, teekTheme = true) => {
@@ -55,17 +60,13 @@ const registerLoosePlugins = (vitePlugins: Plugins, ignoreDir: Record<string, an
       pattern,
       globOptions = {},
       transform,
-      // 是否开启自动生成 categories
       categories = true,
-      // 是否开启生成永久链接
-      permalink = false,
-      // 是否开启添加文档封面图
+      permalink = true,
       coverImg = false,
-      // 是否开启强制覆盖封面图
       forceCoverImg = false,
-      // 封面图列表
       coverImgList = [],
-      // 处理永久链接的规则
+      permalinkType = sidebarOption.resolveRule === "filePath" ? "simple" : "rules",
+      permalinkPrefix = "pages",
       permalinkRules = [],
     } = autoFrontmatterOption;
 
@@ -82,15 +83,13 @@ const registerLoosePlugins = (vitePlugins: Plugins, ignoreDir: Record<string, an
       let transformResult = {};
 
       // 启用生成永久连接，并根据规则进行处理(跳过目录页)
-      if (permalink && !frontmatter.permalink) {
-        let finalPermalinkRules = permalinkRules;
-        // 开启 permalink 功能但未提供规则时，添加默认规则
-        if (!permalinkRules.length) finalPermalinkRules = [{ folderName: "*", prefix: "/$path/$uuid5" }];
+      if (permalink && !frontmatter.permalink?.trim()) {
+        const permalinkObj =
+          permalinkType === "simple" || !fileInfo.relativePath.includes("/")
+            ? createSimplePermalink(permalinkPrefix)
+            : createComplexPermalink(frontmatter.permalink, fileInfo, permalinkRules);
 
-        transformResult = {
-          ...transformResult,
-          ...createComplexPermalink(frontmatter.permalink, fileInfo, finalPermalinkRules),
-        };
+        transformResult = { ...transformResult, ...permalinkObj };
       }
 
       // 开启分类功能
@@ -143,7 +142,7 @@ const registerLoosePlugins = (vitePlugins: Plugins, ignoreDir: Record<string, an
   }
   // 文档内容分析插件
   if (docAnalysis) {
-    docAnalysisOption.ignoreList = [...(sidebarOption?.ignoreList || []), ...ignoreDir.docAnalysis];
+    docAnalysisOption.ignoreList = [...(docAnalysisOption?.ignoreList || []), ...ignoreDir.docAnalysis];
     plugins.push(DocAnalysis(docAnalysisOption));
   }
 

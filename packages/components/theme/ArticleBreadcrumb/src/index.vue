@@ -50,8 +50,8 @@ const breadcrumbList = computed(() => {
 </script>
 
 <template>
-  <div :class="`${ns.b()}`" role="navigation" :aria-label="t('tk.articleBreadcrumb.label')">
-    <TkBreadcrumb v-if="breadcrumb?.enabled" :separator="breadcrumb.separator">
+  <div v-if="breadcrumb?.enabled" :class="ns.b()" role="navigation" :aria-label="t('tk.articleBreadcrumb.label')">
+    <TkBreadcrumb :separator="breadcrumb.separator">
       <TkBreadcrumbItem>
         <a
           :href="withBase('/')"

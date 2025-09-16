@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用代码块组件对 VitePress 的默认代码块进行样式和功能加强，支持折叠。
@@ -15,10 +17,10 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkCodeBlockToggle, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-code-block-toggle.css";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   codeBlock: {

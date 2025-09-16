@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 公共组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用赞赏组件可以在文章页使用赞助功能。
@@ -15,10 +17,10 @@ tags:
 ## 文章页底部赞赏
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkDocAfterAppreciation, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-article-appreciation.css";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   appreciation: {

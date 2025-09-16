@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 右下角按钮组组件提供返回顶部、跳转到评论区功能。
@@ -15,9 +17,9 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkRightBottomButton } from "vitepress-theme-teek";
-import { h } from "vue";
 
 export default {
   extends: DefaultTheme,

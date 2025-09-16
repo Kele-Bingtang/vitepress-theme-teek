@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用文章分享组件可以分享文章页的链接。
@@ -15,10 +17,10 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkArticleShare, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-article-share.css";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   articleShare: {

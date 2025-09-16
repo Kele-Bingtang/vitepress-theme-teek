@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用 Artalk 快速搭建一个评论区。
@@ -15,9 +17,9 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkCommentArtalk, teekConfigContext } from "vitepress-theme-teek";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   comment: {

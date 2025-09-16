@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用信息组组件可以在页脚中展示多个分组链接。
@@ -15,10 +17,10 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkFooterGroup, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-footer-group.css";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   footerGroup: [

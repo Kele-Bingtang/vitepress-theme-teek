@@ -3,7 +3,7 @@ import type { BodyBgImg } from "@teek/config";
 import { computed, onMounted } from "vue";
 import { withBase } from "vitepress";
 import { useNamespace, useSwitchData } from "@teek/composables";
-import { isString } from "@teek/helper";
+import { isFunction, isString } from "@teek/helper";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
 
 defineOptions({ name: "BodyBgImage" });
@@ -21,7 +21,10 @@ const bodyBgImgConfig = getTeekConfigRef<BodyBgImg>("bodyBgImg", {
   maskBg: "rgba(0, 0, 0, 0.2)",
 });
 
-const dataArray = computed(() => [bodyBgImgConfig.value.imgSrc || []].flat().map(item => item && withBase(item)));
+const dataArray = computed(() => {
+  const imgSrc = bodyBgImgConfig.value.imgSrc;
+  return [isFunction(imgSrc) ? imgSrc() : imgSrc || []].flat().map(item => item && withBase(item));
+});
 // body 背景图片定时轮播
 const {
   data: imageSrc,

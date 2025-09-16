@@ -26,7 +26,7 @@ const handleRouteComplete = () => {
     () => {
       if (loading.value) loading.value = false;
     },
-    Math.floor(Math.random() * (700 - 260 + 1)) + 260
+    Math.floor(Math.random() * (500 - 460 + 1)) + 460
   );
 };
 

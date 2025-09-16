@@ -11,6 +11,22 @@ export interface UvPvData {
   page_pv?: number;
   /** 网站访客数 */
   site_uv?: number;
+  /** 单页面访客数 */
+  page_uv?: number;
+  /** 今日数据 */
+  today?: {
+    site_pv: number;
+    site_uv: number;
+    page_pv: number;
+    page_uv: number;
+  };
+  /** 昨日数据 */
+  yesterday?: {
+    site_pv: number;
+    site_uv: number;
+    page_pv: number;
+    page_uv: number;
+  };
 }
 
 export interface UseUvPvOptions {
@@ -52,6 +68,19 @@ export interface UseUvPvOptions {
 const DEFAULT_SITE_PV = 9999;
 const DEFAULT_SITE_UV = 9999;
 const DEFAULT_PAGE_PV = 9999;
+const DEFAULT_PAGE_UV = 9999;
+const DEFAULT_TODAY_DATA = {
+  site_pv: 9999,
+  site_uv: 9999,
+  page_pv: 9999,
+  page_uv: 9999,
+};
+const DEFAULT_YESTERDAY_DATA = {
+  site_pv: 9999,
+  site_uv: 9999,
+  page_pv: 9999,
+  page_uv: 9999,
+};
 
 /**
  * 统计网站访问量（busuanzi、vercount）
@@ -64,6 +93,9 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
   const sitePv = ref(0);
   const siteUv = ref(0);
   const pagePv = ref(0);
+  const pageUv = ref(0);
+  const today = ref({ site_pv: 0, site_uv: 0, page_pv: 0, page_uv: 0 });
+  const yesterday = ref({ site_pv: 0, site_uv: 0, page_pv: 0, page_uv: 0 });
   const isGet = ref(true);
 
   const request = () => {
@@ -92,6 +124,9 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
       sitePv.value = data.site_pv || DEFAULT_SITE_PV;
       siteUv.value = data.site_uv || DEFAULT_SITE_UV;
       pagePv.value = data.page_pv || DEFAULT_PAGE_PV;
+      pageUv.value = data.page_uv || DEFAULT_PAGE_UV;
+      today.value = data.today || DEFAULT_TODAY_DATA;
+      yesterday.value = data.yesterday || DEFAULT_YESTERDAY_DATA;
       isGet.value = true;
     });
   };
@@ -126,6 +161,9 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
     sitePv: readonly(sitePv),
     siteUv: readonly(siteUv),
     pagePv: readonly(pagePv),
+    pageUv: readonly(pageUv),
+    today: readonly(today),
+    yesterday: readonly(yesterday),
     isGet: readonly(isGet),
     request,
   };

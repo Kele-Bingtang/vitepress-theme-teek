@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 Notice 公告栏仅实现了基础的交互功能，公告内容需要您自己实现，这里给一个 Demo。
@@ -47,11 +49,11 @@ const namespace = "notice";
 ## 基础使用
 
 ```ts
+import { defineComponent, h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkNotice, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-notice.css";
 import NoticeContent from "../components/NoticeContent.vue";
-import { defineComponent, h } from "vue";
 
 provide(teekConfigContext, {
   notice: {

@@ -36,18 +36,18 @@ const excerpt = computed(
 const imgSrcList = computed(() => [post.frontmatter.coverImg || postConfig.value.defaultCoverImg || []].flat());
 
 const coverImgMap = computed(() => {
-  const imgSrcListConst = imgSrcList.value;
+  const imgSrc = imgSrcList.value[Math.floor(Math.random() * imgSrcList.value.length)];
   return {
     default: {
       is: "div",
       props: {
-        style: `background-image: url(${withBase(imgSrcListConst[0])});`,
+        style: `background-image: url(${withBase(imgSrc)});`,
       },
     },
     full: {
       is: "img",
       props: {
-        src: withBase(imgSrcListConst[0]),
+        src: withBase(imgSrc),
       },
     },
   };

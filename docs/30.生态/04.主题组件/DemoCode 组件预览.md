@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用组件预览组件可以渲染一个 Vue 组件的效果，并支持代码复制、查看源代码等功能。
@@ -15,10 +17,10 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkDemoCode, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-demo-code.css";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   markdown: {

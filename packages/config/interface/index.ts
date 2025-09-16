@@ -1,5 +1,6 @@
 export type * from "./appreciation";
 export type * from "./articleAnalyze";
+export type * from "./articleBanner";
 export type * from "./articleShare";
 export type * from "./articleUpdate";
 export type * from "./author";
@@ -28,5 +29,6 @@ export type * from "./siteAnalysis";
 export type * from "./social";
 export type * from "./tag";
 export type * from "./topArticle";
+export type * from "./viewTransition";
 export type * from "./wallpaper";
 export type * from "./windowTransition";

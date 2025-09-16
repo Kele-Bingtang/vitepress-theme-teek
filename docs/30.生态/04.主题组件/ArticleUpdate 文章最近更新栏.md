@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 在文章页底部使用文章最近更新栏组件，可以显示最近更新的文章信息，方便点击查看。
@@ -15,10 +17,10 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkArticleUpdate, teekConfigContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/theme-chalk/tk-article-update.css";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   articleUpdate: {

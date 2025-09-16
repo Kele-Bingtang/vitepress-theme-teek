@@ -2,7 +2,7 @@ export interface BodyBgImg {
   /**
    * body 背景图片链接。单张图片 string | 多张图片 string[], 多张图片时每隔 imgInterval 秒换一张
    */
-  imgSrc?: string | string[];
+  imgSrc?: string | string[] | (() => string | string[]);
   /**
    * body 背景图透明度，选值 0.1 ~ 1.0
    *

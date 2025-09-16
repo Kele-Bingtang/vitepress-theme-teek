@@ -1,5 +1,5 @@
 <script setup lang="ts" name="ArticleAnalyze">
-import type { ArticleAnalyze, DocAnalysis, DocDocAnalysisFileInfo, TeekConfig } from "@teek/config";
+import type { ArticleAnalyze, ArticlePosition, Author, DocAnalysis, DocDocAnalysisFileInfo } from "@teek/config";
 import type { TkContentData } from "@teek/config";
 import { computed, nextTick, ref, watch } from "vue";
 import { useData } from "vitepress";
@@ -12,6 +12,8 @@ import { TkIcon } from "@teek/components/common/Icon";
 
 defineOptions({ name: "ArticleAnalyze" });
 
+const { breadcrumb = true, scope = "article" } = defineProps<{ breadcrumb?: boolean; scope?: ArticlePosition }>();
+
 const ns = useNamespace("article-analyze");
 const { t } = useLocale();
 
@@ -22,7 +24,7 @@ const { router } = vpRouter;
 
 // 文章基本信息
 const post = computed<TkContentData>(() => ({
-  author: getTeekConfig<TeekConfig["author"]>("author", {}),
+  author: getTeekConfig<Author>("author", {}),
   date: frontmatter.value.date,
   frontmatter: frontmatter.value,
   url: "",
@@ -120,19 +122,19 @@ watch(
 
 <template>
   <div :class="`${ns.b()} flx-justify-between`" :aria-label="t('tk.articleAnalyze.label')">
-    <TkArticleBreadcrumb />
+    <TkArticleBreadcrumb v-if="breadcrumb" />
 
     <div v-if="isShowInfo" ref="baseInfoRef" :class="`${ns.e('wrapper')} flx-align-center`">
-      <TkArticleInfo :post scope="article" />
+      <TkArticleInfo :post :scope />
 
-      <div v-if="docAnalysisConfig.wordCount || pageViewInfo.wordCount" class="flx-center">
+      <div v-if="docAnalysisConfig.wordCount && pageViewInfo.wordCount" class="flx-center">
         <TkIcon v-if="articleConfig.showIcon" :icon="readingIcon" aria-hidden="true" />
         <a :title="t('tk.articleAnalyze.wordCount')" class="hover-color" :aria-label="t('tk.articleAnalyze.wordCount')">
           {{ pageViewInfo.wordCount }}
         </a>
       </div>
 
-      <div v-if="docAnalysisConfig.readingTime || pageViewInfo.readingTime" class="flx-center">
+      <div v-if="docAnalysisConfig.readingTime && pageViewInfo.readingTime" class="flx-center">
         <TkIcon v-if="articleConfig.showIcon" :icon="clockIcon" />
         <a
           :title="t('tk.articleAnalyze.readingTime')"

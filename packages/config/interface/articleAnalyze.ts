@@ -1,6 +1,7 @@
 import type { ImageViewerProps } from "@teek/components/common/ImageViewer/src/imageViewer";
 
-export type ArticleInfoPosition = "post" | "article";
+export type ArticlePosition = "article" | "article-banner";
+export type ArticleInfoPosition = "post" | ArticlePosition;
 
 export interface ArticleAnalyze {
   /**

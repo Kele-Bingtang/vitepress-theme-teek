@@ -9,12 +9,13 @@
 
 @include b(article-analyze) {
   flex-wrap: wrap;
-  font-size: 14px;
+  font-size: getCssVar("home-font-size-sm");
   margin-bottom: 24px;
   gap: getCssVar("home-article-analyze-gap");
 
   @include e(wrapper) {
     flex-wrap: wrap;
+    font-size: 14px;
 
     &.teleport {
       margin-top: 10px;
@@ -31,14 +32,12 @@
 
     a {
       font-weight: 400;
-      color: var(--vp-c-text-2);
       text-decoration: none;
       font-size: 14px;
     }
 
     i {
       margin-right: 3px;
-      color: var(--vp-c-text-2);
     }
   }
 }

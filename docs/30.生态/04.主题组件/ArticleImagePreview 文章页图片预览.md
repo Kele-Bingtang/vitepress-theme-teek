@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用文章页图片预览组件可以在文章页进行图片预览。
@@ -15,9 +17,9 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkArticleImagePreview, teekConfigContext } from "vitepress-theme-teek";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   appreciation: {

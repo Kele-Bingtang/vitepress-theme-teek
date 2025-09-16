@@ -34,6 +34,8 @@ import type {
   RiskLink,
   WindowTransition,
   Feature,
+  ArticleBanner,
+  ViewTransition,
 } from "./interface";
 
 export type * from "./interface";
@@ -78,17 +80,11 @@ export interface TeekConfig {
    */
   anchorScroll?: boolean;
   /**
-   * 深色、浅色模式切换时是否开启过渡动画
-   *
-   * @default true
-   */
-  viewTransition?: boolean;
-  /**
    * 首页卡片栏列表位置
    *
    * @default 'right'
    */
-  homeCardListPosition?: "left" | "right";
+  homeCardListPosition?: "left" | "right" | false;
   /**
    * 首页卡片的位置排序，当设置了 `homeCardSort` 但没有全部补全，则剩余内容默认按照 `homeCardSort` 的顺序进行排序
    *
@@ -117,6 +113,12 @@ export interface TeekConfig {
    * @default true
    */
   loading?: boolean | string;
+  /**
+   * 深色、浅色模式切换过渡动画配置
+   *
+   * @since v1.5.0
+   */
+  viewTransition?: ViewTransition;
   /**
    * 回到顶部按钮配置
    */
@@ -231,6 +233,12 @@ export interface TeekConfig {
    * 新版代码块配置
    */
   codeBlock?: CodeBlock;
+  /**
+   * 文章页顶部 Banner，仅在没有侧边栏的文章页生效
+   *
+   * @since 1.5.0
+   */
+  articleBanner?: ArticleBanner;
   /**
    * 文章信息配置
    */

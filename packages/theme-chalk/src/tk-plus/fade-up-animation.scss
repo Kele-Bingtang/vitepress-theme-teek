@@ -32,6 +32,10 @@ $fade-up-slide-animation: fade-up-slide 0.7s cubic-bezier(0, 0, 0.58, 1) forward
   animation: $fade-up-animation;
 }
 
+@include b(article-banner__info) {
+  animation: $fade-up-animation;
+}
+
 @include b(article-page) {
   @include b(aside-outline) {
     animation: $fade-up-animation;

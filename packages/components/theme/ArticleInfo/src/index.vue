@@ -76,7 +76,7 @@ const baseInfo = computed(() => {
       title: t("tk.articleInfo.updateTime"),
       icon: editPenIcon,
       data: updateDate.value,
-      show: updateDate.value && scope === "article" && showUpdateDate,
+      show: updateDate.value && ((scope === "article" && showUpdateDate) || scope === "article-banner"),
     },
     {
       title: t("tk.articleInfo.category"),
@@ -84,7 +84,7 @@ const baseInfo = computed(() => {
       dataList: post.frontmatter?.categories || [],
       href: "/categories?category={data}",
       class: "or",
-      show: scope === "post" || isShow(showCategory),
+      show: scope !== "article-banner" && (scope === "post" || isShow(showCategory)),
     },
     {
       title: t("tk.articleInfo.tag"),
@@ -92,7 +92,7 @@ const baseInfo = computed(() => {
       dataList: post.frontmatter?.tags || [],
       href: "/tags?tag={data}",
       class: "or",
-      show: scope === "post" || isShow(showTag),
+      show: scope !== "article-banner" && (scope === "post" || isShow(showTag)),
     },
   ];
 });

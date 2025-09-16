@@ -7,7 +7,7 @@
 
 @include b(article-breadcrumb) {
   .home:hover {
-    color: var(--tk-theme-color) !important;
+    color: getCssVar("theme-color") !important;
     cursor: pointer !important;
   }
 }

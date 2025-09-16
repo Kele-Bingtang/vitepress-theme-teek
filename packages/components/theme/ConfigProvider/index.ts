@@ -1,11 +1,11 @@
 import type { PostData } from "@teek/config/post/types";
-import type { WindowTransition, TeekConfig } from "@teek/config";
+import type { WindowTransition, TeekConfig, ViewTransition } from "@teek/config";
 import type { Component, Ref, InjectionKey } from "vue";
-import { computed, defineComponent, h, inject, provide, unref } from "vue";
-import { useData } from "vitepress";
+import { computed, defineComponent, h, inject, nextTick, provide, ref, unref, watch } from "vue";
+import { useData, useRoute } from "vitepress";
 import { useAnchorScroll, useMediaQuery, useViewTransition } from "@teek/composables";
 import { emptyPost } from "@teek/config/post/helper";
-import { isFunction, isObject } from "@teek/helper";
+import { isClient, isFunction, isObject } from "@teek/helper";
 
 export const postsContext: InjectionKey<PostData> = Symbol("posts");
 export const teekConfigContext: InjectionKey<TeekConfig | Ref<TeekConfig>> = Symbol("teekConfig");
@@ -22,7 +22,15 @@ export const TeekConfigProvider = (layout: Component) => {
 
       // 开启监听器
       useAnchorScroll().startWatch();
-      useViewTransition();
+
+      const { getTeekConfig } = useTeekConfig();
+      const viewTransitionConfig = getTeekConfig<ViewTransition>("viewTransition", {
+        enabled: true,
+        mode: "out-in",
+        easing: "ease-in",
+      });
+
+      viewTransitionConfig.enabled && useViewTransition(viewTransitionConfig);
 
       return () => h(layout, null, slots);
     },
@@ -212,6 +220,9 @@ export const useTagColor = () => {
   ]);
 };
 
+/**
+ * 视图渐入过渡效果的响应式配置项获取
+ */
 export const useWindowTransitionConfig = (condition?: (windowTransition: WindowTransition) => boolean | undefined) => {
   const { getTeekConfigRef } = useTeekConfig();
   const windowTransitionConfig = getTeekConfigRef<WindowTransition>("windowTransition", true);
@@ -225,10 +236,34 @@ export const useWindowTransitionConfig = (condition?: (windowTransition: WindowT
 };
 
 /**
- * 封装常用响应式变量
+ * 获取常用响应式变量
  */
 export const useCommon = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return { isMobile };
+};
+
+/**
+ * 侧边栏相关属性
+ */
+export const useSidebar = () => {
+  const hasSidebar = ref(true);
+  const route = useRoute();
+
+  watch(
+    () => route.path,
+    async () => {
+      if (!isClient) return;
+
+      await nextTick();
+      // 检查是否存在侧边栏
+      const sidebarDom = document.querySelector(".VPSidebar");
+      if (sidebarDom) hasSidebar.value = true;
+      else hasSidebar.value = false;
+    },
+    { immediate: true, flush: "post" }
+  );
+
+  return { hasSidebar };
 };

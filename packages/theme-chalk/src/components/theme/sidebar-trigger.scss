@@ -81,6 +81,7 @@
           getCssVar("sidebar-trigger-left-offset")
       );
       transition: left getCssVar("transition-duration-slow") ease-in-out;
+      z-index: 20px;
 
       > div {
         box-shadow: none;

@@ -8,6 +8,8 @@ categories:
 tags:
   - 生态
   - 主题组件
+codeBlock:
+  collapseHeight: false
 ---
 
 使用文章分析组件，可以获取文章的创建时间、字数、阅读时间、访问量等信息。
@@ -15,9 +17,9 @@ tags:
 ## 基础使用
 
 ```ts
+import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkThemeEnhance, teekConfigContext } from "vitepress-theme-teek";
-import { h } from "vue";
 
 provide(teekConfigContext, {
   themeEnhance: {

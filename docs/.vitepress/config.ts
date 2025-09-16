@@ -116,7 +116,7 @@ export default defineConfig({
         text: "生态",
         items: [
           { text: "Components 组件", link: "/ecosystem/components" },
-          { text: "运行时 API", link: "/reference/runtime-api" },
+          { text: "运行时 API", link: "/ecosystem/runtime-api" },
           { text: "Helper 工具", link: "/ecosystem/helper" },
           { text: "Composables 函数", link: "/ecosystem/composables" },
           { text: "Markdown 插件工具", link: "/ecosystem/md-plugin-utils" },

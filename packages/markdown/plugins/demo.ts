@@ -35,14 +35,14 @@ const demoPlugin = (md: MarkdownIt, option: Demo = {}) => {
         const sourceFileToken = tokens[idx + 2];
         const yamlToken = tokens[idx + 1];
 
-        const { sourceFile, effectPath } = getDemoFile(sourceFileToken, yamlToken);
+        const { sourceFile, effectPath, sourceFileExtension } = getDemoFile(sourceFileToken, yamlToken);
 
         let source = "";
         if (sourceFile) source = readFileSync(resolve(demoPath, sourceFile), "utf-8");
         if (!source) throw new Error(`Incorrect source file path: ${sourceFile}`);
 
         return `<TkDemoCode effect="${effect}" source="${encodeURIComponent(
-          md.render(`\`\`\` vue\n${source}\`\`\``)
+          md.render(`\`\`\` ${sourceFileExtension}\n${source}\n\`\`\``)
         )}" path="${posix.join(path, effectPath)}" raw-source="${encodeURIComponent(
           source
         )}" description="${encodeURIComponent(md.render(description))}" options="${encodeURIComponent(JSON.stringify(option))}">`;
@@ -71,10 +71,13 @@ const getDemoFile = (sourceFileToken: Token, yamlToken: Token) => {
   }
 
   // 确保文件路径带 .vue 后缀
-  sourceFile = sourceFile ? `${sourceFile.replace(/.vue$/, "")}.vue` : "";
+  sourceFile = sourceFile ? (sourceFile.includes(".") ? sourceFile : `${sourceFile.replace(/.vue$/, "")}.vue`) : "";
   effectPath = effectPath ? `${effectPath.replace(/.vue$/, "")}.vue` : "";
 
-  return { sourceFile, effectPath };
+  // 源码文件后缀，默认为 vue
+  const sourceFileExtension = sourceFile.includes(".") ? sourceFile.split(".").pop() : "vue";
+
+  return { sourceFile, effectPath, sourceFileExtension };
 };
 
 export default demoPlugin;
