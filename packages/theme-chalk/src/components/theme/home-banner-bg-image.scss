@@ -2,15 +2,6 @@
 @use "../../mixins/function" as *;
 
 @include b(banner-bg-image) {
-  @keyframes enlarge {
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
   &.part {
     min-height: getCssVar(home-banner-part-min-height);
   }
@@ -28,7 +19,6 @@
     height: 100vh;
     z-index: 0;
     overflow: hidden;
-    animation: enlarge getCssVar("banner-img-switch-interval-s") linear infinite;
   }
 
   &.part,

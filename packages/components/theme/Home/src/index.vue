@@ -55,18 +55,18 @@ const isPaging = ref(false);
           </TkHomePostList>
           <slot name="teek-home-post-after" />
         </div>
-      </div>
 
-      <div
-        v-if="teekConfig.homeCardListPosition"
-        :class="[ns.e('content__info'), teekConfig.homeCardListPosition === 'left' ? ns.is('left') : ns.is('right')]"
-        :aria-label="t('tk.home.cardLabel')"
-      >
-        <TkHomeCardList>
-          <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
-            <slot :name="name" v-bind="scope" />
-          </template>
-        </TkHomeCardList>
+        <div
+          v-if="teekConfig.homeCardListPosition"
+          :class="[ns.e('content__info'), teekConfig.homeCardListPosition === 'left' ? ns.is('left') : ns.is('right')]"
+          :aria-label="t('tk.home.cardLabel')"
+        >
+          <TkHomeCardList>
+            <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
+              <slot :name="name" v-bind="scope" />
+            </template>
+          </TkHomeCardList>
+        </div>
       </div>
     </div>
 
