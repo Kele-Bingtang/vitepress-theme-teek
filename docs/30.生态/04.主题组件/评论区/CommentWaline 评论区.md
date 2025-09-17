@@ -20,6 +20,7 @@ codeBlock:
 import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkCommentWaline, teekConfigContext } from "vitepress-theme-teek";
+import "vitepress-theme-teek/theme-chalk/tk-comment-waline.css";
 
 provide(teekConfigContext, {
   comment: {
@@ -43,12 +44,12 @@ export default {
 
 ## 实例注入
 
-通过配置项 Teek 内部会自动创建一个 Giscus 实例，当然您也可以手动注入示例：
+通过配置项 Teek 内部会自动创建一个 Waline 实例，当然您也可以手动注入示例：
 
-首先您需要安装 Giscus 依赖：
+首先您需要安装 Waline 依赖：
 
 ```bash
-pnpm add -D @giscus/vue
+pnpm add -D @waline/client
 ```
 
 然后引入：
@@ -56,9 +57,10 @@ pnpm add -D @giscus/vue
 ```ts
 import DefaultTheme from "vitepress/theme";
 import { TkCommentWaline, teekConfigContext, walineContext } from "vitepress-theme-teek";
-import "vitepress-theme-teek/theme-chalk/tk-comment-waline.css";
 import { h } from "vue";
-import Giscus from "@giscus/vue";
+import { init } from "@waline/client";
+import "@waline/client/style";
+import "vitepress-theme-teek/theme-chalk/tk-comment-waline.css";
 
 provide(teekConfigContext, {
   comment: {

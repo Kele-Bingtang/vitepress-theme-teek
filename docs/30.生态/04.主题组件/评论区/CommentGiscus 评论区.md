@@ -60,6 +60,7 @@ import DefaultTheme from "vitepress/theme";
 import { TkCommentGiscus, teekConfigContext, giscusContext } from "vitepress-theme-teek";
 import { h } from "vue";
 import Giscus from "@giscus/vue";
+import "vitepress-theme-teek/theme-chalk/tk-comment-giscus.css";
 
 export default {
   extends: DefaultTheme,

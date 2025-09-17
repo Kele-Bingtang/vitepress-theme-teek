@@ -1,9 +1,10 @@
 <script setup lang="ts" name="CommentTwikoo">
 import type { CommentProvider } from "@teek/config";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, inject } from "vue";
 import { isClient } from "@teek/helper";
 import { useNamespace, useVpRouter } from "@teek/composables";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
+import { twikooContext } from "./twikoo";
 
 defineOptions({ name: "CommentTwikoo" });
 
@@ -28,7 +29,12 @@ const initTwikoo = () => {
   if (!isClient) return console.error("[Teek Error] Not in a client");
   if (!envId) return console.error("[Teek Error] Twikoo initialization failed. Please configure the 'envId'");
 
-  if ((window as any).twikoo) (window as any).twikoo.init({ ...options, envId, el: "#twikoo" });
+  // 尝试从上下文获取 waline 实例
+  const getTwikooInstance = inject(twikooContext, () => null);
+  const twikooOption = { ...options, envId };
+
+  if (getTwikooInstance) getTwikooInstance("#twikoo", twikooOption);
+  else if ((window as any).twikoo) (window as any).twikoo.init({ ...twikooOption, el: "#twikoo" });
 };
 
 const twikooJs = ref<HTMLScriptElement | null>(null);

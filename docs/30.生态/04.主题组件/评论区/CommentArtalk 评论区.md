@@ -20,6 +20,7 @@ codeBlock:
 import { h } from "vue";
 import DefaultTheme from "vitepress/theme";
 import { TkCommentArtalk, teekConfigContext } from "vitepress-theme-teek";
+import "vitepress-theme-teek/theme-chalk/tk-comment-artalk.css";
 
 provide(teekConfigContext, {
   comment: {
@@ -55,11 +56,11 @@ pnpm add -D artalk
 ```ts
 import DefaultTheme from "vitepress/theme";
 import { TkCommentArtalk, teekConfigContext, artalkContext } from "vitepress-theme-teek";
-import "vitepress-theme-teek/theme-chalk/tk-comment-artalk.css";
 import { h } from "vue";
 import { useData, useRoute } from "vitepress";
 import Artalk from "artalk";
 import "artalk/Artalk.css";
+import "vitepress-theme-teek/theme-chalk/tk-comment-artalk.css";
 
 export default {
   extends: DefaultTheme,

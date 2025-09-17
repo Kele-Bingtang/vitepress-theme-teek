@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- **blogger:** 添加博主状态图标并优化头像功能 ([be17ba7](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/be17ba7be748164a4d23c693ca2e04bda4daffae))
+- **blogger:** 🚀 添加博主状态图标并优化头像功能 ([be17ba7](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/be17ba7be748164a4d23c693ca2e04bda4daffae))
 - **docs:** 🚀 优化侧边栏交互并添加新功能 ([d9ea72f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/d9ea72f620b7504711f04b0ea2c8e3964e5658e6))
 - **docs:** 🚀 优化文章底部提示信息并新增侧边栏和目录栏悬停样式 ([0bfd80d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0bfd80d2ecd11de8def776c917885fda6868158d))
 - **docs:** 🚀 v1.4.6 版本发布 ([0d0517e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0d0517e06fbab0b16d89863fa0f5b240d02fc341))
