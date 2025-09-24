@@ -100,7 +100,7 @@ const handleCopy = async () => {
     <template #title>
       <div class="flx-justify-between flx-1">
         {{ tipInfo.title }}
-        <button @click="handleCopy">Copy</button>
+        <button @click="handleCopy">复制</button>
       </div>
     </template>
     <TkSegmented v-model="currentStyle" :options="segmentedOptions" />
