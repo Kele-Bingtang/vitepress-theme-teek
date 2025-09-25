@@ -1,0 +1,83 @@
+// 已在 packages/composables/useCopyBanner 中被引入
+
+@use "../mixins/bem" as *;
+@use "../mixins/function" as *;
+
+@include b(copy-banner) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: var(--vp-c-brand-1);
+  text-align: center;
+  overflow: hidden;
+  transform: translateY(-100%);
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
+
+  @include e(content) {
+    padding: 16px;
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: 768px) {
+      padding: 10px;
+    }
+  }
+
+  @include e(desc) {
+    font-size: 19px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  @include e(slide) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--vp-c-brand-2);
+    transition: width 2s ease-in-out;
+    animation: remove-corner 2s ease-in-out forwards;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    z-index: 1;
+  }
+
+  @include is(show) {
+    transform: translateY(0);
+  }
+
+  @include is(hide) {
+    transform: translateY(-100%);
+    opacity: 0;
+
+    .slide-block {
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+
+  @keyframes remove-corner {
+    0% {
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+    80% {
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+    100% {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}

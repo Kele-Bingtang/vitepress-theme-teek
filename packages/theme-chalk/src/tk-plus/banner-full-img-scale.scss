@@ -1,5 +1,4 @@
 @use "../mixins/bem" as *;
-@use "../mixins/mixins" as *;
 @use "../mixins/function" as *;
 
 @include b(banner) {

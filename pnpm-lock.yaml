@@ -43,11 +43,11 @@ catalogs:
       specifier: ^1.6.3
       version: 1.6.3
     vitepress-plugin-auto-frontmatter:
-      specifier: ^1.0.11
-      version: 1.0.11
+      specifier: ^1.0.12
+      version: 1.0.12
     vitepress-plugin-catalogue:
-      specifier: ^1.1.1
-      version: 1.1.1
+      specifier: ^1.1.2
+      version: 1.1.2
     vitepress-plugin-doc-analysis:
       specifier: ^1.0.13
       version: 1.0.13
@@ -316,10 +316,10 @@ importers:
         version: 1.6.3(@algolia/client-search@5.19.0)(@types/node@22.14.0)(async-validator@4.2.5)(postcss@8.5.3)(sass@1.83.1)(search-insights@2.17.3)(typescript@5.8.3)
       vitepress-plugin-auto-frontmatter:
         specifier: 'catalog:'
-        version: 1.0.11
+        version: 1.0.12
       vitepress-plugin-catalogue:
         specifier: 'catalog:'
-        version: 1.1.1
+        version: 1.1.2
       vitepress-plugin-doc-analysis:
         specifier: 'catalog:'
         version: 1.0.13
@@ -5021,11 +5021,11 @@ packages:
       yaml:
         optional: true
 
-  vitepress-plugin-auto-frontmatter@1.0.11:
-    resolution: {integrity: sha512-Fv6uV7Wls0MP3BK6nVZNjkLsDFZAp48nWS0eULth1/eYDsrl/ujT7TSxj/u2ZyLhWEiL4kxJ6xEyEbzwnonPwA==}
+  vitepress-plugin-auto-frontmatter@1.0.12:
+    resolution: {integrity: sha512-b0A6AyHg+BeL97hSmuDpSCInWc481JTPiv6fs/rh5yqSVcwQnnCB9CJwUX46bDXenHsFtexAObQSrmEI2yKe0Q==}
 
-  vitepress-plugin-catalogue@1.1.1:
-    resolution: {integrity: sha512-TQj7jEPCng/PR6x06dllYU1tc1qAJ4rWu2lyXlR4kuWXNeo6CCXE4ae3uicOauowDp60s2gDLVo4f8HxezN1ig==}
+  vitepress-plugin-catalogue@1.1.2:
+    resolution: {integrity: sha512-M+k1Lfjpl8l8JozicdPDh8tpfB9UVYEZPUO0lndMY5OyaMI+LZnCKQwCKwnymS057pd4rPVVWGX6hiDbposp2Q==}
 
   vitepress-plugin-doc-analysis@1.0.13:
     resolution: {integrity: sha512-MjBNXPWon+r+GA6kf8bm5SlhfhbPzKhI3qZUIhd9izxLmQoNfKWX19Dl1F6NgqZaeswfmJef+F6Ldh0tAkH02Q==}
@@ -9970,13 +9970,13 @@ snapshots:
       tsx: 4.19.3
       yaml: 2.7.1
 
-  vitepress-plugin-auto-frontmatter@1.0.11:
+  vitepress-plugin-auto-frontmatter@1.0.12:
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
       tinyglobby: 0.2.12
 
-  vitepress-plugin-catalogue@1.1.1:
+  vitepress-plugin-catalogue@1.1.2:
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1

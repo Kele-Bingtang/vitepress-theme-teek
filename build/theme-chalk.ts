@@ -1,5 +1,5 @@
 import { parse, resolve } from "node:path";
-import { tcOutput, pkgRoot } from "./helper/path";
+import { tcOutput, pkgRoot, simplePkgName } from "./helper";
 import glob from "fast-glob";
 import { access, mkdir, writeFile } from "node:fs/promises";
 import { compile } from "sass";
@@ -40,7 +40,7 @@ const buildStyle = async () => {
     // 生产环境开启压缩
     if (!isDev) plugins.push(cssnano);
     const result = await postcss(plugins).process(content.css, { from: undefined });
-    const filename = name === "index" ? "index.css" : `tk-${name}.css`;
+    const filename = name === "index" ? "index.css" : `${simplePkgName}-${name}.css`;
     // 在 ./dist/theme-chalk 创建 css 文件
     await writeFile(resolve(distRoot, filename), result.css);
   }

@@ -63,7 +63,7 @@ export const useTeekConfig = () => {
     // 返回指定 key 的 TeekConfig 数据
     const valueFromTheme = theme.value[key];
     const valueFromFrontmatter = frontmatter.value.tk?.[key] ?? frontmatter.value[key];
-    const valueFromInject = unref(teekConfigProvide)[key];
+    const valueFromInject = unref(teekConfigProvide)?.[key];
 
     // 对象格式，根据优先级合并里面的内容
     if (isObject(valueFromTheme) || isObject(valueFromFrontmatter) || isObject(valueFromInject)) {

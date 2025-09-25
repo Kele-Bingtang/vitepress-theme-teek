@@ -27,9 +27,8 @@ const todoPlugin = (md: MarkdownIt) => {
         const checkbox = `<input class="todo-checkbox" type="checkbox" ${isChecked ? "checked" : ""} disabled />`;
 
         // 原内容移除 "[ ] " 或 "[x] "
-        const text = content.slice(4);
-        token.content = text;
-        if (token.children) token.children[0].content = text;
+        token.content = content.slice(4);
+        if (token.children) token.children[0].content = token.children[0].content.slice(4);
 
         return `<li class="todo">${checkbox}`;
       }

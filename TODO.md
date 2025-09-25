@@ -16,6 +16,10 @@
 - `demo` 容器 `yaml` 支持非 `Vue` 组件的源码复制
 - 新增文章页 Banner 功能以及相关插槽
 - 新增深色、浅色模式切换过渡动画配置
+- 修复 TODO 插件中代码块文本出现多次问题 [#145](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/145)
+- `docAnalysis.appendInfo` 支持函数式配置
+- 网站访问量添加自定义事件，利用该事件搭配 `docAnalysis.appendInfo` 添加更多访问量信息
+- 新增复制提示功能
 
 ## AR
 

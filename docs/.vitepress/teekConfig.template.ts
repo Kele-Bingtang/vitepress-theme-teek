@@ -341,6 +341,13 @@ export const teekConfig = defineTeekConfig({
       link: "",
     },
   },
+  articleBanner: {
+    enabled: true, // 是否启用单文章页 Banner
+    showCategory: true, // 是否展示分类
+    showTag: true, // 是否展示标签
+    defaultCoverImg: "", // 默认封面图
+    defaultCoverBgColor: "", // 默认封面背景色，优先级低于 defaultCoverImg
+  },
   // 文章信息分析配置，分别作用在首页和文章页
   articleAnalyze: {
     showIcon: true, // 作者、日期、分类、标签、字数、阅读时长、浏览量等文章信息的图标是否显示

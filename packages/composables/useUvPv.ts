@@ -106,7 +106,13 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
 
     const call = async (url?: string): Promise<UvPvData> => {
       // 如果存在自定义请求函数，则使用自定义请求函数
-      if (requestFn) return Promise.resolve(await requestFn(url, createScript));
+      if (requestFn) {
+        const response = await requestFn(url, createScript);
+        // 触发自定义事件
+        window.dispatchEvent(new CustomEvent("views", { detail: response }));
+
+        return Promise.resolve(response);
+      }
 
       // 可以在这里拓展更多的网站浏览统计提供商
       switch (provider) {
@@ -128,6 +134,9 @@ export const useUvPv = (immediate = false, options: UseUvPvOptions = {}) => {
       today.value = data.today || DEFAULT_TODAY_DATA;
       yesterday.value = data.yesterday || DEFAULT_YESTERDAY_DATA;
       isGet.value = true;
+
+      // 触发自定义事件
+      window.dispatchEvent(new CustomEvent("views", { detail: data }));
     });
   };
 

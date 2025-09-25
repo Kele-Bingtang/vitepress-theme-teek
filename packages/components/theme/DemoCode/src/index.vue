@@ -1,5 +1,5 @@
 <script setup lang="ts" name="DemoCode">
-import type { DemoCodeProps } from "./demoCode";
+import type { DemoCodeProps } from "./types";
 import { ref, computed, defineAsyncComponent } from "vue";
 import { useData } from "vitepress";
 import { useNamespace, useLocale, useClipboard } from "@teek/composables";

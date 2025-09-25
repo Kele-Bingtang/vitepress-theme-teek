@@ -1,14 +1,14 @@
-import esbuild from "rollup-plugin-esbuild";
-import commonjs from "@rollup/plugin-commonjs";
-import postcss from "rollup-plugin-postcss";
-import json from "@rollup/plugin-json";
-import autoprefixer from "autoprefixer";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { pkgName, outputPkgName, target } from "../helper";
-import vuePlugin from "@vitejs/plugin-vue";
-import url from "@rollup/plugin-url";
-import cssnano from "cssnano";
 import type { Plugin } from "rollup";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
+import esbuild from "rollup-plugin-esbuild";
+import postcss from "rollup-plugin-postcss";
+import vuePlugin from "@vitejs/plugin-vue";
+import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
+import url from "@rollup/plugin-url";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { pkgName, outputPkgName, target, simplePkgName } from "./constants";
 
 // rollup 插件。rollup 本身只支持原生 JavaScript 文件打包，如果项目包含 vue、json 等非原生 JavaScript 文件，则利用插件来支持打包
 export const plugins = [
@@ -50,6 +50,8 @@ export function VitePressThemeTeekStyleAlias(): Plugin {
     name: "vitepress-theme-teek-alias-style-plugin",
     resolveId(id) {
       if (!id.startsWith(sourceThemeChalk)) return;
+
+      id = id.replace("vp-plus/", `${simplePkgName}-`).replace("tk-plus/", `${simplePkgName}-`).replace("scss", "css");
       return {
         id: id.replaceAll(sourceThemeChalk, bundleThemeChalk),
         external: "absolute",

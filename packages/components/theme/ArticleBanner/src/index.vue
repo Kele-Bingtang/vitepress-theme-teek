@@ -20,7 +20,7 @@ const { isMobile } = useCommon();
 const { getTeekConfigRef } = useTeekConfig();
 
 const articleBannerConfig = getTeekConfigRef<ArticleBanner>("articleBanner", {
-  enabled: true,
+  enabled: false,
   showCategory: true,
   showTag: true,
   defaultCoverImg: "",

@@ -106,8 +106,14 @@ watch(
 
 type DocAnalysisResolve = DocAnalysisInfo & { originValue?: string | number };
 
+// appendInfo 支持函数，因此单独抽离出来计算，防止函数里有请求导致重复触发
+const appendInfo = computed(() => {
+  const { appendInfo } = docAnalysisConfig.value;
+  return isFunction(appendInfo) ? appendInfo() : appendInfo;
+});
+
 const docAnalysisList = computed<DocAnalysisResolve[]>(() => {
-  const { createTime, appendInfo, overrideInfo } = docAnalysisConfig.value;
+  const { createTime, overrideInfo } = docAnalysisConfig.value;
   const { fileList = [], totalFileWords, lastCommitTime } = docAnalysisInfo.value;
 
   const list: DocAnalysisResolve[] = [
@@ -161,7 +167,7 @@ const docAnalysisList = computed<DocAnalysisResolve[]>(() => {
       value: isGet.value ? `${siteUv.value} ${t("tk.docAnalysisCard.visitCountUnit")}` : "Get...",
       show: useSiteView.value,
     },
-    ...(appendInfo as any[]),
+    ...appendInfo.value,
   ];
 
   if (overrideInfo.length) {

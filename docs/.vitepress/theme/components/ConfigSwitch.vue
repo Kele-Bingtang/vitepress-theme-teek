@@ -66,8 +66,9 @@ const update = async (style: string) => {
   const navDom = document.querySelector(".VPNavBar") as HTMLElement;
 
   // 兼容 Teek Banner 样式
-  if (["blog-full", "blog-body", "blog-card"].includes(style)) navDom?.classList.add("full-img-nav-bar");
-  else navDom?.classList.remove("full-img-nav-bar");
+  if (["blog-full", "blog-body", "blog-card"].includes(style) && teekConfig.value.banner?.enabled !== false) {
+    navDom?.classList.add("full-img-nav-bar");
+  } else navDom?.classList.remove("full-img-nav-bar");
 };
 
 watch(themeStyle, update, { immediate: true });
