@@ -131,7 +131,7 @@ watch(
 );
 
 onMounted(() => {
-  if (currentBgStyle.value.isBannerFullImgBgStyle || currentBgStyle.value.isBodyFullImgBgStyle) {
+  if ((!disabled && currentBgStyle.value.isBannerFullImgBgStyle) || currentBgStyle.value.isBodyFullImgBgStyle) {
     // 全屏图片模式，监听滚轮，修改导航栏样式（透明化）
     toggleClass();
     useEventListener(window, "scroll", toggleClass);

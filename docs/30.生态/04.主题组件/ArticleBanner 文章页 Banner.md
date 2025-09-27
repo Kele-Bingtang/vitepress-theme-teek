@@ -36,9 +36,11 @@ provide(teekConfigContext, {
 const showArticleBanner = computed(
   () =>
     frontmatter.value.articleBanner !== false &&
+    teekConfig.value.articleBanner.enabled &&
     !hasSidebar.value &&
     frontmatter.value.article !== false &&
-    (!frontmatter.value.layout || frontmatter.value.layout === "doc")
+    (!frontmatter.value.layout || frontmatter.value.layout === "doc") &&
+    teekConfig.value.pageStyle === "default"
 );
 
 export default {

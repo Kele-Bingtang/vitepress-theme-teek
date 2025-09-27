@@ -1,5 +1,11 @@
 # vitepress-plugin-catalogue
 
+## 1.1.2
+
+### Patch Changes
+
+- 5cb54d4: 修复目录页 Item 的 url 没有 / 开头问题
+
 ## 1.1.1
 
 ### Patch Changes

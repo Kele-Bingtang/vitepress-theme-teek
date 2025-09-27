@@ -64,7 +64,9 @@ export interface DocAnalysis {
    * 自定义额外信息，类型和 overrideInfo 一样
    * @default []
    */
-  appendInfo?: (Omit<DocAnalysisInfo, "key"> & { key: string })[];
+  appendInfo?:
+    | (Omit<DocAnalysisInfo, "key"> & { key: string })[]
+    | (() => (Omit<DocAnalysisInfo, "key"> & { key: string })[]);
 }
 
 export interface DocAnalysisInfo {

@@ -92,7 +92,9 @@ const writeFrontmatterToFile = (filePaths: string[], option: AutoFrontmatterOpti
 
     const finalFrontmatter = transformResult || tempFrontmatter;
     // 确保日期格式为 yyyy-MM-dd hh:mm:ss
-    finalFrontmatter.date = formatDate(tempFrontmatter.date, "yyyy-MM-dd hh:mm:ss");
+    finalFrontmatter.date = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(tempFrontmatter.date)
+      ? tempFrontmatter.date
+      : formatDate(tempFrontmatter.date, "yyyy-MM-dd hh:mm:ss");
 
     // 如果没有开启同名 key 覆盖且源文件的 frontmatter 已经全部包含处理后的 frontmatter，则不需要修改
     if (!recoverTransform && Object.keys(finalFrontmatter).every(key => frontmatter[key] !== undefined)) continue;

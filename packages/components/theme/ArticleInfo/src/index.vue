@@ -1,5 +1,5 @@
 <script setup lang="ts" name="ArticleInfo">
-import type { PostBaseInfoProps } from "./articleInfo";
+import type { PostBaseInfoProps } from "./types";
 import type { ArticleAnalyze, ArticleInfoPosition, TkContentData } from "@teek/config";
 import { useRoute, withBase, useData } from "vitepress";
 import { computed } from "vue";

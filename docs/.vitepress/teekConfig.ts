@@ -38,6 +38,9 @@ export const teekConfig = defineTeekConfig({
   post: {
     showCapture: true,
   },
+  articleBanner: {
+    enabled: true,
+  },
   articleShare: { enabled: true },
   vitePlugins: {
     sidebarOption: {

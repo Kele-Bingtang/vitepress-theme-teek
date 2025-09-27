@@ -1,24 +1,27 @@
 /**
  * 获取当前时间，返回格式为 yyyy-MM-dd HH:mm:ss
  */
-export const getNowDate = () => {
-  return formatDate(new Date(), "yyyy-MM-dd hh:mm:ss");
+export const getNowDate = (format = "yyyy-MM-dd hh:mm:ss", utc = true) => {
+  return formatDate(new Date(), format, utc);
 };
 
 /**
- * 格式化时间
+ * 时间转换函数（支持时区调整）
+ * @param date 日期对象或日期字符串
+ * @param format 日期格式，如 'yyyy-MM-dd hh:mm:ss'、'yyyy-MM-dd'
+ * @param utc 是否使用 UTC 时间，默认为 false
  */
-export const formatDate = (date: Date | string | number, format = "yyyy-MM-dd hh:mm:ss") => {
+export const formatDate = (date: Date | string | number, format = "yyyy-MM-dd hh:mm:ss", utc = true) => {
   if (!date) return ""; // 如果日期为空，返回空字符串
-  const d = new Date(date);
+  const dateObj = new Date(date);
 
   // 提取日期和时间的各个部分
-  const year = d.getFullYear();
-  const month = String(d.getMonth() + 1).padStart(2, "0"); // 月份从 0 开始，需要 +1
-  const day = String(d.getDate()).padStart(2, "0");
-  const hours = String(d.getHours()).padStart(2, "0");
-  const minutes = String(d.getMinutes()).padStart(2, "0");
-  const seconds = String(d.getSeconds()).padStart(2, "0");
+  const year = utc ? dateObj.getUTCFullYear : dateObj.getFullYear();
+  const month = String((utc ? dateObj.getUTCMonth() : dateObj.getMonth()) + 1).padStart(2, "0"); // 月份从 0 开始，需要 +1
+  const day = String(utc ? dateObj.getUTCDate() : dateObj.getDate()).padStart(2, "0");
+  const hours = String(utc ? dateObj.getUTCHours() : dateObj.getHours()).padStart(2, "0");
+  const minutes = String(utc ? dateObj.getUTCMinutes() : dateObj.getMinutes()).padStart(2, "0");
+  const seconds = String(utc ? dateObj.getUTCSeconds() : dateObj.getSeconds()).padStart(2, "0");
 
   // 替换格式化字符串中的占位符
   return format

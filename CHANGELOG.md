@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.6...v1.5.0) (2025-09-23)
+
+### Features
+
+- **article:** 🚀 新增文章页 Banner 相关插槽 ([f301b9f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/f301b9f1e4f3de290c54c204a3a57bed8714fac0))
+- **article:** 🚀 新增文章页顶部 Banner 功能 ([f05b14e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/f05b14e3fa4086d437ba045fbc654bbe5428772e))
+- **components:** 🚀 twikoo 支持实例注入 ([164b704](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/164b704ac86684453ad748f959ccf278c0b39e62))
+- **config:** 🚀 优化首页卡片栏显示逻辑和优化 Frontmatter 自动生成规则 ([fd255ea](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/fd255eaf0d7ce59b209b2ccae7b6bc7b29d55788))
+- **copy:** 🚀新增复制文本横幅提示 ([3bcfafd](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3bcfafd8830721ac93c0dbb796b50fa059c6e58c))
+- **copy:** 新增复制文本横幅提示 ([e51d15a](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/e51d15a5a9509d9a77bab2393335a644d3352359))
+- **demo:** 🚀 Demo 日容器支持非 Vue 组件的源码复制 ([c05cf62](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c05cf629aba1c10b36d671d062cb17ec16f87c51))
+- **docAnalysis:** 🚀 支持 appendInfo 函数式配置及网站访问量自定义事件 ([cdc2213](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/cdc2213974ed32789fb9833d672a3333ce1080d5))
+- **theme:** 🚀 新增复制提示功能并优化样式引用路径 ([2b95542](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2b95542355356ea083ef39bfd336183b979b7ca2))
+- **theme:** 🚀 优化 RouteLoading 组件 ([13a9013](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/13a901301fa954b20cb8c6aa4bcad38f6599bec5))
+- **theme:** 🚀 支持 body 背景图和 banner 图片的动态获取和更新文档 ([56889a8](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/56889a804a109f48781fda428217560dab412df6))
+- **viewTransition:** 🚀 新增深色、浅色模式切换过渡动画配置 ([0a681c7](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0a681c731f596a03ca84a1fafe3172f71e25decd))
+
+### Bug Fixes
+
+- **banner:** 🐞 修复禁用首页大图后导航栏白屏问题 ([98fccbe](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/98fccbe9da825a7591a62ae7db84f09cd39a7fb8))
+- **catalogue:** 🐞 修复目录页 Item 的 url 没有 / 开头问题 ([5cb54d4](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/5cb54d464a0909c5814c1dd25e8024152530b3c6))
+- **markdown:** 🐞 修复 TODO 插件中代码块文本出现多次问题 ([c246a76](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c246a768617f33be9c529ea880ac9f06f07ab9c5))
+- **theme:** 🐞 修复 My 的状态 icon 文本渲染 img 问题 ([62db8a3](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/62db8a30331bda1cb59c6b287574811335db8ad9))
+- **vitepress-plugins:** 🐞 修复 auto-frontmatter 日期生成和 catalogue url 路径问题 ([d74480e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/d74480e1202318e87824dd60b70da93e76499efc))
+
+### Docs
+
+- 📚 更新网站配置和元数据 ([bed59e8](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/bed59e856b098b7ae85518854cfdc702733ee5ea))
+
+### Styling
+
+- **article:** 🎨 修改 ArticleBanner 标签元素悬停样式 ([78087ee](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/78087eebc6eb3760fd2359522658d1cdc0a20e76))
+- **config:** 🎨 调整 permalink 功能默认值并优化相关逻辑 ([5e9fd2e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/5e9fd2ee30e7528bbb020e01dd5c8636f2da569f))
+
+### Code Refactoring
+
+- **articleBanner:** ♻️ 调整文章页 Banner 相关配置 ([b06bb76](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/b06bb76b009776e6461a3b7b66edd77d5dc84d28))
+- **auto-frontmatter:** ♻️ 优化自动 frontmatter 生成功能 ([b8388a4](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/b8388a4a7bde4c52a35e835e8dd842fcbaea4bec))
+- **theme:** ♻️ 优化文章列表封面图加载逻辑 ([95ba70a](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/95ba70a6ced8fa204bcd3b594cab038e05573f13))
+
+### Build System
+
+- **teek:** 📦️ v1.5.0 版本发布 ([92bad89](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/92bad89c563b224f8e3609add2c76780aff72440))
+
 ### [1.4.6](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.5...v1.4.6) (2025-08-30)
 
 ### Features

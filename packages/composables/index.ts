@@ -2,6 +2,7 @@ export * from "./onClickOutside";
 export * from "./useAnchorScroll";
 export * from "./useUvPv";
 export * from "./useClipboard";
+export * from "./useCopyBanner";
 export * from "./useDebounce";
 export * from "./useElementHover";
 export * from "./useEventListener";
