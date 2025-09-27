@@ -44,27 +44,29 @@ const isPaging = ref(false);
       </TkHomeBanner>
     </div>
 
-    <div :class="[ns.e('content'), ns.join('wallpaper-outside'), 'flx-start-justify-center']">
-      <div :class="ns.e('content__post')" :aria-label="t('tk.home.postLabel')">
-        <slot name="teek-home-post-before" />
-        <TkHomePostList v-model="isPaging" ref="homePostListInstance">
-          <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
-            <slot :name="name" v-bind="scope" />
-          </template>
-        </TkHomePostList>
-        <slot name="teek-home-post-after" />
-      </div>
+    <div :class="ns.e('container')">
+      <div :class="[ns.e('content'), ns.join('wallpaper-outside'), 'flx-start-justify-center']">
+        <div :class="ns.e('content__post')" :aria-label="t('tk.home.postLabel')">
+          <slot name="teek-home-post-before" />
+          <TkHomePostList v-model="isPaging" ref="homePostListInstance">
+            <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
+              <slot :name="name" v-bind="scope" />
+            </template>
+          </TkHomePostList>
+          <slot name="teek-home-post-after" />
+        </div>
 
-      <div
-        v-if="teekConfig.homeCardListPosition"
-        :class="[ns.e('content__info'), teekConfig.homeCardListPosition === 'left' ? ns.is('left') : ns.is('right')]"
-        :aria-label="t('tk.home.cardLabel')"
-      >
-        <TkHomeCardList>
-          <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
-            <slot :name="name" v-bind="scope" />
-          </template>
-        </TkHomeCardList>
+        <div
+          v-if="teekConfig.homeCardListPosition"
+          :class="[ns.e('content__info'), teekConfig.homeCardListPosition === 'left' ? ns.is('left') : ns.is('right')]"
+          :aria-label="t('tk.home.cardLabel')"
+        >
+          <TkHomeCardList>
+            <template v-for="(_, name) in $slots" :key="name" #[name]="scope">
+              <slot :name="name" v-bind="scope" />
+            </template>
+          </TkHomeCardList>
+        </div>
       </div>
     </div>
 
