@@ -16,7 +16,7 @@ export const formatDate = (date: Date | string | number, format = "yyyy-MM-dd hh
   const dateObj = new Date(date);
 
   // 提取日期和时间的各个部分
-  const year = utc ? dateObj.getUTCFullYear : dateObj.getFullYear();
+  const year = utc ? dateObj.getUTCFullYear() : dateObj.getFullYear();
   const month = String((utc ? dateObj.getUTCMonth() : dateObj.getMonth()) + 1).padStart(2, "0"); // 月份从 0 开始，需要 +1
   const day = String(utc ? dateObj.getUTCDate() : dateObj.getDate()).padStart(2, "0");
   const hours = String(utc ? dateObj.getUTCHours() : dateObj.getHours()).padStart(2, "0");
