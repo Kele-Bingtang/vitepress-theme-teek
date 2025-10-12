@@ -65,7 +65,7 @@ const registerLoosePlugins = (vitePlugins: Plugins, ignoreDir: Record<string, an
       coverImg = false,
       forceCoverImg = false,
       coverImgList = [],
-      permalinkType = sidebarOption.resolveRule === "filePath" ? "simple" : "rules",
+      permalinkType = sidebarOption.resolveRule === "rewrites" ? "rules" : "simple",
       permalinkPrefix = "pages",
       permalinkRules = [],
     } = autoFrontmatterOption;
