@@ -56,6 +56,10 @@
       "types": "./es/config/index.d.ts",
       "import": "./es/config/index.mjs"
     },
+    "./icons": {
+      "types": "./es/icons.d.ts",
+      "import": "./es/icons.mjs"
+    },
     "./vp-plus/*.scss": "./theme-chalk/src/vp-plus/*.scss",
     "./tk-plus/*.scss": "./theme-chalk/src/tk-plus/*.scss",
     "./*": "./*"
