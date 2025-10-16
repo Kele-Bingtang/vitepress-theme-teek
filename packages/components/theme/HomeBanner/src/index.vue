@@ -4,7 +4,7 @@ import { useData } from "vitepress";
 import { computed, onMounted, onUnmounted, ref, nextTick, watch } from "vue";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
 import { useNamespace, useLocale, useEventListener } from "@teek/composables";
-import { upperFirst } from "@teek/helper";
+import { isClient, upperFirst } from "@teek/helper";
 import HomeBannerBgPure from "./HomeBannerBgPure.vue";
 import HomeBannerBgImage from "./HomeBannerBgImage.vue";
 import HomeBannerContent from "./HomeBannerContent.vue";
@@ -71,6 +71,15 @@ const getStyle = () => {
   return { [titleTextVar]: titleFontSize, [descTextVar]: descFontSize, [textColorVar]: textColor };
 };
 
+const getAfterContainerStyle = () => {
+  let style = "";
+  if (currentBgStyle.value.isBannerPartImgBgStyle) {
+    const height = ns.cssVarName("home-banner-part-min-height");
+    style = `margin-top: var(${height})`;
+  }
+  return style;
+};
+
 const bannerRef = ref<HTMLElement | null>(null);
 
 /**
@@ -103,6 +112,22 @@ const toggleClass = async () => {
 watch(
   () => disabled,
   () => toggleFullImgNavBarClass(!disabled)
+);
+
+watch(
+  currentBgStyle,
+  style => {
+    // 仅在客户端执行document操作
+    if (!isClient) return;
+    // 监听主题变化调整首页背景色
+    if (style.isBodyImgBgStyle) {
+      document.body.style.setProperty("--tk-home-bg-color", "transparent");
+    } else {
+      // 更清晰的方式：直接移除内联设置
+      document.body.style.removeProperty("--tk-home-bg-color");
+    }
+  },
+  { immediate: true }
 );
 
 onMounted(() => {
@@ -181,5 +206,7 @@ const styleComponent = computed(() => {
     />
   </div>
 
-  <slot name="teek-home-banner-after" />
+  <div :class="ns.e('after-container')" :style="getAfterContainerStyle()">
+    <slot name="teek-home-banner-after" />
+  </div>
 </template>
