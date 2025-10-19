@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.0...v1.5.1) (2025-10-19)
+
+### Features
+
+- **teek:** 🚀 添加图标模块导出配置 ([07617b7](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/07617b777d942a565922e565ad993ea20360907d))
+
+### Bug Fixes
+
+- **comment:** 🐞 修复评论区实例注入后右下角前往评论区按钮不出现问题 ([3c92603](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3c92603b1318bcde73695f5d248ededbadc10ccb))
+- **config:** 🐞修复 permalink 默认不自动生成问题 ([2b8f223](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2b8f223b7ed6240efbd0f443568daa0551d8263e))
+- **helper:** 🐞 修复日期格式化函数中年份获取方法调用错误 ([9a96056](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/9a9605615052ac2403ad1a45a7cdf17f4a2850fe))
+- **LoginPage:** 🐞 修复页面认证反复跳转逻辑 ([480082c](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/480082c2dde0bb26ba280f71a41db95869c4adc0))
+- **vitepress-plugins:** 🐞 修复日期生成多出 8 小时问题 ([b163c48](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/b163c48c198120089aaec5cb0ff4dd31060d0f2c))
+
+### Docs
+
+- **config:** 📚 更新配置文档中的颜色字段名称 ([3c68105](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3c68105e276c431fb42c79b8ece929dba0f877b1))
+
+### Others
+
+- **version:** 🔨 bump version to 1.5.1 ([af57ea2](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/af57ea2e53c26b27785987698e26d8b4e1a9391e))
+
 ## [1.5.0](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.6...v1.5.0) (2025-09-23)
 
 ### Features
