@@ -5,7 +5,6 @@ packages:
   - build
 
 catalog:
-  vue: ^3.5.13
   vite: ^6.0.7
   vitepress: ^1.6.3
   sass: ^1.83.1
@@ -28,8 +27,9 @@ catalog:
 
 catalogs:
   vue:
-    '@vue/compiler-core': ^3.5.13
-    '@vue/compiler-dom': ^3.5.13
-    '@vue/reactivity': ^3.5.13
-    '@vue/runtime-core': ^3.5.13
-    '@vue/runtime-dom': ^3.5.13
+    vue: ^3.5.22
+    '@vue/compiler-core': ^3.5.22
+    '@vue/compiler-dom': ^3.5.22
+    '@vue/reactivity': ^3.5.22
+    '@vue/runtime-core': ^3.5.22
+    '@vue/runtime-dom': ^3.5.22

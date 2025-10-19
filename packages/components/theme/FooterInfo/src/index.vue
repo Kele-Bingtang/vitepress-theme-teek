@@ -92,7 +92,12 @@ const footerData = computed(() => {
     </div>
 
     <template v-if="footerInfo">
-      <p v-for="(message, index) in [footerInfo.topMessage || []].flat()" :key="index" v-html="message" />
+      <p
+        v-for="(message, index) in [footerInfo.topMessage || []].flat()"
+        :key="index"
+        v-html="message"
+        class="flx-wrap-justify-center"
+      />
 
       <div :class="`${ns.e('list')} flx-wrap-justify-center`" role="list" :aria-label="t('tk.footerInfo.infoLabel')">
         <div
@@ -121,7 +126,12 @@ const footerData = computed(() => {
         <span v-if="footerInfo.customHtml" v-html="footerInfo.customHtml" />
       </div>
 
-      <p v-for="(message, index) in [footerInfo.bottomMessage || []].flat()" :key="index" v-html="message" />
+      <p
+        v-for="(message, index) in [footerInfo.bottomMessage || []].flat()"
+        :key="index"
+        v-html="message"
+        class="flx-wrap-justify-center"
+      />
     </template>
   </div>
 </template>

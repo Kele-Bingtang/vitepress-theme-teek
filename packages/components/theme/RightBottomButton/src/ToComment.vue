@@ -14,7 +14,7 @@ defineOptions({ name: "ToComment" });
 const { t } = useLocale();
 const { getTeekConfigRef } = useTeekConfig();
 
-const toCommentConfig = getTeekConfigRef<ToComment>("toComment");
+const toCommentConfig = getTeekConfigRef<ToComment>("toComment", {});
 
 // 前往评论区
 const scrollTop = ref(0);
