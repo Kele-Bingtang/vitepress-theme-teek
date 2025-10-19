@@ -1,10 +1,14 @@
 <script setup lang="ts" name="RightBottomButton">
 import type { BackTop, TeekConfig, ThemeEnhance, ToComment } from "@teek/config";
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import { useData } from "vitepress";
 import { isBoolean } from "@teek/helper";
 import { useTeekConfig } from "@teek/components/theme/ConfigProvider";
 import { mobileMaxWidthMedia } from "@teek/components/theme/ThemeEnhance";
+import { artalkContext } from "@teek/components/theme/CommentArtalk";
+import { giscusContext } from "@teek/components/theme/CommentGiscus";
+import { twikooContext } from "@teek/components/theme/CommentTwikoo";
+import { walineContext } from "@teek/components/theme/CommentWaline";
 import { useMediaQuery } from "@teek/composables";
 import { ns } from "./namespace";
 import BackTopComponent from "./BackTop.vue";
@@ -23,6 +27,15 @@ const { frontmatter } = useData();
 const commentConfig = computed(() => {
   const comment = frontmatter.value.comment ?? teekConfig.value.comment;
   if (isBoolean(comment)) return { enabled: comment };
+
+  const getArtalkInstance = inject(artalkContext, null);
+  const getGiscusInstance = inject(giscusContext, null);
+  const getTwikooInstance = inject(twikooContext, null);
+  const getWalineInstance = inject(walineContext, null);
+
+  if (getArtalkInstance || getGiscusInstance || getTwikooInstance || getWalineInstance) {
+    return { enabled: true };
+  }
 
   return { enabled: true, provider: comment.provider };
 });
@@ -49,7 +62,7 @@ const disabledThemeColor = computed(() => {
       </template>
     </BackTopComponent>
 
-    <ToCommentComponent v-if="toCommentConfig.enabled && commentConfig.enabled && commentConfig.provider">
+    <ToCommentComponent v-if="toCommentConfig.enabled && (commentConfig.enabled || commentConfig.provider)">
       <template #default="scope">
         <slot name="teek-to-comment" v-bind="scope" />
       </template>

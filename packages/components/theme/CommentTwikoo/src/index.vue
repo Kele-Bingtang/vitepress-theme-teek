@@ -19,7 +19,7 @@ const {
   jsLink = "https://cdn.jsdelivr.net/npm/twikoo@{version}/dist/twikoo.nocss.js",
   jsIntegrity,
   cssLink = "https://cdn.jsdelivr.net/npm/twikoo@{version}/dist/twikoo.css",
-  version = "1.6.42",
+  version = "1.6.44",
   katex,
   timeout = 700,
   ...options
