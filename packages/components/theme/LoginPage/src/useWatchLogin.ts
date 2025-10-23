@@ -135,7 +135,10 @@ export const useWatchLogin = () => {
 
         // 全局页面级别认证
         const goPages = goLogin.replace("{verifyMode}", verifyModeMap.pages);
-        if (!isLogin(pagesLoginKey, privateConfig.value.pages || [], "pages")) router.go(goPages);
+        const pages = privateConfig.value.pages || [];
+        if (!(isLogin(pagesLoginKey, pages, "pages") || isLogin(`${pagesLoginKey}.html`, pages, "pages"))) {
+          router.go(goPages);
+        }
       },
       { immediate: true }
     );
