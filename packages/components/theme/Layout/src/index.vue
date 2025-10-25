@@ -85,8 +85,14 @@ const teekConfig = getTeekConfigRef<Required<TeekConfig>>(null, {
 const loading = ref(teekConfig.value.loading);
 
 const commentConfig = computed(() => {
-  const comment = frontmatter.value.comment ?? teekConfig.value.comment;
-  if (isBoolean(comment)) return { enabled: comment };
+  const frontmatterComment = frontmatter.value.comment;
+  const configComment = teekConfig.value.comment;
+  let commentConfig = frontmatterComment ?? configComment;
+
+  if (isBoolean(frontmatterComment)) {
+    if (frontmatterComment === false) return { enabled: false };
+    else commentConfig = configComment;
+  }
 
   return {
     enabled: true,
@@ -96,8 +102,8 @@ const commentConfig = computed(() => {
       giscus: TkCommentGiscus,
       artalk: TkCommentArtalk,
     },
-    provider: comment.provider,
-    options: comment.options,
+    provider: commentConfig.provider,
+    options: commentConfig.options,
   };
 });
 
