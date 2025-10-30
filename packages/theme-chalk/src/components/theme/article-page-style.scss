@@ -60,6 +60,9 @@ html[layout-mode="original"] {
         }
         .container > .content {
           background-color: getCssVar("bg-color");
+          @media (max-width: 1280px) {
+            padding: 32px 24px 96px;
+          }
         }
         /* 右侧目录栏 */
         .aside {
@@ -182,7 +185,7 @@ html[layout-mode="original"] {
     @media (min-width: 1280px) {
       .VPContent:not(.is-home) {
         .VPDoc {
-          margin: 20px 0;
+          margin: 20px;
           .container > .content .content-container {
             max-width: 100%;
           }
