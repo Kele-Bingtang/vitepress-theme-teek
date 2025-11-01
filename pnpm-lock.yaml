@@ -294,7 +294,7 @@ importers:
     dependencies:
       '@iconify/vue':
         specifier: 'catalog:'
-        version: 4.3.0(vue@3.5.22(typescript@5.9.3))
+        version: 4.3.0(vue@3.5.13(typescript@5.9.3))
     devDependencies:
       vitepress:
         specifier: 'catalog:'
@@ -6572,10 +6572,10 @@ snapshots:
 
   '@iconify/types@2.0.0': {}
 
-  '@iconify/vue@4.3.0(vue@3.5.22(typescript@5.9.3))':
+  '@iconify/vue@4.3.0(vue@3.5.13(typescript@5.9.3))':
     dependencies:
       '@iconify/types': 2.0.0
-      vue: 3.5.22(typescript@5.9.3)
+      vue: 3.5.13(typescript@5.9.3)
 
   '@inquirer/external-editor@1.0.2(@types/node@24.8.1)':
     dependencies:

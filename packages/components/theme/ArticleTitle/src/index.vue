@@ -23,7 +23,13 @@ const { t } = useLocale();
     />
 
     <slot>
-      <component v-if="post.title" :is="createDynamicComponent(post.title)" />
+      <template v-if="post.title">
+        <component
+          v-if="!post.title.includes('`<') && !post.title.includes('>`')"
+          :is="createDynamicComponent(post.title)"
+        />
+        <span v-else>{{ post.title }}</span>
+      </template>
     </slot>
 
     <TkTitleTag
