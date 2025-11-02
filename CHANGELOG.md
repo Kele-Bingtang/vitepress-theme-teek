@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.1...v1.5.2) (2025-11-02)
+
+### Bug Fixes
+
+- **ArticleTitle:** 修复一级标题含 `<xxx>` 时页面渲染问题 ([26cc160](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/26cc16024324d92662eb8fb9c98c7715142a31bd))
+- **breadcrumb:** 🐞 修复面包屑跳转目录页链接不对问题 ([2d9e313](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2d9e31385491533170c985eff65b838252c3e30d))
+- **comment:** 🐞 修复 frontmatter.comment 为 true 时评论区不加载问题 ([aa07770](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/aa07770cafb7ca9ead56a0e7446ea0fb0c9f79ab))
+- **style:** 🐞 修复 pageStyle 配置后移动端 padding 问题和 footer 去除间距样式 ([20af41a](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/20af41a1d2b1f6d4a1a92b91e79c8bf8137297ec))
+- **styles:** 🐞 修复 pageStyle 配置在移动端没有 padding 问题和 footer 去除间距样式 ([3dd138f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3dd138f853e713f4e3ad08637a2f2a0ac4c69484))
+
+### Docs
+
+- **config:** 📚 更新 Teek 配置文档说明 ([bcc5c11](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/bcc5c11c1d775eb05ba9068990cbf3e05208b9db))
+
+### Others
+
+- **deps:** 🔨 更新依赖版本并修复类型错误 ([231ba35](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/231ba35ac38b3eb0e8c7ad6ec3031655d2d1fbbd))
+
 ## [1.5.1](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.0...v1.5.1) (2025-10-19)
 
 ### Features

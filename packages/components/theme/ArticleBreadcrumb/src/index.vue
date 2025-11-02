@@ -65,7 +65,7 @@ const breadcrumbList = computed(() => {
       <TkBreadcrumbItem v-for="(item, index) in breadcrumbList" :key="index">
         <component
           :is="item.url ? 'a' : 'span'"
-          :href="item.url && withBase(`/${item.url}`)"
+          :href="item.url && withBase(`${item.url}`)"
           :title="item.fileName"
           :class="[item.url ? 'hover-color' : '']"
           :aria-label="item.fileName"
