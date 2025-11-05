@@ -46,8 +46,10 @@ class ImageViewer {
 
   // 设置图片点击监听
   private setupImageListeners() {
-    // 为所有图片添加点击事件，但标记图片来源以区分处理
-    const allImages = document.querySelectorAll("img:not(.tk-image-viewer__canvas img)");
+    // 为所有图片添加点击事件，但标记图片来源以区分处理，排除文章卡片封面图片和文章列表右侧图片
+    const allImages = document.querySelectorAll(
+      "img:not(.tk-image-viewer__canvas img):not(.tk-post-item-card__cover-img img):not(.tk-post-item__right.flx-align-center img)"
+    );
     allImages.forEach(img => {
       const htmlImg = img as HTMLImageElement;
       // 确保只添加一次点击事件
@@ -102,13 +104,17 @@ class ImageViewer {
     if (isVpDocImage) {
       const vpDocElement = document.querySelector(".vp-doc");
       if (vpDocElement) {
-        const images = vpDocElement.querySelectorAll("img:not(.tk-image-viewer__canvas img)");
+        const images = vpDocElement.querySelectorAll(
+          "img:not(.tk-image-viewer__canvas img):not(.tk-post-item-card__cover-img img):not(.tk-post-item__right.flx-align-center img)"
+        );
         images.forEach(img => {
           this.imgList.push((img as HTMLImageElement).src);
         });
       }
     } else {
-      const nonVpDocImages = document.querySelectorAll("img:not(.tk-image-viewer__canvas img):not(.vp-doc img)");
+      const nonVpDocImages = document.querySelectorAll(
+        "img:not(.tk-image-viewer__canvas img):not(.vp-doc img):not(.tk-post-item-card__cover-img img):not(.tk-post-item__right.flx-align-center img)"
+      );
       nonVpDocImages.forEach(img => {
         this.imgList.push((img as HTMLImageElement).src);
       });
