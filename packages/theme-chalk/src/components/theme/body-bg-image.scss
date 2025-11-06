@@ -68,7 +68,7 @@
     .VPContent.is-home {
       .vp-doc {
         > div {
-          padding: 0 32px 1px;
+          padding: 0 32px;
           width: calc((getCssVar(home-max-width)) - getCssVar("home-card-width"));
           background-color: getCssVar("bg-color");
           border-radius: 4px;
