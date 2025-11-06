@@ -59,7 +59,7 @@ const handleToggleSourceVisible = (bol?: boolean) => {
  * 去 Playground 编辑
  */
 const handleEditPlayground = () => {
-  const encoded = getPlaygroundEncoded(props.source);
+  const encoded = getPlaygroundEncoded(props.rawSource);
   const darkParam = isDark.value ? "?theme=dark" : "";
   const link = playgroundUrl.includes("?")
     ? `${playgroundUrl}${darkParam.replace("?", "&")}`
