@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.2](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.1...v1.5.2) (2025-11-02)
+
+### Bug Fixes
+
+- **ArticleTitle:** 修复一级标题含 `<xxx>` 时页面渲染问题 ([26cc160](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/26cc16024324d92662eb8fb9c98c7715142a31bd))
+- **breadcrumb:** 🐞 修复面包屑跳转目录页链接不对问题 ([2d9e313](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2d9e31385491533170c985eff65b838252c3e30d))
+- **comment:** 🐞 修复 frontmatter.comment 为 true 时评论区不加载问题 ([aa07770](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/aa07770cafb7ca9ead56a0e7446ea0fb0c9f79ab))
+- **style:** 🐞 修复 pageStyle 配置后移动端 padding 问题和 footer 去除间距样式 ([20af41a](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/20af41a1d2b1f6d4a1a92b91e79c8bf8137297ec))
+- **styles:** 🐞 修复 pageStyle 配置在移动端没有 padding 问题和 footer 去除间距样式 ([3dd138f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3dd138f853e713f4e3ad08637a2f2a0ac4c69484))
+
+### Docs
+
+- **config:** 📚 更新 Teek 配置文档说明 ([bcc5c11](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/bcc5c11c1d775eb05ba9068990cbf3e05208b9db))
+
+### Others
+
+- **deps:** 🔨 更新依赖版本并修复类型错误 ([231ba35](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/231ba35ac38b3eb0e8c7ad6ec3031655d2d1fbbd))
+
+## [1.5.1](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.0...v1.5.1) (2025-10-19)
+
+### Features
+
+- **teek:** 🚀 添加图标模块导出配置 ([07617b7](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/07617b777d942a565922e565ad993ea20360907d))
+
+### Bug Fixes
+
+- **comment:** 🐞 修复评论区实例注入后右下角前往评论区按钮不出现问题 ([3c92603](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3c92603b1318bcde73695f5d248ededbadc10ccb))
+- **config:** 🐞修复 permalink 默认不自动生成问题 ([2b8f223](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2b8f223b7ed6240efbd0f443568daa0551d8263e))
+- **helper:** 🐞 修复日期格式化函数中年份获取方法调用错误 ([9a96056](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/9a9605615052ac2403ad1a45a7cdf17f4a2850fe))
+- **LoginPage:** 🐞 修复页面认证反复跳转逻辑 ([480082c](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/480082c2dde0bb26ba280f71a41db95869c4adc0))
+- **vitepress-plugins:** 🐞 修复日期生成多出 8 小时问题 ([b163c48](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/b163c48c198120089aaec5cb0ff4dd31060d0f2c))
+
+### Docs
+
+- **config:** 📚 更新配置文档中的颜色字段名称 ([3c68105](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3c68105e276c431fb42c79b8ece929dba0f877b1))
+
+### Others
+
+- **version:** 🔨 bump version to 1.5.1 ([af57ea2](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/af57ea2e53c26b27785987698e26d8b4e1a9391e))
+
 ## [1.5.0](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.4.6...v1.5.0) (2025-09-23)
 
 ### Features

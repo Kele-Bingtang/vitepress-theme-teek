@@ -20,6 +20,28 @@ const teekBlogCommonConfig: TeekConfig = {
   },
   footerInfo: {
     customHtml: `<span id="runtime"></span>`, // 需要搭配 .vitepress/theme/helper/useRuntime.ts 使用
+    topMessage: [
+      `<span><img alt="VitePress" src="https://liuyuyang.net/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fanimals.65eaf6e3.webp&w=750&q=75"><span/>`,
+
+      `<a title="Github release" target="_blank" href="https://github.com/Kele-Bingtang/vitepress-theme-teek/releases" style="margin-right: 10px;">
+        <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Kele-Bingtang/vitepress-theme-teek?logo=github">
+      </a>
+
+      <a title="Npm Version" target="_blank" href="https://www.npmjs.com/package/vitepress-theme-teek" style="margin-right: 10px;">
+        <img src="https://img.shields.io/npm/v/vitepress-theme-teek?logo=npm&color=%09%23bf00ff" alt="https://img.shields.io/npm/v/vitepress-theme-teek?color=%09%23bf00ff">
+      </a>
+
+      <img src="https://img.shields.io/badge/v18.x-x?logo=node.js&label=node" alt="node version" style="margin-right: 10px;">
+      <img src="https://img.shields.io/github/languages/code-size/Kele-Bingtang/vitepress-theme-teek?logo=Visual Studio Code&logoColor=blue" alt="GitHub code size in bytes" style="margin-right: 10px;">
+
+      <a title="GitHub Discussions" target="_blank" href="https://github.com/Kele-Bingtang/vitepress-theme-teek/discussions" style="margin-right: 10px;">
+        <img src="https://img.shields.io/github/discussions/Kele-Bingtang/vitepress-theme-teek?color=9cf&logo=github" alt="GitHub Discussions">
+      </a>
+
+      <a title="MIT License" target="_blank" href="https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/LICENSE" style="margin-right: 10px;">
+        <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License">
+      </a>`,
+    ],
   },
   docAnalysis: {
     createTime: "2025-03-23",
@@ -82,12 +104,12 @@ const teekBlogCommonConfig: TeekConfig = {
   },
   social: [
     {
-      icon: "mdi:github",
+      icon: "icon-github",
       name: "GitHub",
       link: "https://github.com/kele-bingtang",
     },
     {
-      icon: "simple-icons:gitee",
+      icon: "icon-gitee",
       name: "Gitee",
       link: "https://gitee.com/kele-bingtang",
     },

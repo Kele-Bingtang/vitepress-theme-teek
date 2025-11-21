@@ -13,7 +13,6 @@
 
   @include e(icons) {
     gap: getCssVar("footer-gap");
-    margin-bottom: 10px;
   }
 
   p {

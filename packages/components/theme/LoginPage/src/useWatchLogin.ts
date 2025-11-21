@@ -115,7 +115,8 @@ export const useWatchLogin = () => {
         // 单页面级别认证，如果登录信息失败，则继续往下校验 realm，如果还是失败，则跳转登录页面
         if (page.length) {
           const path = "/" + newVal.data.filePath.replace(".md", "");
-          if (isLogin(pageLoginKey + path, page, "page")) return;
+          const key = pageLoginKey + path;
+          if (isLogin(key, page, "page") || isLogin(`${key}.html`, page, "page")) return;
         }
 
         // 领域页面级别认证
@@ -134,7 +135,10 @@ export const useWatchLogin = () => {
 
         // 全局页面级别认证
         const goPages = goLogin.replace("{verifyMode}", verifyModeMap.pages);
-        if (!isLogin(pagesLoginKey, privateConfig.value.pages || [], "pages")) router.go(goPages);
+        const pages = privateConfig.value.pages || [];
+        if (!(isLogin(pagesLoginKey, pages, "pages") || isLogin(`${pagesLoginKey}.html`, pages, "pages"))) {
+          router.go(goPages);
+        }
       },
       { immediate: true }
     );

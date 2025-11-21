@@ -36,6 +36,9 @@
       i {
         color: var(--icon-color-hover, inherit);
       }
+      @at-root i#{&} {
+        color: var(--icon-color-hover, inherit);
+      }
     }
   }
 }

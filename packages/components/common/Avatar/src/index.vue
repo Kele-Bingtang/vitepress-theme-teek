@@ -59,8 +59,12 @@ const handleError = (e: Event) => {
   emit("error", e);
 };
 
-const captureText = (text: string) => {
-  const isChinese = /^[\u4e00-\u9fa5]+$/.test(text);
+/**
+ * 截取字符串首字符（中文）或者截取两个单词首字母（英文）
+ */
+const captureText = (text: string | undefined) => {
+  if (!text) return "";
+  const isChinese = /^[\u4e00-\u9fa5]+$/.test(text.charAt(0));
 
   // 如果是中文，截取第一个字符
   if (isChinese) return text.charAt(0);
@@ -72,8 +76,8 @@ const captureText = (text: string) => {
       .map(word => word.charAt(0).toUpperCase())
       .join("");
   }
-  // 如果只有一个单词，截取前两个字母转大写
-  if (words.length === 1) return text.slice(0, 2).toUpperCase();
+  // 如果只有一个单词，只截取第一个字母转大写
+  if (words.length === 1) return words[0].charAt(0).toUpperCase();
 
   return "";
 };

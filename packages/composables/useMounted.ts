@@ -25,7 +25,7 @@ export const useMounted = (fn?: () => void, options: UseMountedOptions = {}) => 
       fn?.();
     }, instance);
   } else if (sync) fn?.();
-  else if (nexTick) nextTick(fn);
+  else if (nexTick) nextTick(() => fn?.());
 
   return isMounted;
 };
