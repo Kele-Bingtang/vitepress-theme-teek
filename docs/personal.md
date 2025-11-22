@@ -31,17 +31,34 @@ articleBanner: false
 
 ❤️ 感谢为这个项目贡献代码的朋友 → [Contributors](https://github.com/Kele-Bingtang/vitepress-theme-teek/graphs/contributors)
 
+## 赞助者名单
+
+感谢以下赞助者对项目的支持。
+
+Teek 会定期对赞助者名单更新，如果您已赞助但没有在名单中显示，请通过 Issue 或微信联系 Teek。（赞助金额至少达到 `￥9.9`）
+
+赞助时可以备注如下内容：
+
+- 展示昵称，如果不指定昵称则取赞助的支付宝名/微信名
+- 个人或公司网址，网址需为安全合法链接，否则不会添加或者下架网址；网址需要提供名称和链接，名单将会显示网址名称，点击网址名称跳转网址链接
+- 不添加到赞助者名单
+- 金额打码，比如 `50+`，`5*`
+
+| 赞助者     | 金额￥ | 日期       | 网址                               |
+| ---------- | ------ | ---------- | ---------------------------------- |
+| 上官羽     | 59     | 2025-11-11 | [w3c](https://w3c.cool/)           |
+| 。。。。。 | 10     | 2025-10-27 |                                    |
+| One        | 20     | 2025-09-10 | [One 博客](https://onedayxyy.cn)   |
+| champ      | 50     | 2025-08-31 |                                    |
+| 一云风一   | 50     | 2025-08-07 |                                    |
+| Alowree    | 100    | 2025-08-07 | [Alowree](https://marapython.com)  |
+| hubbub     | 10     | 2025-09-03 |                                    |
+| 二丫讲梵   | 20     | 2025-08-07 | [二丫讲梵博客](https://eryajf.net) |
+| 时光       | 10     | 2025-08-07 | [时光](https://notes.ksah.cn)      |
+
 <style scoped>
 .vp-doc table:focus-visible {
   outline: none;
-}
-
-.vp-doc th {
-  border: 1px solid var(--vp-c-divider);
-}
-
-.vp-doc td {
-  border: 1px solid var(--vp-c-divider);
 }
 
 img {
