@@ -22,6 +22,14 @@
 @include b(banner) {
   position: relative;
 
+  @include is(part-img) {
+    position: fixed;
+    top: var(--vp-nav-height);
+    left: 0;
+    width: 100%;
+    height: var(--tk-home-banner-part-min-height);
+  }
+
   @include is(full-img) {
     margin-top: calc(-1 * var(--vp-nav-height));
 
@@ -44,6 +52,13 @@
     &.no-feature {
       padding-bottom: 10vh;
     }
+  }
+
+  @include e(after-container) {
+    position: relative;
+    background-color: getCssVar(home-bg-color);
+    // overflow: hidden 会创建 “块级格式化上下文（BFC）”，子元素的 margin 不会穿透父元素边界，而是被父元素 “包裹”。
+    overflow: hidden;
   }
 }
 

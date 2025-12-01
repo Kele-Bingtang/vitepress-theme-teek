@@ -1,9 +1,31 @@
 @use "../../mixins/bem" as *;
 @use "../../mixins/function" as *;
 
+#VPContent .VPHome {
+  margin: 0;
+}
+
+#VPContent .VPHome .vp-doc {
+  position: relative;
+  max-width: 100vw;
+  overflow: hidden;
+  background-color: getCssVar(home-bg-color);
+}
+
+#VPContent .VPHome .vp-doc div {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
 @include b(home) {
+  @include e(container) {
+    background-color: getCssVar(home-bg-color);
+    padding: 5vh 0;
+    position: relative;
+  }
+
   @include e(content) {
-    margin: 48px auto 0;
+    margin: 0 auto;
     max-width: getCssVar("home-max-width");
     gap: getCssVar("home-gap");
 
