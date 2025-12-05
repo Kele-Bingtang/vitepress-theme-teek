@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.3...v1.5.4) (2025-12-05)
+
+### Bug Fixes
+
+- 🐞修复从文章面包屑导航第二级开始无法跳转到目录页问题 ([b7788f9](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/b7788f9deca63a7e214748d8cd109879a5a75303))
+
+### Others
+
+- **release:** 🔨 发布版本1.5.4 ([264c8d0](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/264c8d047c9bc0e7438574924806ce0031b4b10e))
+
+### [1.5.3](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.2...v1.5.3) (2025-12-05)
+
+### Features
+
+- **docs:** 🚀 新增日历卡片组件和 UTC 时间配置选项 ([41ba87c](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/41ba87c4f6e494fead515672fbeb28c93d0869c8))
+
+### Docs
+
+- **changelog:** 📚 更新友链，新增常见问题 ([1534e0d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/1534e0d58cb7dc39c2ef906f6dadf285f2d9c23c))
+- **config:** 📚 更新配置文档、友链与常见问题 ([eccd284](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/eccd2849ec1aaae36278d83a3e1e79b771de1bd3))
+- **personal:** 📚 更新赞助者名单及项目版本至1.5.3 ([2924fe4](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2924fe4531c699964c5e22c125d7b13a490e2f9b))
+
 ## [1.5.2](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.1...v1.5.2) (2025-11-02)
 
 ### Bug Fixes

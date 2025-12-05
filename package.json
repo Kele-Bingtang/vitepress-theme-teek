@@ -1,5 +1,5 @@
 {
-  "version": "1.5.2",
+  "version": "1.5.4",
   "type": "module",
   "private": true,
   "packageManager": "pnpm@10.7.1",
