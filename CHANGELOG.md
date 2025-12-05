@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.4](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.3...v1.5.4) (2025-12-05)
+
+### Bug Fixes
+
+- 🐞修复从文章面包屑导航第二级开始无法跳转到目录页问题 ([b7788f9](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/b7788f9deca63a7e214748d8cd109879a5a75303))
+
+### Others
+
+- **release:** 🔨 发布版本1.5.4 ([264c8d0](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/264c8d047c9bc0e7438574924806ce0031b4b10e))
+
 ### [1.5.3](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.2...v1.5.3) (2025-12-05)
 
 ### Features
