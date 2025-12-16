@@ -74,7 +74,7 @@ export default defineConfig({
       // 使用永久链接生成 sitemap
       const permalinks = (globalThis as any).VITEPRESS_CONFIG.site.themeConfig.permalinks;
       items.forEach(item => {
-        const permalink = permalinks?.map[item.url];
+        const permalink = permalinks?.map[item.url.replace(".html", "")];
         if (permalink) permalinkItemBak.push({ url: permalink, lastmod: item.lastmod });
       });
       return [...items, ...permalinkItemBak];
