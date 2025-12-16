@@ -64,11 +64,22 @@ const handleError = (e: Event) => {
  */
 const captureText = (text: string | undefined) => {
   if (!text) return "";
-  const isChinese = /^[\u4e00-\u9fa5]+$/.test(text.charAt(0));
 
-  // 如果是中文，截取第一个字符
-  if (isChinese) return text.charAt(0);
-  // 如果是英文，截取前两个单词的首字母转大写
+  // 使用 Array.from 或 [...text] 来正确分割字符串
+  const chars = [...text];
+  const firstChar = chars[0];
+
+  // 检查是否为中文字符
+  const isChinese = /^[\u4e00-\u9fa5]$/.test(firstChar);
+
+  if (isChinese) return firstChar;
+
+  // 处理 emoji 和其他字符
+  if (chars.length >= 1) {
+    return firstChar; // 直接返回第一个完整字符（包括 emoji）
+  }
+
+  // 原有的英文处理逻辑...
   const words = text.split(/\s+/).filter(word => word.length > 0);
   if (words.length >= 2) {
     return words
@@ -76,7 +87,6 @@ const captureText = (text: string | undefined) => {
       .map(word => word.charAt(0).toUpperCase())
       .join("");
   }
-  // 如果只有一个单词，只截取第一个字母转大写
   if (words.length === 1) return words[0].charAt(0).toUpperCase();
 
   return "";
