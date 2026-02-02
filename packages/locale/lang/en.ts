@@ -55,6 +55,7 @@ export default {
     },
     articleUpdate: {
       label: "Recent Update",
+      moreLabel: "More Articles >",
     },
     catalogue: {
       label: "Catalogue Page",
