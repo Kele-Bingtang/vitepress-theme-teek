@@ -51,13 +51,13 @@ watch(pageMaxWidth, update);
 
 const format = (val: number) => `${Math.ceil(val / 100)}%`;
 
-const tips = [
+const tips = computed(() => [
   {
     title: t("tk.themeEnhance.pageLayoutMaxWidth.helpTipTitle"),
     icon: scaleIcon,
     content: t("tk.themeEnhance.pageLayoutMaxWidth.helpTipContent"),
   },
-];
+]);
 </script>
 
 <template>
