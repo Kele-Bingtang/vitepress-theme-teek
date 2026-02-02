@@ -1,7 +1,7 @@
 <script setup lang="ts" name="ThemeColor">
 import type { ThemeEnhance } from "@teek/config";
 import type { ThemeColorOption } from "./themeEnhance";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useData } from "vitepress";
 import { isClient } from "@teek/helper";
 import { useStorage, useMediaQuery, useLocale, useThemeColor, varNameList } from "@teek/composables";
@@ -95,10 +95,10 @@ watch(
 // 扩散到其他 var 变量（useThemeColor composables）
 watch(isSpread, updateSpread, { immediate: true, flush: "post" });
 
-const tips = [
+const tips = computed(() => [
   { title: t("tk.themeEnhance.themeColor.vpHelpTipTitle"), content: t("tk.themeEnhance.themeColor.vpHelpTipContent") },
   { title: t("tk.themeEnhance.themeColor.epHelpTipTitle"), content: t("tk.themeEnhance.themeColor.epHelpTipContent") },
-];
+]);
 
 const handleChangePrimaryColor = (option: ThemeColorOption) => {
   themeColorName.value = option.value;

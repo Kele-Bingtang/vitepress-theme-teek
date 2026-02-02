@@ -53,7 +53,7 @@ const segmentedOptions = computed(() => [
   },
 ]);
 
-const tips = [
+const tips = computed(() => [
   {
     title: `ON ${t("tk.themeEnhance.spotlight.onTipTitle")}`,
     content: t("tk.themeEnhance.spotlight.onHelpTipContent"),
@@ -62,7 +62,7 @@ const tips = [
     title: `OFF ${t("tk.themeEnhance.spotlight.offTipTitle")}`,
     content: t("tk.themeEnhance.spotlight.offHelpTipContent"),
   },
-];
+]);
 </script>
 
 <template>
