@@ -1,5 +1,7 @@
 import { isClient, isString } from "../is";
 
+export {};
+
 declare global {
   interface Window {
     _hmt: any[]; // 百度统计
