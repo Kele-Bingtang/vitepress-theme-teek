@@ -83,7 +83,27 @@
   }
 
   @include e(icons) {
+    flex-wrap: wrap;
+    gap: getCssVar("gap1");
     margin-bottom: 5px;
+
+    a {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(200, 200, 200, 0.2);
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba(200, 200, 200, 0.4);
+        transform: translateY(-3px) scale(1.1);
+      }
+    }
   }
 
   @include e(blogger) {
