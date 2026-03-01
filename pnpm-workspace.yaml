@@ -27,9 +27,9 @@ catalog:
 
 catalogs:
   vue:
-    vue: ^3.5.22
-    '@vue/compiler-core': ^3.5.22
-    '@vue/compiler-dom': ^3.5.22
-    '@vue/reactivity': ^3.5.22
-    '@vue/runtime-core': ^3.5.22
-    '@vue/runtime-dom': ^3.5.22
+    vue: ^3.5.29
+    '@vue/compiler-core': ^3.5.29
+    '@vue/compiler-dom': ^3.5.29
+    '@vue/reactivity': ^3.5.29
+    '@vue/runtime-core': ^3.5.29
+    '@vue/runtime-dom': ^3.5.29
