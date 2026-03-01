@@ -2,7 +2,7 @@
   "private": true,
   "name": "vitepress-theme-teek",
   "version": "1.0.0",
-  "description": "vitepress-theme-teek",
+  "description": "vitepress-theme-teek entrypoint",
   "type": "module",
   "author": {
     "name": "teeker",

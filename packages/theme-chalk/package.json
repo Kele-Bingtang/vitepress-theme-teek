@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@teek/theme-chalk",
+  "description": "Teek theme chalk style",
   "license": "MIT",
   "main": "index.css",
   "exports": {

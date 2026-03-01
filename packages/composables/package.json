@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@teek/composables",
+  "description": "all composables are settled here",
   "license": "MIT",
   "main": "index.ts",
   "devDependencies": {
