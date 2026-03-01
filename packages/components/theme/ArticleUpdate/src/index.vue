@@ -28,7 +28,7 @@ const updatePosts = computed(() => {
     ...posts.value.sortPostsByDate
       .filter(item => ![route.path, path, `${path}.html`].includes(item.url))
       .slice(0, articleConfig.value.limit),
-    { title: "更多文章 >", url: archivesPath.value, frontmatter: {}, date: "" } as TkContentData,
+    { title: t("tk.articleUpdate.moreLabel"), url: archivesPath.value, frontmatter: {}, date: "" } as TkContentData,
   ];
 });
 </script>

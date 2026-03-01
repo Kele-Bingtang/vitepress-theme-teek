@@ -55,6 +55,7 @@ export default {
     },
     articleUpdate: {
       label: "最近更新",
+      moreLabel: "更多文章 >",
     },
     catalogue: {
       label: "目录页",

@@ -80,9 +80,8 @@ const footerData = computed(() => {
           <TkIcon
             :iconType="item.iconType"
             :icon="item.icon"
-            size="20px"
-            color="var(--vp-c-text-2)"
-            hover
+            size="16px"
+            color="var(--vp-c-text-1)"
             :imgAlt="item.imgAlt"
             aria-hidden="true"
           />

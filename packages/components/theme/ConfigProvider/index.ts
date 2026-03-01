@@ -165,8 +165,8 @@ export const usePagePath = () => {
       if (layout === "TkArticleOverviewPage" || (isPageLayout && articleOverviewPage === true)) {
         articleOverviewUrl = url;
       }
-      if (layout === false && loginPage === true) loginUrl = url;
-      if (layout === false && riskLinkPage === true) riskLinkUrl = url;
+      if (layout === "TkLoginPage" || (layout === false && loginPage === true)) loginUrl = url;
+      if (layout === "TkRiskLinkPage" || (layout === false && riskLinkPage === true)) riskLinkUrl = url;
     });
 
     return { archivesUrl, articleOverviewUrl, loginUrl, riskLinkUrl };

@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@teek/static",
+  "description": "Static resource",
   "license": "MIT",
   "main": "index.ts"
 }

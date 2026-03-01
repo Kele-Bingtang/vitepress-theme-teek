@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@teek/locale",
+  "description": "i18n",
   "license": "MIT",
   "main": "index.ts"
 }
