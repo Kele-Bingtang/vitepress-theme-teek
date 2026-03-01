@@ -14,13 +14,15 @@
 - 修复 `frontmatter.comment` 为 `true` 时评论区不加载问题
 - 修复面包屑跳转目录页链接不对问题
 - 修复一级标题带有 `<xxx>` 时页面无法渲染问题
+- 修复登录页 `layout: TkLoginPage` 开启失效问题
+- 修复扩展主题色在切换深色与浅色模式时，部分容器的颜色不能自动刷新 #194
 
 ## AR
 
 - 修复浏览器报错：`Hydration completed but contains mismatches.`，官方解决方案：`https://cn.vuejs.org/guide/scaling-up/ssr#hydration-mismatch`
 - 集成 AI 添加文章摘要输出
 
-## 空模板
+## 空文档模板
 
 创建空的 Markdown 文档时，可以使用如下模板填充，提升友好度
 

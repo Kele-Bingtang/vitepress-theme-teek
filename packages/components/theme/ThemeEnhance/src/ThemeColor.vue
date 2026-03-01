@@ -18,7 +18,7 @@ defineOptions({ name: "ThemeColor" });
 const { getTeekConfigRef } = useTeekConfig();
 const themeEnhanceConfig = getTeekConfigRef<ThemeEnhance>("themeEnhance", {});
 const { t } = useLocale();
-const { frontmatter } = useData();
+const { frontmatter, isDark } = useData();
 const isMobile = useMediaQuery(mobileMaxWidthMedia);
 
 const themeColorName = useStorage<string>(
@@ -32,7 +32,11 @@ const oldThemeColor = ref(themeColorName.value);
 // 主题色
 const primaryColor = ref("");
 // 根据 primaryColor 计算其他 var 变量需要的颜色，并直接覆盖这些 var 变量的颜色
-const { clear, updateSpread } = useThemeColor(primaryColor, () => {
+const {
+  clear,
+  update: updateThemeColor,
+  updateSpread,
+} = useThemeColor(primaryColor, () => {
   // 内置的 VP、EP 主题色需要忽略部分 var 变量，因为这些 var 变量已经固定，无需自动计算新的值替换（具体看 packages/theme-chalk/var/theme-color.scss 文件）
   if (themeColorList.includes(themeColorName.value)) {
     return [varNameList.vpBrand1, varNameList.vpBrand2, varNameList.vpBrand3, varNameList.vpBrandSoft];
@@ -49,7 +53,7 @@ const update = (val: string) => {
 
   const el = document.documentElement;
 
-  if (el.getAttribute(themeColorAttribute) === val) return;
+  if (el.getAttribute(themeColorAttribute) === val && primaryColor.value) return;
   el.setAttribute(themeColorAttribute, val);
 
   // includes 为 true 走内置主题色逻辑
@@ -76,6 +80,8 @@ const update = (val: string) => {
 };
 
 watch(themeColorName, update, { immediate: true });
+// 切换深色模式时，更新主题色为暗色模式
+watch(isDark, updateThemeColor);
 
 // 文章单独设置主题色
 watch(
