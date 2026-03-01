@@ -9,6 +9,7 @@ import { useRuntime } from "../composables/useRuntime";
 import ConfigSwitch from "./ConfigSwitch.vue";
 import ContributeChart from "./ContributeChart.vue";
 import NotFound from "./404.vue";
+import CalendarCard from "./CalendarCard.vue";
 
 const ns = "layout-provider";
 const { frontmatter } = useData();
@@ -58,6 +59,10 @@ const handleConfigSwitch = (config: TeekConfig, style: string) => {
       <div :class="[ns, 'flx-align-center']">
         <ConfigSwitch v-model="currentStyle" @switch="handleConfigSwitch" />
       </div>
+    </template>
+
+    <template #teek-home-card-my-after>
+      <CalendarCard />
     </template>
 
     <template #nav-screen-content-after>

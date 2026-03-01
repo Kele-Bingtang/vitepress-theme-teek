@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@teek/helper",
+  "description": "all utils are settled here",
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",

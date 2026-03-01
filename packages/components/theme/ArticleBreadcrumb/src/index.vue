@@ -39,9 +39,11 @@ const breadcrumbList = computed(() => {
       (index !== relativePathArrConst.length - 1 || breadcrumb.value.showCurrentName) &&
       fileName !== localeIndex.value
     ) {
+      // 处理多级面包屑 跳转到目录页, 加上前面的所有元素(以`/`分割)补全路径
+      const path = relativePathArrConst.slice(0, index + 1).join("/");
       classifyList.push({
         fileName,
-        url: theme.value.catalogues?.inv[item]?.url || "",
+        url: theme.value.catalogues?.inv[path]?.url || "",
       });
     }
   });

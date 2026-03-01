@@ -9,7 +9,7 @@ export const getNowDate = (format = "yyyy-MM-dd hh:mm:ss", utc = true) => {
  * 时间转换函数（支持时区调整）
  * @param date 日期对象或日期字符串
  * @param format 日期格式，如 'yyyy-MM-dd hh:mm:ss'、'yyyy-MM-dd'
- * @param utc 是否使用 UTC 时间，默认为 false
+ * @param utc 是否使用 UTC 时间，默认为 true
  */
 export const formatDate = (date: Date | string | number, format = "yyyy-MM-dd hh:mm:ss", utc = true) => {
   if (!date) return ""; // 如果日期为空，返回空字符串

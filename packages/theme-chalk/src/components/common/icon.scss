@@ -14,6 +14,10 @@
   fill: var(--icon-color, currentColor);
   transition: color getCssVar("transition-duration");
 
+  &.iconfont {
+    font-size: var(--icon-size, inherit); // 覆盖 iconfont 自带 font-size
+  }
+
   svg {
     width: var(--icon-size, 1em);
     height: var(--icon-size, 1em);

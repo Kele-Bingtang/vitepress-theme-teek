@@ -17,6 +17,12 @@ export interface ArticleAnalyze {
    */
   dateFormat?: "yyyy-MM-dd" | "yyyy-MM-dd hh:mm:ss" | ((date: number | string) => string);
   /**
+   * 是否使用 UTC 时间
+   *
+   * @default true
+   */
+  dateUTC?: boolean;
+  /**
    * 是否展示作者、日期、分类、标签、字数、阅读时长、浏览量等文章信息，分别作用于首页和文章页
    * 如果 showInfo 为数组，则控制在哪里显示，如 ["post"] 只在首页的 Post 列表显示基本信息；如果为 boolean 值，则控制基本信息是否展示，如 false 则在首页和文章页都不显示基本信息
    *

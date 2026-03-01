@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@teek/markdown",
+  "description": "Markdown parser for Teek, include markdown plugin",
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {

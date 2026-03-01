@@ -2,7 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.5.2](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.1...v1.5.2) (2025-11-02)
+### [1.5.5](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.4...v1.5.5) (2026-03-01)
+
+### Features
+
+- **theme:** 🐞 修复私密文字跳转 TkLoginPage 布局不生效问题 ([eb7a278](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/eb7a278151599e319a2e89784eb14a75069ccfa7))
+
+### Bug Fixes
+
+- **ArticleUpdate:** 更新“更多文章 >”标签以支持多语言 ([0069b0b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0069b0bb127c1a7248699f85a4a3de49707b9e5f))
+- **avatar:** 🐞 修复头像表情乱码问题，修复 sitemap 生成的永久链接失效问题 ([d3a8f21](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/d3a8f2112f2e5552f3feea1036b9ee9f26561d79))
+- **DemoCode:** 修复编辑 Playground 时使用的源代码错误问题 ([1575d0b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/1575d0b1485b60d57e05f763d09698b23b878ec6))
+- **theme:** 🐞 解决登录页布局失效(fix [#188](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/188))和深色模式切换时扩展主题色不变化问题(fix [#194](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/194)) ([03a2a0b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/03a2a0bcfebbb2f6dc7e3463d1d01683c847aac0))
+- **ThemeEnhance:** 修复主题增强组件在切换语言时内容不更新问题 ([9798dbe](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/9798dbe2a781a8102f1120e78ab259fce0cf9ed3))
+
+### Styling
+
+- **social:** 🎨 优化 social 图标样式 ([475d162](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/475d162e9d3b090c3311827743350c5143047b23))
+
+### Docs
+
+- **guides:** 📚 更新文档中的配置说明和永久链接解释 ([335d5ff](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/335d5ff59daf016784fcaa0067df05bed79370ee))
+- **packages:** 📚 为各个包添加描述信息 ([f27f468](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/f27f4687bd9a9cc0c1735c877876091c288407dd))
+
+### Others
+
+- **deps:** 🔨 更新项目依赖包版本 ([16d14a2](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/16d14a251b2b9d3f4e6f746bc4c80e84ce830814))
+- **release:** 🔨 更新版本号到 1.5.5 ([3a76706](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3a767065b2da4032f821591ff9dd333f4bf1bcab))
+
+## [1.5.4](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.3...v1.5.4) (2025-12-05)
+
+### Bug Fixes
+
+- 🐞修复从文章面包屑导航第二级开始无法跳转到目录页问题 ([b7788f9](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/b7788f9deca63a7e214748d8cd109879a5a75303))
+
+## [1.5.3](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.2...v1.5.3) (2025-12-05)
+
+### Features
+
+- **docs:** 🚀 新增日历卡片组件和 UTC 时间配置选项 ([41ba87c](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/41ba87c4f6e494fead515672fbeb28c93d0869c8))
+
+### Docs
+
+- **changelog:** 📚 更新友链，新增常见问题 ([1534e0d](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/1534e0d58cb7dc39c2ef906f6dadf285f2d9c23c))
+- **config:** 📚 更新配置文档、友链与常见问题 ([eccd284](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/eccd2849ec1aaae36278d83a3e1e79b771de1bd3))
+- **personal:** 📚 更新赞助者名单及项目版本至1.5.3 ([2924fe4](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/2924fe4531c699964c5e22c125d7b13a490e2f9b))
+
+## [1.5.2](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.1...v1.5.2) (2025-11-02)
 
 ### Bug Fixes
 

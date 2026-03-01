@@ -96,14 +96,7 @@ const isSrc = computed(() => {
         :aria-label="item.name"
       >
         <template v-if="item.icon">
-          <TkIcon
-            :iconType="item.iconType"
-            :icon="item.icon"
-            size="20px"
-            hover
-            :imgAlt="item.imgAlt"
-            aria-hidden="true"
-          />
+          <TkIcon :iconType="item.iconType" :icon="item.icon" size="18px" :imgAlt="item.imgAlt" aria-hidden="true" />
         </template>
       </a>
     </div>

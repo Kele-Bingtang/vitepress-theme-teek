@@ -1,5 +1,7 @@
 import { isClient } from "../is";
 
+export {};
+
 declare global {
   interface Window {
     umami: Function;

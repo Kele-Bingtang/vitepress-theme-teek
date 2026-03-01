@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "@teek/config",
+  "description": "teek config loader for vitepress server",
   "license": "MIT",
   "main": "index.ts",
   "dependencies": {

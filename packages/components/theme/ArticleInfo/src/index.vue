@@ -23,6 +23,7 @@ const { page } = useData();
 const articleConfig = getTeekConfigRef<ArticleAnalyze>("articleAnalyze", {
   showIcon: true,
   dateFormat: "yyyy-MM-dd",
+  dateUTC: true,
   showAuthor: true,
   showCreateDate: true,
   showUpdateDate: false,
@@ -40,7 +41,7 @@ const createDate = computed(() => {
   const dateFormatConst = articleConfig.value.dateFormat;
 
   if (isFunction(dateFormatConst)) return dateFormatConst(date || "");
-  return formatDate(date || new Date(), dateFormatConst);
+  return formatDate(date || new Date(), dateFormatConst, articleConfig.value.dateUTC);
 });
 
 // 文章更新时间，取 git 的最后一次提交时间
@@ -51,7 +52,7 @@ const updateDate = computed(() => {
   const dateFormatConst = articleConfig.value.dateFormat;
 
   if (isFunction(dateFormatConst)) return dateFormatConst(date);
-  return formatDate(date, dateFormatConst);
+  return formatDate(date, dateFormatConst, !articleConfig.value.dateUTC);
 });
 
 const baseInfo = computed(() => {
