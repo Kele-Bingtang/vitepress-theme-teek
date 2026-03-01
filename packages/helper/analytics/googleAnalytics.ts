@@ -2,6 +2,9 @@ import { isClient } from "../is";
 
 declare const dataLayer: any[];
 declare const gtag: (...args: any[]) => void;
+
+export {};
+
 declare global {
   interface Window {
     dataLayer?: typeof dataLayer;
