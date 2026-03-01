@@ -1,4 +1,4 @@
-import type { BaiduAnalyticsOptions, GoogleAnalyticsOptions, UmamiAnalyticsOptions } from "@teek/helper";
+import type { BaiduAnalyticsOptions, GoogleAnalyticsOptions, UmamiAnalyticsOptions, ClarityAnalyticsOptions } from "@teek/helper";
 
 export type SiteAnalytics<T extends keyof SiteAnalyticsProvider = ""> = {
   /**
@@ -16,4 +16,5 @@ export type SiteAnalyticsProvider = {
   baidu: BaiduAnalyticsOptions;
   google: GoogleAnalyticsOptions;
   umami: UmamiAnalyticsOptions;
+  clarity: ClarityAnalyticsOptions;
 };
