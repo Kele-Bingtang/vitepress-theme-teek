@@ -67,4 +67,21 @@ export const teekConfig = defineTeekConfig({
       },
     },
   ],
+  // 🔗 私密文章功能配置
+  // 注释以下配置代码则关闭功能
+  private: {
+    enabled: true, // ◀️ 启用私密文章功能
+    expire: "1d", // ◀️ 登录过期时间，1d 代表 1 天，1h 代表 1 小时
+    session: false, // ◀️ 关闭网页后是否清除登录状态，true 表示关闭后清除，false 表示保持登录状态
+    siteLogin: false, // ◀️ 是否开启站点级别登录，true 表示进入站点需要登录，false 表示不需要
+    // 全局页面级别登录信息 - 登录一次后可访问所有全局私密文章
+    // 每个对象表示一个账号，username 为账号名，password 为密码
+    pages: [{ username: "teek", password: "teek123" }],
+    // 领域页面级别登录信息 - 按领域分组
+    // 每个领域（如 test、guide）对应一个数组，数组中每个对象表示一个账号，username 为账号名，password 为密码
+    realm: {
+      test: [{ username: "test", password: "test123" }],
+      guide: [{ username: "guide", password: "guide123" }],
+    },
+  },
 });

@@ -208,7 +208,27 @@ const execLogin = (
  * 指定单页面登录逻辑
  */
 const execSinglePageLogin = (toPath: string, storageKey: string) => {
-  const post = posts.value.originPosts.find(post => [post.frontmatter.permalink, post.url].includes(toPath));
+  // 处理 toPath 可能是完整 URL 的情况，提取 pathname
+  const normalizePath = (path: string) => {
+    try {
+      // 如果是完整 URL，提取 pathname
+      if (path.startsWith("http")) {
+        return new URL(path).pathname;
+      }
+    } catch (e) {
+      // 忽略解析错误，返回原始路径
+    }
+    return path;
+  };
+
+  const normalizedToPath = normalizePath(toPath);
+
+  const post = posts.value.originPosts.find(post => {
+    const permalink = post.frontmatter.permalink;
+    const url = post.url;
+    // 支持匹配完整 URL 或 pathname
+    return [permalink, url].some(p => p && (p === toPath || p === normalizedToPath));
+  });
   if (!post) return false;
 
   const { username, password, session, expire, strategy, realm } = post.frontmatter || {};

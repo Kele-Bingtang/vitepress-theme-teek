@@ -47,7 +47,8 @@ export const useWatchLogin = () => {
       sessionStorage.removeItem(key);
       localStorage.removeItem(key);
     }
-    return expire && loginTime && new Date().getTime() - loginTime > expire;
+    // 检查是否过期：当前时间 > 登录时间 + 过期时间
+    return expire && loginTime && new Date().getTime() > loginTime + expire;
   };
 
   /**
