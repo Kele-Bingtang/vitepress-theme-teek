@@ -110,9 +110,8 @@ const resetForm = () => {
 /**
  * 获取当前级别的登录逻辑处理器
  */
-const getLoginHandler = () => {
+const getLoginHandler = (searchParams: URLSearchParams) => {
   // 获取地址栏参数
-  const { searchParams } = new URL(window.location.href);
   const verifyModeValue = searchParams.get(loginUrlKeyMap.verifyMode);
   const toPath = searchParams.get(loginUrlKeyMap.toPath);
   const realmValue = searchParams.get(loginUrlKeyMap.realm);
@@ -125,7 +124,7 @@ const getLoginHandler = () => {
       handle: () => execLogin([], pageLoginKey, { toPath: toPath! }),
     },
     {
-      // 单页面级别登录
+      // 领域级别登录
       condition: () => verifyModeValue === verifyModeMap.realm && realmValue,
       handle: () => execLogin(realm[realmValue!] || [], realmLoginKey, { isRealm: true, realm: realmValue! }),
     },
@@ -149,12 +148,13 @@ const login = () => {
   if (!isClient) return;
 
   const { enabled = false } = privateConfig.value;
-  // 如果登录功能成功，则默认登录成功，且直接跳转首页
+  // 如果登录功能禁用，则默认登录成功，且直接跳转首页
   if (!enabled) {
     TkMessage.success({ message: t("tk.login.loginSuccess"), plain: true });
     return router.go("/");
   }
 
+  // 表单校验
   if (!checkLoginForm()) return;
 
   // 获取地址栏参数
@@ -163,7 +163,8 @@ const login = () => {
 
   let isLogin: boolean | undefined = false;
 
-  const handler = getLoginHandler();
+  // 获取当前登录逻辑处理器
+  const handler = getLoginHandler(searchParams);
 
   if (handler) {
     const { doLogin } = privateConfig.value;

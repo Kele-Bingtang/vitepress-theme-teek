@@ -79,34 +79,39 @@ onMounted(() => {
 
 <template>
   <div :class="[ns.b(), 'flx-column']">
-    <slot name="teek-home-card-before" />
+    <slot v-if="!(isCategoriesPage || isTagsPage)" name="teek-home-card-before" />
 
     <slot name="teek-home-card" :homeCard="finalHomeCardSort">
       <template v-for="item in finalHomeCardSort" :key="item">
         <!-- 使用淡入动画 -->
         <template v-if="windowTransition">
-          <div v-if="$slots[`${componentMap[item]?.slot}-before`]" ref="cardListInstance">
+          <div
+            v-if="$slots[`${componentMap[item]?.slot}-before`] && !(isCategoriesPage || isTagsPage)"
+            ref="cardListInstance"
+          >
             <slot :name="`${componentMap[item]?.slot}-before`" />
           </div>
 
           <div ref="cardListInstance">
-            <slot :name="componentMap[item]?.slot">
-              <component
-                v-if="componentMap[item]?.show"
-                :is="componentMap[item]?.el"
-                v-bind="componentMap[item]?.props"
-              />
+            <slot v-if="componentMap[item]?.show" :name="componentMap[item]?.slot">
+              <component :is="componentMap[item]?.el" v-bind="componentMap[item]?.props" />
             </slot>
           </div>
 
-          <div v-if="$slots[`${componentMap[item]?.slot}-after`]" ref="cardListInstance">
+          <div
+            v-if="$slots[`${componentMap[item]?.slot}-after`] && !(isCategoriesPage || isTagsPage)"
+            ref="cardListInstance"
+          >
             <slot :name="`${componentMap[item]?.slot}-after`" />
           </div>
         </template>
 
         <!-- 不使用淡入动画 -->
         <template v-else>
-          <slot v-if="componentMap[item]?.slot" :name="`${componentMap[item]?.slot}-before`" />
+          <slot
+            v-if="componentMap[item]?.slot && !(isCategoriesPage || isTagsPage)"
+            :name="`${componentMap[item]?.slot}-before`"
+          />
 
           <slot v-if="componentMap[item]?.slot" :name="componentMap[item]?.slot">
             <component
@@ -116,11 +121,14 @@ onMounted(() => {
             />
           </slot>
 
-          <slot v-if="componentMap[item]?.slot" :name="`${componentMap[item]?.slot}-after`" />
+          <slot
+            v-if="componentMap[item]?.slot && !(isCategoriesPage || isTagsPage)"
+            :name="`${componentMap[item]?.slot}-after`"
+          />
         </template>
       </template>
     </slot>
 
-    <slot name="teek-home-card-after" />
+    <slot v-if="!(isCategoriesPage || isTagsPage)" name="teek-home-card-after" />
   </div>
 </template>

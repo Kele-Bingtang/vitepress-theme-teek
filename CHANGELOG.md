@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.5.5](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.4...v1.5.5) (2026-03-01)
+## [1.5.5](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.4...v1.5.5) (2026-03-01)
 
 ### Features
 
@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-- **ArticleUpdate:** 更新“更多文章 >”标签以支持多语言 ([0069b0b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0069b0bb127c1a7248699f85a4a3de49707b9e5f))
+- **ArticleUpdate:** 🐞 更新“更多文章 >”标签以支持多语言 ([0069b0b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/0069b0bb127c1a7248699f85a4a3de49707b9e5f))
 - **avatar:** 🐞 修复头像表情乱码问题，修复 sitemap 生成的永久链接失效问题 ([d3a8f21](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/d3a8f2112f2e5552f3feea1036b9ee9f26561d79))
 - **DemoCode:** 修复编辑 Playground 时使用的源代码错误问题 ([1575d0b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/1575d0b1485b60d57e05f763d09698b23b878ec6))
 - **theme:** 🐞 解决登录页布局失效(fix [#188](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/188))和深色模式切换时扩展主题色不变化问题(fix [#194](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/194)) ([03a2a0b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/03a2a0bcfebbb2f6dc7e3463d1d01683c847aac0))
