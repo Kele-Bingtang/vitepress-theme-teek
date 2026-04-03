@@ -13,7 +13,6 @@ import {
   excludes,
   webTsConfig,
   tsOutput,
-  projectRoot,
 } from "../helper";
 import { cssResolver } from "../helper/util";
 
@@ -40,7 +39,7 @@ const buildModules = async () => {
           outDir: tsOutput,
           staticImport: true,
           copyDtsFiles: true,
-          exclude: [resolve(pkgRoot, "theme-chalk"), resolve(projectRoot, "typings")],
+          exclude: [resolve(pkgRoot, "theme-chalk")],
           resolvers: [cssResolver],
           beforeWriteFile: (filePath: string, content: string) => {
             let tempPath = filePath;
