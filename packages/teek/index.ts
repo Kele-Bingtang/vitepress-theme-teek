@@ -1,8 +1,8 @@
 import type { EnhanceAppContext } from "vitepress";
 import type { TeekConfig } from "@teek/config";
-import type { BaiduAnalyticsOptions, GoogleAnalyticsOptions, UmamiAnalytics } from "@teek/helper";
+import type { BaiduAnalyticsOptions, GoogleAnalyticsOptions, UmamiAnalytics, ClarityAnalyticsOptions } from "@teek/helper";
 import DefaultTheme from "vitepress/theme";
-import { isClient, baiduAnalytics, trackPageview, googleAnalytics, umamiAnalytics } from "@teek/helper";
+import { isClient, baiduAnalytics, trackPageview, googleAnalytics, umamiAnalytics, clarityAnalytics } from "@teek/helper";
 import {
   TeekConfigProvider,
   TkLayout,
@@ -72,6 +72,7 @@ const processSiteAnalytics = (themeConfig: any) => {
     },
     google: (options: GoogleAnalyticsOptions) => googleAnalytics(options),
     umami: (options: UmamiAnalytics) => umamiAnalytics(options),
+    clarity: (options: ClarityAnalyticsOptions) => clarityAnalytics(options),
   };
 
   siteAnalytics.forEach(item => {
