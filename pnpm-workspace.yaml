@@ -16,7 +16,7 @@ catalog:
   "@iconify/vue": ^4.3.0
   "@types/js-yaml": ^4.0.9
   "@types/markdown-it": ^14.1.2
-  "@types/markdown-it-container": ^2.0.10
+  "@types/markdown-it-container": ^4.0.0
   vitepress-plugin-auto-frontmatter: ^1.0.13
   vitepress-plugin-catalogue: ^1.1.2
   vitepress-plugin-doc-analysis: ^1.0.13

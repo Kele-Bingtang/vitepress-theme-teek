@@ -7,15 +7,6 @@
     "skipLibCheck": true,
     "noImplicitAny": false
   },
-  "include": [
-    "typings",
-    "packages/**/*.ts",
-    "packages/**/*.d.ts",
-    "packages/**/*.vue",
-    "build/**/*.ts",
-    "build/**/*.d.ts",
-    "plugins/**/*.ts",
-    "plugins/**/*.d.ts"
-  ],
+  "include": ["typings", "packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.vue"],
   "exclude": ["**/node_modules", "**/dist", "**/*.md"]
 }
