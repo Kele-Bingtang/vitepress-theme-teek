@@ -72,7 +72,7 @@ export const createCardContainer = <D extends Record<string, any>, C extends Rec
       // 解析 yaml 内容
       const yamlContent = yaml.load(token.content.trim()) as { config: C; data: D[] } | D[];
 
-      let data = [] as D[];
+      let data: D[];
       let config = {} as C;
       if (Array.isArray(yamlContent)) data = yamlContent;
       else {

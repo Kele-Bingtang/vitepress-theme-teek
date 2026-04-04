@@ -5,18 +5,18 @@ packages:
   - build
 
 catalog:
-  vite: ^6.0.7
+  vite: ^7.3.1
   vitepress: ^1.6.3
-  sass: ^1.83.1
-  js-yaml: ^4.1.0
+  sass: ^1.99.0
+  js-yaml: ^4.1.1
   picocolors: ^1.1.1
-  tinyglobby: ^0.2.10
+  tinyglobby: ^0.2.15
   gray-matter: ^4.0.3
   markdown-it-container: ^4.0.0
   "@iconify/vue": ^4.3.0
   "@types/js-yaml": ^4.0.9
   "@types/markdown-it": ^14.1.2
-  "@types/markdown-it-container": ^2.0.10
+  "@types/markdown-it-container": ^4.0.0
   vitepress-plugin-auto-frontmatter: ^1.0.13
   vitepress-plugin-catalogue: ^1.1.2
   vitepress-plugin-doc-analysis: ^1.0.13
@@ -27,9 +27,9 @@ catalog:
 
 catalogs:
   vue:
-    vue: ^3.5.29
-    '@vue/compiler-core': ^3.5.29
-    '@vue/compiler-dom': ^3.5.29
-    '@vue/reactivity': ^3.5.29
-    '@vue/runtime-core': ^3.5.29
-    '@vue/runtime-dom': ^3.5.29
+    vue: ^3.5.32
+    "@vue/compiler-dom": ^3.5.32
+    # "@vue/compiler-core": ^3.5.32
+    # "@vue/reactivity": ^3.5.32
+    # "@vue/runtime-core": ^3.5.32
+    # "@vue/runtime-dom": ^3.5.32

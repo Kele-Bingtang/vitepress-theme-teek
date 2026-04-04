@@ -3,10 +3,10 @@
   "compilerOptions": {
     "composite": true,
     "jsx": "preserve",
-    "lib": ["ES2018", "DOM", "DOM.Iterable"],
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "noImplicitAny": false
   },
-  "include": ["packages", "typings"],
+  "include": ["typings", "packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.vue"],
   "exclude": ["**/node_modules", "**/dist", "**/*.md"]
 }

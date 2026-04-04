@@ -34,7 +34,7 @@ defineProps<{ item: CatalogueItem; index: number | string }>();
 
       <ul v-if="item.children" :class="`${nsSub.e('inline')} flx-wrap-between`" :aria-label="item.title">
         <!-- 递归自己 -->
-        <CatalogueItem v-for="(item, i) in item.children" :key="i" :item :index="`${index}-${i + 1}`" />
+        <CatalogueItem v-for="(child, i) in item.children" :key="i" :item="child" :index="`${index}-${i + 1}`" />
       </ul>
     </template>
   </li>

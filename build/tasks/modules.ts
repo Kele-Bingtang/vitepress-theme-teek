@@ -1,3 +1,4 @@
+import type { Plugin } from "rollup";
 import { resolve } from "path";
 import { OutputOptions, rollup } from "rollup";
 import picocolors from "picocolors";
@@ -13,7 +14,6 @@ import {
   excludes,
   webTsConfig,
   tsOutput,
-  projectRoot,
 } from "../helper";
 import { cssResolver } from "../helper/util";
 
@@ -40,7 +40,7 @@ const buildModules = async () => {
           outDir: tsOutput,
           staticImport: true,
           copyDtsFiles: true,
-          exclude: [resolve(pkgRoot, "theme-chalk"), resolve(projectRoot, "typings")],
+          exclude: [resolve(pkgRoot, "theme-chalk")],
           resolvers: [cssResolver],
           beforeWriteFile: (filePath: string, content: string) => {
             let tempPath = filePath;
@@ -58,7 +58,7 @@ const buildModules = async () => {
 
             return { filePath: tempPath, content: code };
           },
-        })
+        }) as Plugin
       );
     }
 

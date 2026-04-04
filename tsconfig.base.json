@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2018",
+    "target": "esnext",
     "module": "esnext",
     "baseUrl": ".",
     "sourceMap": false,
@@ -13,9 +13,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "removeComments": false,
-    "preserveSymlinks": true,
     "rootDir": ".",
-    "types": [],
+    "types": ["node"],
     "paths": {
       "@teek/*": ["packages/*"]
     }

@@ -1,8 +1,19 @@
-import type { EnhanceAppContext } from "vitepress";
 import type { TeekConfig } from "@teek/config";
-import type { BaiduAnalyticsOptions, GoogleAnalyticsOptions, UmamiAnalytics } from "@teek/helper";
+import type {
+  BaiduAnalyticsOptions,
+  GoogleAnalyticsOptions,
+  UmamiAnalytics,
+  ClarityAnalyticsOptions,
+} from "@teek/helper";
 import DefaultTheme from "vitepress/theme";
-import { isClient, baiduAnalytics, trackPageview, googleAnalytics, umamiAnalytics } from "@teek/helper";
+import {
+  isClient,
+  baiduAnalytics,
+  trackPageview,
+  googleAnalytics,
+  umamiAnalytics,
+  clarityAnalytics,
+} from "@teek/helper";
 import {
   TeekConfigProvider,
   TkLayout,
@@ -34,7 +45,7 @@ export * from "@teek/markdown/helper";
 export * from "./version";
 
 export default {
-  extends: DefaultTheme,
+  extends: DefaultTheme as DefaultThemeType,
   Layout: TeekConfigProvider(TkLayout),
   async enhanceApp({ app, siteData, router }) {
     app.component("TkCataloguePage", TkCataloguePage);
@@ -54,9 +65,6 @@ export default {
     // 处理永久链接导致 404 问题
     if (themeConfig.permalinks) await processPermalinkNotFoundWhenFirstLoaded({ siteData, router });
   },
-} as Omit<DefaultThemeType, "enhanceApp"> & {
-  extends: DefaultThemeType;
-  enhanceApp: (options: EnhanceAppContext) => Promise<void>;
 };
 
 /**
@@ -72,6 +80,7 @@ const processSiteAnalytics = (themeConfig: any) => {
     },
     google: (options: GoogleAnalyticsOptions) => googleAnalytics(options),
     umami: (options: UmamiAnalytics) => umamiAnalytics(options),
+    clarity: (options: ClarityAnalyticsOptions) => clarityAnalytics(options),
   };
 
   siteAnalytics.forEach(item => {
