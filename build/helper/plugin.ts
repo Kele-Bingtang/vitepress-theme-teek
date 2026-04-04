@@ -14,7 +14,7 @@ import { pkgName, outputPkgName, target, simplePkgName } from "./constants";
 export const plugins = [
   vitepressThemeTeekClearConsole(),
   VitePressThemeTeekStyleAlias(),
-  vuePlugin({ isProduction: true }),
+  vuePlugin({ isProduction: true }) as Plugin,
   json(),
   // 解析和处理 Node.js 风格的模块导入语句（如 `import something from 'my-package'`），因为 Rollup 本身默认仅支持 ES 模块导入（即通过相对或绝对路径导入本地文件）
   nodeResolve({

@@ -64,19 +64,7 @@ catalogs:
       specifier: ^1.2.1
       version: 1.2.1
   vue:
-    '@vue/compiler-core':
-      specifier: ^3.5.32
-      version: 3.5.32
     '@vue/compiler-dom':
-      specifier: ^3.5.32
-      version: 3.5.32
-    '@vue/reactivity':
-      specifier: ^3.5.32
-      version: 3.5.32
-    '@vue/runtime-core':
-      specifier: ^3.5.32
-      version: 3.5.32
-    '@vue/runtime-dom':
       specifier: ^3.5.32
       version: 3.5.32
     vue:
@@ -133,21 +121,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^8.58.0
         version: 8.58.0(eslint@10.1.0(jiti@2.6.1))(typescript@6.0.2)
-      '@vue/compiler-core':
-        specifier: catalog:vue
-        version: 3.5.32
-      '@vue/compiler-dom':
-        specifier: catalog:vue
-        version: 3.5.32
-      '@vue/reactivity':
-        specifier: catalog:vue
-        version: 3.5.32
-      '@vue/runtime-core':
-        specifier: catalog:vue
-        version: 3.5.32
-      '@vue/runtime-dom':
-        specifier: catalog:vue
-        version: 3.5.32
       commitizen:
         specifier: ^4.3.1
         version: 4.3.1(@types/node@25.5.2)(typescript@6.0.2)
@@ -295,6 +268,9 @@ importers:
       '@iconify/vue':
         specifier: 'catalog:'
         version: 4.3.0(vue@3.5.32(typescript@6.0.2))
+      '@vue/compiler-dom':
+        specifier: catalog:vue
+        version: 3.5.32
     devDependencies:
       vitepress:
         specifier: 'catalog:'

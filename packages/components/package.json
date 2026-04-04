@@ -9,7 +9,8 @@
     "*/style/*"
   ],
   "dependencies": {
-    "@iconify/vue": "catalog:"
+    "@iconify/vue": "catalog:",
+    "@vue/compiler-dom": "catalog:vue"
   },
   "devDependencies": {
     "vitepress": "catalog:"

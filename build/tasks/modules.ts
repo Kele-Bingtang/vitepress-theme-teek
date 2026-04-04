@@ -1,3 +1,4 @@
+import type { Plugin } from "rollup";
 import { resolve } from "path";
 import { OutputOptions, rollup } from "rollup";
 import picocolors from "picocolors";
@@ -57,7 +58,7 @@ const buildModules = async () => {
 
             return { filePath: tempPath, content: code };
           },
-        })
+        }) as Plugin
       );
     }
 

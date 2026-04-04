@@ -13,7 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "removeComments": false,
-    "preserveSymlinks": true,
     "rootDir": ".",
     "types": ["node"],
     "paths": {

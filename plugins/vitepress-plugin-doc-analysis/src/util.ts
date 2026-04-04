@@ -31,8 +31,7 @@ export function getEachFileWords(fileList: FilePathInfo[], cn: number = 300, en:
     const len = getCounter(content);
     // 计算预计的阅读时间
     const readingTime = getReadTime(len, cn, en);
-    let wordCount = 0;
-    wordCount = len[0] + len[1];
+    const wordCount = len[0] + len[1];
 
     filePathListWords.push({ fileInfo: item, wordCount, readingTime, frontmatter: data });
   });

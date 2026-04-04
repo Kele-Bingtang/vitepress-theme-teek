@@ -139,7 +139,7 @@ export const checkExcludeAndInclude = (
  * @param filename 文件名
  */
 export const getMdFileTitle = (filename: string) => {
-  let title = "";
+  let title;
   // 如果文件名带序号，如【1.xx.md】，则取 xx
   const fileNameArr = filename.split(".");
 
