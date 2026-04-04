@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.6](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.5...v1.5.6) (2026-04-04)
+
+### Features
+
+- 添加 Microsoft Clarity 分析支持 ([c6a0217](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c6a021707f7c1423d7172591d0d8843de1411a3a))
+
+### Bug Fixes
+
+- **build:** 🐞 修复 Exported variable "global" is not defined 问题 ([c628774](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c628774a8d87560e82c0238764dd42af47c3693d))
+- **build:** 🐞 修复项目打包 TS 警告问题 ([ebe4642](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/ebe4642d99c15a0634a542ac60660fa603c52b27))
+- **theme:** 🐞 解决私密文章在 Rewrite 模式下登录失效和分类标签页面显示问题 ([38eea07](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/38eea07eb53b9dc9921d246b511840f60929d1d1)), closes [#18](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/18) [#194](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/194)
+
+### Docs
+
+- **clarity:** 添加微软追踪器配置指南 ([3b004c1](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3b004c1d752aeac0c786056b26de4756bed73112))
+
+### Code Refactoring
+
+- **build:** ♻️ 优化构建配置和依赖管理 ([484c74e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/484c74e2709e53940884b276006a72675c943477))
+
+### Others
+
+- **deps:** 🔨 更新项目依赖包版本 ([e9f3d83](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/e9f3d83d79b80e0d5538eb486b5e536ca000be91))
+- **release:** 🔨 版本 v1.5.6 发布 ([6c4c1e4](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/6c4c1e4add72a6d91cced3727e6d7fadd01a0ffc))
+
 ## [1.5.5](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.4...v1.5.5) (2026-03-01)
 
 ### Features
