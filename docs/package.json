@@ -15,7 +15,7 @@
     "gray-matter": "^4.0.3",
     "tinyglobby": "^0.2.10",
     "tsx": "^4.19.3",
-    "vitepress": "^1.6.3",
+    "vitepress": "^1.6.4",
     "vitepress-plugin-llms": "^1.7.3",
     "vitepress-theme-teek": "workspace:*"
   }
