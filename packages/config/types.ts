@@ -110,7 +110,7 @@ export interface TeekConfig {
   /**
    * 页面加载 Loading 动画，如果为 boolean，则控制是否启用，如果为字符串，则指定加载 Loading 动画的文案
    *
-   * @default true
+   * @default false
    */
   loading?: boolean | string;
   /**

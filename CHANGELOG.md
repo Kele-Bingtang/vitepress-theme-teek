@@ -2,11 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.5.6](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.5...v1.5.6) (2026-04-04)
+## [1.5.6](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.5...v1.5.6) (2026-04-04)
 
 ### Features
 
-- 添加 Microsoft Clarity 分析支持 ([c6a0217](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c6a021707f7c1423d7172591d0d8843de1411a3a))
+- 🚀 添加 Microsoft Clarity 分析支持 ([c6a0217](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c6a021707f7c1423d7172591d0d8843de1411a3a))
 
 ### Bug Fixes
 
@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Docs
 
-- **clarity:** 添加微软追踪器配置指南 ([3b004c1](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3b004c1d752aeac0c786056b26de4756bed73112))
+- **clarity:** 📚 添加微软追踪器配置指南 ([3b004c1](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3b004c1d752aeac0c786056b26de4756bed73112))
 
 ### Code Refactoring
 

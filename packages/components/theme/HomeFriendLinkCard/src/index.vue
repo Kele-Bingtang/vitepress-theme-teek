@@ -83,7 +83,7 @@ const handleTitleClick = () => {
     :pageSize="friendLinkConfig.limit"
     :total="friendLinkConfig.list.length"
     :title="finalTitle"
-    :titleClick="friendLinkConfig.titleClick ? handleTitleClick : undefined"
+    :titleClick="friendLinkConfig.titleClick !== undefined ? handleTitleClick : undefined"
     :autoPage="friendLinkConfig.autoPage"
     :pageSpeed="friendLinkConfig.pageSpeed"
     :class="ns.b()"
