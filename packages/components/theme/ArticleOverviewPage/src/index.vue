@@ -28,7 +28,7 @@ const categoriesPageLink = computed(() => {
   const localeIndexConst = localeIndex.value;
   const localeName = localeIndexConst !== "root" ? `/${localeIndexConst}` : "";
   // 兼容国际化功能，如果没有配置多语言，则返回 '/categories'
-  return `${localeName}${categoryConfig.value.path}${site.value.cleanUrls ? "" : ".html"}`;
+	return withBase(`${localeName}${categoryConfig.value.path}${site.value.cleanUrls ? "" : ".html"}`);
 });
 
 const getFileWords = (url: string) => {
