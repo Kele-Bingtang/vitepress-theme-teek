@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.5.7](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.6...v1.5.7) (2026-04-25)
+## [1.5.7](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.6...v1.5.7) (2026-04-25)
 
 ### Features
 
