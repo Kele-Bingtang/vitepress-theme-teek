@@ -2,6 +2,13 @@ export type ImageViewerAction = "zoomIn" | "zoomOut" | "clockwise" | "anticlockw
 
 export interface ImageViewerProps {
   /**
+   * 是否启用图片查看器
+   *
+   * @default true
+   * @since v1.5.7
+   */
+  enabled?: boolean;
+  /**
    * 用于预览的图片链接列表
    *
    * @default []

@@ -99,15 +99,23 @@ export const usePageState = () => {
   // 当前页面是否为标签页
   const isTagsPage = computed(() => !!frontmatter.value.tagsPage);
   // 当前页面是否为归档页
-  const isArchivesPage = computed(() => !!frontmatter.value.archivesPage);
+  const isArchivesPage = computed(
+    () => !!frontmatter.value.archivesPage || frontmatter.value.layout === "TkArchivesPage"
+  );
   // 当前页面是否为目录页
-  const isCataloguePage = computed(() => !!frontmatter.value.catalogue);
+  const isCataloguePage = computed(
+    () => !!frontmatter.value.catalogue || frontmatter.value.layout === "TkCataloguePage"
+  );
   // 当前页面是否为文章清单页
-  const isArticleOverviewPage = computed(() => !!frontmatter.value.articleOverviewPage);
+  const isArticleOverviewPage = computed(
+    () => !!frontmatter.value.articleOverviewPage || frontmatter.value.layout === "TkArticleOverviewPage"
+  );
   // 当前页面是否为登录页
-  const isLoginUrl = computed(() => !!frontmatter.value.loginPage);
+  const isLoginUrl = computed(() => !!frontmatter.value.loginPage || frontmatter.value.layout === "TkLoginPage");
   // 当前页面是否为风险链接页
-  const isRiskLinkPage = computed(() => !!frontmatter.value.riskLinkPage);
+  const isRiskLinkPage = computed(
+    () => !!frontmatter.value.riskLinkPage || frontmatter.value.layout === "TkRiskLinkPage"
+  );
 
   return {
     isHomePage,
@@ -161,7 +169,7 @@ export const usePagePath = () => {
 
       const isPageLayout = layout === "page";
 
-      if (layout === "TkCataloguePage" || (isPageLayout && archivesPage === true)) archivesUrl = url;
+      if (layout === "TkArchivesPage" || (isPageLayout && archivesPage === true)) archivesUrl = url;
       if (layout === "TkArticleOverviewPage" || (isPageLayout && articleOverviewPage === true)) {
         articleOverviewUrl = url;
       }

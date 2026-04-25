@@ -2,11 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.5.6](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.5...v1.5.6) (2026-04-04)
+## [1.5.7](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.6...v1.5.7) (2026-04-25)
 
 ### Features
 
-- 添加 Microsoft Clarity 分析支持 ([c6a0217](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c6a021707f7c1423d7172591d0d8843de1411a3a))
+- **article:** 🚀 添加文章图片查看器启用禁用配置选项 ([4fca22c](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/4fca22c92a0b0879bb149f005344909cf1323f91))
+
+### Bug Fixes
+
+- **theme:** 🐞 内置页判断失效问题 ([443dbc6](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/443dbc6db5a67ebcdf24ffcf468bdb2abe04dc21))
+- **theme:** 🐞 修复分类链接没有用 withBase 问题 ([91a448f](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/91a448f1c62c3a4976797f6440c91af05de8280b))
+- **theme:** 🐞 修复全图模式下，首页底部出现一条白线问题 ([e4e8930](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/e4e8930c1eaf705e7ddc86d8c9e7c93d5ccb7ec2))
+- **theme:** 🐞 修复友链卡片图片一直显示加载中状态 ([37bee12](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/37bee12918d771c54e8e6ecb662efd6180ee5a5b))
+
+### Docs
+
+- **personal:** 📚 更新赞助者名单 ([c4909a1](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c4909a1e7e50ce0a22ee060e73959a7a27552768))
+
+### Others
+
+- **deps:** 🔨 更新依赖包版本 ([ede6826](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/ede6826f1cc6ed313dbdaf9c4834c27ecb3ca8ce))
+- **release:** 🔨 更新版本号至 v1.5.7 ([83d439e](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/83d439eacea52cccb192c0e24c9751604b239a62))
+
+## [1.5.6](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.5...v1.5.6) (2026-04-04)
+
+### Features
+
+- 🚀 添加 Microsoft Clarity 分析支持 ([c6a0217](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/c6a021707f7c1423d7172591d0d8843de1411a3a))
 
 ### Bug Fixes
 
@@ -16,7 +38,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Docs
 
-- **clarity:** 添加微软追踪器配置指南 ([3b004c1](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3b004c1d752aeac0c786056b26de4756bed73112))
+- **clarity:** 📚 添加微软追踪器配置指南 ([3b004c1](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/3b004c1d752aeac0c786056b26de4756bed73112))
 
 ### Code Refactoring
 

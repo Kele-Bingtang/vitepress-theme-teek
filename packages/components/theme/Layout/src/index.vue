@@ -80,9 +80,10 @@ const teekConfig = getTeekConfigRef<Required<TeekConfig>>(null, {
   themeEnhance: { enabled: true },
   articleBanner: { enabled: false },
   pageStyle: "default",
+  articleAnalyze: {},
 });
 
-const loading = ref(teekConfig.value.loading);
+const loading = ref(!!teekConfig.value.loading);
 
 const commentConfig = computed(() => {
   const frontmatterComment = frontmatter.value.comment;
@@ -285,7 +286,7 @@ const usedSlots = [
           <slot name="teek-article-analyze-after" />
         </template>
 
-        <TkArticleImagePreview />
+        <TkArticleImagePreview v-if="teekConfig.articleAnalyze.imageViewer?.enabled ?? true" />
         <TkArticlePageStyle />
         <TkCodeBlockToggle v-if="teekConfig.codeBlock.enabled ?? true" />
         <TkVpContainer v-if="topTipConfig" v-bind="isBoolean(topTipConfig) ? {} : topTipConfig" />

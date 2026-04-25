@@ -70,8 +70,11 @@
         > div {
           padding: 0 32px 1px;
           width: calc((getCssVar(home-max-width)) - getCssVar("home-card-width"));
-          background-color: getCssVar("bg-color");
           border-radius: 4px;
+
+          &:has(h1, h2, h3, h4, h5, p, span, img) {
+            background-color: getCssVar("bg-color");
+          }
         }
       }
     }

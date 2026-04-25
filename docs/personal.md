@@ -55,6 +55,8 @@ Teek 会定期对赞助者名单更新，如果您已赞助但没有在名单中
 | Alowree    | 100    | 2025-08-07 | [Alowree](https://marapython.com)              |
 | 二丫讲梵   | 20     | 2025-08-07 | [二丫讲梵博客](https://eryajf.net)             |
 | 时光       | 10     | 2025-08-07 | [时光](https://notes.ksah.cn)                  |
+| 马九溪     | 66     | 2026-04-03 |                                                |
+| 天坠       | 66     | 2026-04-12 | [天坠](https://172.tianzhuicn.cn)              |
 
 <style scoped>
 .vp-doc table:focus-visible {

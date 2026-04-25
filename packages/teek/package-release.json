@@ -67,7 +67,7 @@
   "dependencies": {
     "@iconify/vue": "^4.3.0",
     "gray-matter": "^4.0.3",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "markdown-it-container": "^4.0.0",
     "vitepress-plugin-auto-frontmatter": "^1.0.13",
     "vitepress-plugin-catalogue": "^1.1.2",
@@ -75,18 +75,18 @@
     "vitepress-plugin-file-content-loader": "^1.0.13",
     "vitepress-plugin-md-h1": "^1.0.11",
     "vitepress-plugin-permalink": "^1.2.1",
-    "vitepress-plugin-sidebar-resolve": "^1.2.1"
+    "vitepress-plugin-sidebar-resolve": "^1.2.2"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@vue/compiler-dom": "^3.5.13",
-    "sass": "^1.83.1",
-    "vitepress": "^1.6.3"
+    "sass": "^1.99.0",
+    "vitepress": "^1.6.4"
   },
   "peerDependencies": {
-    "vitepress": "^1.6.3"
+    "vitepress": "^1.6.4"
   },
   "browserslist": ["> 1%", "not ie 11", "not op_mini all"]
 }
