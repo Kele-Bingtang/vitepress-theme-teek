@@ -1,6 +1,7 @@
 import { useEventListener, useScopeDispose } from "@teek/composables";
 import { usePagePath } from "@teek/components/theme/ConfigProvider";
 import { isClient, isString } from "@teek/helper";
+import { withBase } from "vitepress";
 import { nextTick } from "vue";
 
 export interface UseRiskLinkOptions {
@@ -62,7 +63,7 @@ export const useRiskLink = (options: UseRiskLinkOptions = {}) => {
 
         // 跳转到风险提示页面，并将目标 URL 作为参数传递
         const encodedUrl = encodeURIComponent(href);
-        window.open(`${riskLinkPath.value}?target=${encodedUrl}`);
+        window.open(`${withBase(riskLinkPath.value)}?target=${encodedUrl}`);
       });
 
       cleanups.push(stop);
