@@ -6,6 +6,15 @@
   padding-top: 48px;
   color: getCssVar("banner-text-color");
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* 首页banner文字固定 */
+  @include e(content__fixed) {
+    position: fixed;
+  }
 
   @include e(title) {
     font-size: getCssVar("banner-title-text");
