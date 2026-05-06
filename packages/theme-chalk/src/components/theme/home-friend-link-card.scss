@@ -47,7 +47,7 @@
   }
 
   @include m(empty) {
-    font-size: getCssVar("" home-font-size-middle);
+    font-size: getCssVar('' home-font-size-middle);
     padding: 6px;
     text-align: center;
   }
