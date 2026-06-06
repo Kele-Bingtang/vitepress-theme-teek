@@ -112,7 +112,7 @@ watch(
     if (usePageView.value) {
       // 如果使用了 permalink 插件且 permalink 为 true，则代表使用 permalink 作为统计链接
       if (statisticsConfig.value.permalink && router.state?.permalinkPlugin) {
-        nextTick(request);
+        setTimeout(request, 50);
       } else request();
     }
   },
