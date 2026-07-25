@@ -27,8 +27,13 @@ export const transformData = (data: FileContentLoaderData): TkContentData => {
   const siteConfig: SiteConfig = (globalThis as any).VITEPRESS_CONFIG;
   const { themeConfig } = siteConfig.userConfig;
   const { frontmatter, url, relativePath, excerpt } = data;
+  const { dateFormat = "yyyy-MM-dd hh:mm:ss", dateUTC = true } = themeConfig.articleAnalyze ?? {};
 
-  if (frontmatter.date) frontmatter.date = formatDate(frontmatter.date, "yyyy-MM-dd hh:mm:ss", true);
+  if (frontmatter.date) {
+    frontmatter.date = isFunction(dateFormat)
+      ? dateFormat(frontmatter.date)
+      : formatDate(frontmatter.date, dateFormat, dateUTC);
+  }
 
   return {
     url,
@@ -36,7 +41,7 @@ export const transformData = (data: FileContentLoaderData): TkContentData => {
     frontmatter,
     author: frontmatter.author || themeConfig.author,
     title: getTitle(data),
-    date: getDate(data, siteConfig.srcDir, themeConfig.articleAnalyze),
+    date: getDate(data, siteConfig.srcDir, { dateFormat, dateUTC }),
     excerpt,
     capture: getCaptureText(data),
   };
@@ -119,7 +124,7 @@ export function getTitle(post: RequiredKeyPartialOther<TkContentData, "frontmatt
 export function getDate(
   post: RequiredKeyPartialOther<TkContentData, "frontmatter" | "relativePath">,
   srcDir: string,
-  articleAnalyze: ArticleAnalyze
+  { dateFormat = "yyyy-MM-dd hh:mm:ss", dateUTC = true }: ArticleAnalyze
 ) {
   const { frontmatter, relativePath } = post;
 
@@ -134,8 +139,7 @@ export function getDate(
   // 时间获取优先级：文件创建时间 > 文件访问时间
   const originalDate = stat.birthtime || stat.atime;
 
-  if (isFunction(articleAnalyze.dateFormat)) return articleAnalyze.dateFormat(String(originalDate));
-  return formatDate(String(originalDate), articleAnalyze.dateFormat, !(articleAnalyze.dateUTC ?? true));
+  return isFunction(dateFormat) ? dateFormat(String(originalDate)) : formatDate(originalDate, dateFormat, !dateUTC);
 }
 
 /**

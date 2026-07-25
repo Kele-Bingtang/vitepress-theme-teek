@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.6.1](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.6.0...v1.6.1) (2026-07-25)
+### [1.6.2](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.6.1...v1.6.2) (2026-07-25)
+
+### Features
+
+- **theme:** 🐞 修复配置读取 undefined 时构建失败问题 ([1895f43](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/1895f43ab57bb3a9c19d48e0eed3908111737211))
+
+### Others
+
+- **release:** 🔨 更新版本号到 v1.6.2 ([52a26b1](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/52a26b1371791f58c920e1158e69035048cbd2c1))
+
+## [1.6.1](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.6.0...v1.6.1) (2026-07-25)
 
 ### Bug Fixes
 
