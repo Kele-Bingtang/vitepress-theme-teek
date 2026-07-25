@@ -16,7 +16,13 @@ export const createImageViewer = (options: Partial<ImageViewerProps> & { modelVa
   document.body.style.overflow = "hidden";
   const container = document.createElement("div");
   document.body.appendChild(container);
-  instance = createVNode(ImageViewer, options);
+  instance = createVNode(ImageViewer, {
+    ...options,
+    onClose: () => {
+      render(null, container);
+      document.body.removeChild(container);
+    },
+  });
   render(instance, container);
 };
 
