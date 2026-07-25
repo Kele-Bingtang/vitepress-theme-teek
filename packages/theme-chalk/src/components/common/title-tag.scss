@@ -1,5 +1,6 @@
 @use "../../mixins/bem" as *;
 @use "../../mixins/function" as *;
+@use "../../mixins/config" as *;
 @use "sass:string";
 
 @include b(title-tag) {
@@ -80,8 +81,11 @@
   }
 }
 
-h1 {
+.VPDoc h1 {
   @include b(title-tag) {
-    transform: translateY(-4px);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 6px;
   }
 }

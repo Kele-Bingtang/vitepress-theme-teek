@@ -240,6 +240,7 @@ const loading: ThemeEnhanceConfig = {
   ],
   change(value: TeekConfig["loading"]) {
     teekConfig.value.loading = value;
+    change("loading");
   },
 };
 
@@ -268,8 +269,20 @@ const comment: ThemeEnhanceConfig = {
   },
 };
 
-const change = (type: ChangeType) => {
-  emit("change", teekConfig.value, type);
+const ribbon = {
+  modelValue: false,
+  title: "彩带背景",
+  options: [
+    { value: true, label: "ON" },
+    { value: false, label: "OFF" },
+  ],
+  change(value: boolean) {
+    change("ribbon", value);
+  },
+};
+
+const change = (type: ChangeType, value?: any) => {
+  emit("change", value ?? teekConfig.value, type);
 };
 
 const { copy, copied } = useClipboard();
@@ -354,6 +367,14 @@ const handleCopy = async () => {
     <div class="wrapper flx-justify-between">
       <span>{{ comment.title }}</span>
       <TkSwitch :model-value="comment.modelValue" @change="comment.change" />
+
+      <!-- <span class="tk-theme-enhance__title">{{ comment.title }}</span> -->
+      <!-- <TkSegmented v-bind="comment" @change="comment.change" /> -->
+    </div>
+
+    <div class="wrapper flx-justify-between">
+      <span>{{ ribbon.title }}</span>
+      <TkSwitch :model-value="ribbon.modelValue" @change="ribbon.change" />
 
       <!-- <span class="tk-theme-enhance__title">{{ comment.title }}</span> -->
       <!-- <TkSegmented v-bind="comment" @change="comment.change" /> -->

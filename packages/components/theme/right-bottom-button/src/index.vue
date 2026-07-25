@@ -43,11 +43,10 @@ const commentConfig = computed(() => {
 const isMobile = useMediaQuery(mobileMaxWidthMedia);
 const disabledThemeColor = computed(() => {
   const { enabled = true, themeColor = {}, position = "top" } = themeEnhanceConfig.value;
-  const isDisabled = themeColor.disabled ?? themeColor.disabledInMobile;
 
   // 如果全局禁用主题增强功能，则禁用主题颜色，其次判断是否局部禁用主题颜色功能，最后默认移动端启用主题颜色功能
-  if (!enabled) return true;
-  if (isDisabled !== undefined) return isDisabled;
+  if (!enabled || themeColor.disabled) return true;
+  if (isMobile.value && themeColor.disabledInMobile !== undefined) return themeColor.disabledInMobile;
   return !isMobile.value && position === "top";
 });
 </script>

@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.6.0...v1.6.1) (2026-07-25)
+
+### Bug Fixes
+
+- **article-analyze:** 🐞 修复页面视图统计请求时机问题 ([f10cf41](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/f10cf41f32a36c57cb1d00dbbbb22d1ba7c10149))
+- **config:** 🐞 修复文章页背景风格切换时不自动切换布局导致失效问题 ([35126df](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/35126df9a6091cb968c10af372a6eb62514e567d))
+- **right-bottom-button:** 🐞 修复移动端主题颜色禁用逻辑 ([f5c033b](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/f5c033b66b2ef2da841408f4c7cf1b771d8a4531))
+- **theme:** 🐞 修复 TitleTag 组件导致文档一级标题文字出现重合现象，文件创建时间初始化支持配置化 ([7a6496c](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/7a6496c5aa815c7b854e056620c6244fc0c93b3c))
+- **theme:** 🐞 修复主题面板 hidden 配置失效问题 [#227](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues/227) ([f65942a](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/f65942afdc54221e5682222757291f85a126e15f))
+
+### Others
+
+- **release:** 🔨 更新版本号到 v1.6.1 ([51dc937](https://github.com/Kele-Bingtang/vitepress-theme-teek/commit/51dc937fb33a83e888085f9cc284a95bb5dbcc53))
+
 ## [1.6.0](https://github.com/Kele-Bingtang/vitepress-theme-teek/compare/v1.5.7...v1.6.0) (2026-05-17)
 
 ### Features
