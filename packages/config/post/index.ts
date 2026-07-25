@@ -1,11 +1,12 @@
 import type { FileContentLoaderData } from "vitepress-plugin-file-content-loader";
-import type { TkContentData, PostData } from "./types";
-import type { RequiredKeyPartialOther } from "@teek/helper";
 import type { SiteConfig } from "vitepress";
+import type { RequiredKeyPartialOther } from "@teek/helper";
+import type { TkContentData, PostData } from "./types";
+import type { ArticleAnalyze } from "../interface";
 import { getTitleFromMarkdown } from "vitepress-plugin-sidebar-resolve";
 import { basename, join } from "node:path";
 import { statSync } from "node:fs";
-import { formatDate } from "@teek/helper";
+import { formatDate, isFunction } from "@teek/helper";
 import {
   filterPosts,
   getSortPostsByDateAndSticky,
@@ -35,7 +36,7 @@ export const transformData = (data: FileContentLoaderData): TkContentData => {
     frontmatter,
     author: frontmatter.author || themeConfig.author,
     title: getTitle(data),
-    date: getDate(data, siteConfig.srcDir),
+    date: getDate(data, siteConfig.srcDir, themeConfig.articleAnalyze),
     excerpt,
     capture: getCaptureText(data),
   };
@@ -113,8 +114,13 @@ export function getTitle(post: RequiredKeyPartialOther<TkContentData, "frontmatt
  *
  * @param post 文章数据
  * @param srcDir 项目绝对路径
+ * @param articleAnalyze 文章信息配置
  */
-export function getDate(post: RequiredKeyPartialOther<TkContentData, "frontmatter" | "relativePath">, srcDir: string) {
+export function getDate(
+  post: RequiredKeyPartialOther<TkContentData, "frontmatter" | "relativePath">,
+  srcDir: string,
+  articleAnalyze: ArticleAnalyze
+) {
   const { frontmatter, relativePath } = post;
 
   if (frontmatter.date) return frontmatter.date;
@@ -125,7 +131,11 @@ export function getDate(post: RequiredKeyPartialOther<TkContentData, "frontmatte
     `${relativePath.endsWith("/") ? `${relativePath}/index` : relativePath.replace(/\.html$/, "")}.md`
   );
   const stat = statSync(filePath);
-  return formatDate(stat.birthtime || stat.atime, "yyyy-MM-dd hh:mm:ss", true);
+  // 时间获取优先级：文件创建时间 > 文件访问时间
+  const originalDate = stat.birthtime || stat.atime;
+
+  if (isFunction(articleAnalyze.dateFormat)) return articleAnalyze.dateFormat(String(originalDate));
+  return formatDate(String(originalDate), articleAnalyze.dateFormat, !(articleAnalyze.dateUTC ?? true));
 }
 
 /**
