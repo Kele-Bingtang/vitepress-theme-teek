@@ -1,4 +1,5 @@
 export * from "./on-click-outside";
+export * from "./use-anchor-align";
 export * from "./use-anchor-scroll";
 export * from "./use-clipboard";
 export * from "./use-copy-banner";
@@ -9,6 +10,7 @@ export * from "./use-locale";
 export * from "./use-media-query";
 export * from "./use-mounted";
 export * from "./use-namespace";
+export * from "./use-outline-scroll";
 export * from "./use-popover-size";
 export * from "./use-scope-dispose";
 export * from "./use-scroll-data";

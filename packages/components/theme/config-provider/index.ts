@@ -3,7 +3,7 @@ import type { WindowTransition, TeekConfig, ViewTransition } from "@teek/config"
 import type { Component, Ref, InjectionKey } from "vue";
 import { computed, defineComponent, h, inject, nextTick, provide, ref, unref, watch } from "vue";
 import { useData, useRoute } from "vitepress";
-import { useAnchorScroll, useMediaQuery, useViewTransition } from "@teek/composables";
+import { useAnchorAlign, useAnchorScroll, useMediaQuery, useOutlineScroll, useViewTransition } from "@teek/composables";
 import { emptyPost } from "@teek/config/post/helper";
 import { isClient, isFunction, isObject } from "@teek/helper";
 
@@ -22,6 +22,10 @@ export const TeekConfigProvider = (layout: Component) => {
 
       // 开启监听器
       useAnchorScroll().startWatch();
+      // 内容更新后重新对齐锚点落点
+      useAnchorAlign().startWatch();
+      // 右侧目录滚动到对应位置
+      useOutlineScroll().startWatch();
 
       const { getTeekConfig } = useTeekConfig();
       const viewTransitionConfig = getTeekConfig<ViewTransition>("viewTransition", {
