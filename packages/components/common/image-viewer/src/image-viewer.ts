@@ -15,6 +15,12 @@ export interface ImageViewerProps {
    */
   urlList?: string[];
   /**
+   * 用于预览的图片 alt 列表，未提供时使用图片文件名
+   *
+   * @default []
+   */
+  altList?: string[];
+  /**
    * 预览时遮罩层的 z-index
    */
   zIndex?: number;

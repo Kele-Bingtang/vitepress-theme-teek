@@ -1,6 +1,7 @@
 <script setup lang="ts" name="ArticleImagePreview">
 import type { ArticleAnalyze } from "@teek/config";
 import { computed } from "vue";
+import { getImageAlt } from "@teek/helper";
 import { useEventListener } from "@teek/composables";
 import { useTeekConfig } from "@teek/components/theme/config-provider";
 import { createImageViewer } from "@teek/components/common/image-viewer";
@@ -26,16 +27,18 @@ const previewImage = (e: Event) => {
     const imgs = Array.from(imgDoms);
 
     const urlList = imgs.map(el => el.src);
+    const altList = imgs.map(el => el.alt || getImageAlt(el.src));
     let initialIndex = imgs.findIndex(el => el === target);
     const url = target.getAttribute("src");
 
     // 兼容点击文档之外的图片
     if (initialIndex === -1 && url) {
       urlList.push(url);
+      altList.push(target.getAttribute("alt") || getImageAlt(url));
       initialIndex = urlList.length - 1;
     }
 
-    createImageViewer({ infinite: false, ...imageViewer.value, urlList, initialIndex });
+    createImageViewer({ infinite: false, ...imageViewer.value, urlList, altList, initialIndex });
   }
 };
 

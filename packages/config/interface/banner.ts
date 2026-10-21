@@ -128,7 +128,7 @@ export interface Banner {
   /**
    * Banner 特性列表，支持 frontmatter.tk.features 配置
    */
-  features?: { title: string; details?: string; link?: string; image?: string }[];
+  features?: { title: string; details?: string; link?: string; image?: string; imageAlt?: string }[];
   /**
    * feature 轮播间隔时间，单位：毫秒。仅在移动端生效（屏幕小于 719px）
    *

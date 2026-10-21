@@ -1,8 +1,8 @@
 import type MarkdownIt from "markdown-it";
 import type { SiteConfig } from "vitepress";
 import type { NavCard } from "../types";
-import { isStringNumber, withBase } from "@teek/helper";
-import { createCardContainer } from "../helper";
+import { getImageAlt, isStringNumber, withBase } from "@teek/helper";
+import { createCardContainer, escapeHtmlAttr } from "../helper";
 
 const rootClass = "nav-card";
 
@@ -69,7 +69,7 @@ const getNavCardHtml = (navCard: { data: NavCard.Item[]; config: NavCard.Config 
                   ${
                     card.img
                       ? `<div class="${rootClass}__item__img skeleton-image">
-                          <img src="${withBase(base, card.img)}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
+                          <img src="${withBase(base, card.img)}" alt="${escapeHtmlAttr(getImageAlt(card.img, card.alt))}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
                          </div>`
                       : ""
                   }

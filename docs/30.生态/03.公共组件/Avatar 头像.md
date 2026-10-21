@@ -42,7 +42,7 @@ avatar/icon
 | shape      | Avatar 形状                                  | `enum`                                            | circle                |
 | src        | Avatar 图片的源地址                          | `string`                                          | —                     |
 | src-set    | 图片 Avatar 的原生 `srcset` 属性             | `string`                                          | —                     |
-| alt        | 图片 Avatar 的原生 `alt` 属性                | `string`                                          | —                     |
+| alt        | 图片 Avatar 的原生 `alt` 属性                | `string`                                          | 图片文件名            |
 | fit        | 当展示类型为图片的时候，设置图片如何适应容器 | `enum`                                            | cover                 |
 | bg-color   | 头像背景色                                   | `string`                                          | `#c0c4cc` / `#6c6e72` |
 | text-color | 文本头像字体色                               | `string`                                          | `var(--vp-c-white)`   |

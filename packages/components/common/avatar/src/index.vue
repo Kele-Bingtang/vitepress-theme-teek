@@ -3,7 +3,7 @@ import type { AvatarProps, AvatarEmit } from "./avatar";
 import type { CSSProperties } from "vue";
 import { computed, ref, watch } from "vue";
 import { useNamespace } from "@teek/composables";
-import { addUnit, isString } from "@teek/helper";
+import { addUnit, getImageAlt, isString } from "@teek/helper";
 import { TkIcon } from "@teek/components/common/icon";
 
 defineOptions({ name: "Avatar" });
@@ -48,6 +48,7 @@ const avatarStyle = computed(() => {
 });
 
 const imgStyle = computed(() => ({ objectFit: fit }) as CSSProperties);
+const imageAlt = computed(() => getImageAlt(src, alt));
 
 watch(
   () => src,
@@ -95,7 +96,7 @@ const captureText = (text: string | undefined) => {
 
 <template>
   <span :class="avatarClass" :style="avatarStyle">
-    <img v-if="(src || srcSet) && !hasLoadError" :src :alt :srcSet :style="imgStyle" @error="handleError" />
+    <img v-if="(src || srcSet) && !hasLoadError" :src :alt="imageAlt" :srcSet :style="imgStyle" @error="handleError" />
     <TkIcon v-else-if="icon" :icon="icon" />
     <span v-else-if="text">{{ captureText(text) }}</span>
     <slot v-else />

@@ -2,7 +2,7 @@
 import { onMounted, ref } from "vue";
 import { useData } from "vitepress";
 import { useNamespace, useLocale } from "@teek/composables";
-import { isValidURL } from "@teek/helper";
+import { getImageAlt, isValidURL } from "@teek/helper";
 
 defineOptions({ name: "RiskLinkPage" });
 
@@ -29,7 +29,7 @@ const confirmRedirect = () => {
 <template>
   <div :class="[ns.b(), ns.join('center'), 'flx-space-y-20']">
     <div :class="[ns.e('header'), 'flx-align-center']">
-      <img v-if="frontmatter.logo" :src="frontmatter.logo" alt="logo" />
+      <img v-if="frontmatter.logo" :src="frontmatter.logo" :alt="getImageAlt(frontmatter.logo, frontmatter.logoAlt)" />
       <p v-if="targetLink" :class="ns.e('title')">
         {{
           frontmatter.desc
