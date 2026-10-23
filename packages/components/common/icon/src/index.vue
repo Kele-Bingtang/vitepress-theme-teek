@@ -2,7 +2,7 @@
 import type { IconProps } from "./icon";
 import { useSlots, computed, toRaw } from "vue";
 import { useNamespace } from "@teek/composables";
-import { addUnit, isObject, isString } from "@teek/helper";
+import { addUnit, getImageAlt, isObject, isString } from "@teek/helper";
 import SvgIcon from "./components/svg-icon.vue";
 import FontIcon from "./components/font-icon.vue";
 import IconifyOffline from "./components/iconify-offline.vue";
@@ -12,7 +12,16 @@ defineOptions({ name: "Icon" });
 
 const ns = useNamespace("icon");
 
-const { icon = "", iconType, color, hover = false, hoverColor, pointer = false, ...props } = defineProps<IconProps>();
+const {
+  icon = "",
+  iconType,
+  color,
+  hover = false,
+  hoverColor,
+  pointer = false,
+  imgAlt,
+  ...props
+} = defineProps<IconProps>();
 
 const slot = useSlots();
 
@@ -38,6 +47,8 @@ const finalIcon = computed<any>(() => {
   if (!isString(icon)) return toRaw(icon);
   return icon.replace(/^(svg-|if-|uni-|sym-|img-)/i, "");
 });
+
+const imageAlt = computed(() => getImageAlt(isString(finalIcon.value) ? finalIcon.value : undefined, imgAlt));
 
 // 获取 iconfont 类型
 const fontIconType = computed(() => {
@@ -114,7 +125,7 @@ const isImage = computed(
   <img
     v-else-if="isImage"
     :src="finalIcon"
-    :alt="imgAlt"
+    :alt="imageAlt"
     :class="[ns.b(), ns.is('hover', hover)]"
     :style="getStyle()"
   />

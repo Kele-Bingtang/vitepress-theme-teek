@@ -1,8 +1,8 @@
 import type MarkdownIt from "markdown-it";
 import type { SiteConfig } from "vitepress";
 import type { ShareCard } from "../types";
-import { isStringNumber, withBase } from "@teek/helper";
-import { createCardContainer } from "../helper";
+import { getImageAlt, isStringNumber, withBase } from "@teek/helper";
+import { createCardContainer, escapeHtmlAttr } from "../helper";
 
 const rootClass = "share-card";
 
@@ -72,7 +72,7 @@ const renderShareCard = (
               ${
                 card.avatar
                   ? `<div class="${rootClass}__item__img skeleton-image">
-                      <img src="${withBase(base, card.avatar)}" alt="${card.name}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
+                      <img src="${withBase(base, card.avatar)}" alt="${escapeHtmlAttr(getImageAlt(card.avatar, card.alt ?? card.name))}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
                      </div>`
                   : ""
               }

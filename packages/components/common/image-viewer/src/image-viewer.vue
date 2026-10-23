@@ -1,6 +1,7 @@
 <script lang="ts" setup name="ImageViewer">
 import type { ImageViewerEmits, ImageViewerProps, ImageViewerAction, ImageViewerMode } from "./image-viewer";
 import { computed, effectScope, nextTick, onMounted, ref, shallowRef, watch } from "vue";
+import { getImageAlt } from "@teek/helper";
 import { useNamespace, useLocale, useDebounce, useEventListener, useZIndex } from "@teek/composables";
 import {
   arrowLeftIcon,
@@ -31,6 +32,7 @@ const modes: Record<"CONTAIN" | "ORIGINAL", ImageViewerMode> = {
 
 const props = withDefaults(defineProps<ImageViewerProps>(), {
   urlList: () => [],
+  altList: () => [],
   initialIndex: 0,
   infinite: true,
   hideOnClickModal: false,
@@ -377,6 +379,7 @@ defineExpose({
               :ref="el => (imgRefs[i] = el as HTMLImageElement)"
               :key="url"
               :src="url"
+              :alt="getImageAlt(url, altList[i])"
               :style="imgStyle"
               :class="ns.e('img')"
               class="image-viewer__img"

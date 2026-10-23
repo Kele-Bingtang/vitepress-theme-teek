@@ -66,7 +66,7 @@ icon/hover
 | color      | 图标颜色                                          | `string`                                        | inherit               |
 | hover      | 图标是否可悬停                                    | `boolean`                                       | false                 |
 | hoverColor | 图标悬停时的颜色                                  | `string`                                        | var(--tk-theme-color) |
-| imgAlt     | img 标签的原生 alt，仅当 `iconType` 为 `img` 生效 | `string`                                        | —                     |
+| imgAlt     | img 标签的原生 alt，仅当 `iconType` 为 `img` 生效 | `string`                                        | 图片文件名            |
 | style      | 自定义图标样式                                    | `Record<string, any>`                           | —                     |
 
 IconType 类型为 `svg` / `unicode` / `iconfont` / `symbol` / `img` / `component` / `iconifyOffline` / `iconifyOnline`。

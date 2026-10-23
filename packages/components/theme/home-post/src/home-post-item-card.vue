@@ -2,6 +2,7 @@
 import type { ArticleAnalyze, Post, TkContentData } from "@teek/config";
 import { computed } from "vue";
 import { withBase } from "vitepress";
+import { getImageAlt } from "@teek/helper";
 import { useNamespace, useLocale } from "@teek/composables";
 import { topIcon } from "@teek/static";
 import { useTeekConfig } from "@teek/components/theme/config-provider";
@@ -52,8 +53,12 @@ const isShowInfo = computed(() => {
     />
 
     <div v-if="imgSrcList.length" :class="ns.e('cover-img')">
-      <a :href="postUrl" :alt="post.title">
-        <img :src="withBase(imgSrcList[0])" class="cover-img" />
+      <a :href="postUrl">
+        <img
+          :src="withBase(imgSrcList[0])"
+          :alt="getImageAlt(imgSrcList[0], post.frontmatter.coverAlt)"
+          class="cover-img"
+        />
       </a>
     </div>
 

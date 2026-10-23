@@ -1,8 +1,8 @@
 import type MarkdownIt from "markdown-it";
 import type { SiteConfig } from "vitepress";
 import type { ImgCard } from "../types";
-import { isStringNumber, withBase } from "@teek/helper";
-import { createCardContainer } from "../helper";
+import { getImageAlt, isStringNumber, withBase } from "@teek/helper";
+import { createCardContainer, escapeHtmlAttr } from "../helper";
 
 const rootClass = "img-card";
 
@@ -75,7 +75,7 @@ const renderImgCard = (imgCard: { data: ImgCard.Item[]; config: ImgCard.Config }
               style="--img-height: ${imgHeight}; --img-object-fit: ${objectFit}; --desc-line-clamp: ${lineClamp}"
             >
               <div class="${rootClass}__item__img skeleton-image">
-                <img src="${withBase(base, card.img)}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
+                <img src="${withBase(base, card.img)}" alt="${escapeHtmlAttr(getImageAlt(card.img, card.alt))}" class="no-preview" onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">
               </div>
               <div class="${rootClass}__item__info">
                   <p class="name">${card.name}</p>
@@ -84,7 +84,7 @@ const renderImgCard = (imgCard: { data: ImgCard.Item[]; config: ImgCard.Config }
               ${
                 card.avatar || card.author
                   ? `<div class="${rootClass}__item__footer">
-                      ${card.avatar ? `<img src="${withBase(base, card.avatar)}">` : ""}
+                      ${card.avatar ? `<img src="${withBase(base, card.avatar)}" alt="${escapeHtmlAttr(getImageAlt(card.avatar, card.avatarAlt))}">` : ""}
                       ${card.author ? `<span>${card.author}</span>` : ""}
                     </div>`
                   : ""

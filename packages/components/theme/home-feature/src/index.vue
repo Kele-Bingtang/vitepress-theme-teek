@@ -2,6 +2,7 @@
 import type { Feature } from "@teek/config";
 import { onMounted, ref } from "vue";
 import { withBase } from "vitepress";
+import { getImageAlt } from "@teek/helper";
 import { useNamespace, useWindowTransition } from "@teek/composables";
 import { useTeekConfig, useWindowTransitionConfig } from "@teek/components/theme/config-provider";
 import { TkIcon } from "@teek/components/common/icon";
@@ -27,7 +28,7 @@ onMounted(() => {
     <template v-for="feature in featuresConfig" :key="feature.title">
       <div v-if="feature.features" :class="ns.e('feature-wrapper')" class="features-wrapper">
         <div :class="ns.e('feature__content')">
-          <img :src="feature.image" class="image" />
+          <img :src="feature.image" :alt="getImageAlt(feature.image, feature.imageAlt)" class="image" />
 
           <div :class="ns.e('feature__header')" class="header">
             <h2 ref="textInstance" v-html="feature.title" />
@@ -54,7 +55,7 @@ onMounted(() => {
 
       <div v-else-if="feature.highlights" :class="ns.e('highlight-wrapper')" class="features-wrapper">
         <div :class="ns.e('highlight')">
-          <img :src="feature.image" class="image" />
+          <img :src="feature.image" :alt="getImageAlt(feature.image, feature.imageAlt)" class="image" />
 
           <div :class="ns.e('highlight__content')">
             <div :class="ns.e('highlight__header')" class="header">
