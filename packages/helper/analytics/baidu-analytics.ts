@@ -32,6 +32,9 @@ export const baiduAnalytics = (options: BaiduAnalyticsOptions) => {
   // 如果百度统计脚本未加载，则注入脚本
   if (!document.querySelector(`#baidu-analytics-${id}`)) {
     window._hmt = window._hmt || [];
+    // 固定真实来源：hm.js 的 _trackPageview 会把 su（来源）覆盖成当前页地址，
+    // 导致手动上报的 PV 全部被判为「直接访问」。这条命令需在 _trackPageview 之前入队
+    window._hmt.push(["_setReferrerOverride", document.referrer]);
 
     const script = document.createElement("script");
     script.id = `baidu-analytics-${id}`;
