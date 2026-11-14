@@ -90,7 +90,7 @@ export const teekConfig = defineTeekConfig({
   // 文章默认的作者信息
   author: {
     name: "Teeker", // 作者名称
-    link: "https://github.com/Kele-Bingtang", // 点击作者名称后跳转的链接
+    link: "https://github.com/teekhub", // 点击作者名称后跳转的链接
   },
   // 公告配置
   notice: {
@@ -187,7 +187,7 @@ export const teekConfig = defineTeekConfig({
   blogger: {
     name: "天客", // 博主昵称
     slogan: "朝圣的使徒，正在走向编程的至高殿堂！", // 博主签名
-    avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar1.png", // 博主头像
+    avatar: "https://testingcf.jsdelivr.net/gh/teekhub/static/user/avatar1.png", // 博主头像
     shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转，circle-rotate-last 将会持续旋转 59s
     circleBgImg: "/blog/bg4.webp", // 背景图片
     circleBgMask: true, // 遮罩层是否显示，仅当 shape 为 circle 且 circleBgImg 配置时有效
@@ -242,7 +242,7 @@ export const teekConfig = defineTeekConfig({
       {
         name: "Teeker",
         desc: "朝圣的使徒，正在走向编程的至高殿堂！",
-        avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar2.png",
+        avatar: "https://testingcf.jsdelivr.net/gh/teekhub/static/user/avatar2.png",
         link: "http://notes.teek.top/",
       },
     ], // 友情链接数据列表
@@ -287,12 +287,12 @@ export const teekConfig = defineTeekConfig({
     {
       icon: "mdi:github",
       name: "GitHub",
-      link: "https://github.com/kele-bingtang",
+      link: "https://github.com/teekhub",
     },
     {
       icon: "simple-icons:gitee",
       name: "Gitee",
-      link: "https://gitee.com/kele-bingtang",
+      link: "https://gitee.com/teekhub",
     },
   ],
   // 页脚信息组配置

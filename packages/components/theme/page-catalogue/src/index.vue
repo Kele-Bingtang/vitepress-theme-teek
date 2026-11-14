@@ -21,7 +21,7 @@ const catalogues = computed(() => theme.value.catalogues?.inv[frontmatter.value.
     <slot name="teek-catalogue-top-before" />
 
     <div :class="ns.e('header')" role="group" aria-labelledby="catalogue-header-title">
-      <h2 id="catalogue-header-title">{{ frontmatter.title }}</h2>
+      <h1 id="catalogue-header-title">{{ frontmatter.title }}</h1>
       <div class="description">{{ frontmatter.desc || frontmatter.description }}</div>
     </div>
 

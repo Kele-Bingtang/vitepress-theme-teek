@@ -102,7 +102,7 @@ export default defineConfig({
 
 如果 `resolveRule` 为 `rewrites`，但是没有 `rewrites` 配置，则按照 `filePath` 配置生成侧边栏。
 
-`rewrites` 方式推荐和 [vitepress-plugin-permalink](https://github.com/Kele-Bingtang/vitepress-theme-teek/tree/master/plugins/vitepress-plugin-permalink) 插件搭配使用，`vitepress-plugin-permalink` 插件可以在 Markdown 文件的 `frontmatter` 中添加 `permalink` 属性，用于指定该文件的永久链接，并生成 `rewrites`。
+`rewrites` 方式推荐和 [vitepress-plugin-permalink](https://github.com/teekhub/vitepress-theme-teek/tree/master/plugins/vitepress-plugin-permalink) 插件搭配使用，`vitepress-plugin-permalink` 插件可以在 Markdown 文件的 `frontmatter` 中添加 `permalink` 属性，用于指定该文件的永久链接，并生成 `rewrites`。
 
 什么是永久链接？VitePress 默认按照运行文件路径访问，而通过配置 `permalink` 永久链接，则按照永久链接访问，这样不用因为 Markdown 文档路径移动而导致访问地址发生变化。
 
@@ -380,4 +380,4 @@ export interface SidebarOption {
 
 ## 🉑 License
 
-[MIT](../../LICENSE) License © 2025 [Teeker](https://github.com/Kele-Bingtang)
+[MIT](../../LICENSE) License © 2025 [Teeker](https://github.com/teekhub)

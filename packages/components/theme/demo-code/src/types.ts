@@ -1,4 +1,4 @@
-// props 的参数来源与 Demo Markdown 插件：https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/main/packages/markdown/plugins/demo.ts
+// props 的参数来源与 Demo Markdown 插件：https://github.com/teekhub/vitepress-theme-teek/blob/main/packages/markdown/plugins/demo.ts
 // 该插件传参数给 DemoCode 组件时只能是 string 类型，所以下面的类型都是 string，实际在 DemoCode 组件里需要序列化回来
 
 export interface DemoCodeProps {

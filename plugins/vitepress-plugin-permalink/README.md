@@ -68,7 +68,7 @@ export default defineConfig({
 });
 ```
 
-`createRewrites` 函数支持除了传入 `vitepress-plugin-permalink` 的 [配置项](https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/plugins/vitepress-plugin-permalink/src/types.ts)，也支持额外传入两个配置项：
+`createRewrites` 函数支持除了传入 `vitepress-plugin-permalink` 的 [配置项](https://github.com/teekhub/vitepress-theme-teek/blob/master/plugins/vitepress-plugin-permalink/src/types.ts)，也支持额外传入两个配置项：
 
 - `srcDir`：VitePress 的 [srcDir](https://vitepress.dev/zh/reference/site-config#srcdir)，默认为 `.`，即当前项目的绝对目录
 - `locales`：VitePress 的 [locales](https://vitepress.dev/zh/guide/i18n#internationalization)
@@ -77,7 +77,7 @@ export default defineConfig({
 
 注意：该方式会打乱原来的文件结构，因此侧边栏不再是基于文件路径配置，而是需要基于 `frontmatter.permalink` 属性配置。
 
-Rewrites 方式推荐和 [vitepress-plugin-sidebar-resolve](https://github.com/Kele-Bingtang/vitepress-theme-teek/tree/master/plugins/vitepress-plugin-sidebar-resolve) 插件一起使用，`vitepress-plugin-sidebar-resolve` 支持基于 rewrites 生成侧边栏，无需手动配置侧边栏。
+Rewrites 方式推荐和 [vitepress-plugin-sidebar-resolve](https://github.com/teekhub/vitepress-theme-teek/tree/master/plugins/vitepress-plugin-sidebar-resolve) 插件一起使用，`vitepress-plugin-sidebar-resolve` 支持基于 rewrites 生成侧边栏，无需手动配置侧边栏。
 
 ## 📖 Usage
 
@@ -268,4 +268,4 @@ export interface Permalink {
 
 ## 🉑 License
 
-[MIT](../../LICENSE) License © 2025 [Teeker](https://github.com/Kele-Bingtang)
+[MIT](../../LICENSE) License © 2025 [Teeker](https://github.com/teekhub)

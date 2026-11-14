@@ -10,13 +10,13 @@
   },
   "keywords": ["vitepress", "theme", "markdown", "vue", "vite", "ui", "blog", "doc"],
   "license": "MIT",
-  "homepage": "https://github.com/Kele-Bingtang/vitepress-theme-teek/tree/master",
+  "homepage": "https://github.com/teekhub/vitepress-theme-teek/tree/master",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kele-Bingtang/vitepress-theme-teek.git"
+    "url": "git+https://github.com/teekhub/vitepress-theme-teek.git"
   },
   "bugs": {
-    "url": "https://github.com/Kele-Bingtang/vitepress-theme-teek/issues"
+    "url": "https://github.com/teekhub/vitepress-theme-teek/issues"
   },
   "main": "lib/index.js",
   "module": "es/index.mjs",

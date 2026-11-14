@@ -22,7 +22,7 @@ import DefaultTheme from "vitepress/theme";
 import { TkArticleAnalyze, teekConfigContext } from "vitepress-theme-teek";
 
 provide(teekConfigContext, {
-  author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
+  author: { name: "Teeker", link: "https://github.com/teekhub" },
   articleAnalyze: {
     showIcon: true,
     dateFormat: "yyyy-MM-dd",

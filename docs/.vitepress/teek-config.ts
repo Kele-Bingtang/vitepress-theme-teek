@@ -11,11 +11,11 @@ export const teekConfig = defineTeekConfig({
   vpHome: true,
   loading: false,
   sidebarTrigger: true,
-  author: { name: "Teeker", link: "https://github.com/Kele-Bingtang" },
+  author: { name: "Teeker", link: "https://github.com/teekhub" },
   blogger: {
     name: "天客",
     slogan: "朝圣的使徒，正在走向编程的至高殿堂！",
-    avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar1.png",
+    avatar: "https://testingcf.jsdelivr.net/gh/teekhub/static/user/avatar1.png",
     shape: "circle-rotate",
     circleBgImg: "/blog/bg4.webp",
     color: "#ffffff",
@@ -78,8 +78,8 @@ export const teekConfig = defineTeekConfig({
     topMessage: [
       `<span><img alt="VitePress" src="https://liuyuyang.net/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fanimals.65eaf6e3.webp&w=750&q=75" style="width: 750px; height: 80px"><span/>`,
 
-      `<a title="Github release" target="_blank" href="https://github.com/Kele-Bingtang/vitepress-theme-teek/releases" style="margin-right: 10px;">
-        <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Kele-Bingtang/vitepress-theme-teek?logo=github">
+      `<a title="Github release" target="_blank" href="https://github.com/teekhub/vitepress-theme-teek/releases" style="margin-right: 10px;">
+        <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/teekhub/vitepress-theme-teek?logo=github">
       </a>
 
       <a title="Npm Version" target="_blank" href="https://www.npmjs.com/package/vitepress-theme-teek" style="margin-right: 10px;">
@@ -87,13 +87,13 @@ export const teekConfig = defineTeekConfig({
       </a>
 
       <img src="https://img.shields.io/badge/v18.x-x?logo=node.js&label=node" alt="node version" style="margin-right: 10px; margin-bottom: 10px;">
-      <img src="https://img.shields.io/github/languages/code-size/Kele-Bingtang/vitepress-theme-teek?logo=Visual Studio Code&logoColor=blue" alt="GitHub code size in bytes" style="margin-right: 10px; margin-bottom: 10px;">
+      <img src="https://img.shields.io/github/languages/code-size/teekhub/vitepress-theme-teek?logo=Visual Studio Code&logoColor=blue" alt="GitHub code size in bytes" style="margin-right: 10px; margin-bottom: 10px;">
 
-      <a title="GitHub Discussions" target="_blank" href="https://github.com/Kele-Bingtang/vitepress-theme-teek/discussions" style="margin-right: 10px;">
-        <img src="https://img.shields.io/github/discussions/Kele-Bingtang/vitepress-theme-teek?color=9cf&logo=github" alt="GitHub Discussions">
+      <a title="GitHub Discussions" target="_blank" href="https://github.com/teekhub/vitepress-theme-teek/discussions" style="margin-right: 10px;">
+        <img src="https://img.shields.io/github/discussions/teekhub/vitepress-theme-teek?color=9cf&logo=github" alt="GitHub Discussions">
       </a>
 
-      <a title="MIT License" target="_blank" href="https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/LICENSE" style="margin-right: 10px;">
+      <a title="MIT License" target="_blank" href="https://github.com/teekhub/vitepress-theme-teek/blob/master/LICENSE" style="margin-right: 10px;">
         <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT License">
       </a>`,
     ],
@@ -120,7 +120,7 @@ export const teekConfig = defineTeekConfig({
       {
         name: "Teeker",
         desc: "朝圣的使徒，正在走向编程的至高殿堂！",
-        avatar: "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar2.png",
+        avatar: "https://testingcf.jsdelivr.net/gh/teekhub/static/user/avatar2.png",
         link: "http://notes.teek.top/",
       },
       {
@@ -172,12 +172,12 @@ export const teekConfig = defineTeekConfig({
     {
       icon: "icon-github",
       name: "GitHub",
-      link: "https://github.com/kele-bingtang",
+      link: "https://github.com/teekhub",
     },
     {
       icon: "icon-gitee",
       name: "Gitee",
-      link: "https://gitee.com/kele-bingtang",
+      link: "https://gitee.com/teekhub",
     },
   ],
   themeEnhance: {
@@ -224,7 +224,7 @@ export const teekConfig = defineTeekConfig({
   },
   markdown: {
     demo: {
-      githubUrl: "https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/master/docs",
+      githubUrl: "https://github.com/teekhub/vitepress-theme-teek/blob/master/docs",
     },
   },
   siteAnalytics: [

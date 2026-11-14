@@ -9,7 +9,7 @@ articleBanner: false
 
 如果您正在使用这个项目并感觉这个项目给你带来帮助，或者是想支持我继续开发，您可以通过如下任意方式支持我：
 
-- Star 并分享 [VitePress Theme Teek](https://github.com/Kele-Bingtang/vitepress-theme-teek) 🚀
+- Star 并分享 [VitePress Theme Teek](https://github.com/teekhub/vitepress-theme-teek) 🚀
 - 通过以下二维码进行赞助，打赏作者一杯茶 🍵
 
 谢谢！❤️
@@ -29,7 +29,7 @@ articleBanner: false
 
 ❤️ 感谢支持这个项目的朋友，您的每一份帮助都让这个项目变得更好！
 
-❤️ 感谢为这个项目贡献代码的朋友 → [Contributors](https://github.com/Kele-Bingtang/vitepress-theme-teek/graphs/contributors)
+❤️ 感谢为这个项目贡献代码的朋友 → [Contributors](https://github.com/teekhub/vitepress-theme-teek/graphs/contributors)
 
 ## 赞助者名单
 

@@ -42,11 +42,11 @@ Teek 可以通过配置搭配出各种风格，而当前文档站默认仅演示
 
 ## 💡 反馈交流
 
-在使用过程中有任何问题和想法，请给我提 [Issue](https://github.com/Kele-Bingtang/vitepress-theme-teek/issues)。 你也可以在 Issue 查看别人提的问题和解决方案。
+在使用过程中有任何问题和想法，请给我提 [Issue](https://github.com/teekhub/vitepress-theme-teek/issues)。 你也可以在 Issue 查看别人提的问题和解决方案。
 
 或者加入我们的交流群（添加我的微信并备注 <mark>进群</mark>）：
 
-<img src="https://gcore.jsdelivr.net/gh/Kele-Bingtang/static/index/20250412000919.png" alt="添加我微信备注「进群」" style="width: 180px;" />
+<img src="https://gcore.jsdelivr.net/gh/teekhub/static/index/20250412000919.png" alt="添加我微信备注「进群」" style="width: 180px;" />
 
 如果图片链接失效，可以在微信右上角 -> 添加朋友，然后搜索 `teekers` 来添加我的微信。
 

@@ -257,7 +257,7 @@ const comment: ThemeEnhanceConfig = {
       ? {
           provider: "giscus",
           options: {
-            repo: "Kele-Bingtang/vitepress-theme-teek",
+            repo: "teekhub/vitepress-theme-teek",
             repoId: "R_kgDONpVfBA",
             category: "Announcements",
             categoryId: "DIC_kwDONpVfBM4Cm3v9",

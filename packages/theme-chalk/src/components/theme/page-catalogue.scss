@@ -9,6 +9,12 @@
     margin-top: 16px;
     padding-bottom: 19px;
 
+    // 目录页标题是页面的唯一一级标题，VitePress 全局样式会给 h1 设置 600 字重，
+    // 这里显式改回 400，保持与调整前 h2 一致的视觉效果
+    h1 {
+      font-weight: 400;
+    }
+
     .description {
       margin-top: 10px;
     }

@@ -175,4 +175,4 @@ export interface FileContentLoaderData {
 
 ## 🉑 License
 
-[MIT](../../LICENSE) License © 2025 [Teeker](https://github.com/Kele-Bingtang)
+[MIT](../../LICENSE) License © 2025 [Teeker](https://github.com/teekhub)
