@@ -51,11 +51,10 @@ body:
       label: Validations
       description: 提交问题之前，请确保您已完成以下操作
       options:
-        - label: 检查您是否使用的是 [最新的 Teek 版本](https://github.com/Kele-Bingtang/vitepress-theme-teek/releases/latest)。
+        - label: 检查您是否使用的是 [最新的 Teek 版本](https://github.com/teekhub/vitepress-theme-teek/releases/latest)。
           required: true
         - label: 阅读 [文档](https://vp.teek.top/)。
           required: true
         - label: 检查是否已存在报告相同错误的问题，以避免创建重复问题。
           required: true
 ---
-

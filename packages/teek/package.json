@@ -18,13 +18,13 @@
     "blog"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Kele-Bingtang/vitepress-theme-teek/tree/master",
+  "homepage": "https://github.com/teekhub/vitepress-theme-teek/tree/master",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kele-Bingtang/vitepress-theme-teek.git"
+    "url": "git+https://github.com/teekhub/vitepress-theme-teek.git"
   },
   "bugs": {
-    "url": "https://github.com/Kele-Bingtang/vitepress-theme-teek/issues"
+    "url": "https://github.com/teekhub/vitepress-theme-teek/issues"
   },
   "module": "./index.ts",
   "devDependencies": {

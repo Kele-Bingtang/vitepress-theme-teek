@@ -15,13 +15,13 @@
     "analysis"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Kele-Bingtang/vitepress-theme-teek/tree/master/plugins/vitepress-plugin-doc-analysis",
+  "homepage": "https://github.com/teekhub/vitepress-theme-teek/tree/master/plugins/vitepress-plugin-doc-analysis",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kele-Bingtang/vitepress-theme-teek.git"
+    "url": "git+https://github.com/teekhub/vitepress-theme-teek.git"
   },
   "bugs": {
-    "url": "https://github.com/Kele-Bingtang/vitepress-theme-teek/issues"
+    "url": "https://github.com/teekhub/vitepress-theme-teek/issues"
   },
   "files": [
     "dist",

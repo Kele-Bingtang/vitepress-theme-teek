@@ -137,12 +137,12 @@ export default defineConfig({
       {
         text: version,
         items: [
-          { text: "历史版本", link: "https://github.com/Kele-Bingtang/vitepress-theme-teek/releases" },
-          { text: "更新日志", link: "https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/dev/CHANGELOG.md" },
+          { text: "历史版本", link: "https://github.com/teekhub/vitepress-theme-teek/releases" },
+          { text: "更新日志", link: "https://github.com/teekhub/vitepress-theme-teek/blob/dev/CHANGELOG.md" },
         ],
       },
     ],
-    socialLinks: [{ icon: "github", link: "https://github.com/Kele-Bingtang/vitepress-theme-teek" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/teekhub/vitepress-theme-teek" }],
     search: {
       provider: "algolia",
       options: {
@@ -153,7 +153,7 @@ export default defineConfig({
     },
     editLink: {
       text: "在 GitHub 上编辑此页",
-      pattern: "https://github.com/Kele-Bingtang/vitepress-theme-teek/edit/master/docs/:path",
+      pattern: "https://github.com/teekhub/vitepress-theme-teek/edit/master/docs/:path",
     },
   },
   vite: {

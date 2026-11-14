@@ -4,7 +4,7 @@ import { createImageViewer } from "vitepress-theme-teek";
 const handleClick = () => {
   const urlList = [
     "https://vp.teek.top/teek-logo-large.png",
-    "https://testingcf.jsdelivr.net/gh/Kele-Bingtang/static/user/avatar1.png",
+    "https://testingcf.jsdelivr.net/gh/teekhub/static/user/avatar1.png",
   ];
 
   createImageViewer({ urlList });

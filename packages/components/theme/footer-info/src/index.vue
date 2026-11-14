@@ -27,7 +27,7 @@ const footerData = computed(() => {
     data.push({
       name: "Theme By Teek",
       icon: themeIcon,
-      link: "https://github.com/Kele-Bingtang/vitepress-theme-teek",
+      link: "https://github.com/teekhub/vitepress-theme-teek",
       // 可覆盖上面的配置项
       ...theme,
     });
