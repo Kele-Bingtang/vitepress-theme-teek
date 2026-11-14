@@ -14,6 +14,10 @@ export interface Feature {
    */
   image?: string;
   /**
+   * 图片的 alt，默认取图片文件名
+   */
+  imageAlt?: string;
+  /**
    * Features 数据
    */
   features?: FeatureItem[];

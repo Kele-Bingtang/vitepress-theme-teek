@@ -3,7 +3,7 @@ import type { LoginInfo, Private } from "@teek/config";
 import type { LoginForm, LoginFormItem } from "./login";
 import { markRaw, reactive, ref } from "vue";
 import { useData, useRouter, withBase } from "vitepress";
-import { isClient } from "@teek/helper";
+import { getImageAlt, isClient } from "@teek/helper";
 import { useNamespace, useLocale } from "@teek/composables";
 import { userIcon, lockIcon, successFilledIcon, refreshRightIcon, warningFilledIcon } from "@teek/static";
 import { useTeekConfig, usePosts } from "@teek/components/theme/config-provider";
@@ -288,12 +288,16 @@ const handleBlur = (item: LoginFormItem, formName: "username" | "password" | "ve
   <div :class="ns.b()" :aria-label="t('tk.login.label')">
     <div :class="ns.e('wrapper')">
       <div v-if="frontmatter.leftImg" :class="ns.e('left')">
-        <img :src="withBase(frontmatter.leftImg)" alt="login" />
+        <img :src="withBase(frontmatter.leftImg)" :alt="getImageAlt(frontmatter.leftImg, frontmatter.leftImgAlt)" />
       </div>
 
       <div :class="ns.e('right')">
         <div :class="[ns.e('right__header'), 'flx-center']">
-          <img v-if="frontmatter.logo" :src="frontmatter.logo" alt="logo" />
+          <img
+            v-if="frontmatter.logo"
+            :src="frontmatter.logo"
+            :alt="getImageAlt(frontmatter.logo, frontmatter.logoAlt)"
+          />
           <span class="title">{{ frontmatter.name ?? "VitePress Theme Teek" }}</span>
         </div>
 

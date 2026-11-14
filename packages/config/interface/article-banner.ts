@@ -22,6 +22,10 @@ export interface ArticleBanner {
    */
   defaultCoverImg?: string;
   /**
+   * 默认封面图的 alt，默认取图片文件名
+   */
+  defaultCoverAlt?: string;
+  /**
    * 默认封面背景色，优先级低于 defaultCoverImg
    */
   defaultCoverBgColor?: string;

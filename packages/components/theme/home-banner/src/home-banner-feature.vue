@@ -2,6 +2,7 @@
 import type { Banner, Feature } from "@teek/config";
 import { useData, withBase } from "vitepress";
 import { computed, onBeforeUnmount, ref } from "vue";
+import { getImageAlt } from "@teek/helper";
 import { useNamespace, useLocale, useWindowSize } from "@teek/composables";
 import { useTeekConfig } from "@teek/components/theme/config-provider";
 
@@ -79,7 +80,7 @@ onBeforeUnmount(() => {
           v-if="feature.image"
           class="feature-img"
           :src="withBase(feature.image)"
-          :alt="feature.title"
+          :alt="getImageAlt(feature.image, feature.imageAlt ?? feature.title)"
           :aria-label="feature.title"
         />
         <p :id="`feature-title-${index}`" class="feature-title">{{ feature.title }}</p>

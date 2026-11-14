@@ -83,5 +83,5 @@ export interface ArticleAnalyze {
   /**
    * 文章页图片查看器配置
    */
-  imageViewer?: Omit<ImageViewerProps, "urlList" | "initialIndex" | "infinite">;
+  imageViewer?: Omit<ImageViewerProps, "urlList" | "altList" | "initialIndex" | "infinite">;
 }

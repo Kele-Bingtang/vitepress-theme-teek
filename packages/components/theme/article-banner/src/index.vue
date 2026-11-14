@@ -2,6 +2,7 @@
 import type { ArticleBanner, Post } from "@teek/config";
 import { computed, nextTick, ref, watch } from "vue";
 import { useData, withBase, useRoute } from "vitepress";
+import { getImageAlt } from "@teek/helper";
 import { useNamespace } from "@teek/composables";
 import { useCommon, useSidebar, useTeekConfig } from "@teek/components/theme/config-provider";
 import { TkArticleBreadcrumb } from "@teek/components/theme/article-breadcrumb";
@@ -40,6 +41,10 @@ const imgSrc = computed(() => {
   return imgSrcList[Math.floor(Math.random() * imgSrcList.length)];
 });
 
+const imgAlt = computed(() =>
+  getImageAlt(imgSrc.value, frontmatter.value.coverAlt ?? articleBannerConfig.value.defaultCoverAlt)
+);
+
 const style = computed(() => {
   return {
     [ns.cssVarName("article-banner-bg-color")]:
@@ -63,7 +68,7 @@ watch(
   <div v-if="!hasSidebar && articleBannerConfig.enabled" v-show="!loaded" :class="ns.b()" :style>
     <div :class="ns.e('wrapper')" class="flx-justify-center">
       <div v-if="imgSrc" :class="ns.e('cover')">
-        <img :src="imgSrc" class="no-preview" alt="cover" />
+        <img :src="imgSrc" class="no-preview" :alt="imgAlt" />
       </div>
 
       <div :class="ns.e('info')">

@@ -36,6 +36,27 @@ export const removeUnit = (value?: string | number, defaultUnit = "px") => {
 };
 
 /**
+ * 获取图片的 alt 属性，未提供 alt 时使用图片文件名（不包含扩展名）
+ *
+ * @param src 图片地址
+ * @param alt 自定义 alt，传入空字符串表示装饰性图片
+ */
+export const getImageAlt = (src?: string, alt?: string) => {
+  if (alt !== undefined && alt !== null) return String(alt);
+  if (!src || /^(data|blob):/i.test(src)) return "";
+
+  const path = src.split(/[?#]/)[0];
+  const fileName = path.split(/[/\\]/).pop() || "";
+  const name = fileName.replace(/\.[^.]+$/, "") || fileName;
+
+  try {
+    return decodeURIComponent(name);
+  } catch {
+    return name;
+  }
+};
+
+/**
  * 获取对象值
  */
 export const get = (object: Record<string, any>, path: string, defaultValue?: any) => {

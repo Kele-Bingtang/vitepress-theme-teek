@@ -41,6 +41,10 @@ export declare namespace ShareCard {
      */
     avatar?: string;
     /**
+     * 头像的 alt，默认取 name
+     */
+    alt?: string;
+    /**
      * 跳转链接
      */
     link?: string;
@@ -110,6 +114,10 @@ export declare namespace ImgCard {
      */
     img: string;
     /**
+     * 图片的 alt，默认取图片文件名
+     */
+    alt?: string;
+    /**
      * 跳转链接
      */
     link?: string;
@@ -129,6 +137,10 @@ export declare namespace ImgCard {
      * 作者头像
      */
     avatar?: string;
+    /**
+     * 作者头像的 alt，默认取头像文件名
+     */
+    avatarAlt?: string;
   }
 }
 
@@ -180,6 +192,10 @@ export declare namespace NavCard {
      * 图片链接
      */
     img?: string;
+    /**
+     * 图片的 alt，默认取图片文件名
+     */
+    alt?: string;
     /**
      * 跳转链接
      */

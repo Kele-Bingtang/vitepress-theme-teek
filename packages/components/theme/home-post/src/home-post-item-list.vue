@@ -2,6 +2,7 @@
 import type { ArticleAnalyze, Post, TkContentData } from "@teek/config";
 import { computed } from "vue";
 import { withBase } from "vitepress";
+import { getImageAlt } from "@teek/helper";
 import { useNamespace, useLocale } from "@teek/composables";
 import { useTeekConfig } from "@teek/components/theme/config-provider";
 import { TkArticleInfo } from "@teek/components/theme/article-info";
@@ -48,6 +49,7 @@ const coverImgMap = computed(() => {
       is: "img",
       props: {
         src: withBase(imgSrc),
+        alt: getImageAlt(imgSrc, post.frontmatter.coverAlt),
       },
     },
   };
