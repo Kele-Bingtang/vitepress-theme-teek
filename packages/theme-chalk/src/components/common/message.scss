@@ -4,7 +4,7 @@
 @use "../../mixins/function" as *;
 
 :root {
-  @include set-css-var(message-bg-color, getCssVar(el-color-info-light-9));
+  @include set-css-var(message-bg-color, getCssVar(el-color-info-light-8));
   @include set-css-var(message-border-color, var(--vp-c-border));
   @include set-css-var(message-border-width, 1px);
   @include set-css-var(message-border-radius, 4px);
@@ -58,7 +58,7 @@
 
   @each $type in (primary, success, info, warning, error) {
     @include m($type) {
-      @include set-css-var(message-bg-color, getCssVar(el-color, $type, light-9));
+      @include set-css-var(message-bg-color, getCssVar(el-color, $type, light-8));
       @include set-css-var(message-border-color, getCssVar(el-color, $type, light-8));
       @include set-css-var(message-text-color, getCssVar(el-color, $type));
 
