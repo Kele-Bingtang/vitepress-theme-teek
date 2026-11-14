@@ -1,0 +1,32 @@
+# GIT COMMIT MESSAGE RULES
+# IMPORTANT: These rules apply to the "Generate with AI" (Sparkle icon) in the Git panel.
+
+You MUST always generate git commit messages in Simplified Chinese (简体中文).
+DO NOT use English for the description.
+
+Format: Conventional Commits
+- feat: 🚀 新增功能
+- fix: 🐞 修复缺陷
+- docs: 📚 文档更新
+- style: 🎨 代码格式改变
+- refactor: ♻️ 代码重构
+- perf: ⚡️ 性能优化
+- test: ✅ 测试相关
+- build: 📦️ 改变构建流程
+- ci: 🎡 改变持续集成配置
+- revert: ⏪️ 改变持续集成配置
+- chore: 🔨 辅助工具的变动
+
+Examples:
+- feat: 🚀 完善用户登录逻辑，发布 1.0.0 版本
+- fix: 🐞 解决诗词详情页加载异常
+- docs: 📚 更新 README 文件
+- style: 🎨 格式化代码，修复 eslint 错误
+- refactor: ♻️ 重构用户登录逻辑
+- perf: ⚡️ 优化用户登录性能
+- test: ✅ 增加用户登录测试
+- build: 📦️ 构建用户登录模块
+- ci: 🎡 持续集成配置
+- revert: ⏪️ 回退用户登录功能
+- chore: 🔨 辅助工具的变动
+
