@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.3](https://github.com/teekhub/vitepress-theme-teek/compare/v1.6.2...v1.6.3) (2026-11-14)
+
+### Features
+
+- 🚀 更新 Github 地址 ([4a6737b](https://github.com/teekhub/vitepress-theme-teek/commit/4a6737bc9211e349b8aa79863383c7345dce84ab))
+- 🚀 更新版本号至 1.6.3，调整 TODO 列表版本信息 ([9bce214](https://github.com/teekhub/vitepress-theme-teek/commit/9bce21455eb7fbc8b73bd6eb2b7ba10e559c4296))
+
+### Bug Fixes
+
+- 🐞 删除指南简介目录遗留的测试文件 00.test.md，修复简介页面重复 ([5d25c92](https://github.com/teekhub/vitepress-theme-teek/commit/5d25c92ccf183bf57f02537b5fa278fac7e44df0)), closes [#244](https://github.com/teekhub/vitepress-theme-teek/issues/244)
+- 🐞 修复首次进入页面锚点定位错误和目录超出页面未滚动到可视区域的问题 ([6ea78d6](https://github.com/teekhub/vitepress-theme-teek/commit/6ea78d6aa546e750be157102df22c813134ac667))
+- **analytics:** 修复百度统计来源全部被判为直接访问 ([75df874](https://github.com/teekhub/vitepress-theme-teek/commit/75df8744a16fea56978ad7eda490ee5a2372a096))
+- **catalogue:** 🐞 目录页标题由 h2 改为 h1，修复页面缺少一级标题 ([bf456cd](https://github.com/teekhub/vitepress-theme-teek/commit/bf456cdd2e48044600254482f18efe0e4abc4d05))
+- **docs:** 🐞 移除 Teek 主题的测试文档文件 ([ac09a20](https://github.com/teekhub/vitepress-theme-teek/commit/ac09a20e4a8be3feea2f29d4a924acc27f37e149))
+- **imageViewer:** 🐞修复图片查看器可能内存泄漏问题 ([75113a1](https://github.com/teekhub/vitepress-theme-teek/commit/75113a15d4aee6578c98f9432d7a7524c4ac342b))
+
 ## [1.6.2](https://github.com/teekhub/vitepress-theme-teek/compare/v1.6.1...v1.6.2) (2026-07-25)
 
 ### Features
